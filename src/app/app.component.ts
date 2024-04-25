@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { LogoNavComponent } from './logo-nav/logo-nav.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, LogoNavComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

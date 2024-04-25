@@ -1,1 +1,182 @@
-/* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+:root{
+    --clr-light: #fafafa;
+    --clr-dark: #1C1C28;
+    --clr-primary: #6966FF;
+    --clr-dark-primary: #3F3D99;
+    --clr-gray: #323249;
+    --clr-light-gray: #393953;  
+    --bg-gradient-primary: linear-gradient(to right, var(--clr-dark-primary), var(--clr-primary));
+    --bg-reversed-gradient-primary: linear-gradient(to right, var(--clr-primary), var(--clr-dark-primary));
+}
+
+
+.font-julius-sans-one {
+    font-family: "Julius Sans One", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+  .my-btn{
+    border-radius: 100px;
+    background: var(--bg-gradient-primary);
+    cursor: pointer;
+    position: relative;
+    transition: 0.3s;
+    text-decoration: none;
+    color: var(--clr-light);
+}
+
+.my-btn:hover,
+.my-btn:focus{
+    text-decoration: none;
+    color: var(--clr-light);
+}
+
+.arrow-end{
+    content: url("./assets/simple_arrow_right_svg.svg");
+    scale: 0.7;
+    padding: auto;
+    position: absolute;
+    right: 0;
+}
+
+
+*{
+    z-index: 1;
+    margin: 0;
+    /* line-height: calc(1em + 0.5rem); */
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    background-color: var(--clr-dark);
+}
+
+html, body {
+    height: 100%;
+}
+
+/* ---------------- */
+/* Media querries */
+/* ---------------- */
+
+/* Small devices (landscape phones, 475px and up) */
+/* Extra-smoll */
+@media (min-width: 475px) { 
+
+}
+
+/* Medium devices (tablets, 640px and up) */
+@media (min-width: 640px) { 
+
+}
+
+/* Large devices (desktops, 1024px and up) */
+/* Large */
+@media (min-width: 1024px) { 
+    
+
+}
+
+/* Extra large devices (large desktops, 1280px and up) */
+/* Extra-large */
+@media (min-width: 1280px) { 
+
+}
+
+
+/* Extra-extra-large */
+@media (min-width: 1536px) { 
+
+}
+
+/* ---------------- */
+
+
+
+
+
+/* ------------------- */
+/* CSS reset by Andy Bell */
+/* ------------------- */
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Prevent font size inflation */
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+/* Remove default margin in favour of better control in authored CSS */
+body, h1, h2, h3, h4, p,
+figure, blockquote, dl, dd {
+  margin-block-end: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* Set shorter line heights on headings and interactive elements */
+h1, h2, h3, h4,
+button, input, label {
+  line-height: 1.1;
+}
+
+/* Balance text wrapping on headings */
+h1, h2,
+h3, h4 {
+  text-wrap: balance;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+  color: currentColor;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input, button,
+textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Make sure textareas without a rows attribute are not tiny */
+textarea:not([rows]) {
+  min-height: 10em;
+}
+
+/* Anything that has been anchored to should have extra scroll margin */
+:target {
+  scroll-margin-block: 5ex;
+}
+/* ------------------- */
