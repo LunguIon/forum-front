@@ -7,7 +7,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [LogoNavComponent, RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './welcome-page.component.html',
-  styleUrl: './welcome-page.component.css'
+  styleUrl: './welcome-page.component.scss'
 })
 export class WelcomePageComponent {
 

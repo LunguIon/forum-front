@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './logo-nav.component.html',
-  styleUrl: './logo-nav.component.css'
+  styleUrl: './logo-nav.component.scss'
 })
 export class LogoNavComponent {
 
