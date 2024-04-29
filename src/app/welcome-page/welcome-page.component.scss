@@ -1,16 +1,25 @@
-*{
-    --img-height: 41vh;
-    z-index: 1;
-}
+@import "../../../node_modules/rfs/scss.scss";
 
-.container{
-    color: var(--clr-light);
+.main_body{
+    --heading-size: 6rem;
+    --img-height: 40vh;
+    z-index: 1;
 }
 
 .main_body{
     overflow: hidden;
     background-color: var(--clr-dark);
 }
+
+.display-1 {
+    // @include font-size(6rem);
+    font-size: rfs-fluid-value(var(--heading-size));;
+}
+
+.container{
+    color: var(--clr-light);
+}
+
 
 
 img.back{
@@ -30,7 +39,6 @@ img.back{
         padding-right: auto;
 }
 
-/* Extra-extra-smoll */
 @media (min-width: 320px) { 
     .pad-20{
         padding-left: 10%;
@@ -38,10 +46,6 @@ img.back{
     }
 }
 
-
-
-/* Small devices (landscape phones, 475px and up) */
-/* Extra-smoll */
 @media (min-width: 475px) { 
     .pad-20{
         padding-left: 20%;
@@ -49,13 +53,10 @@ img.back{
     }
 }
 
-/* Medium devices (tablets, 640px and up) */
 @media (min-width: 640px) { 
     
 }
 
-/* Large devices (desktops, 1024px and up) */
-/* Large */
 @media (min-width: 1024px) { 
     .pad-20{
         padding-left: 25%;
@@ -63,14 +64,10 @@ img.back{
     }
 }
 
-/* Extra large devices (large desktops, 1280px and up) */
-/* Extra-large */
 @media (min-width: 1280px) { 
 
 }
 
-
-/* Extra-extra-large */
 @media (min-width: 1536px) { 
 
 }

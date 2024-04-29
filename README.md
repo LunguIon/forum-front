@@ -30,7 +30,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 # Figma link
 
-[https://www.figma.com/file/DQf2q3hZOfnsbe1uZLc1A4/Untitled?type=design&node-id=0-1&mode=design&t=DIfNuGTLqIYwwoJd-0]
+[https://www.figma.com/file/OzUZPrxvcZHJlf5W0n2zbE/Untitled?type=design&node-id=0-1&mode=design&t=0ov1fCrBJYvVTm7B-0]
 
 
 
