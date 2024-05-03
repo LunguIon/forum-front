@@ -1,26 +1,23 @@
 @import "../../../node_modules/rfs/scss.scss";
+@import "../../stylings/colors.scss";
 
-.main_body{
-    --heading-size: 6rem;
-    --img-height: 40vh;
-    z-index: 1;
-}
+$heading-size: 4.5rem;
+$img-height: 40vh;
 
-.main_body{
+.main_container{
     overflow: hidden;
-    background-color: var(--clr-dark);
+    background-color: $clr-dark;
+    z-index: 1;
 }
 
 .display-1 {
     // @include font-size(6rem);
-    font-size: rfs-fluid-value(var(--heading-size));;
+    font-size: rfs-fluid-value($heading-size);
 }
 
 .container{
-    color: var(--clr-light);
+    color: $clr-light;
 }
-
-
 
 img.back{
     top: 0;
@@ -29,7 +26,7 @@ img.back{
     z-index: 0; 
     user-select: none;
     object-fit: cover;
-    height: var(--img-height);
+    height: $img-height;
     width: 100%;
     min-width: 100%;
 }

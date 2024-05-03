@@ -1,3 +1,6 @@
+@import "../../../node_modules/rfs/scss.scss";
+@import "../../stylings/colors.scss";
+
 *{
     z-index: 1;
 }
@@ -8,32 +11,31 @@
 }
 
 a {
-    color: var(--clr-light);
-    text-decoration-color: var(--clr-light);
+    color: $clr-light;
+    text-decoration-color: $clr-light;
 }
 
 a:hover,
 a:focus {
-    color: var(--clr-primary);
-    text-decoration-color: var(--clr-primary);
+    color: $clr-primary;
+    text-decoration-color: $clr-primary;
 }
 
 .no-hover{
-    color: var(--clr-light);
+    color: $clr-light;
 }
 
 .no-hover:hover,
 .no-hover:focus{
-    color: var(--clr-light);
-}
-
-.dis{
-    visibility: hidden;
+    color: $clr-light;
 }
 
 
-@media (min-width: 1024px) { 
-    .dis{
-        visibility: visible;
-    }
+.responsive-size{
+    width: rfs-fluid-value(120px);
+    height: rfs-fluid-value(120px);
+}
+
+.nav, .container-fluid{
+    padding: 0;
 }

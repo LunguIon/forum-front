@@ -1,23 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 @import "../node_modules/rfs/scss.scss";
-
-:root{
-    --clr-light: #fafafa;
-    --clr-dark: #1C1C28;
-    --clr-primary: #6966FF;
-    --clr-dark-primary: #3F3D99;
-    --clr-gray: #323249;
-    --clr-light-gray: #393953;  
-    --bg-gradient-primary: linear-gradient(to right, var(--clr-dark-primary), var(--clr-primary));
-    --bg-reversed-gradient-primary: linear-gradient(to right, var(--clr-primary), var(--clr-dark-primary));
-}
-
+@import "../src/stylings/colors.scss";
 
 .font-julius-sans-one {
-    font-family: "Julius Sans One", sans-serif;
-    font-weight: 300;
-    font-style: normal;
+  font-family: "Julius Sans One", sans-serif;
+  font-weight: 300;
+  font-style: normal;
 }
 
 .font-inter{
@@ -31,18 +20,19 @@
 
 .my-btn{
   border-radius: 100px;
-  background: var(--bg-gradient-primary);
+  background: $bg-gradient-primary;
   cursor: pointer;
   position: relative;
   transition: 0.3s;
   text-decoration: none;
-  color: var(--clr-light);
+  color: $clr-light;
+  text-align: center;
 }
 
 .my-btn:hover,
 .my-btn:focus{
     text-decoration: none;
-    color: var(--clr-light);
+    color: $clr-light;
 }
 
 .arrow-end{
@@ -63,51 +53,12 @@ html{
 }
 
 body{
-    background-color: var(--clr-dark);
+    background-color: $clr-dark;
 }
 
 html, body {
     height: 100%;
 }
-
-/* ---------------- */
-/* Media querries */
-/* ---------------- */
-
-/* Small devices (landscape phones, 475px and up) */
-/* Extra-smoll */
-@media (min-width: 475px) { 
-
-}
-
-/* Medium devices (tablets, 640px and up) */
-@media (min-width: 640px) { 
-
-}
-
-/* Large devices (desktops, 1024px and up) */
-/* Large */
-@media (min-width: 1024px) { 
-    
-
-}
-
-/* Extra large devices (large desktops, 1280px and up) */
-/* Extra-large */
-@media (min-width: 1280px) { 
-
-}
-
-
-/* Extra-extra-large */
-@media (min-width: 1536px) { 
-
-}
-
-/* ---------------- */
-
-
-
 
 
 /* ------------------- */

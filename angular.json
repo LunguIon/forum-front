@@ -30,9 +30,10 @@
 						],
 						"styles": [
 							"src/styles.scss",
+							"src/stylings/colors.scss",
 							"node_modules/fastbootstrap/dist/css/fastbootstrap.min.css",
-              "node_modules/bootstrap/scss/bootstrap.scss",
-              "node_modules/rfs/scss.scss"
+							"node_modules/bootstrap/scss/bootstrap.scss",
+							"node_modules/rfs/scss.scss"
 						],
 						"scripts": [
 							"node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",

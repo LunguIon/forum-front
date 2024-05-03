@@ -31,6 +31,3 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 # Figma link
 
 [https://www.figma.com/file/OzUZPrxvcZHJlf5W0n2zbE/Untitled?type=design&node-id=0-1&mode=design&t=0ov1fCrBJYvVTm7B-0]
-
-
-

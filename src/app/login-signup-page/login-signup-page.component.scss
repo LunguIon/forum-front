@@ -1,0 +1,189 @@
+
+@import "../../../node_modules/rfs/scss.scss";
+@import "../../../node_modules/bootstrap/scss/bootstrap-utilities.scss";
+@import "../../stylings/colors.scss";
+
+$img-width: 40vw;
+$img-height: 50vh;
+$google-btn-fs: 1.4rem;
+$google-btn-fs-xl: 1.15rem;
+$google-btn-fs-sm: 1rem;
+
+// #card-login{
+//     display: none;
+// }
+
+.card:hover .inner{
+    transform: translateZ(-300px);
+    transform:  rotateY(180deg);
+}
+
+.card{
+    perspective: 1500px;
+    transform-style: preserve-3d;
+}
+
+.card-3d-wrapper{
+    position: relative;
+    width: 500px;
+    height: 600px;
+}
+
+.card-front, .card-back{
+    position: absolute;
+    width: 500px;
+    height: 550px;
+    backface-visibility: hidden;
+    background-color: $clr-light-gray;
+    border-radius: 100px;
+}
+
+
+.inner{
+    transition: all 600ms ease-out;
+    transform-style: preserve-3d;
+    perspective: 200px;
+    border-radius: 100px;
+    overflow:visible;
+}
+
+.card-back {
+    transform: rotateX(180deg) rotateZ(180deg);
+    
+}
+
+.google-btn{
+    width: 90%;
+    font-size: rfs-fluid-value($google-btn-fs);
+}
+
+.main_container{
+    overflow: hidden;
+    background-color: $clr-dark;
+    z-index: 1;
+    height: 100vh;
+    width: 100%;
+}
+
+.card{
+    border: none;
+    background-color: transparent;
+    -ms-overflow-style: none;  
+    scrollbar-width: none;
+    overflow-y: scroll;
+}
+
+.card::-webkit-scrollbar {
+    display: none;
+}
+
+.card{
+    .login-title{
+        color: $clr-light;
+    }
+
+    .form-control{
+        border: 2px solid;
+        border-radius: 60px;
+        color: $clr-light;
+        border-color: transparent;
+        border-color: rgba($color: $clr-primary, $alpha: 0.35);
+        background-color: $clr-gray;
+        transition: all 0.3s;
+    }
+
+    .form-control:hover{
+        border-color: rgba($color: $clr-primary, $alpha: 1);
+    }
+
+    .form-control:focus{
+        border-color: rgba($color: $clr-primary, $alpha: 1);
+        box-shadow: 0 0 10px 3px rgba($color: $clr-primary, $alpha: 0.35);;
+    }
+
+    .form-control::placeholder {
+        color: $clr-light;
+        opacity: 0.5; 
+    }
+
+    .link-light{
+        color: $clr-light;  
+        text-decoration: none;
+    }
+
+    .link-light:hover{
+        text-decoration: underline;
+    }
+
+    div.link-light{
+        cursor: pointer;
+    }
+
+    div.link-light:hover{
+        text-decoration: none;
+    }
+    
+}
+
+.my-btn{
+    border: none;
+}
+    
+
+img.back{
+    right: 0;
+    position: fixed;
+    pointer-events: none;
+    z-index: 0; 
+    user-select: none;
+    object-fit: cover;
+    width: $img-width;
+    min-height: 100%;
+    max-width: auto;
+}
+
+@include media-breakpoint-down(xl) {
+    img.back{
+        top: 0;
+        position: fixed;
+        pointer-events: none;
+        z-index: 0; 
+        user-select: none;
+        object-fit: cover;
+        height: $img-height;
+        min-width: 100%;
+        min-height: auto;
+    }
+}
+
+@include media-breakpoint-up(xl){
+    .card{    
+        width: 616px;
+    }
+
+    
+}
+
+@include media-breakpoint-down(xl) {
+    .google-btn{
+        font-size: rfs-fluid-value($google-btn-fs-xl);
+    }
+    
+    
+}
+
+@include media-breakpoint-down(md) {
+    .google-btn{
+        font-size: rfs-fluid-value($google-btn-fs-sm);
+    }
+    
+    .card-3d-wrapper{
+        width: 400px;
+        height: 550px;
+    }
+
+    .card-front, .card-back{
+        width: 400px;
+        height: 500px;
+    }
+}
