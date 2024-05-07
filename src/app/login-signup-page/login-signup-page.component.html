@@ -9,65 +9,64 @@
 
             <div class="card card-3d-wrapper mx-2 max-w-full overflow-y-scroll d-flex justify-content-center align-items-center flex-column">
 
-                <div class="inner w-100 h-100 d-flex justify-content-center align-items-center flex-column" [ngClass]="{'animation-rotation': isRotated}">
-                    <div class="card-body px-5 py-5 pt-10 card-front" id="card-login">
+                <div class="inner w-100 h-100 d-flex justify-content-center align-items-center flex-column" [ngClass]="{'animation-rotation': isSignup}">
+                    <div class="card-body px-5 py-5 pt-10 card-front">
                         <div class="position-relative">
                             <h5 class="login-title pt-3 font-julius-sans-one fs-1">LOG IN</h5>
                             
-                            <form action="" class="font-julius-sans-one text-uppercase">
-                                <div class="from-feilds mt-4 px-5 d-flex flex-column gap-md-3 gap-1">
-                                    <input type="text" class="form-control flex-grow-1 py-1 py-md-2 px-md-3 fs-4" placeholder="Login" id="login-login">
-                                    <input type="password" class="form-control flex-grow-1 py-1 py-md-2 px-md-3 fs-4" placeholder="Password" id="password-login">
-                                    <input type="text" class="form-control flex-grow-1 py-1 py-md-2 px-md-3 fs-4 invisible" placeholder="">
+                            <form #loginForm="ngForm" (ngSubmit)="submitLoginForm(loginForm)" class="font-inter">
+                                <div class="from-feilds mt-4 px-md-5 d-flex flex-column gap-md-3 gap-1">
+                                    <input type="text" class="form-control flex-grow-1 py-1 py-md-2  fs-4" placeholder="Login" name="login" required ngModel>
+                                    <input type="password" class="form-control flex-grow-1 py-1 py-md-2  fs-4" placeholder="Password" name = "password" required ngModel>
+                                    <input type="text" class="form-control flex-grow-1 py-1 py-md-2  fs-4 invisible" placeholder="">
                                 </div>
                                 
                                 <div class="mt-4 mt-sm-20 mb-sm-3 px-md-5 d-flex flex-column gap-md-3 gap-1">
-                                    <div class="my-btn-wrapper d-flex flex-column justify-content-center ">
-                                        <input type="submit" value="Log In" class="my-btn-secondary p-1 fs-4 fw-light">
+                                    <div class="my-btn-wrapper d-flex flex-column justify-content-center">
+                                        <input type="submit"  value="Log In" class="font-julius-sans-one my-btn-secondary p-1 fs-4 fw-light">
                                     </div>
-                                </div>
+                                </div> 
                             </form>
 
                             <div class="mt-4 font-julius-sans-one d-flex justify-content-center align-items-center flex-column">
                                 <a href="" class="link-light text-capitalize text-center fs-5">Forgot password?</a>
-                                <div class="link-light text-uppercase text-center fs-4" id="signup-switch-btn" (click)="toggleRotate()">Sign up</div>
+                                <div class="link-light text-uppercase text-center fs-4" (click)="toggleRotate()">Sign up</div>
                             </div>
                         </div>
                     </div>
 
 
 
-                    <div class="card-body px-5 py-5 pt-10 card-back" id="card-signup">
+                    <div class="card-body px-5 py-5 pt-10 card-back">
 
                         <div class="position-relative">
                             <h5 class="login-title pt-3 font-julius-sans-one fs-1">SIGN UP</h5>
                         
-                            <form action="" class="font-julius-sans-one text-uppercase">
-                                <div class="from-feilds mt-4 px-5 d-flex flex-column gap-md-3 gap-1">
-                                    <input type="text" class="form-control flex-grow-1 py-1 py-md-2 px-md-3 fs-4" placeholder="Login" id="login-signup" required>
-                                    <input type="email" class="form-control flex-grow-1 py-1 py-md-2 px-md-3 fs-4" placeholder="Email" id="email-signup" required>
-                                    <input type="password" class="form-control flex-grow-1 py-1 py-md-2 px-md-3 fs-4" placeholder="Password" id="password-signup"required>
+                            <form #signupForm="ngForm" (ngSubmit)="submitSignupForm(signupForm)" class="font-inter">
+                                <div class="from-feilds mt-4 px-md-5 d-flex flex-column gap-md-3 gap-1">
+                                    <input type="text" class="form-control flex-grow-1 py-1 py-md-2 px-md-3 fs-4" placeholder="Login" name="login" required ngModel>
+                                    <input type="email" class="form-control flex-grow-1 py-1 py-md-2 px-md-3 fs-4" placeholder="Email" name="email" required ngModel>
+                                    <input type="password" class="form-control flex-grow-1 py-1 py-md-2 px-md-3 fs-4" placeholder="Password" name="password"required ngModel>
                                 </div>
                                 
                                 <div class="mt-4 mt-sm-20 mb-sm-3 px-md-5 d-flex flex-column gap-md-3 gap-1">
                                     <div class="my-btn-wrapper d-flex flex-column justify-content-center ">
-                                        <input type="submit" value="Sign up" class="my-btn-secondary p-1 fs-4 fw-light">
+                                        <input type="submit" value="Sign up" class="font-julius-sans-one my-btn-secondary p-1 fs-4 fw-light">
                                     </div>
                                 </div>
                             </form>
 
                             <div class="mt-4 font-julius-sans-one d-flex justify-content-center align-items-center flex-column">
                                 <a href="" class="link-light text-capitalize text-center fs-5 invisible">Forgot password?</a>
-                                <div class="link-light text-uppercase text-center fs-4" id="login-switch-btn" (click)="toggleRotate()">Log In</div>
+                                <div class="link-light text-uppercase text-center fs-4" (click)="toggleRotate()">Log In</div>
                             </div>
                         </div>
 
                     </div>
                 </div>
-
             </div>
 
-            <input type="submit" value="Continue with Google Account" class="google-btn font-julius-sans-one text-uppercase my-btn p-1 fw-light py-2">
+            <a href="https://www.google.com/" type="submit" class="google-btn font-julius-sans-one text-uppercase my-btn p-1 fw-light py-2 d-flex justify-content-center align-items-center"><span class="google-icon"></span> Continue with Google Account</a> 
         </div>
     </div>
 </div>

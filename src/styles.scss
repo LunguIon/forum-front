@@ -3,6 +3,20 @@
 @import "../node_modules/rfs/scss.scss";
 @import "../src/stylings/colors.scss";
 
+:root{
+  --clr-light: #{$clr-light};
+  --clr-dark: #{$clr-dark};
+  --clr-primary: #{$clr-primary};
+  --clr-dark-primary: #{$clr-dark-primary};
+  --clr-gray: #{$clr-gray};
+  --clr-light-gray: #{$clr-light-gray};
+
+  --clr-primary-rgb: #{$clr-primary-rgb};
+  --clr-gray-rgb: #{$clr-gray-rgb};
+  --clr-light-gray-rgb: #{$clr-light-gray-rgb};
+
+}
+
 .font-julius-sans-one {
   font-family: "Julius Sans One", sans-serif;
   font-weight: 300;
@@ -47,9 +61,9 @@
 }
 
 .arrow-end{
-    content: url("./assets/simple_arrow_right.svg");
-    position: absolute;
-    right: 20px;
+  content: url("./assets/simple_arrow_right.svg");
+  position: absolute;
+  right: 20px;
 }
 
 

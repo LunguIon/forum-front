@@ -41,7 +41,6 @@ $google-btn-fs-sm: 1rem;
     border-radius: 100px;
 }
 
-
 .inner{
     transition: all 600ms ease-out;
     transform-style: preserve-3d;
@@ -95,6 +94,7 @@ $google-btn-fs-sm: 1rem;
         transition: all 0.3s;
     }
 
+
     .form-control:hover{
         border-color: rgba($color: $clr-primary, $alpha: 1);
     }
@@ -107,6 +107,10 @@ $google-btn-fs-sm: 1rem;
     .form-control::placeholder {
         color: $clr-light;
         opacity: 0.5; 
+        text-transform: uppercase;
+        font-family: "Julius Sans One", sans-serif;
+        font-weight: 300;
+        font-style: normal;
     }
 
     .link-light{
@@ -133,15 +137,30 @@ $google-btn-fs-sm: 1rem;
     background: $bg-gradient-secondary;
     padding: 1.5px;
     border-radius: $btn-border-radius;
-  }
+    transition: transform 0.3s;
+}
   
 .my-btn-secondary{
     border: none;
 }
 
+.my-btn-wrapper::before{
+    content:"";
+    position: absolute;
+    inset: 20px;
+    z-index: -2;
+    filter: blur(10px);
+    background: $bg-gradient-secondary;
+    transition: inset 0.3s;
+}
+
+.my-btn-wrapper:hover::before{
+    inset: 5px;
+}
+
+
 .my-btn{
     border: none;
-    
 }
     
 
@@ -156,6 +175,21 @@ img.back{
     min-height: 100%;
     max-width: auto;
 }
+
+.google-btn:hover{
+    box-shadow: 0 0 10px 3px rgba($color: $clr-primary, $alpha: 0.35);
+}
+
+.google-btn::before{
+    content: icon;
+}
+
+.google-icon{
+        content: url("../../assets/google_icon_svg.svg");
+        position: absolute;
+        left: 10px;    
+    }
+
 
 @include media-breakpoint-down(xl) {
     img.back{
@@ -175,21 +209,22 @@ img.back{
     .card{    
         width: 600px;
     }
-
-    
 }
 
 @include media-breakpoint-down(xl) {
     .google-btn{
         font-size: rfs-fluid-value($google-btn-fs-xl);
     }
-    
-    
 }
 
 @include media-breakpoint-down(md) {
     .google-btn{
         font-size: rfs-fluid-value($google-btn-fs-sm);
+    }
+
+    .google-icon{
+        left: 5px;
+        scale: 0.7;
     }
     
     .card-3d-wrapper{
