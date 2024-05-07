@@ -19,8 +19,19 @@
 }
 
 .my-btn{
-  border-radius: 100px;
+  border-radius: $btn-border-radius;
   background: $bg-gradient-primary;
+  cursor: pointer;
+  position: relative;
+  transition: 0.3s;
+  text-decoration: none;
+  color: $clr-light;
+  text-align: center;
+}
+
+.my-btn-secondary{
+  border-radius: $btn-border-radius;
+  background: $clr-light-gray;
   cursor: pointer;
   position: relative;
   transition: 0.3s;

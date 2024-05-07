@@ -7,3 +7,9 @@ $clr-gray: #323249;
 $clr-light-gray: #393953; 
 $bg-gradient-primary: linear-gradient(to right, $clr-dark-primary, $clr-primary);
 $bg-reversed-gradient-primary: linear-gradient(to right, $clr-primary, $clr-dark-primary);
+
+$clr-violet: #7D4CD0;
+$clr-pink: #F98CC4;
+$bg-gradient-secondary: linear-gradient(30deg, $clr-violet, $clr-pink);
+
+$btn-border-radius: 100px

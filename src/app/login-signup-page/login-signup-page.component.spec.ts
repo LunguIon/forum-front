@@ -15,9 +15,14 @@ describe('LoginSignupPageComponent', () => {
     fixture = TestBed.createComponent(LoginSignupPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  
 });
+
+

@@ -13,8 +13,11 @@ $google-btn-fs-sm: 1rem;
 //     display: none;
 // }
 
-.card:hover .inner{
-    transform: translateZ(-300px);
+// .card:hover .inner{
+//     transform:  rotateY(180deg);
+// }
+
+.animation-rotation{
     transform:  rotateY(180deg);
 }
 
@@ -125,8 +128,20 @@ $google-btn-fs-sm: 1rem;
     
 }
 
+.my-btn-wrapper {
+    position: relative;
+    background: $bg-gradient-secondary;
+    padding: 1.5px;
+    border-radius: $btn-border-radius;
+  }
+  
+.my-btn-secondary{
+    border: none;
+}
+
 .my-btn{
     border: none;
+    
 }
     
 
@@ -158,7 +173,7 @@ img.back{
 
 @include media-breakpoint-up(xl){
     .card{    
-        width: 616px;
+        width: 600px;
     }
 
     
@@ -179,11 +194,11 @@ img.back{
     
     .card-3d-wrapper{
         width: 400px;
-        height: 550px;
+        height: 500px;
     }
 
     .card-front, .card-back{
-        width: 400px;
-        height: 500px;
+        width: 350px;
+        height: 450px;
     }
 }
