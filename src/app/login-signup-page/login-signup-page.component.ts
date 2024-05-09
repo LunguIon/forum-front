@@ -24,10 +24,10 @@ import { trigger, state, style, transition, animate, keyframes } from '@angular/
       transition('unclicked => clicked', [
         animate('500ms', keyframes([
           style({ transform: 'rotate(0deg)', offset: 0 }),
-          style({ transform: 'rotate(30deg)', offset: 0.2 }),
-          style({ transform: 'rotate(-30deg)', offset: 0.4 }),
-          style({ transform: 'rotate(15deg)', offset: 0.6 }),
-          style({ transform: 'rotate(-15deg)', offset: 0.8 }),
+          style({ transform: 'rotate(7deg)', offset: 0.2 }),
+          style({ transform: 'rotate(-7deg)', offset: 0.4 }),
+          style({ transform: 'rotate(3deg)', offset: 0.6 }),
+          style({ transform: 'rotate(-3deg)', offset: 0.8 }),
           style({ transform: 'rotate(0deg)', offset: 1.0 })
         ]))
       ]),
