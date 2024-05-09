@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import { LogoNavComponent } from '../logo-nav/logo-nav.component';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { initializeConstellations } from '../utils/constelations';
@@ -13,7 +13,7 @@ import { initializeConstellations } from '../utils/constelations';
 export class WelcomePageComponent implements OnInit{
   @ViewChild('canvasElement', { static: true }) canvasElement: ElementRef | undefined;
 
-  constructor(private renderer: Renderer2) { }
+  constructor() { }
 
   ngOnInit(): void {
     if (this.canvasElement) {
@@ -22,7 +22,6 @@ export class WelcomePageComponent implements OnInit{
       const canvas: HTMLCanvasElement = this.canvasElement.nativeElement;
       initializeConstellations(canvas, colorPrimary, colorPrimary, colorPrimaryRGBVals);
     }
-    
   }
 
 }

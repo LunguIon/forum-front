@@ -3,8 +3,8 @@
 @import "../../../node_modules/bootstrap/scss/bootstrap-utilities.scss";
 @import "../../stylings/colors.scss";
 
-$img-width: 40vw;
-$img-height: 50vh;
+$canvas-width: 60vw;
+$canvas-height: 60vh;
 $google-btn-fs: 1.4rem;
 $google-btn-fs-xl: 1.15rem;
 $google-btn-fs-sm: 1rem;
@@ -164,16 +164,18 @@ $google-btn-fs-sm: 1rem;
 }
     
 
-img.back{
+canvas.back{
     right: 0;
     position: fixed;
     pointer-events: none;
     z-index: 0; 
     user-select: none;
     object-fit: cover;
-    width: $img-width;
+    width: $canvas-width;
     min-height: 100%;
     max-width: auto;
+    // filter: saturate(3) blur(10px);
+    filter: saturate(3);
 }
 
 .google-btn:hover{
@@ -192,14 +194,14 @@ img.back{
 
 
 @include media-breakpoint-down(xl) {
-    img.back{
+    canvas.back{
         top: 0;
         position: fixed;
         pointer-events: none;
         z-index: 0; 
         user-select: none;
         object-fit: cover;
-        height: $img-height;
+        height: $canvas-height;
         min-width: 100%;
         min-height: auto;
     }

@@ -1,9 +1,9 @@
-export const initializeConstellations = (canvas: HTMLCanvasElement, ballColor? : string, lineColor? : string, shapeColorRGBValues? : string) => {
+export const initializeConstellations = (canvas: HTMLCanvasElement, ballColor? : string, lineColor? : string, shapeColorRGBValues? : string, reactOnClick? : boolean) => {
     // CONSTELATIONS:
     
     //if you resize the page below this values the actual canvas 
     //programtically will remain of this size, you will just not see it 
-    const MIN_WIDTH_OF_CANVAS = 1400;
+    const MIN_WIDTH_OF_CANVAS = 1000;
     const MIN_HEIGHT_OF_CANVAS = 500;
 
     //max number of particles in an array 
@@ -180,60 +180,66 @@ export const initializeConstellations = (canvas: HTMLCanvasElement, ballColor? :
                 // console.log(mouse.x + " " + mouse.y);
         });
 
-        window.addEventListener('click', 
-            function(event){
-                
-                // console.log("cick: " + mouse.x + " : " + mouse.y);
-                    for(let j = 0; j < NUMBER_OF_ARRAYS; j ++){
-                        for(let i = 0; i < mainArray[j].length; i++){
-                        let shape = mainArray[j][i];
-
-                        if(CLICK_PROPULTION <= -1){
-                            if(shape.distance < RADIUS_AROUND_MOUSE * 20){
+        let clicklistener : boolean = true;
+        if(reactOnClick != undefined){
+            clicklistener = reactOnClick;
+        }
+        if(clicklistener){
+            window.addEventListener('click', 
+                function(event){
+                    
+                    // console.log("cick: " + mouse.x + " : " + mouse.y);
+                        for(let j = 0; j < NUMBER_OF_ARRAYS; j ++){
+                            for(let i = 0; i < mainArray[j].length; i++){
+                            let shape = mainArray[j][i];
+    
+                            if(CLICK_PROPULTION <= -1){
+                                if(shape.distance < RADIUS_AROUND_MOUSE * 20){
+                                
+                                    if(Math.sign(shape.speedX) != Math.sign(shape.dx)) 
+                                        shape.speedX = -shape.speedX;
+                                
+                                    if(Math.sign(shape.speedY) != Math.sign(shape.dy)) 
+                                        shape.speedY = -shape.speedY;
+                                
+                                    if(isNumberBetween(shape.x, mouse.x+20, mouse.x-20))
+                                        shape.speedX = 0;
+                                
+                                    if(isNumberBetween(shape.y, mouse.y+20, mouse.y-20))
+                                        shape.speedY = 0;
                             
-                                if(Math.sign(shape.speedX) != Math.sign(shape.dx)) 
-                                    shape.speedX = -shape.speedX;
-                            
-                                if(Math.sign(shape.speedY) != Math.sign(shape.dy)) 
-                                    shape.speedY = -shape.speedY;
-                            
-                                if(isNumberBetween(shape.x, mouse.x+20, mouse.x-20))
-                                    shape.speedX = 0;
-                            
-                                if(isNumberBetween(shape.y, mouse.y+20, mouse.y-20))
-                                    shape.speedY = 0;
-                        
-                            }
-                        } else {
-                            if(shape.distance < CLICK_PROPULTION_RADIUS){
-                                let forceDirectionX = shape.dx / shape.distance;
-                                let forceDirectionY = shape.dy / shape.distance;
-
-                                let force = (CLICK_PROPULTION_RADIUS - shape.distance) / (CLICK_PROPULTION_RADIUS);
-
-                                let dirX = - (forceDirectionX * force * shape.lineLengh) / CLICK_PROPULTION;
-                                let dirY = - (forceDirectionY * force * shape.lineLengh) / CLICK_PROPULTION;
-
-                                if(shape.distance < RADIUS_AROUND_MOUSE * 2 + shape.size){
-                                    if(dirX < -MAX_CLICK_PROPUTION_SPEED || dirX > MAX_CLICK_PROPUTION_SPEED){
-                                        if(Math.sign(dirX) == -1) 
-                                            shape.speedX = -MAX_CLICK_PROPUTION_SPEED;
-                                        else 
-                                            shape.speedX = MAX_CLICK_PROPUTION_SPEED; 
+                                }
+                            } else {
+                                if(shape.distance < CLICK_PROPULTION_RADIUS){
+                                    let forceDirectionX = shape.dx / shape.distance;
+                                    let forceDirectionY = shape.dy / shape.distance;
+    
+                                    let force = (CLICK_PROPULTION_RADIUS - shape.distance) / (CLICK_PROPULTION_RADIUS);
+    
+                                    let dirX = - (forceDirectionX * force * shape.lineLengh) / CLICK_PROPULTION;
+                                    let dirY = - (forceDirectionY * force * shape.lineLengh) / CLICK_PROPULTION;
+    
+                                    if(shape.distance < RADIUS_AROUND_MOUSE * 2 + shape.size){
+                                        if(dirX < -MAX_CLICK_PROPUTION_SPEED || dirX > MAX_CLICK_PROPUTION_SPEED){
+                                            if(Math.sign(dirX) == -1) 
+                                                shape.speedX = -MAX_CLICK_PROPUTION_SPEED;
+                                            else 
+                                                shape.speedX = MAX_CLICK_PROPUTION_SPEED; 
+                                        }
+                                        if(dirY < -MAX_CLICK_PROPUTION_SPEED || dirY > MAX_CLICK_PROPUTION_SPEED){
+                                            if(Math.sign(dirY) == -1)
+                                                 shape.speedY = -MAX_CLICK_PROPUTION_SPEED;
+                                            else 
+                                                shape.speedY = MAX_CLICK_PROPUTION_SPEED; 
+                                        }    
                                     }
-                                    if(dirY < -MAX_CLICK_PROPUTION_SPEED || dirY > MAX_CLICK_PROPUTION_SPEED){
-                                        if(Math.sign(dirY) == -1)
-                                             shape.speedY = -MAX_CLICK_PROPUTION_SPEED;
-                                        else 
-                                            shape.speedY = MAX_CLICK_PROPUTION_SPEED; 
-                                    }    
                                 }
                             }
                         }
                     }
-                }
-                
-        });
+                    
+            });
+        }
 
 
         class Shape{

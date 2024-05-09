@@ -1,8 +1,9 @@
-import { Component, NgModule, OnInit} from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import { LogoNavComponent } from '../logo-nav/logo-nav.component';
 import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';  
 import { NgClass, NgIf } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { initializeConstellations } from '../utils/constelations';
 
 
 @Component({
@@ -13,8 +14,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './login-signup-page.component.scss',
 })
 
-
 export class LoginSignupPageComponent implements OnInit{
+  @ViewChild('canvasElement', { static: true }) canvasElement: ElementRef | undefined;
   isSignup: boolean = false;
 
   constructor(private route : ActivatedRoute) { }
@@ -23,6 +24,13 @@ export class LoginSignupPageComponent implements OnInit{
     this.route.data.subscribe(data => {
       this.isSignup = data['isSignup'];
     });
+
+    if (this.canvasElement) {
+      let colorPrimary : string = getComputedStyle(document.documentElement).getPropertyValue('--clr-primary');
+      let colorPrimaryRGBVals : string = getComputedStyle(document.documentElement).getPropertyValue('--clr-primary-rgb-vals');
+      const canvas: HTMLCanvasElement = this.canvasElement.nativeElement;
+      initializeConstellations(canvas, colorPrimary, colorPrimary, colorPrimaryRGBVals, false);
+    }
   }
 
   toggleRotate(){
