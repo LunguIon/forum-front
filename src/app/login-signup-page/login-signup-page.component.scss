@@ -37,7 +37,8 @@ $google-btn-fs-sm: 1rem;
     width: 500px;
     height: 550px;
     backface-visibility: hidden;
-    background-color: var(--clr-light-gray);
+    background-color: rgba(var(--clr-light-gray-rgb-vals), 0.4);
+    backdrop-filter: blur(2.5px) contrast(1.05);
     border-radius: 100px;
 }
 
