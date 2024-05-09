@@ -10,11 +10,37 @@
   --clr-dark-primary: #{$clr-dark-primary};
   --clr-gray: #{$clr-gray};
   --clr-light-gray: #{$clr-light-gray};
+  --bg-gradient-primary: #{$bg-gradient-primary};
+  --bg-reversed-gradient-primary: #{$bg-reversed-gradient-primary};
 
+  --clr-light-rgb: #{$clr-light-rgb};
+  --clr-dark-rgb: #{$clr-dark-rgb};
   --clr-primary-rgb: #{$clr-primary-rgb};
+  --clr-dark-primary-rgb: #{$clr-dark-primary-rgb};
   --clr-gray-rgb: #{$clr-gray-rgb};
   --clr-light-gray-rgb: #{$clr-light-gray-rgb};
 
+  --clr-light-rgb-vals: #{$clr-light-rgb-vals};
+  --clr-dark-rgb-vals: #{$clr-dark-rgb-vals};
+  --clr-primary-rgb-vals: #{$clr-primary-rgb-vals};
+  --clr-dark-primary-rgb-vals: #{$clr-dark-primary-rgb-vals};
+  --clr-gray-rgb-vals: #{$clr-gray-rgb-vals};
+  --clr-light-gray-rgb-vals: #{$clr-light-gray-rgb-vals};
+
+  --clr-violet: #{$clr-violet};
+  --clr-pink: #{$clr-pink};
+  --bg-gradient-secondary: #{$bg-gradient-secondary};
+
+
+
+  --btn-border-radius: #{$btn-border-radius};
+}
+
+.light-theme{
+  --clr-light: #262077;
+  --clr-dark: #F5F1EF;
+  --clr-gray: #c3c2ff;
+  --clr-light-gray: #FFFFFF;
 }
 
 .font-julius-sans-one {
@@ -33,8 +59,8 @@
 }
 
 .my-btn{
-  border-radius: $btn-border-radius;
-  background: $bg-gradient-primary;
+  border-radius: var(--btn-border-radius);
+  background: var(--bg-gradient-primary);
   cursor: pointer;
   position: relative;
   transition: 0.3s;
@@ -44,13 +70,13 @@
 }
 
 .my-btn-secondary{
-  border-radius: $btn-border-radius;
-  background: $clr-light-gray;
+  border-radius: var(--btn-border-radius);
+  background: var(--clr-light-gray);
   cursor: pointer;
   position: relative;
   transition: 0.3s;
   text-decoration: none;
-  color: $clr-light;
+  color: var(--clr-light);
   text-align: center;
 }
 
@@ -78,7 +104,7 @@ html{
 }
 
 body{
-    background-color: $clr-dark;
+    background-color: var(--clr-dark);
 }
 
 html, body {

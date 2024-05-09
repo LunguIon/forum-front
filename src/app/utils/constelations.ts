@@ -1,44 +1,24 @@
-import { Renderer2 } from '@angular/core';
-
-export const initializeConstellations = (canvas: HTMLCanvasElement, ballColor? : string, lineColor? : string, shapeColor? : string) => {
-    let w : number, width : number, h : number, height : number;
-    let ctx : any  = canvas.getContext("2d");
-
-    function resize(){
-        if(canvas.getBoundingClientRect().width > 1400){
-            width = w = canvas.getBoundingClientRect().width;
-        } else{
-            width = w = 1400;
-        }
-        
-        if(canvas.getBoundingClientRect().height > 500){
-            height = h = canvas.getBoundingClientRect().height
-        }else{
-            height = h = 500;
-        }
-
-        canvas.width = canvas.getBoundingClientRect().width;
-        canvas.height = canvas.getBoundingClientRect().height;
-
-        // console.log("resize: " + w + " : " + h + ".");
-    }
-
-
-    resize();
-    window.addEventListener('resize', resize, false);
-
+export const initializeConstellations = (canvas: HTMLCanvasElement, ballColor? : string, lineColor? : string, shapeColorRGBValues? : string) => {
     // CONSTELATIONS:
+    
+    //if you resize the page below this values the actual canvas 
+    //programtically will remain of this size, you will just not see it 
+    const MIN_WIDTH_OF_CANVAS = 1400;
+    const MIN_HEIGHT_OF_CANVAS = 500;
 
     //max number of particles in an array 
     const MAX_NUMER_OF_ENTITIES_PER_ARRAY = 65;
+    
+    //number of layer(specific arrays of dots that will interact with each other)
+    const NUMBER_OF_ARRAYS = 3;
 
     //size of circles
     const MIN_SIZE = 1.5;
     const MAX_SIZE = 5;
 
-    //distance of lines
-    const MIN_DISTANCE = 40;
-    const MAX_DISTANCE = 150;
+    //lenght of lines
+    const MIN_LENGHT = 40;
+    const MAX_LENGHT = 150;
 
     //thickness of lines
     const LINE_THIKNESS = 0.4;
@@ -70,39 +50,33 @@ export const initializeConstellations = (canvas: HTMLCanvasElement, ballColor? :
     const MAX_SPEED_OF_DECAY = 0.0001;
 
     //min size of shapes until regenerating
-    const MIN_SIZE_DECAY = 0.2;
+    const MIN_SIZE_DECAY = 0.1;
 
     // radius around mouse that will make shapes move aside
-    const RADIUS_AROUND_MOUSE = 200;
+    const RADIUS_AROUND_MOUSE = 150;
+
+    //atraction force around mouse (high number = low attraction) n >= 1
+    //default 165 
+    const ATTRACTION_FORCE = 120;
 
     //how faster will shapes decay around mouse
     const SPEED_OF_DECAY_INCREASE_AROUD_MOUSE = 50;
 
-    //atraction force around mouse (high number = low attraction) n >= 1
-    const ATTRACTION_FORCE = 165;
 
     //maximum opacity of the regions created between shapes 0 < n < 1
     const MAX_SHAPE_OPACITY = 1;
 
     //color of shapes of the geions as rgb values
-    const COLOR_OF_SHAPES = shapeColor || "99, 102, 241";
-
-    //rearer color of shapes
-    const SECONDARY_COLOR = "244, 63, 94";
-
-    //every n-th ball(shape) will have this color 
-    const COEFICIENT_OF_COLOR_RARITY = 10;
+    const COLOR_OF_SHAPES = shapeColorRGBValues || "99, 102, 241";
 
     //the glabal opacicity of the whole canvas 0 < n < 1
     const GLOBAL_OPACITY_OF_SPAHES = 0.9;
 
-    //Number of layer(specific arrays of dots that will interact with each other)
-    const NUMBER_OF_ARRAYS = 3;
 
     //Every array will have it's elements smoller and smoller 
     //this coeficent determines how much strong is the shrinking of elements
     //(make -1 to desable) n >= 0 
-    const COEFICIENT_OF_SMOLNESS = 1;
+    const COEFICIENT_OF_SMOLNESS = 1.5;
 
     //bouse of the boerders or teleport to the other border
     let BOUNCE = true;
@@ -111,7 +85,7 @@ export const initializeConstellations = (canvas: HTMLCanvasElement, ballColor? :
     const SHAPE_RESIZE_REFRESH = false;
 
     //how fast will the shapes disperse when you click (the higher - the slower) 
-    //(make this -1 to go to the default click interaction) n >= 1 
+    //(make this -1 to for the shapes to attract to the mouse, instead of disperse) n >= 1 
     //default 35
     const CLICK_PROPULTION = 35;
 
@@ -120,9 +94,35 @@ export const initializeConstellations = (canvas: HTMLCanvasElement, ballColor? :
 
     //click propultion radius
     const CLICK_PROPULTION_RADIUS = RADIUS_AROUND_MOUSE * 1.5;
+    
 
 
-    //util functions
+    
+    //INITIALIZATION
+    let w : number, width : number, h : number, height : number;
+    let ctx : any  = canvas.getContext("2d");
+
+    function resize(){
+        if(canvas.getBoundingClientRect().width > MIN_WIDTH_OF_CANVAS){
+            width = w = canvas.getBoundingClientRect().width;
+        } else{
+            width = w = MIN_WIDTH_OF_CANVAS;
+        }
+        
+        if(canvas.getBoundingClientRect().height > MIN_HEIGHT_OF_CANVAS){
+            height = h = canvas.getBoundingClientRect().height
+        }else{
+            height = h = MIN_HEIGHT_OF_CANVAS;
+        }
+
+        canvas.width = canvas.getBoundingClientRect().width;
+        canvas.height = canvas.getBoundingClientRect().height;
+
+        // console.log("resize: " + w + " : " + h + ".");
+    }
+    resize();
+    window.addEventListener('resize', resize, false);
+
     function dist(x1 : number, y1 : number, x2 : number, y2 : number) {
         x2 -= x1; 
         y2 -= y1;
@@ -158,8 +158,8 @@ export const initializeConstellations = (canvas: HTMLCanvasElement, ballColor? :
         const mainArray : any = [];
         ctx.globalAlpha = GLOBAL_OPACITY_OF_SPAHES;
         let mouse : any = {
-            x: null,
-            y: null
+            x: 0,
+            y: 0
         }
 
 
@@ -177,59 +177,63 @@ export const initializeConstellations = (canvas: HTMLCanvasElement, ballColor? :
             function(event){
                 mouse.x = event.clientX - canvas.getBoundingClientRect().left;
                 mouse.y = event.clientY - canvas.getBoundingClientRect().top;
-                console.log(mouse.x + " " + mouse.y);
+                // console.log(mouse.x + " " + mouse.y);
         });
 
-        // window.addEventListener('click', 
-        //     function(event){
+        window.addEventListener('click', 
+            function(event){
                 
-        //         // console.log("cick: " + mouse.x + " : " + mouse.y);
-        //             for(let j = 0; j < NUMBER_OF_ARRAYS; j ++){
-        //                 for(let i = 0; i < mainArray[j].length; i++){
-        //                 let shape = mainArray[j][i];
+                // console.log("cick: " + mouse.x + " : " + mouse.y);
+                    for(let j = 0; j < NUMBER_OF_ARRAYS; j ++){
+                        for(let i = 0; i < mainArray[j].length; i++){
+                        let shape = mainArray[j][i];
 
-        //                 if(CLICK_PROPULTION <= -1){
-        //                     if(shape.distance < RADIUS_AROUND_MOUSE * 20){
+                        if(CLICK_PROPULTION <= -1){
+                            if(shape.distance < RADIUS_AROUND_MOUSE * 20){
                             
-        //                     if(Math.sign(shape.speedX) != Math.sign(shape.dx)) 
-        //                     shape.speedX = -shape.speedX;
+                                if(Math.sign(shape.speedX) != Math.sign(shape.dx)) 
+                                    shape.speedX = -shape.speedX;
                             
-        //                     if(Math.sign(shape.speedY) != Math.sign(shape.dy)) 
-        //                     shape.speedY = -shape.speedY;
+                                if(Math.sign(shape.speedY) != Math.sign(shape.dy)) 
+                                    shape.speedY = -shape.speedY;
                             
-        //                     if(shape.x.between(mouse.x+20, mouse.x-20)) 
-        //                     shape.speedX = 0;
+                                if(isNumberBetween(shape.x, mouse.x+20, mouse.x-20))
+                                    shape.speedX = 0;
                             
-        //                     if(shape.y.between(mouse.y+20, mouse.y-20)) 
-        //                     shape.speedY = 0;
+                                if(isNumberBetween(shape.y, mouse.y+20, mouse.y-20))
+                                    shape.speedY = 0;
                         
-        //                     }
-        //                 } else{
-        //                     if(shape.distance < CLICK_PROPULTION_RADIUS){
-        //                         let forceDirectionX = shape.dx / shape.distance;
-        //                         let forceDirectionY = shape.dy / shape.distance;
+                            }
+                        } else {
+                            if(shape.distance < CLICK_PROPULTION_RADIUS){
+                                let forceDirectionX = shape.dx / shape.distance;
+                                let forceDirectionY = shape.dy / shape.distance;
 
-        //                         let force = (CLICK_PROPULTION_RADIUS - shape.distance) / (CLICK_PROPULTION_RADIUS);
+                                let force = (CLICK_PROPULTION_RADIUS - shape.distance) / (CLICK_PROPULTION_RADIUS);
 
-        //                         let dirX = - (forceDirectionX * force * shape.lineLengh) / CLICK_PROPULTION;
-        //                         let dirY = - (forceDirectionY * force * shape.lineLengh) / CLICK_PROPULTION;
+                                let dirX = - (forceDirectionX * force * shape.lineLengh) / CLICK_PROPULTION;
+                                let dirY = - (forceDirectionY * force * shape.lineLengh) / CLICK_PROPULTION;
 
-        //                         if(shape.distance < RADIUS_AROUND_MOUSE * 2 + shape.size){
-        //                             if(dirX < -MAX_CLICK_PROPUTION_SPEED || dirX > MAX_CLICK_PROPUTION_SPEED){
-        //                                 if(Math.sign(dirX) == -1) shape.speedX = -MAX_CLICK_PROPUTION_SPEED;
-        //                                 else shape.speedX = MAX_CLICK_PROPUTION_SPEED; 
-        //                             }
-        //                             if(dirY < -MAX_CLICK_PROPUTION_SPEED || dirY > MAX_CLICK_PROPUTION_SPEED){
-        //                                 if(Math.sign(dirY) == -1) shape.speedY = -MAX_CLICK_PROPUTION_SPEED;
-        //                                 else shape.speedY = MAX_CLICK_PROPUTION_SPEED; 
-        //                             }    
-        //                         }
-        //                     }
-        //                 }
-        //             }
-        //         }
+                                if(shape.distance < RADIUS_AROUND_MOUSE * 2 + shape.size){
+                                    if(dirX < -MAX_CLICK_PROPUTION_SPEED || dirX > MAX_CLICK_PROPUTION_SPEED){
+                                        if(Math.sign(dirX) == -1) 
+                                            shape.speedX = -MAX_CLICK_PROPUTION_SPEED;
+                                        else 
+                                            shape.speedX = MAX_CLICK_PROPUTION_SPEED; 
+                                    }
+                                    if(dirY < -MAX_CLICK_PROPUTION_SPEED || dirY > MAX_CLICK_PROPUTION_SPEED){
+                                        if(Math.sign(dirY) == -1)
+                                             shape.speedY = -MAX_CLICK_PROPUTION_SPEED;
+                                        else 
+                                            shape.speedY = MAX_CLICK_PROPUTION_SPEED; 
+                                    }    
+                                }
+                            }
+                        }
+                    }
+                }
                 
-        // });
+        });
 
 
         class Shape{
@@ -271,7 +275,7 @@ export const initializeConstellations = (canvas: HTMLCanvasElement, ballColor? :
             
                 
                 //todo: maybe adding density
-                this.lineLengh = getRandom(MIN_DISTANCE, MAX_DISTANCE);
+                this.lineLengh = getRandom(MIN_LENGHT, MAX_LENGHT);
 
                 try{        min_speed_of_decay = options.min_speed_of_decay;}
                 catch(e){   min_speed_of_decay = MIN_SPEED_OF_DECAY}
@@ -412,12 +416,15 @@ export const initializeConstellations = (canvas: HTMLCanvasElement, ballColor? :
 
             for (let i = shapesToRemove.length - 1; i >= 0; i--) {
                 arr.splice(shapesToRemove[i], 1);
-                arr.push(new Shape({min_size: (MIN_SIZE/arrIndex), max_size: (MAX_SIZE/arrIndex),
-                                    min_speed_of_decay: (MIN_SPEED_OF_DECAY/arrIndex),
-                                    max_speed_of_decay: (MAX_SPEED_OF_DECAY/arrIndex)}));
+                arr.push(
+                    new Shape({
+                        min_size: (MIN_SIZE/arrIndex), 
+                        max_size: (MAX_SIZE/arrIndex),
+                        min_speed_of_decay: (MIN_SPEED_OF_DECAY/arrIndex),
+                        max_speed_of_decay: (MAX_SPEED_OF_DECAY/arrIndex)})
+                    );
             }
         }
-
 
 
         function init(){
@@ -428,28 +435,26 @@ export const initializeConstellations = (canvas: HTMLCanvasElement, ballColor? :
             }
 
             for(let i = 0; i < NUMBER_OF_ARRAYS; i++){
-            
-                
                 let index;
-                if(COEFICIENT_OF_SMOLNESS <= -1) index = 1;
-                else index = i + 1 + COEFICIENT_OF_SMOLNESS;
+
+                if(COEFICIENT_OF_SMOLNESS <= -1) 
+                    index = 1;
+                else 
+                    index = i + 1 + COEFICIENT_OF_SMOLNESS;
 
                 let min_size = MIN_SIZE / index;
                 let max_size = MAX_SIZE / index;
                 let min_speed_of_decay = MIN_SPEED_OF_DECAY / index;
                 let max_speed_of_decay = MAX_SPEED_OF_DECAY / index;
+
                 for(let j = 0; j < MAX_NUMER_OF_ENTITIES_PER_ARRAY; j++){
-                    if (j % COEFICIENT_OF_COLOR_RARITY == 0){
-                        mainArray[i].push(new Shape({min_size: (min_size), max_size: (max_size), 
+                    mainArray[i].push(
+                        new Shape({
+                            min_size: (min_size), 
+                            max_size: (max_size), 
                             min_speed_of_decay: (min_speed_of_decay), 
-                            max_speed_of_decay: (max_speed_of_decay),
-                            secondaryColor: null }));
-                    } else{
-                        mainArray[i].push(new Shape({min_size: (min_size), max_size: (max_size), 
-                                                min_speed_of_decay: (min_speed_of_decay), 
-                                                max_speed_of_decay: (max_speed_of_decay) }));
-                    }
-                    
+                            max_speed_of_decay: (max_speed_of_decay) })
+                        );
                 }
             }
             // console.log(mainArray);
@@ -460,8 +465,10 @@ export const initializeConstellations = (canvas: HTMLCanvasElement, ballColor? :
             ctx.clearRect(0,0,canvas.width,canvas.height);
             for(let i = 0; i < NUMBER_OF_ARRAYS; i++){
                 let index;
-                if(COEFICIENT_OF_SMOLNESS <= -1) index = 1;
-                else index = i + 1 + COEFICIENT_OF_SMOLNESS;
+                if(COEFICIENT_OF_SMOLNESS <= -1) 
+                    index = 1;
+                else 
+                    index = i + 1 + COEFICIENT_OF_SMOLNESS;
 
                 drawShapes(mainArray[i], index);
             }

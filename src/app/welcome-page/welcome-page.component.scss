@@ -6,7 +6,7 @@ $canvas-height: 60vh;
 
 .main_container{
     overflow: hidden;
-    background-color: $clr-dark;
+    background-color: var(--clr-dark);
     z-index: 1;
 }
 
@@ -16,11 +16,11 @@ $canvas-height: 60vh;
 }
 
 .container{
-    color: $clr-light;
+    color: var(--clr-light);
 }
 
 .my-btn:hover{
-    box-shadow: 0 0 10px 3px rgba($color: $clr-primary, $alpha: 0.35);
+    box-shadow: 0 0 10px 2px var(--clr-dark-primary);
 }
 
 canvas.back{
@@ -40,13 +40,13 @@ canvas.back{
 }
 
 .pad-20{
-        padding-left: auto;
-        padding-right: auto;
+    padding-left: auto;
+    padding-right: auto;
 }
 
 strong{
-    background-color: $clr-primary;
-    background-image: $bg-gradient-primary;
+    background-color: var(--clr-primary);
+    background-image: var(--bg-gradient-primary);
     background-size: 100%;
     background-repeat: repeat;
     background-clip: text;

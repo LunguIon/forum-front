@@ -11,23 +11,23 @@
 }
 
 a {
-    color: $clr-light;
-    text-decoration-color: $clr-light;
+    color: var(--clr-light);
+    text-decoration-color: var(--clr-light);
 }
 
 a:hover,
 a:focus {
-    color: $clr-primary;
-    text-decoration-color: $clr-primary;
+    color: var(--clr-primary);
+    text-decoration-color: var(--clr-primary);
 }
 
 .no-hover{
-    color: $clr-light;
+    color: var(--clr-light);
 }
 
 .no-hover:hover,
 .no-hover:focus{
-    color: $clr-light;
+    color: var(--clr-light);
 }
 
 
