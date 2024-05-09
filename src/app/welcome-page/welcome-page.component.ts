@@ -11,10 +11,11 @@ import { initializeConstellations } from '../utils/constelations';
   styleUrl: './welcome-page.component.scss'
 })
 export class WelcomePageComponent implements OnInit{
-  @ViewChild('canvasElement', { static: true }) canvasElement: ElementRef | undefined;
-
+  // Constructor and innit
+  // -------------
   constructor() { }
-
+  
+  @ViewChild('canvasElement', { static: true }) canvasElement: ElementRef | undefined;
   ngOnInit(): void {
     if (this.canvasElement) {
       let colorPrimary : string = getComputedStyle(document.documentElement).getPropertyValue('--clr-primary');
