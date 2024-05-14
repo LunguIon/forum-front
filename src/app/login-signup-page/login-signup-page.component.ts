@@ -41,6 +41,9 @@ export class LoginSignupPageComponent implements OnInit{
   // Constructor and innit
   // -------------
   constructor(private route : ActivatedRoute) { }
+  redirectToGoogle(): void{
+    window.location.href = 'http://localhost:8080/google';
+  }
   
   @ViewChild('canvasElement', { static: true }) canvasElement: ElementRef | undefined;
   ngOnInit(): void {
