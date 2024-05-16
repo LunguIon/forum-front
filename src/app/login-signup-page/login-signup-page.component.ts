@@ -43,9 +43,10 @@ export class LoginSignupPageComponent implements OnInit{
   // Constructor and innit
   // -------------
   constructor(private route : ActivatedRoute, private authService : AuthenticationService) { }
-  // redirectToGoogle(): void{
-  //   window.location.href = 'http://localhost:8080/google';
-  // }
+  redirectToGoogle(): void{
+    window.location.href = 'http://localhost:8080/oauth/google';
+  }
+
   
   @ViewChild('canvasElement', { static: true }) canvasElement: ElementRef | undefined;
   ngOnInit(): void {
@@ -97,11 +98,11 @@ export class LoginSignupPageComponent implements OnInit{
       this.authService.login(form.value).subscribe({
         next: (response) => {
           // Handle successful login
-          console.log('Login successful', response);
+          console.log('Login successful');
         },
         error: (error) => {
           // Handle login error
-          console.error('Login error', error, form.value);
+          console.error('Login error');
         }
       });
     }
@@ -112,11 +113,11 @@ export class LoginSignupPageComponent implements OnInit{
       this.authService.signUp(form.value).subscribe({
         next: (response) => {
           // Handle successful signup
-          console.log('Signup successful', response);
+          console.log('Signup successful');
         },
         error: (error) => {
           // Handle signup error
-          console.error('Signup error', error);
+          console.error('Signup error');
         }
       });
     }
