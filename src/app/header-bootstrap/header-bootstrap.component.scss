@@ -1,0 +1,68 @@
+@import "../../../node_modules/rfs/scss.scss";
+@import "../../../node_modules/bootstrap/scss/bootstrap-utilities.scss";
+@import "../../stylings/colors.scss";
+
+
+.logo {
+    width: 85px;
+    height: 85px;
+    padding: 0;
+}
+
+.logo-text {
+    font-family: Julius Sans One, sans-serif;
+    font-size: 24px;
+    color: var(--clr-light);
+    text-decoration: none;
+}
+
+.navbar{
+    background-color: var(--clr-light-gray);
+}
+
+.nav-link{
+    color: var(--clr-light);
+    margin: 0;
+}
+
+.navbar-toggler-icon{
+    background-color: var(--clr-light);
+}
+
+.navbar-toggler-visible-content, .navbar-toggler-hidden-content{
+    margin-left: 20px;
+}
+
+.details-panel {
+    width: 65% !important;
+}
+
+
+
+@media (max-width: 991.98px) {
+    .navbar-toggler-visible-content {
+        display: none;
+    }
+    .navbar-toggler-hidden-content {
+        display: block;
+    }
+    .details-panel, .details-panel-backdrop{
+        display: block;
+    }
+}
+
+@media (min-width: 992px) {
+    .navbar-toggler-visible-content {
+        display: block;
+    }
+    .navbar-toggler-hidden-content {
+        display: none;
+    }
+    .details-panel, .details-panel-backdrop{
+        display:none;
+    }
+}
+
+
+
+

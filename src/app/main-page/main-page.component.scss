@@ -1,0 +1,21 @@
+.main-container{
+    overflow: hidden;
+    background-color: var(--clr-dark);
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+}
+
+// .main-container::-webkit-scrollbar {
+//     width: 2px;
+//     background-color: var(--clr-dark);
+//   }
+   
+//   .main-container::-webkit-scrollbar-track {
+//     box-shadow: inset 0 0 0px rgba(0, 0, 0, 0);
+//   }
+   
+//   .main-container::-webkit-scrollbar-thumb {
+//     background-color: var(--clr-primary);
+//   }
+  

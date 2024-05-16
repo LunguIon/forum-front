@@ -5,6 +5,7 @@ import { NgClass, NgIf } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { initializeConstellations } from '../utils/constelations';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
+import { AppComponent } from '../app.component';
 
 
 @Component({
@@ -38,9 +39,12 @@ import { trigger, state, style, transition, animate, keyframes } from '@angular/
 })
 
 export class LoginSignupPageComponent implements OnInit{
+  
   // Constructor and innit
   // -------------
-  constructor(private route : ActivatedRoute) { }
+  constructor(private route : ActivatedRoute, private appComponenet : AppComponent) { 
+    this.appComponenet.showHeaderAndFooter = false;
+  }
   
   @ViewChild('canvasElement', { static: true }) canvasElement: ElementRef | undefined;
   ngOnInit(): void {
@@ -87,20 +91,34 @@ export class LoginSignupPageComponent implements OnInit{
 
   // Form functionality (you can deletethe comments below)
   // -------------
+  LogInFeedbackText : string = "err";
+  showLogInFeedBackText: boolean = false;
   submitLoginForm(form : NgForm) {
     // if (form.valid) {
     //   alert(form.value.login + "\n" + form.value.password);
     // } else {   
     //   alert("Form is invalid");
     // }
+    
+    if(form.invalid)
+      this.showLogInFeedBackText = true;
+    else
+      this.showLogInFeedBackText = false;
+    
   }
 
+  signUpFeedbackText : string = "err";
+  showSignUpFeedBackText: boolean = false;
   submitSignupForm(form : NgForm){
     // if (form.valid) {
     //   alert(form.value.login + "\n" + form.value.password + "\n" + form.value.email);
     // } else {
     //   alert("Form is invalid");
     // }
+    if(form.invalid)
+      this.showSignUpFeedBackText = true;
+    else
+      this.showSignUpFeedBackText = false;
   }
 
 }

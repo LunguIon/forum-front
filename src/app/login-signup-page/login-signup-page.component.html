@@ -1,4 +1,4 @@
-<div class="main_container">
+<div class="main-container ">
     <app-logo-nav>
     </app-logo-nav>
     <canvas class="back" #canvasElement></canvas> 
@@ -25,11 +25,12 @@
                                     <div class="my-btn-wrapper d-flex flex-column justify-content-center" (click)="toggleSubmitBtnAnimation(loginForm)"  (@bouceOnClick.done)="onSubmitBtnAnimationDone()" [@bouceOnClick]="submitBtnState" >
                                         <input type="submit"  value="Log In" class="font-julius-sans-one my-btn-secondary p-1 fs-4 fw-light">
                                     </div>
+                                    <div class="font-julius-sans-one link-light text-decoration-none text-capitalize text-center fs-5 err-message invisible" *ngIf="!showLogInFeedBackText">dummyElement</div>
+                                    <div class="font-julius-sans-one link-light text-decoration-none text-capitalize text-center fs-5 err-message" *ngIf="showLogInFeedBackText">{{LogInFeedbackText}}</div>
                                 </div> 
                             </form>
 
                             <div class="mt-4 font-julius-sans-one d-flex justify-content-center align-items-center flex-column">
-                                <a href="" class="link-light text-capitalize text-center fs-5 invisible">Forgot password?</a>
                                 <div class="link-light text-uppercase text-center fs-4" (click)="toggleCardRotate()">Sign up</div>
                             </div>
                         </div>
@@ -53,11 +54,12 @@
                                     <div class="my-btn-wrapper d-flex flex-column justify-content-center" (click)="toggleSubmitBtnAnimation(signupForm)"  (@bouceOnClick.done)="onSubmitBtnAnimationDone()" [@bouceOnClick]="submitBtnState">
                                         <input type="submit" value="Sign up" class="font-julius-sans-one my-btn-secondary p-1 fs-4 fw-light">
                                     </div>
+                                    <div class="font-julius-sans-one link-light text-decoration-none text-capitalize text-center fs-5 err-message invisible" *ngIf="!showSignUpFeedBackText">dummyElement</div>
+                                    <div class="font-julius-sans-one link-light text-decoration-none text-capitalize text-center fs-5 err-message" *ngIf="showSignUpFeedBackText">{{signUpFeedbackText}}</div>
                                 </div>
                             </form>
 
-                            <div class="mt-4 font-julius-sans-one d-flex justify-content-center align-items-center flex-column">
-                                <a href="" class="link-light text-capitalize text-center fs-5 invisible">Forgot password?</a>
+                            <div class="mt-4 font-julius-sans-one d-flex justify-content-center align-items-center flex-column"> 
                                 <div class="link-light text-uppercase text-center fs-4" (click)="toggleCardRotate()">Log In</div>
                             </div>
                         </div>

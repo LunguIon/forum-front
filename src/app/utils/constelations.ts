@@ -3,25 +3,25 @@ export const initializeConstellations = (canvas: HTMLCanvasElement, ballColor? :
     
     //if you resize the page below this values the actual canvas 
     //programtically will remain of this size, you will just not see it 
-    const MIN_WIDTH_OF_CANVAS = 1000;
-    const MIN_HEIGHT_OF_CANVAS = 500;
+    const MIN_WIDTH_OF_CANVAS = 1810;
+    const MIN_HEIGHT_OF_CANVAS = 970;
 
     //max number of particles in an array 
-    const MAX_NUMER_OF_ENTITIES_PER_ARRAY = 65;
+    const MAX_NUMER_OF_ENTITIES_PER_ARRAY = 80;
     
     //number of layer(specific arrays of dots that will interact with each other)
     const NUMBER_OF_ARRAYS = 3;
 
     //size of circles
     const MIN_SIZE = 1.5;
-    const MAX_SIZE = 5;
+    const MAX_SIZE = 6;
 
     //lenght of lines
-    const MIN_LENGHT = 40;
-    const MAX_LENGHT = 150;
+    const MIN_LENGHT = 1;
+    const MAX_LENGHT = 325;
 
     //thickness of lines
-    const LINE_THIKNESS = 0.4;
+    const LINE_THIKNESS = 0.2;
 
     //color
     const BALL_COLOR = ballColor || "#6366f1";
@@ -57,14 +57,14 @@ export const initializeConstellations = (canvas: HTMLCanvasElement, ballColor? :
 
     //atraction force around mouse (high number = low attraction) n >= 1
     //default 165 
-    const ATTRACTION_FORCE = 120;
+    const ATTRACTION_FORCE = 130;
 
     //how faster will shapes decay around mouse
     const SPEED_OF_DECAY_INCREASE_AROUD_MOUSE = 50;
 
 
     //maximum opacity of the regions created between shapes 0 < n < 1
-    const MAX_SHAPE_OPACITY = 1;
+    const MAX_SHAPE_OPACITY = 0.75;
 
     //color of shapes of the geions as rgb values
     const COLOR_OF_SHAPES = shapeColorRGBValues || "99, 102, 241";
@@ -76,7 +76,7 @@ export const initializeConstellations = (canvas: HTMLCanvasElement, ballColor? :
     //Every array will have it's elements smoller and smoller 
     //this coeficent determines how much strong is the shrinking of elements
     //(make -1 to desable) n >= 0 
-    const COEFICIENT_OF_SMOLNESS = 1.5;
+    const COEFICIENT_OF_SMOLNESS = 1.2;
 
     //bouse of the boerders or teleport to the other border
     let BOUNCE = true;
@@ -87,13 +87,13 @@ export const initializeConstellations = (canvas: HTMLCanvasElement, ballColor? :
     //how fast will the shapes disperse when you click (the higher - the slower) 
     //(make this -1 to for the shapes to attract to the mouse, instead of disperse) n >= 1 
     //default 35
-    const CLICK_PROPULTION = 35;
+    const CLICK_PROPULTION = 1;
 
     //max click propultion speed
-    const MAX_CLICK_PROPUTION_SPEED = 0.5;
+    const MAX_CLICK_PROPUTION_SPEED = 0.35;
 
     //click propultion radius
-    const CLICK_PROPULTION_RADIUS = RADIUS_AROUND_MOUSE * 1.5;
+    const CLICK_PROPULTION_RADIUS = RADIUS_AROUND_MOUSE * 3;
     
 
 

@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg ">
+    <div class="container-fluid">
+        
+        <div class="navbar-toggler-visible-content">
+            <a class="" href="#">
+                <img src="../../assets/logo_smol.png" alt="Logo" class="logo" />
+            </a>
+        </div>
+
+        
+        <div class="navbar-toggler-hidden-content">
+            <button class="navbar-toggler" (click)="openEnd(content)">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="logo-text" href="#">SpeakUp</a>
+        </div>
+
+        <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
+            <div class="navbar-nav mx-auto text-uppercase gap-lg-14">
+                <a class="nav-link mx-2 mx-lg-5 " href="#">Home</a>
+                <a class="nav-link mx-2 mx-lg-5 " href="#">Popular</a>
+                <a class="nav-link mx-2 mx-lg-5 " href="#">All</a>    
+            </div>
+        </div>
+
+        <div  class="navbar-toggler-visible-content">
+            <button >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <button>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <button>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <button>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<ng-template #content let-offcanvas>
+    <div>idk</div>
+	<div class="offcanvas-header">
+		<h4 class="offcanvas-title">Offcanvas title</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
+	</div>
+	<div class="offcanvas-body">
+		<p>One fine body&hellip;</p>
+	</div>
+</ng-template>
