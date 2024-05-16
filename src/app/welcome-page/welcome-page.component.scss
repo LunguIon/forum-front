@@ -1,0 +1,139 @@
+@import "../../../node_modules/rfs/scss.scss";
+@import "../../stylings/colors.scss";
+
+$heading-size: 4.5rem;
+$canvas-height: 60vh;
+
+.main_container{
+    overflow: hidden;
+    background-color: var(--clr-dark);
+    z-index: 1;
+}
+
+.display-1 {
+    // @include font-size(6rem);
+    font-size: rfs-fluid-value($heading-size);
+}
+
+.container{
+    color: var(--clr-light);
+}
+
+.my-btn:hover{
+    box-shadow: 0 0 10px 2px var(--clr-dark-primary);
+}
+
+canvas.back{
+    top: 0;
+    position: fixed;
+    pointer-events: none;
+    z-index: 0; 
+    user-select: none;
+    object-fit: cover;
+    height: $canvas-height;
+    width: 100%;
+    min-width: 100%;
+    background: transparent;
+    // filter: saturate(3) blur(10px);
+    filter: saturate(3);
+    
+}
+
+.pad-20{
+    padding-left: auto;
+    padding-right: auto;
+}
+
+strong{
+    background-color: var(--clr-primary);
+    background-image: var(--bg-gradient-primary);
+    background-size: 100%;
+    background-repeat: repeat;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent
+}
+
+strong::before{
+    content: 'joy';
+    animation: profile 6s  infinite linear;
+}
+
+@keyframes profile {
+    0%{content: ''}
+    2%{content: 'j'}
+    4%{content: 'jo'}
+    6%{content: 'joy'}
+
+    26%{content: 'joy'}
+
+    28%{content: 'jo'}
+    30%{content: 'j'}
+    32%{content: ''}
+    34%{content: 'r'}
+    36%{content: 're'}
+    38%{content: 'rel'}
+    40%{content: 'rela'}
+    42%{content: 'relax'}
+
+    56%{content: 'relax'}
+
+    58%{content: 'rela'}
+    60%{content: 'rel'}
+    62%{content: 're'}
+    64%{content: 'r'}
+    66%{content: ''}
+    68%{content: 'c'}
+    70%{content: 'ch'}
+    72%{content: 'cha'}
+    74%{content: 'chat'}
+
+    88%{content: 'chat'}
+
+    90%{content: 'cha'}
+    93%{content: 'ch'}
+    96%{content: 'c'}
+    99%{content: ''}
+    100%{content: ''}
+  }
+
+// @keyframes profile {
+//     0%{content: 'joy'}
+//     50%{content: 'relax'}
+//     75%{content: 'chat';}
+// }
+
+@media (min-width: 320px) { 
+    .pad-20{
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+}
+
+@media (min-width: 475px) { 
+    .pad-20{
+        padding-left: 20%;
+        padding-right: 20%;
+    }
+}
+
+@media (min-width: 640px) { 
+    
+}
+
+@media (min-width: 1024px) { 
+    .pad-20{
+        padding-left: 25%;
+        padding-right: 25%;
+    }
+}
+
+@media (min-width: 1280px) { 
+
+}
+
+@media (min-width: 1536px) { 
+
+}

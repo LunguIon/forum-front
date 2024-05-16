@@ -1,0 +1,242 @@
+
+@import "../../../node_modules/rfs/scss.scss";
+@import "../../../node_modules/bootstrap/scss/bootstrap-utilities.scss";
+@import "../../stylings/colors.scss";
+
+$canvas-width: 60vw;
+$canvas-height: 60vh;
+$google-btn-fs: 1.4rem;
+$google-btn-fs-xl: 1.15rem;
+$google-btn-fs-sm: 1rem;
+
+// #card-login{
+//     display: none;
+// }
+
+// .card:hover .inner{
+//     transform:  rotateY(180deg);
+// }
+
+.animation-rotation{
+    transform:  rotateY(180deg);
+}
+
+.card{
+    perspective: 1500px;
+    transform-style: preserve-3d;
+}
+
+.card-3d-wrapper{
+    position: relative;
+    width: 500px;
+    height: 600px;
+}
+
+.card-front, .card-back{
+    position: absolute;
+    width: 500px;
+    height: 550px;
+    backface-visibility: hidden;
+    background-color: rgba(var(--clr-light-gray-rgb-vals), 0.4);
+    backdrop-filter: blur(2.5px) contrast(1.05);
+    border-radius: 100px;
+}
+
+.inner{
+    transition: all 600ms ease-out;
+    transform-style: preserve-3d;
+    perspective: 200px;
+    border-radius: 100px;
+    overflow:visible;
+}
+
+.card-back {
+    transform: rotateX(180deg) rotateZ(180deg);
+    
+}
+
+.google-btn{
+    width: 90%;
+    font-size: rfs-fluid-value($google-btn-fs);
+}
+
+.main_container{
+    overflow: hidden;
+    background-color: var(--clr-dark);
+    z-index: 1;
+    height: 100vh;
+    width: 100%;
+}
+
+.card{
+    border: none;
+    background-color: transparent;
+    -ms-overflow-style: none;  
+    scrollbar-width: none;
+    overflow-y: scroll;
+}
+
+.card::-webkit-scrollbar {
+    display: none;
+}
+
+.card{
+    .login-title{
+        color: var(--clr-light);
+    }
+
+    .form-control{
+        border: 2px solid;
+        border-radius: 60px;
+        color: $clr-light;
+        border-color: transparent;
+        border-color: var(--clr-dark-primary);
+        background-color: var(--clr-gray);
+        transition: all 0.3s;
+    }
+
+
+    .form-control:hover{
+        border-color: rgba(var(--clr-primary-rgb-vals), 1);
+    }
+
+    .form-control:focus{
+        border-color: rgba(var(--clr-primary-rgb-vals), 1);
+        box-shadow: 0 0 10px 3px rgba(var(--clr-primary-rgb-vals), 0.35);
+    }
+
+    .form-control::placeholder {
+        color: $clr-light;
+        opacity: 0.8; 
+        text-transform: uppercase;
+        font-family: "Julius Sans One", sans-serif;
+        font-weight: 300;
+        font-style: normal;
+    }
+
+    .link-light{
+        color: var(--clr-light) !important;  
+        text-decoration: none;
+    }
+
+    .link-light:hover{
+        text-decoration: underline;
+    }
+
+    div.link-light{
+        cursor: pointer;
+    }
+
+    div.link-light:hover{
+        text-decoration: none;
+    }
+    
+}
+
+.my-btn-wrapper {
+    position: relative;
+    background: var(--bg-gradient-secondary);
+    padding: 1.5px;
+    border-radius: var(--btn-border-radius);
+    transition: transform 0.3s;
+}
+  
+.my-btn-secondary{
+    border: none;
+}
+
+.my-btn-wrapper::before{
+    content:"";
+    position: absolute;
+    inset: 20px;
+    z-index: -2;
+    filter: blur(10px);
+    background: var(--bg-gradient-secondary);
+    transition: inset 0.3s;
+}
+
+.my-btn-wrapper:hover::before{
+    inset: 5px;
+}
+
+
+.my-btn{
+    border: none;
+}
+    
+
+canvas.back{
+    right: 0;
+    position: fixed;
+    pointer-events: none;
+    z-index: 0; 
+    user-select: none;
+    object-fit: cover;
+    width: $canvas-width;
+    min-height: 100%;
+    max-width: auto;
+    // filter: saturate(3) blur(10px);
+    filter: saturate(3);
+}
+
+.google-btn:hover{
+    box-shadow: 0 0 10px 3px var(--clr-dark-primary);
+}
+
+.google-btn::before{
+    content: icon;
+}
+
+.google-icon{
+        content: url("../../assets/google_icon_svg.svg");
+        position: absolute;
+        left: 10px;    
+    }
+
+
+@include media-breakpoint-down(xl) {
+    canvas.back{
+        top: 0;
+        position: fixed;
+        pointer-events: none;
+        z-index: 0; 
+        user-select: none;
+        object-fit: cover;
+        height: $canvas-height;
+        min-width: 100%;
+        min-height: auto;
+    }
+}
+
+@include media-breakpoint-up(xl){
+    .card{    
+        width: 600px;
+    }
+}
+
+@include media-breakpoint-down(xl) {
+    .google-btn{
+        font-size: rfs-fluid-value($google-btn-fs-xl);
+    }
+}
+
+@include media-breakpoint-down(md) {
+    .google-btn{
+        font-size: rfs-fluid-value($google-btn-fs-sm);
+    }
+
+    .google-icon{
+        left: 5px;
+        scale: 0.7;
+    }
+    
+    .card-3d-wrapper{
+        width: 400px;
+        height: 500px;
+    }
+
+    .card-front, .card-back{
+        width: 350px;
+        height: 450px;
+    }
+}

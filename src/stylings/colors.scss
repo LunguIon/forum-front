@@ -1,0 +1,37 @@
+
+$clr-light: #fafafa;
+// #262077
+$clr-dark: #1C1C28;
+// #F5F1EF 
+$clr-primary: #6966FF; 
+$clr-dark-primary: #3F3D99;
+$clr-gray: #323249;
+// #c3c2ff
+$clr-light-gray: #393953;
+// #FFFFFF
+$bg-gradient-primary: linear-gradient(to right, $clr-dark-primary, $clr-primary);
+$bg-reversed-gradient-primary: linear-gradient(to right, $clr-primary, $clr-dark-primary);
+
+$clr-light-rgb: rgb(250, 250, 250);
+$clr-dark-rgb: rgb(28, 28, 40);
+$clr-primary-rgb: rgb(105, 102, 255);
+$clr-dark-primary-rgb: rgb(63, 61, 153);
+$clr-gray-rgb: rgb(50, 50, 73);
+$clr-light-gray-rgb: rgb(57, 57, 83); 
+
+$clr-light-rgb-vals: 250, 250, 250;
+$clr-dark-rgb-vals: 28, 28, 40;
+$clr-primary-rgb-vals: 105, 102, 255;
+$clr-dark-primary-rgb-vals: 63, 61, 153;
+$clr-gray-rgb-vals: 50, 50, 73;
+$clr-light-gray-rgb-vals: 57, 57, 83; 
+
+$clr-violet: #7D4CD0;
+$clr-pink: #F98CC4;
+$bg-gradient-secondary: linear-gradient(30deg, $clr-violet, $clr-pink);
+
+
+
+$btn-border-radius: 100px;
+
+

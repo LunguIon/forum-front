@@ -1,0 +1,41 @@
+@import "../../../node_modules/rfs/scss.scss";
+@import "../../stylings/colors.scss";
+
+*{
+    z-index: 1;
+}
+
+.nav{
+    position: fixed;
+    top: 0;
+}
+
+a {
+    color: var(--clr-light);
+    text-decoration-color: var(--clr-light);
+}
+
+a:hover,
+a:focus {
+    color: var(--clr-primary);
+    text-decoration-color: var(--clr-primary);
+}
+
+.no-hover{
+    color: var(--clr-light);
+}
+
+.no-hover:hover,
+.no-hover:focus{
+    color: var(--clr-light);
+}
+
+
+.responsive-size{
+    width: rfs-fluid-value(120px);
+    height: rfs-fluid-value(120px);
+}
+
+.nav, .container-fluid{
+    padding: 0;
+}
