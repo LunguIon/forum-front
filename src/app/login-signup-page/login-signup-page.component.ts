@@ -8,7 +8,6 @@ import { trigger, state, style, transition, animate, keyframes } from '@angular/
 import { AuthenticationService } from '../service/authentication.service';
 import { HttpClientModule } from '@angular/common/http';
 
-
 @Component({
   selector: 'app-login-signup-page',
   standalone: true,
@@ -94,7 +93,7 @@ export class LoginSignupPageComponent implements OnInit{
   // Form functionality (you can deletethe comments below)
   // -------------
   submitLoginForm(form: NgForm) {
-    if (form.valid) {
+    if (form.valid) { 
       this.authService.login(form.value).subscribe({
         next: (response) => {
           // Handle successful login
