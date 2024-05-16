@@ -16,7 +16,7 @@
                             
                             <form #loginForm="ngForm" (ngSubmit)="submitLoginForm(loginForm)" class="font-inter">
                                 <div class="from-feilds mt-4 px-md-5 d-flex flex-column gap-md-3 gap-1">
-                                    <input type="text" class="form-control flex-grow-1 py-1 py-md-2  fs-4" placeholder="Login" name="login" required ngModel>
+                                    <input type="text" class="form-control flex-grow-1 py-1 py-md-2  fs-4" placeholder="Email" name="email" required ngModel>
                                     <input type="password" class="form-control flex-grow-1 py-1 py-md-2  fs-4" placeholder="Password" name = "password" required ngModel>
                                     <input type="text" class="form-control flex-grow-1 py-1 py-md-2  fs-4 invisible" placeholder="">
                                 </div>
@@ -65,10 +65,9 @@
                     </div>
                 </div>
             </div>
-            <div (click)="redirectToGoogle()" class="google-btn font-julius-sans-one text-uppercase my-btn p-1 fw-light py-2 d-flex justify-content-center align-items-center">
+            <a href="http://localhost:8080/oauth/google" type="submit" class="google-btn font-julius-sans-one text-uppercase my-btn p-1 fw-light py-2 d-flex justify-content-center align-items-center">
                 <span class="google-icon"></span> Continue with Google Account
-            </div>
-            
+            </a>            
         </div>
     </div>
 </div>
