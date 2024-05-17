@@ -34,7 +34,9 @@
 }
 
 .details-panel {
-    width: 65% !important;
+    width: 60% !important;
+    background-color: var(--clr-light-gray);
+    color: var(--clr-light);
 }
 
 
@@ -46,9 +48,9 @@
     .navbar-toggler-hidden-content {
         display: block;
     }
-    .details-panel, .details-panel-backdrop{
-        display: block;
-    }
+    // .details-panel, .details-panel-backdrop{
+    //     display: block;
+    // }
 }
 
 @media (min-width: 992px) {
@@ -58,9 +60,9 @@
     .navbar-toggler-hidden-content {
         display: none;
     }
-    .details-panel, .details-panel-backdrop{
-        display:none;
-    }
+    // .details-panel, .details-panel-backdrop{
+    //     display:none;
+    // }
 }
 
 
