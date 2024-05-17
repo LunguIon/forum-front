@@ -5,12 +5,13 @@ import { NgClass, NgIf } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { initializeConstellations } from '../utils/constelations';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
-
+import { AuthenticationService } from '../service/authentication.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-login-signup-page',
   standalone: true,
-  imports: [LogoNavComponent, FormsModule, ReactiveFormsModule, NgClass, NgIf],
+  imports: [LogoNavComponent, FormsModule, ReactiveFormsModule, NgClass, NgIf, HttpClientModule],
   templateUrl: './login-signup-page.component.html',
   styleUrl: './login-signup-page.component.scss',
   animations: [
@@ -40,7 +41,11 @@ import { trigger, state, style, transition, animate, keyframes } from '@angular/
 export class LoginSignupPageComponent implements OnInit{
   // Constructor and innit
   // -------------
-  constructor(private route : ActivatedRoute) { }
+  constructor(private route : ActivatedRoute, private authService : AuthenticationService) { }
+  redirectToGoogle(): void{
+    window.location.href = 'http://localhost:8080/oauth/google';
+  }
+
   
   @ViewChild('canvasElement', { static: true }) canvasElement: ElementRef | undefined;
   ngOnInit(): void {
@@ -87,20 +92,34 @@ export class LoginSignupPageComponent implements OnInit{
 
   // Form functionality (you can deletethe comments below)
   // -------------
-  submitLoginForm(form : NgForm) {
-    // if (form.valid) {
-    //   alert(form.value.login + "\n" + form.value.password);
-    // } else {   
-    //   alert("Form is invalid");
-    // }
+  submitLoginForm(form: NgForm) {
+    if (form.valid) { 
+      this.authService.login(form.value).subscribe({
+        next: (response) => {
+          // Handle successful login
+          console.log('Login successful');
+        },
+        error: (error) => {
+          // Handle login error
+          console.error('Login error');
+        }
+      });
+    }
   }
 
-  submitSignupForm(form : NgForm){
-    // if (form.valid) {
-    //   alert(form.value.login + "\n" + form.value.password + "\n" + form.value.email);
-    // } else {
-    //   alert("Form is invalid");
-    // }
+  submitSignupForm(form: NgForm) {
+    if (form.valid) {
+      this.authService.signUp(form.value).subscribe({
+        next: (response) => {
+          // Handle successful signup
+          console.log('Signup successful');
+        },
+        error: (error) => {
+          // Handle signup error
+          console.error('Signup error');
+        }
+      });
+    }
   }
 
 }
