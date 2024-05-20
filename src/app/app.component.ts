@@ -14,8 +14,6 @@ import { ElementRefService } from './utils/element-ref.service';
 export class AppComponent implements AfterViewInit, OnInit {
   // Constructor and innit 
   // -------------
-  private readonly themeKey = 'theme';
-  private readonly lightThemeClass = 'light-theme';
   constructor(private elementRefService: ElementRefService){
   }
 
@@ -27,24 +25,6 @@ export class AppComponent implements AfterViewInit, OnInit {
       this.loadTheme();
   }
 
-  loadTheme(): void {
-    const theme = localStorage.getItem(this.themeKey);
-    if (theme) {
-      this.islightThemeOn = true;
-    }
-  }
-
-  toggleTheme(): void {
-    this.islightThemeOn = !this.islightThemeOn;
-
-    if(this.islightThemeOn){
-      localStorage.setItem(this.themeKey, this.lightThemeClass);
-    }
-    else{
-      localStorage.removeItem(this.themeKey);
-    }
-  }
-
   // Show or Hide Header and Footer - components
   // -------------
   showHeaderAndFooter: boolean = true;
@@ -53,6 +33,30 @@ export class AppComponent implements AfterViewInit, OnInit {
   // Light Mode Components
   // -------------
   @ViewChild ('themeChangeDiv') themeChangeDiv! : ElementRef;
-  islightThemeOn: boolean = false;
+  private readonly themeKey = 'theme';
+  private readonly lightThemeClass = 'light-theme';
+  private _islightThemeOn: boolean = false;
+
+  loadTheme(): void {
+    const theme = localStorage.getItem(this.themeKey);
+    if (theme) {
+      this._islightThemeOn = true;
+    }
+  }
+
+  toggleTheme(): void {
+    this._islightThemeOn = !this._islightThemeOn;
+
+    if(this._islightThemeOn){
+      localStorage.setItem(this.themeKey, this.lightThemeClass);
+    }
+    else{
+      localStorage.removeItem(this.themeKey);
+    }
+  }
+
+  get islightThemeOn(): boolean{
+    return this._islightThemeOn;
+  }
 
 }
