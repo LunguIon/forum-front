@@ -110,7 +110,7 @@
     box-shadow: none !important;
 }
 
-.nav-link:hover, .nav-link:focus , .canvas-link:hover, .canvas-link:focus, .popup-link:hover, .popup-link:focus{
+.nav-link:hover, .nav-link:focus , .canvas-link:hover, .canvas-link:focus, .popup-link:hover, .popup-link:focus, .nav-link-2:hover, .nav-link-2:focus{
     color: var(--clr-light);
     background: var(--clr-dark-primary) !important;
 }
@@ -268,6 +268,7 @@ input:checked+.slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
+
 
 
 @include media-breakpoint-down(xl) {
