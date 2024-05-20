@@ -1,3 +1,5 @@
-<app-header-bootstrap *ngIf="showHeaderAndFooter"></app-header-bootstrap>
+<div class="clr-dark-body" [ngClass]="{'light-theme': islightThemeOn}" #themeChangeDiv>
+    <app-header-bootstrap *ngIf="showHeaderAndFooter"></app-header-bootstrap>
 
-<router-outlet></router-outlet> 
+    <router-outlet></router-outlet> 
+</div>

@@ -8,6 +8,7 @@
   --clr-dark: #{$clr-dark};
   --clr-primary: #{$clr-primary};
   --clr-dark-primary: #{$clr-dark-primary};
+  --clr-dark-primary-hover: #{$clr-dark-primary};
   --clr-gray: #{$clr-gray};
   --clr-light-gray: #{$clr-light-gray};
   --bg-gradient-primary: #{$bg-gradient-primary};
@@ -36,12 +37,17 @@
   --btn-border-radius: #{$btn-border-radius};
 }
 
+svg:root{
+  color: red;
+}
+
 .light-theme{
   --clr-light: #262077;
   --clr-dark: #F5F1EF;
   --clr-gray: #c3c2ff;
   --clr-light-gray: #FFFFFF;
   --clr-light-gray-rgb-vals: 255, 255, 255;
+  --clr-dark-primary-hover: #c3c2ff;
 }
 
 .font-julius-sans-one {
