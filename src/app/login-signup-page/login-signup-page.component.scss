@@ -60,7 +60,7 @@ $google-btn-fs-sm: 1rem;
     font-size: rfs-fluid-value($google-btn-fs);
 }
 
-.main_container{
+.main-container{
     overflow: hidden;
     background-color: var(--clr-dark);
     z-index: 1;
@@ -116,7 +116,7 @@ $google-btn-fs-sm: 1rem;
 
     .link-light{
         color: var(--clr-light) !important;  
-        text-decoration: none;
+        text-decoration: none !important;
     }
 
     .link-light:hover{
@@ -131,7 +131,13 @@ $google-btn-fs-sm: 1rem;
         text-decoration: none;
     }
     
+    .err-message{
+        cursor: default !important;
+        color: var(--clr-pink) !important;
+    }
 }
+
+
 
 .my-btn-wrapper {
     position: relative;

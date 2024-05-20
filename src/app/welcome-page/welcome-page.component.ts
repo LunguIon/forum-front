@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import { LogoNavComponent } from '../logo-nav/logo-nav.component';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { initializeConstellations } from '../utils/constelations';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-welcome-page',
@@ -13,7 +14,9 @@ import { initializeConstellations } from '../utils/constelations';
 export class WelcomePageComponent implements OnInit{
   // Constructor and innit
   // -------------
-  constructor() { }
+  constructor(private appComponent : AppComponent) { 
+    this.appComponent.showHeaderAndFooter = false;
+  }
   
   @ViewChild('canvasElement', { static: true }) canvasElement: ElementRef | undefined;
   ngOnInit(): void {

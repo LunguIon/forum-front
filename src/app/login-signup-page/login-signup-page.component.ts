@@ -5,6 +5,7 @@ import { NgClass, NgIf } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { initializeConstellations } from '../utils/constelations';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
+import { AppComponent } from '../app.component';
 import { AuthenticationService } from '../service/authentication.service';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -39,9 +40,12 @@ import { HttpClientModule } from '@angular/common/http';
 })
 
 export class LoginSignupPageComponent implements OnInit{
+  
   // Constructor and innit
   // -------------
-  constructor(private route : ActivatedRoute, private authService : AuthenticationService) { }
+  constructor(private route : ActivatedRoute, private appComponenet : AppComponent, private authService : AuthenticationService) { 
+    this.appComponenet.showHeaderAndFooter = false;
+  }
   redirectToGoogle(): void{
     window.location.href = 'http://localhost:8080/oauth/google';
   }

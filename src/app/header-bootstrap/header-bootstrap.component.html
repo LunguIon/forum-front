@@ -1,0 +1,311 @@
+<nav class="navbar navbar-expand-lg font-julius-sans-one fw-normal" >
+    <div class="container-fluid">
+        
+
+        <!-- navbar open offCanvas btn and text ->      Apears bellow lg -->
+        <div class="navbar-toggler-hidden-content justify-content-center align-items-center flex-row">
+            <span class=" align-items-center justify-content-center p-0">
+                <span class="w40h40 mx-4 btn p-0">
+                    <img 
+                    class="p-1"
+                    tabindex="1"
+                    (click)="openCanvas()"
+                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/9d65130b9b47b6bf3763f24c655eb4d95b69baf52606aec17aac7a1bc5348243?apiKey=b86036a5846045fa8db7cf278357723c&" 
+                    alt=""
+                    >
+                </span>
+            </span>
+            <a class="logo-text text-decoration-none fs-2 fw-normal" href="#" tabindex="-1">SpeakUp</a>
+        </div>
+
+        <!-- navbar user-icon smol ->                   Apears bellow lg -->
+        <span class="navbar-toggler-hidden-content align-items-center justify-content-center btn p-2 mx-2 mt-2">
+            <img tabindex="1" class="w60h60 border-round" src="../../assets/solid_white.png" alt="">
+        </span>
+
+
+
+        <!-- navbar logo ->                             Disapears bellow lg -->
+        <div class="navbar-toggler-visible-content">
+            <a class="" href="#" tabindex="-1">
+                <img src="../../assets/logo_smol.png" alt="Logo" class="logo" />
+            </a>
+        </div>
+
+        <!-- navbar `Home`, `Popular`, `All` menu ->    Dissapers bellow lg -->
+        <div class="collapse navbar-collapse" id="collapseBasic">
+            <div class="navbar-nav mx-auto text-uppercase gap-0 gap-xl-5">
+                <a class="nav-link px-4 mx-4 mx-xl-4 fs-5" tabindex="1" href="#">Home</a>
+                <a class="nav-link px-4 mx-4 mx-xl-4 fs-5" tabindex="1" href="#">Popular</a>
+                <a class="nav-link px-4 mx-4 mx-xl-4 fs-5" tabindex="1" href="#">All</a>    
+            </div>
+        </div>
+
+        <!-- navbar leftmost content ->                 Dissapers bellow lg-->
+        <div  class="navbar-toggler-visible-content justify-content-center align-items-center flex-row gap-4 px-4">
+            <!-- bell icon -->
+            <span tabindex="1" class="span-btn">
+                <img class="btn p-2 nav-link-2" src="https://cdn.builder.io/api/v1/image/assets/TEMP/3e4de699343342127811684602f95332bb718c4d595401543df89e0e14be9753?apiKey=b86036a5846045fa8db7cf278357723c&" alt="">
+            </span>
+
+            <!-- `+` / `+ Add` icon-->
+            <span tabindex="1" class="span-btn">
+                <span class="scale-105 d-flex align-items-center justify-content-center btn p-0 p-xl-1 btn gap-1 nav-link-2">
+                    <img class="img-50 scale-75 p-2 p-xl-0 scale-up-xl" src="https://cdn.builder.io/api/v1/image/assets/TEMP/1852baada6349567e2de126e4bbb8c8261dd9b563226f34d8c05fa0ef165a826?apiKey=b86036a5846045fa8db7cf278357723c&" alt="">
+                    <span class="font-julius-sans-one fw-normal invisible-xl fs-6">Add</span>
+                </span>
+            </span>
+
+            <!-- user-icon big -->
+            <span class="d-flex align-items-center justify-content-center btn p-0 span-btn">
+                <img tabindex="1" class="w80h80 border-round p-1 nav-link-2" src="../../assets/solid_white.png" alt="">
+            </span>
+
+            <!-- toggle user menu icon -->
+            <span tabindex="1">
+                <span class="d-flex align-items-center justify-content-center btn p-1 span-btn nav-item dropdown nav-link-2" (click)="toggleDropdown($event)">
+                    <img class="w40h40" src="https://cdn.builder.io/api/v1/image/assets/TEMP/9d65130b9b47b6bf3763f24c655eb4d95b69baf52606aec17aac7a1bc5348243?apiKey=b86036a5846045fa8db7cf278357723c&" alt="">
+                </span>
+                <!-- user menu -->
+                <ul class="dropdown-menu custom-dropdown py-3 px-4" [class.show]="dropdownOpen" aria-labelledby="navbarDropdown">
+
+                    <li class="m-1">
+                      <div class=" d-flex align-items-center justify-content-start flex-row mb-3">
+                         <span class="user-icon p-0" style="cursor: pointer;">
+                            <img tabindex="1" class="w80h80 border-round p-1 nav-link-2" src="../../assets/solid_white.png" alt="">
+                        </span>
+                        <div class="username-wrapper mx-2 px-3 py-2 fs-6 fw-bold btn" >
+                            <div class="username-marquee-container">
+                                <!-- NAME SHOULD HAVE AT LEAST 11 CHARACTERS -->
+                                <!-- User123 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -->
+                                <div class="username">
+                                    User123_123456 &nbsp; 
+                                </div>
+                                <div class="username">
+                                    User123_123456 &nbsp;
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="m-1">
+                        <div class=" d-flex align-items-center justify-content-start flex-row px-1 mx-1" tabindex="1">
+                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-2 popup-link">
+                                <img class="w18h18" src="https://cdn.builder.io/api/v1/image/assets/TEMP/1852baada6349567e2de126e4bbb8c8261dd9b563226f34d8c05fa0ef165a826?apiKey=b86036a5846045fa8db7cf278357723c&" alt="">
+                                <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">Create Post</span>
+                            </span>
+                        </div>
+                    </li>
+
+                    <li class="m-1">
+                        <div class=" d-flex align-items-center justify-content-start flex-row px-1 mx-1" tabindex="1">
+                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-2 popup-link">
+                                <img class="w18h18" src="https://cdn.builder.io/api/v1/image/assets/TEMP/1852baada6349567e2de126e4bbb8c8261dd9b563226f34d8c05fa0ef165a826?apiKey=b86036a5846045fa8db7cf278357723c&" alt="">
+                                <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">Create Topic</span>
+                            </span>
+                        </div>
+                    </li>
+
+                    <li class="m-1">
+                        <div class=" d-flex align-items-center justify-content-between flex-row px-1 mx-1" tabindex="1">
+                            <label for="light-theme-switch" (click)="toggleLightTheme">
+                                <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-2 popup-link">
+                                <img class="w18h18" src="../../assets/ic_light_mode.svg" alt="">
+                                <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">Light Mode</span>
+                            </span>
+                            </label>
+                            
+                            
+                            <label class="switch" (click)="toggleLightTheme">
+                                <input type="checkbox" id="light-theme-switch" [(ngModel)]="isLightTheme">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </li>
+
+                    <li class="m-1">
+                        <div class=" d-flex align-items-center justify-content-start flex-row px-1 mx-1" tabindex="1">
+                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-2 popup-link">
+                                <img class="w18h18" src="../../assets/ic_settings.svg" alt="">
+                                <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">Settings</span>
+                            </span>
+                        </div>
+                    </li>
+
+                    <li class="m-1">
+                        <hr class="dropdown-divider" />
+                    </li>
+
+                    <li class="m-1">
+                        <div class=" d-flex align-items-center justify-content-start flex-row px-1 mx-1" tabindex="1">
+                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-2 popup-link">
+                                <img class="w18h18" src="../../assets/ic_logout.svg" alt="">
+                                <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">Log out</span>
+                            </span>
+                        </div>
+                    </li>
+
+                </ul>
+            </span>
+        </div>
+
+
+    </div>
+</nav>
+
+<!-- mobile canvas ->                                   Appears bellow lg -->
+<ng-template #content let-offcanvas>
+    <div class="offcanvas-container vh-100 d-flex flex-column justify-content-between">
+        <div>
+            <nav class="offcanvas-navbar navbar navbar-expand-lg font-julius-sans-one fw-normal ">
+                <div class="container-fluid">
+                    
+                    <div class="navbar-toggler-hidden-content justify-content-center align-items-center flex-row">
+                        <span class=" align-items-center justify-content-center p-0">
+                            <span class="w40h40 mx-4 btn p-0" tabindex="1">
+                                <img 
+                                class="p-1"
+                                tabindex="1"
+                                (click)="closeCanvas()"
+                                src="https://cdn.builder.io/api/v1/image/assets/TEMP/9d65130b9b47b6bf3763f24c655eb4d95b69baf52606aec17aac7a1bc5348243?apiKey=b86036a5846045fa8db7cf278357723c&" 
+                                alt=""
+                                >
+                            </span>
+                        </span>
+                        <a class="logo-text text-decoration-none fs-2 fw-normal" tabindex="-1" href="#">SpeakUp</a>
+                    </div>
+                </div>
+            </nav>
+
+            <ul class="canvas-element custom-dropdown-canvas px-3 pt-0 show" >
+                    
+                <li class="m-1">
+                    <a href="" class="text-decoration-none canvas-link">
+                        <div class=" d-flex align-items-center justify-content-start flex-row px-1 mx-1" tabindex="1">
+                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link">
+                                <img class="w18h18 " src="../../assets/ic_home.svg" alt="">
+                                <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">Home</span>
+                            </span>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="m-1">
+                    <a href="" class="text-decoration-none canvas-link">
+                        <div class=" d-flex align-items-center justify-content-start flex-row px-1 mx-1" tabindex="1">
+                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link">
+                                <img class="w18h18" src="../../assets/ic_popular.svg" alt="">
+                                <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">Popular</span>
+                            </span>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="m-1">
+                    <a href="" class="text-decoration-none canvas-link">
+                        <div class=" d-flex align-items-center justify-content-start flex-row px-1 mx-1" tabindex="1">
+                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link">
+                                <img class="w18h18" src="../../assets/ic_all.svg" alt="">
+                                <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">All</span>
+                            </span>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="mx-1 my-3">
+                    <hr class="divider" />
+                </li>
+
+                <li class="m-1">
+                    <div class=" d-flex align-items-center justify-content-start flex-row px-1 mx-1" tabindex="1">
+                        <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link">
+                            <img class="w18h18" src="https://cdn.builder.io/api/v1/image/assets/TEMP/1852baada6349567e2de126e4bbb8c8261dd9b563226f34d8c05fa0ef165a826?apiKey=b86036a5846045fa8db7cf278357723c&" alt="">
+                            <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">Create Post</span>
+                        </span>
+                    </div>
+                </li>
+
+                <li class="m-1">
+                    <div class=" d-flex align-items-center justify-content-start flex-row px-1 mx-1" tabindex="1">
+                        <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link">
+                            <img class="w18h18" src="https://cdn.builder.io/api/v1/image/assets/TEMP/1852baada6349567e2de126e4bbb8c8261dd9b563226f34d8c05fa0ef165a826?apiKey=b86036a5846045fa8db7cf278357723c&" alt="">
+                            <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">Create Topic</span>
+                        </span>
+                    </div>
+                </li>
+
+                <li class="m-1">
+                    <div class=" d-flex align-items-center justify-content-between flex-row px-1 mx-1" tabindex="1">
+                        <label for="light-theme-switch-2" (click)="toggleLightTheme">
+                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link ">
+                                <img class="w18h18" src="../../assets/ic_light_mode.svg" alt="">
+                                <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">Light Mode</span>
+                            </span>
+                        </label>
+                        
+                        
+                        <label class="switch" (click)="toggleLightTheme">
+                            <input type="checkbox" id="light-theme-switch-2" [(ngModel)]="isLightTheme">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </li>
+
+                <li class="m-1">
+                    <div class=" d-flex align-items-center justify-content-start flex-row px-1 mx-1" tabindex="1">
+                        <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link">
+                            <img class="w18h18" src="../../assets/ic_settings.svg" alt="">
+                            <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">Settings</span>
+                        </span>
+                    </div>
+                </li>
+
+
+            </ul>
+        </div>
+        <div> 
+            <ul class="canvas-element custom-dropdown-canvas px-3 pt-0 show" >
+                    
+                <li class="mx-1 my-3">
+                    <hr class="divider" />
+                </li>
+
+
+                <li class="m-1 mb-4 py-1">
+                    <div class=" d-flex align-items-center justify-content-start flex-row mb-3">
+                       <span class="user-icon p-0" style="cursor: pointer;">
+                          <img tabindex="1" class="w80h80 border-round p-1 canvas-link" src="../../assets/solid_white.png" alt="">
+                      </span>
+                      <div class="username-wrapper mx-2 px-3 py-2 fs-6 fw-bold btn" >
+                          <div class="username-marquee-container">
+                              <!-- NAME SHOULD HAVE AT LEAST 11 CHARACTERS -->
+                              <!-- User123 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -->
+                              <div class="username">
+                                  User123_123456 &nbsp; 
+                              </div>
+                              <div class="username">
+                                  User123_123456 &nbsp;
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                </li>
+
+
+                <li class="m-1" >
+                    <div class=" d-flex align-items-center justify-content-start flex-row px-1 mx-1" tabindex="1">
+                        <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link">
+                            <img class="w18h18" src="../../assets/ic_logout.svg" alt="">
+                            <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">Log out</span>
+                        </span>
+                    </div>
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+</ng-template>
+
+<div class="nav-corection-div"></div>

@@ -1,10 +1,10 @@
 @import "../../../node_modules/rfs/scss.scss";
 @import "../../stylings/colors.scss";
 
-$heading-size: 4.5rem;
 $canvas-height: 100vh;
+$heading-size: 4.5rem;
 
-.main_container{
+.main-container{
     overflow: hidden;
     background-color: var(--clr-dark);
     z-index: 1;
@@ -34,7 +34,7 @@ canvas.back{
     width: 100%;
     min-width: 100%;
     background: transparent;
-    // filter: saturate(3) blur(10px);
+    // filter: saturate(3) blur(1px);
     filter: saturate(3);
     
 }

@@ -100,16 +100,17 @@
     /* line-height: calc(1em + 0.5rem); */
 }
 
-html{
-    scroll-behavior: smooth;
+.scroll-behavior-smooth{
+  scroll-behavior: smooth;
 }
 
-body{
-    background-color: var(--clr-dark);
+.clr-dark-body{
+  background-color: var(--clr-dark);
+  scroll-behavior: smooth;
 }
 
 html, body {
-    height: 100%;
+  height: 100%;
 }
 
 
@@ -191,3 +192,22 @@ textarea:not([rows]) {
   scroll-margin-block: 5ex;
 }
 /* ------------------- */
+
+// Scroll bar
+
+body{
+  overflow-x: hidden;
+}
+
+body::-webkit-scrollbar {
+  width: 8px;
+  background-color: var(--clr-dark-primary);
+}
+ 
+body::-webkit-scrollbar-thumb {
+  background-color: var(--clr-primary);
+}
+
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
