@@ -35,11 +35,10 @@
 
 
   --btn-border-radius: #{$btn-border-radius};
+  --scrollbar-width: 8px;
+
 }
 
-svg:root{
-  color: red;
-}
 
 .light-theme{
   --clr-light: #262077;
@@ -113,6 +112,10 @@ svg:root{
 .clr-dark-body{
   background-color: var(--clr-dark);
   scroll-behavior: smooth;
+}
+
+.clr-dark-primary{
+  background-color: var(--clr-dark-primary);
 }
 
 html, body {
@@ -206,7 +209,7 @@ body{
 }
 
 body::-webkit-scrollbar {
-  width: 8px;
+  width: var(--scrollbar-width);
   background-color: var(--clr-dark-primary);
 }
  

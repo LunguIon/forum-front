@@ -14,7 +14,8 @@
     color: var(--clr-light);
     transition: background-color 0.3s ease-out;
     position: fixed;
-    width: 100%;
+    // width: calc(100vw - var(--scrollbar-width, 0px));
+    width: 100vw;
     border: none !important;
 }
 

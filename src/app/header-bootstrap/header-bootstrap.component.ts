@@ -2,7 +2,6 @@ import { NgClass } from '@angular/common';
 import { Component, inject, TemplateRef, ViewChild, ViewEncapsulation, HostListener, ElementRef, Renderer2, AfterViewInit, OnInit, OnDestroy } from '@angular/core';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { NgbOffcanvas, NgbOffcanvasOptions, NgbOffcanvasRef } from '@ng-bootstrap/ng-bootstrap';
-import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from '../app.component';
 import { ElementRefService } from '../utils/element-ref.service';
@@ -16,7 +15,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './header-bootstrap.component.html',
   styleUrl: './header-bootstrap.component.scss',
   encapsulation: ViewEncapsulation.None,
-  providers: [{ provide: BsDropdownConfig, useValue: { isAnimated: true, autoClose: true } }]
+  
 })
 
 export class HeaderBootstrapComponent implements OnInit, OnDestroy{
@@ -48,11 +47,11 @@ export class HeaderBootstrapComponent implements OnInit, OnDestroy{
 
   // Change theme components
   // -------------
-  isLightThemeOn: boolean = this.appComponent.islightThemeOn;
+  isLightThemeOn: boolean = this.appComponent.isLightThemeOn;
 
-  toggleLightTheme(){
+  toggleTheme(){
     this.appComponent.toggleTheme();
-    this.isLightThemeOn = this.appComponent.islightThemeOn;
+    this.isLightThemeOn = this.appComponent.isLightThemeOn;
   }
 
 

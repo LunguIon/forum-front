@@ -5,7 +5,7 @@
         <!-- navbar open offCanvas btn and text ->      Apears bellow lg -->
         <div class="navbar-toggler-hidden-content justify-content-center align-items-center flex-row">
             <span class=" align-items-center justify-content-center p-0">
-                <span class=" mx-4 btn p-0 ">
+                <span class=" mx-2 btn p-0 ">
                     <div 
                     class="w50h50 icon d-flex align-items-center justify-content-center"
                     tabindex="1"
@@ -17,7 +17,7 @@
                     </div>
                 </span>
             </span>
-            <a class="logo-text text-decoration-none fs-2 fw-normal" href="#" tabindex="-1">SpeakUp</a>
+            <a class="logo-text text-decoration-none mx-2 fs-2 fw-normal" href="#" tabindex="-1">SpeakUp</a>
         </div>
 
         <!-- navbar user-icon smol ->                   Apears bellow lg -->
@@ -87,7 +87,7 @@
                     </div>
                 </span>
                 <!-- user menu -->
-                <ul class="dropdown-menu custom-dropdown py-3 px-4" [class.show]="dropdownOpen" aria-labelledby="navbarDropdown">
+                <ul class="dropdown-menu custom-dropdown py-3 px-4" [collapse]="!dropdownOpen" [isAnimated]="true">
 
                     <li class="m-1">
                       <div class=" d-flex align-items-center justify-content-start flex-row mb-3">
@@ -164,7 +164,7 @@
                             
                             
                             <label class="switch">
-                                <input type="checkbox" id="light-theme-switch" (click)="toggleLightTheme()" [(ngModel)]="isLightThemeOn">
+                                <input type="checkbox" id="light-theme-switch" (click)="toggleTheme()" [(ngModel)]="isLightThemeOn">
                                 <span class="slider round"></span>
                             </label>
                         </div>
@@ -233,7 +233,7 @@
                     
                     <div class="navbar-toggler-hidden-content justify-content-center align-items-center flex-row">
                         <span class=" align-items-center justify-content-center p-0">
-                            <span class=" mx-4 btn p-0 ">
+                            <span class=" mx-2 btn p-0 ">
                                 <div 
                                 class="w50h50 icon d-flex align-items-center justify-content-center"
                                 tabindex="1"
@@ -245,7 +245,7 @@
                                 </div>
                             </span>
                         </span>
-                        <a class="logo-text text-decoration-none fs-2 fw-normal" tabindex="-1" href="#">SpeakUp</a>
+                        <a class="logo-text mx-2 text-decoration-none fs-2 fw-normal" tabindex="-1" href="#">SpeakUp</a>
                     </div>
                 </div>
             </nav>
@@ -415,7 +415,7 @@
                         
                         
                         <label class="switch">
-                            <input type="checkbox" id="light-theme-switch-2" (click)="toggleLightTheme()" [(ngModel)]="isLightThemeOn">
+                            <input type="checkbox" id="light-theme-switch-2" (click)="toggleTheme()" [(ngModel)]="isLightThemeOn">
                             <span class="slider round"></span>
                         </label>
                     </div>

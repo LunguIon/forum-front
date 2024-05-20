@@ -55,7 +55,7 @@ export class AppComponent implements AfterViewInit, OnInit {
     }
   }
 
-  get islightThemeOn(): boolean{
+  get isLightThemeOn(): boolean{
     return this._islightThemeOn;
   }
 
