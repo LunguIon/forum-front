@@ -98,6 +98,7 @@ $google-btn-fs-sm: 1rem;
 
     .form-control:hover{
         border-color: rgba(var(--clr-primary-rgb-vals), 1);
+        background-color: var(--clr-gray);
     }
 
     .form-control:focus{
@@ -198,6 +199,48 @@ canvas.back{
     position: absolute;
     left: 10px;    
 }
+
+.modal-body, .modal-footer, .modal-header{
+    background-color: var(--clr-dark) !important;
+    color: var(--clr-light);
+    border: 0px;
+    box-shadow: none;
+}
+
+.modal-content{
+    background-color:var(--clr-dark);
+    color: var(--clr-light);
+    border-radius: 30px;
+}
+
+.modal{
+    --bs-modal-width: 700px
+}
+
+.my-modal-body{
+    position: relative;
+}
+
+.w20h20{
+    width: 20px;
+    height: 20px;
+}
+
+.icon svg{
+    color: var(--clr-light) !important;
+}
+
+.btn{
+    padding: 0;
+    margin: 0;
+    color: var(--clr-light);
+}
+
+.my-btn:hover{
+    box-shadow: 0 0 10px 3px var(--clr-dark-primary);
+}
+
+
 
 
 @include media-breakpoint-down(xl) {

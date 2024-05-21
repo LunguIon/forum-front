@@ -68,8 +68,70 @@
             <button (click)="redirectToGoogle()" class="google-btn font-julius-sans-one text-uppercase my-btn p-1 fw-light py-2 d-flex justify-content-center align-items-center">
                 <span class="google-icon"></span> Continue with Google Account
             </button>
+
+            <button class="btn btn-outline-primary mb-2 me-2" (click)="openModal(content)">
+                Modal vertically centered
+            </button>
                      
         </div>
     </div>
 </div>
+
+<ng-template #content let-modal>
+	<!-- <div class="modal-header">
+		<h4 class="modal-title">Modal title</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div> -->
+	<!-- <div class="modal-body"> -->
+	<!-- </div> -->
+	<!-- <div class="modal-footer">
+		<button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Close</button>
+	</div> -->
+
+    <div class="my-modal-body font-julius-sans-one py-3">
+        <div class="px-5 py-3 d-flex justify-content-between align-content-center">
+            <div>
+                <div class="display-4">
+                    Oops... 
+                    <br>
+                </div>
+                <div class="fs-1">
+                    Something 
+                    <br>
+                    Went Wrong
+                </div>
+            </div>
+            <div class="d-flex justify-content-end align-content-end">
+                <span class=" align-items-center justify-content-center p-0">
+                    <span class=" btn p-2 " (click)="modal.close('Close click')">
+                        <div 
+                        class="w20h20 icon d-flex align-items-center justify-content-center" tabindex="1">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M27.6584 0.342073C27.4396 0.123356 27.1429 0.000488281 26.8336 0.000488281C26.5242 0.000488281 26.2275 0.123356 26.0087 0.342073L14.0002 12.3506L1.99174 0.342073C1.77296 0.123356 1.47626 0.000488281 1.16691 0.000488281C0.857548 0.000488281 0.560855 0.123356 0.342073 0.342073C0.123356 0.560855 0.000488281 0.857548 0.000488281 1.16691C0.000488281 1.47626 0.123356 1.77296 0.342073 1.99174L12.3506 14.0002L0.342073 26.0087C0.123356 26.2275 0.000488281 26.5242 0.000488281 26.8336C0.000488281 27.1429 0.123356 27.4396 0.342073 27.6584C0.560855 27.8771 0.857548 28 1.16691 28C1.47626 28 1.77296 27.8771 1.99174 27.6584L14.0002 15.6499L26.0087 27.6584C26.2275 27.8771 26.5242 28 26.8336 28C27.1429 28 27.4396 27.8771 27.6584 27.6584C27.8771 27.4396 28 27.1429 28 26.8336C28 26.5242 27.8771 26.2275 27.6584 26.0087L15.6499 14.0002L27.6584 1.99174C27.8771 1.77296 28 1.47626 28 1.16691C28 0.857548 27.8771 0.560855 27.6584 0.342073Z"/>
+                        </svg>
+                        </div>
+                    </span>
+                </span>
+            </div>
+        </div>
+
+        <div class="px-5 py-5 d-flex justify-content-between fs-6">
+            <div>
+                Invalid login or password, 
+                <br>
+                try again
+            </div>
+        </div>
+
+        <div class="mx-2 mx-sm-5 px-5 py-5 d-flex justify-content-between">
+            <div class="my-btn p-0 px-md-5" (click)="modal.close('Close click')">
+                <div class=" px-3 px-sm-5 py-1 fs-3">
+                    Try Again
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</ng-template>
+
 

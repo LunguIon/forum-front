@@ -15,7 +15,6 @@ import { Subscription } from 'rxjs';
   templateUrl: './header-bootstrap.component.html',
   styleUrl: './header-bootstrap.component.scss',
   encapsulation: ViewEncapsulation.None,
-  
 })
 
 export class HeaderBootstrapComponent implements OnInit, OnDestroy{
@@ -31,6 +30,7 @@ export class HeaderBootstrapComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit() {
+    this.offcanvasContainer = this.elementRefService.getElementRef();
     this.elementRefSubscription = this.elementRefService.elementRefChanged.subscribe(
       (elementRef) => {
         this.offcanvasContainer = elementRef;
