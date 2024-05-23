@@ -47,7 +47,7 @@ export class LoginSignupPageComponent implements OnInit{
     this.appComponenet.showHeaderAndFooter = false;
   }
   redirectToGoogle(): void{
-    window.location.href = 'http://localhost:8080/oauth/google';
+    window.location.href = 'http://speakapi.lol/oauth/google';
   }
 
   
