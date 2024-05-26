@@ -6,7 +6,7 @@
 
 .nav-corection-div{
     width: 100vw;
-    height: 101px;
+    height: 115px;
 }
 
 .navbar{
@@ -16,7 +16,7 @@
     position: fixed;
     // width: calc(100vw - var(--scrollbar-width, 0px));
     width: 100vw;
-    border: none !important;
+    border-bottom: 1.5px solid var(--clr-gray) !important;
 }
 
 .navbar-nav{
@@ -162,12 +162,13 @@
     margin-top: 37px;
     right: 20px;
     border-radius: 50px;
-    background-color: rgba(var(--clr-light-gray-rgb-vals), 0.3);
+    background-color: rgba(var(--clr-light-gray-rgb-vals), 1);
     color: var(--clr-light);
     border-color: var(--clr-dark-primary);
     padding: 0;
     box-shadow: 10px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
+
 
 .custom-dropdown-canvas{
     padding: 0;
@@ -295,6 +296,9 @@ input:checked+.slider:before {
     border-radius: 50%;
 }
 
+.user-icon{
+    cursor: pointer;
+}
 
 
 @include media-breakpoint-down(xl) {

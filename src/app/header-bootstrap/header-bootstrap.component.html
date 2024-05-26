@@ -1,11 +1,11 @@
-<nav class="navbar navbar-expand-lg font-julius-sans-one fw-bold" >
+<nav class="navbar navbar-expand-lg font-julius-sans-one fw-bold" style="z-index: 100;">
     <div class="container-fluid">
         
 
         <!-- navbar open offCanvas btn and text ->      Apears bellow lg -->
         <div class="navbar-toggler-hidden-content justify-content-center align-items-center flex-row">
             <span class=" align-items-center justify-content-center p-0">
-                <span class=" mx-2 btn p-0 ">
+                <span class=" mx-2 btn p-0" id="toggle-dropdown-mobile">
                     <div 
                     class="w50h50 icon d-flex align-items-center justify-content-center"
                     tabindex="1"
@@ -17,28 +17,28 @@
                     </div>
                 </span>
             </span>
-            <a class="logo-text text-decoration-none mx-2 fs-2 fw-normal" href="#" tabindex="-1">SpeakUp</a>
+            <a class="logo-text text-decoration-none mx-2 fs-2 fw-normal" href="#" tabindex="-1" id="app-logo-mobile">SpeakUp</a>
         </div>
 
         <!-- navbar user-icon smol ->                   Apears bellow lg -->
-        <span class="navbar-toggler-hidden-content align-items-center justify-content-center btn p-2 mx-2 mt-2 mb-2">
+        <span class="navbar-toggler-hidden-content align-items-center justify-content-center btn p-2 mx-2 mt-2 mb-2" id="user-icon-mobile">
             <img tabindex="1" class="w60h60 border-round" src="../../assets/solid_white.png" alt="">
         </span>
 
 
         <!-- navbar logo ->                             Disapears bellow lg -->
         <div class="navbar-toggler-visible-content">
-            <a class="" href="#" tabindex="-1">
-                <img src="../../assets/logo.png" alt="Logo" class="logo .w85h85" />
+            <a class="" href="#" tabindex="-1" id="app-logo-pc">
+                <img src="../../assets/logo.png" alt="Logo" class="logo w85h85" />
             </a>
         </div>
 
         <!-- navbar `Home`, `Popular`, `All` menu ->    Dissapers bellow lg -->
-        <div class="collapse navbar-collapse" id="collapseBasic">
+        <div class="collapse navbar-collapse" id="navbar-content">
             <div class="navbar-nav mx-auto text-uppercase gap-0 gap-xl-5">
-                <a class="nav-link px-4 mx-4 mx-xl-4 fs-5" tabindex="1" href="#">Home</a>
-                <a class="nav-link px-4 mx-4 mx-xl-4 fs-5" tabindex="1" href="#">Popular</a>
-                <a class="nav-link px-4 mx-4 mx-xl-4 fs-5" tabindex="1" href="#">All</a>    
+                <a class="nav-link px-4 mx-4 mx-xl-4 fs-5" tabindex="1" href="#" id="home-pc">Home</a>
+                <a class="nav-link px-4 mx-4 mx-xl-4 fs-5" tabindex="1" href="#" id="popular-pc">Popular</a>
+                <a class="nav-link px-4 mx-4 mx-xl-4 fs-5" tabindex="1" href="#" id="all-pc">All</a>    
             </div>
         </div>
 
@@ -46,7 +46,7 @@
         <div  class="navbar-toggler-visible-content justify-content-center align-items-center flex-row gap-4 px-4">
             <!-- bell icon -->
             <span tabindex="1" class="span-btn">
-                <div class="btn p-2 nav-link-2 icon d-flex justify-content-center align-items-center">
+                <div class="btn p-2 nav-link-2 icon d-flex justify-content-center align-items-center" id="notifications-btn-pc">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M23.2589 16.2002L20.6589 6.82917C20.1037 4.82459 18.894 3.06331 17.2222 1.82566C15.5504 0.588005 13.5127 -0.0549039 11.4334 -0.000744217C9.35404 0.0534155 7.35257 0.801531 5.7475 2.12454C4.14243 3.44754 3.02601 5.26941 2.57592 7.30017L0.564915 16.3502C0.467608 16.7886 0.469982 17.2433 0.571861 17.6807C0.67374 18.1181 0.872525 18.5271 1.15355 18.8774C1.43457 19.2277 1.79067 19.5105 2.19556 19.7048C2.60045 19.8991 3.04381 20.0001 3.49292 20.0002H7.09992C7.32943 21.1305 7.94265 22.1466 8.83566 22.8766C9.72867 23.6065 10.8466 24.0052 11.9999 24.0052C13.1533 24.0052 14.2712 23.6065 15.1642 22.8766C16.0572 22.1466 16.6704 21.1305 16.8999 20.0002H20.3699C20.832 20 21.2878 19.893 21.7018 19.6876C22.1158 19.4823 22.4767 19.184 22.7564 18.8162C23.0362 18.4484 23.2271 18.0209 23.3145 17.5672C23.4018 17.1134 23.3831 16.6455 23.2599 16.2002H23.2589ZM11.9999 22.0002C11.3817 21.9976 10.7793 21.8041 10.2752 21.4461C9.77115 21.0881 9.39 20.5831 9.18392 20.0002H14.8159C14.6098 20.5831 14.2287 21.0881 13.7246 21.4461C13.2205 21.8041 12.6182 21.9976 11.9999 22.0002ZM21.1649 17.6052C21.0716 17.7289 20.9507 17.829 20.8118 17.8976C20.6729 17.9662 20.5198 18.0013 20.3649 18.0002H3.49292C3.34318 18.0001 3.19536 17.9665 3.06036 17.9017C2.92537 17.8369 2.80665 17.7426 2.71297 17.6258C2.61929 17.509 2.55304 17.3726 2.5191 17.2268C2.48517 17.0809 2.48442 16.9293 2.51692 16.7832L4.52792 7.73317C4.88227 6.13938 5.75922 4.70978 7.01937 3.67162C8.27952 2.63347 9.85054 2.04634 11.4827 2.00359C13.1148 1.96083 14.7144 2.46489 16.0272 3.43564C17.34 4.40639 18.2906 5.78812 18.7279 7.36117L21.3279 16.7322C21.3704 16.8804 21.3777 17.0364 21.3494 17.1879C21.3212 17.3394 21.258 17.4823 21.1649 17.6052Z"/>
                     </svg>
@@ -55,7 +55,7 @@
 
             <!-- `+` / `+ Add` icon-->
             <span tabindex="1" class="span-btn">
-                <span class="scale-105 d-flex align-items-center justify-content-center btn p-0 p-xl-1 btn gap-1 nav-link-2">
+                <span class="scale-105 d-flex align-items-center justify-content-center btn p-0 p-xl-1 btn gap-1 nav-link-2" id="add-btn-pc">
                     <div class="w18h18 p-2 p-xl-0 scale-up-xl icon d-flex justify-content-center align-items-center">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_325_102)">
@@ -73,13 +73,13 @@
             </span>
 
             <!-- user-icon big -->
-            <span class="d-flex align-items-center justify-content-center btn p-0 span-btn">
+            <span class="d-flex align-items-center justify-content-center btn p-0 span-btn" id="user-icon-pc">
                 <img tabindex="1" class="w80h80 border-round p-1 nav-link-2" src="../../assets/solid_white.png" alt="">
             </span>
 
             <!-- toggle user menu icon -->
             <span tabindex="1">
-                <span class="d-flex align-items-center justify-content-center btn p-1 span-btn nav-item dropdown nav-link-2" (click)="toggleDropdown($event)">
+                <span class="d-flex align-items-center justify-content-center btn p-1 span-btn nav-item dropdown nav-link-2" id="toggle-dropdown-pc" (click)="toggleDropdown($event)">
                     <div class="w50h50 icon d-block justify-content-center align-items-center" >
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
                             <path fill-rule="evenodd" d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75ZM3 12a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
@@ -91,10 +91,10 @@
 
                     <li class="m-1">
                       <div class=" d-flex align-items-center justify-content-start flex-row mb-3">
-                         <span class="user-icon p-0" style="cursor: pointer;">
+                         <span class="user-icon p-0" id="dropdown-user-icon-pc">
                             <img tabindex="1" class="w80h80 border-round p-1 nav-link-2" src="../../assets/solid_white.png" alt="">
                         </span>
-                        <div class="username-wrapper mx-2 px-3 py-2 fs-6 fw-bold btn" >
+                        <div class="username-wrapper mx-2 px-3 py-2 fs-6 fw-bold btn" id="dropdown-user-name-pc">
                             <div class="username-marquee-container">
                                 <!-- NAME SHOULD HAVE AT LEAST 11 CHARACTERS -->
                                 <!-- User123 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -->
@@ -111,7 +111,7 @@
 
                     <li class="m-1">
                         <div class=" d-flex align-items-center justify-content-start flex-row px-1 mx-1" tabindex="1">
-                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-2 popup-link">
+                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-2 popup-link" id="dropdown-create-post-pc">
                                 <div class="w18h18 icon d-flex justify-content-center align-items-center">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <g clip-path="url(#clip0_325_102)">
@@ -131,7 +131,7 @@
 
                     <li class="m-1">
                         <div class=" d-flex align-items-center justify-content-start flex-row px-1 mx-1" tabindex="1">
-                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-2 popup-link">
+                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-2 popup-link" id="dropdown-create-topic-pc">
                                 <div class="w18h18 icon d-flex justify-content-center align-items-center">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <g clip-path="url(#clip0_325_102)">
@@ -152,14 +152,14 @@
                     <li class="m-1">
                         <div class=" d-flex align-items-center justify-content-between flex-row px-1 mx-1" tabindex="1">
                             <label for="light-theme-switch">
-                                <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-2 popup-link">
+                                <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-2 popup-link" id="dropdown-light-theme-pc">
                                     <div class="w18h18 icon d-flex justify-content-center align-items-center">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M23 11H18.92C18.8421 10.449 18.6981 9.90948 18.491 9.393L22.018 7.349C22.1359 7.28557 22.2398 7.19911 22.3237 7.09476C22.4075 6.99041 22.4695 6.87029 22.5061 6.74152C22.5427 6.61275 22.553 6.47794 22.5365 6.34511C22.52 6.21227 22.477 6.08409 22.41 5.96818C22.3431 5.85228 22.2535 5.75099 22.1467 5.67033C22.0398 5.58967 21.9179 5.53129 21.7881 5.49863C21.6583 5.46597 21.5232 5.45971 21.3909 5.48021C21.2587 5.50072 21.1318 5.54757 21.018 5.618L17.488 7.665C17.1505 7.23872 16.765 6.85283 16.339 6.515L18.385 2.984C18.5082 2.75505 18.5374 2.48712 18.4664 2.23701C18.3954 1.9869 18.2298 1.77428 18.0046 1.64422C17.7795 1.51417 17.5126 1.4769 17.2604 1.54033C17.0083 1.60376 16.7908 1.7629 16.654 1.984L14.607 5.509C14.0906 5.30172 13.551 5.15768 13 5.08V1C13 0.734784 12.8946 0.48043 12.7071 0.292893C12.5196 0.105357 12.2652 0 12 0C11.7348 0 11.4804 0.105357 11.2929 0.292893C11.1054 0.48043 11 0.734784 11 1V5.08C10.449 5.15768 9.90941 5.30172 9.393 5.509L7.349 1.982C7.21221 1.7609 6.99469 1.60176 6.74255 1.53833C6.49042 1.4749 6.22349 1.51217 5.99836 1.64222C5.77323 1.77228 5.60761 1.9849 5.5366 2.23501C5.4656 2.48512 5.49479 2.75305 5.618 2.982L7.664 6.515C7.23801 6.85283 6.85246 7.23872 6.515 7.665L2.985 5.618C2.87116 5.54757 2.74435 5.50072 2.61206 5.48021C2.47978 5.45971 2.34473 5.46597 2.21492 5.49863C2.0851 5.53129 1.96316 5.58967 1.85633 5.67033C1.7495 5.75099 1.65995 5.85228 1.59299 5.96818C1.52603 6.08409 1.48302 6.21227 1.46651 6.34511C1.45001 6.47794 1.46034 6.61275 1.4969 6.74152C1.53346 6.87029 1.5955 6.99041 1.67934 7.09476C1.76318 7.19911 1.86712 7.28557 1.985 7.349L5.509 9.393C5.30195 9.90948 5.15791 10.449 5.08 11H1C0.734784 11 0.48043 11.1054 0.292893 11.2929C0.105357 11.4804 0 11.7348 0 12C0 12.2652 0.105357 12.5196 0.292893 12.7071C0.48043 12.8946 0.734784 13 1 13H5.08C5.15791 13.551 5.30195 14.0905 5.509 14.607L1.982 16.651C1.86412 16.7144 1.76018 16.8009 1.67634 16.9052C1.5925 17.0096 1.53046 17.1297 1.4939 17.2585C1.45734 17.3873 1.44701 17.5221 1.46351 17.6549C1.48002 17.7877 1.52303 17.9159 1.58999 18.0318C1.65695 18.1477 1.7465 18.249 1.85333 18.3297C1.96016 18.4103 2.0821 18.4687 2.21192 18.5014C2.34173 18.534 2.47678 18.5403 2.60906 18.5198C2.74135 18.4993 2.86816 18.4524 2.982 18.382L6.512 16.335C6.84946 16.7613 7.23501 17.1472 7.661 17.485L5.618 21.016C5.49479 21.2449 5.4656 21.5129 5.5366 21.763C5.60761 22.0131 5.77323 22.2257 5.99836 22.3558C6.22349 22.4858 6.49042 22.5231 6.74255 22.4597C6.99469 22.3962 7.21221 22.2371 7.349 22.016L9.393 18.489C9.90947 18.6965 10.449 18.8412 11 18.92V23C11 23.2652 11.1054 23.5196 11.2929 23.7071C11.4804 23.8946 11.7348 24 12 24C12.2652 24 12.5196 23.8946 12.7071 23.7071C12.8946 23.5196 13 23.2652 13 23V18.92C13.5509 18.8419 14.0904 18.6978 14.607 18.491L16.651 22.018C16.7878 22.2391 17.0053 22.3982 17.2574 22.4617C17.5096 22.5251 17.7765 22.4878 18.0016 22.3578C18.2268 22.2277 18.3924 22.0151 18.4634 21.765C18.5344 21.5149 18.5052 21.2469 18.382 21.018L16.336 17.487C16.762 17.1492 17.1475 16.7633 17.485 16.337L21.015 18.384C21.1288 18.4544 21.2557 18.5013 21.3879 18.5218C21.5202 18.5423 21.6553 18.536 21.7851 18.5034C21.9149 18.4707 22.0368 18.4123 22.1437 18.3317C22.2505 18.251 22.34 18.1497 22.407 18.0338C22.474 17.9179 22.517 17.7897 22.5335 17.6569C22.55 17.5241 22.5397 17.3893 22.5031 17.2605C22.4665 17.1317 22.4045 17.0116 22.3207 16.9072C22.2368 16.8029 22.1329 16.7164 22.015 16.653L18.488 14.609C18.6962 14.092 18.8413 13.5518 18.92 13H23C23.2652 13 23.5196 12.8946 23.7071 12.7071C23.8946 12.5196 24 12.2652 24 12C24 11.7348 23.8946 11.4804 23.7071 11.2929C23.5196 11.1054 23.2652 11 23 11ZM12 17C5.392 16.79 5.394 7.209 12 7C18.608 7.21 18.606 16.791 12 17Z"/>
                                         </svg>
                                     </div>        
-                                <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">Light Mode</span>
-                            </span>
+                                    <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">Light Mode</span>
+                                </span>
                             </label>
                             
                             
@@ -172,7 +172,7 @@
 
                     <li class="m-1">
                         <div class=" d-flex align-items-center justify-content-start flex-row px-1 mx-1" tabindex="1">
-                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-2 popup-link">
+                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-2 popup-link" id="dropdown-settings-pc">
                                 <div class="w18h18 icon d-flex justify-content-center align-items-center">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <g clip-path="url(#clip0_1_2911)">
@@ -197,7 +197,7 @@
 
                     <li class="m-1">
                         <div class=" d-flex align-items-center justify-content-start flex-row px-1 mx-1" tabindex="1">
-                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-2 popup-link">
+                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-2 popup-link" id="dropdown-log-out-pc">
                                 <div class="w18h18 icon d-flex justify-content-center align-items-center">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <g clip-path="url(#clip0_1_2910)">
@@ -233,7 +233,7 @@
                     
                     <div class="navbar-toggler-hidden-content justify-content-center align-items-center flex-row">
                         <span class=" align-items-center justify-content-center p-0">
-                            <span class=" mx-2 btn p-0 ">
+                            <span class=" mx-2 btn p-0 " id="dropdown-toggle-dropdown-mobile">
                                 <div 
                                 class="w50h50 icon d-flex align-items-center justify-content-center"
                                 tabindex="1"
@@ -245,7 +245,7 @@
                                 </div>
                             </span>
                         </span>
-                        <a class="logo-text mx-2 text-decoration-none fs-2 fw-normal" tabindex="-1" href="#">SpeakUp</a>
+                        <a class="logo-text mx-2 text-decoration-none fs-2 fw-normal" tabindex="-1" href="#" id="dropdown-app-logo-mobile">SpeakUp</a>
                     </div>
                 </div>
             </nav>
@@ -255,7 +255,7 @@
                 <li class="m-1">
                     <a href="" class="text-decoration-none canvas-link">
                         <div class=" d-flex align-items-center justify-content-start flex-row px-0 mx-0 px-sm-1 mx-sm-1" tabindex="1">
-                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link">
+                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link" id="drowpdown-home-mobile">
                                 <div class="w18h18 icon d-flex justify-content-center align-items-center">    
                                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" fill="currentColor" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                         viewBox="0 0 20.6 20.6" style="enable-background:new 0 0 20.6 20.6;" xml:space="preserve">
@@ -277,7 +277,7 @@
                 <li class="m-1">
                     <a href="" class="text-decoration-none canvas-link">
                         <div class=" d-flex align-items-center justify-content-start flex-row px-0 mx-0 px-sm-1 mx-sm-1" tabindex="1">
-                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link">
+                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link" id="drowpdown-popular-mobile">
                                 <div class="w18h18 icon d-flex justify-content-center align-items-center">
                                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" fill="currentColor" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                     viewBox="0 0 25.9 25.9" style="enable-background:new 0 0 25.9 25.9;" xml:space="preserve">
@@ -306,7 +306,7 @@
                 <li class="m-1">
                     <a href="" class="text-decoration-none canvas-link">
                         <div class=" d-flex align-items-center justify-content-start flex-row px-0 mx-0 px-sm-1 mx-sm-1" tabindex="1">
-                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link">
+                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link" id="drowpdown-all-mobile">
                                 <div class="w18h18 icon d-flex justify-content-center align-items-center">  
                                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" fill="currentColor" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	                                viewBox="0 0 21.3 21.3" style="enable-background:new 0 0 21.3 21.3;" xml:space="preserve">
@@ -362,7 +362,7 @@
 
                 <li class="m-1">
                     <div class=" d-flex align-items-center justify-content-start flex-row px-0 mx-0 px-sm-1 mx-sm-1" tabindex="1">
-                        <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link">
+                        <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link" id="drowpdown-create-post-mobile">
                             <div class="w18h18 icon d-flex justify-content-center align-items-center">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip0_325_102)">
@@ -382,7 +382,7 @@
 
                 <li class="m-1">
                     <div class=" d-flex align-items-center justify-content-start flex-row px-0 mx-0 px-sm-1 mx-sm-1" tabindex="1">
-                        <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link">
+                        <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link" id="drowpdown-create-topic-mobile">
                             <div class="w18h18 icon d-flex justify-content-center align-items-center">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip0_325_102)">
@@ -403,7 +403,7 @@
                 <li class="m-1">
                     <div class=" d-flex align-items-center justify-content-between flex-row px-0 mx-0 px-sm-1 mx-sm-1" tabindex="1">
                         <label for="light-theme-switch-2" >
-                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link ">
+                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link " id="drowpdown-light-theme-mobile">
                                 <div class="w18h18 icon d-flex justify-content-center align-items-center">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M23 11H18.92C18.8421 10.449 18.6981 9.90948 18.491 9.393L22.018 7.349C22.1359 7.28557 22.2398 7.19911 22.3237 7.09476C22.4075 6.99041 22.4695 6.87029 22.5061 6.74152C22.5427 6.61275 22.553 6.47794 22.5365 6.34511C22.52 6.21227 22.477 6.08409 22.41 5.96818C22.3431 5.85228 22.2535 5.75099 22.1467 5.67033C22.0398 5.58967 21.9179 5.53129 21.7881 5.49863C21.6583 5.46597 21.5232 5.45971 21.3909 5.48021C21.2587 5.50072 21.1318 5.54757 21.018 5.618L17.488 7.665C17.1505 7.23872 16.765 6.85283 16.339 6.515L18.385 2.984C18.5082 2.75505 18.5374 2.48712 18.4664 2.23701C18.3954 1.9869 18.2298 1.77428 18.0046 1.64422C17.7795 1.51417 17.5126 1.4769 17.2604 1.54033C17.0083 1.60376 16.7908 1.7629 16.654 1.984L14.607 5.509C14.0906 5.30172 13.551 5.15768 13 5.08V1C13 0.734784 12.8946 0.48043 12.7071 0.292893C12.5196 0.105357 12.2652 0 12 0C11.7348 0 11.4804 0.105357 11.2929 0.292893C11.1054 0.48043 11 0.734784 11 1V5.08C10.449 5.15768 9.90941 5.30172 9.393 5.509L7.349 1.982C7.21221 1.7609 6.99469 1.60176 6.74255 1.53833C6.49042 1.4749 6.22349 1.51217 5.99836 1.64222C5.77323 1.77228 5.60761 1.9849 5.5366 2.23501C5.4656 2.48512 5.49479 2.75305 5.618 2.982L7.664 6.515C7.23801 6.85283 6.85246 7.23872 6.515 7.665L2.985 5.618C2.87116 5.54757 2.74435 5.50072 2.61206 5.48021C2.47978 5.45971 2.34473 5.46597 2.21492 5.49863C2.0851 5.53129 1.96316 5.58967 1.85633 5.67033C1.7495 5.75099 1.65995 5.85228 1.59299 5.96818C1.52603 6.08409 1.48302 6.21227 1.46651 6.34511C1.45001 6.47794 1.46034 6.61275 1.4969 6.74152C1.53346 6.87029 1.5955 6.99041 1.67934 7.09476C1.76318 7.19911 1.86712 7.28557 1.985 7.349L5.509 9.393C5.30195 9.90948 5.15791 10.449 5.08 11H1C0.734784 11 0.48043 11.1054 0.292893 11.2929C0.105357 11.4804 0 11.7348 0 12C0 12.2652 0.105357 12.5196 0.292893 12.7071C0.48043 12.8946 0.734784 13 1 13H5.08C5.15791 13.551 5.30195 14.0905 5.509 14.607L1.982 16.651C1.86412 16.7144 1.76018 16.8009 1.67634 16.9052C1.5925 17.0096 1.53046 17.1297 1.4939 17.2585C1.45734 17.3873 1.44701 17.5221 1.46351 17.6549C1.48002 17.7877 1.52303 17.9159 1.58999 18.0318C1.65695 18.1477 1.7465 18.249 1.85333 18.3297C1.96016 18.4103 2.0821 18.4687 2.21192 18.5014C2.34173 18.534 2.47678 18.5403 2.60906 18.5198C2.74135 18.4993 2.86816 18.4524 2.982 18.382L6.512 16.335C6.84946 16.7613 7.23501 17.1472 7.661 17.485L5.618 21.016C5.49479 21.2449 5.4656 21.5129 5.5366 21.763C5.60761 22.0131 5.77323 22.2257 5.99836 22.3558C6.22349 22.4858 6.49042 22.5231 6.74255 22.4597C6.99469 22.3962 7.21221 22.2371 7.349 22.016L9.393 18.489C9.90947 18.6965 10.449 18.8412 11 18.92V23C11 23.2652 11.1054 23.5196 11.2929 23.7071C11.4804 23.8946 11.7348 24 12 24C12.2652 24 12.5196 23.8946 12.7071 23.7071C12.8946 23.5196 13 23.2652 13 23V18.92C13.5509 18.8419 14.0904 18.6978 14.607 18.491L16.651 22.018C16.7878 22.2391 17.0053 22.3982 17.2574 22.4617C17.5096 22.5251 17.7765 22.4878 18.0016 22.3578C18.2268 22.2277 18.3924 22.0151 18.4634 21.765C18.5344 21.5149 18.5052 21.2469 18.382 21.018L16.336 17.487C16.762 17.1492 17.1475 16.7633 17.485 16.337L21.015 18.384C21.1288 18.4544 21.2557 18.5013 21.3879 18.5218C21.5202 18.5423 21.6553 18.536 21.7851 18.5034C21.9149 18.4707 22.0368 18.4123 22.1437 18.3317C22.2505 18.251 22.34 18.1497 22.407 18.0338C22.474 17.9179 22.517 17.7897 22.5335 17.6569C22.55 17.5241 22.5397 17.3893 22.5031 17.2605C22.4665 17.1317 22.4045 17.0116 22.3207 16.9072C22.2368 16.8029 22.1329 16.7164 22.015 16.653L18.488 14.609C18.6962 14.092 18.8413 13.5518 18.92 13H23C23.2652 13 23.5196 12.8946 23.7071 12.7071C23.8946 12.5196 24 12.2652 24 12C24 11.7348 23.8946 11.4804 23.7071 11.2929C23.5196 11.1054 23.2652 11 23 11ZM12 17C5.392 16.79 5.394 7.209 12 7C18.608 7.21 18.606 16.791 12 17Z"/>
@@ -423,7 +423,7 @@
 
                 <li class="m-1">
                     <div class=" d-flex align-items-center justify-content-start flex-row px-0 mx-0 px-sm-1 mx-sm-1" tabindex="1">
-                        <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link">
+                        <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link" id="drowpdown-settings-mobile">
                             <div class="w18h18 icon d-flex justify-content-center align-items-center">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip0_1_2911)">
@@ -455,10 +455,10 @@
 
                 <li class="mx-0 mx-sm-1 mb-3 py-1">
                     <div class=" d-flex align-items-center justify-content-start flex-row mb-2">
-                       <span class="user-icon p-0 " style="cursor: pointer;">
+                       <span class="user-icon p-0 " style="cursor: pointer;" id="drowpdown-user-icon-mobile">
                           <img tabindex="1" class="w80h80 border-round p-1 canvas-link" src="../../assets/solid_white.png" alt="">
                       </span>
-                      <div class="username-wrapper mx-3 py-2 fs-6 fw-bold btn" >
+                      <div class="username-wrapper mx-3 py-2 fs-6 fw-bold btn" id="drowpdown-user-name-mobile">
                           <div class="username-marquee-container-smol">
                               <!-- NAME SHOULD HAVE AT LEAST 11 CHARACTERS -->
                               <!-- User123 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -->
@@ -476,7 +476,7 @@
 
                 <li class="m-1" >
                     <div class=" d-flex align-items-center justify-content-start flex-row px-0 mx-0 px-sm-1 mx-sm-1" tabindex="1">
-                        <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link">
+                        <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link" id="drowpdown-log-out-mobile">
                             <div class="w18h18 icon d-flex justify-content-center align-items-center">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip0_1_2910)">

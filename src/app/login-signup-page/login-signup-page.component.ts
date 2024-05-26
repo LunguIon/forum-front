@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, inject, TemplateRef, ViewEnca
 import { LogoNavComponent } from '../logo-nav/logo-nav.component';
 import { FormsModule, NgForm, NgModel, ReactiveFormsModule } from '@angular/forms';  
 import { NgClass, NgIf } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { initializeConstellations } from '../utils/constelations';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 import { AppComponent } from '../app.component';
@@ -15,7 +15,7 @@ import { ElementRefService } from '../utils/element-ref.service';
 @Component({
   selector: 'app-login-signup-page',
   standalone: true,
-  imports: [LogoNavComponent, FormsModule, ReactiveFormsModule, NgClass, NgIf, HttpClientModule],
+  imports: [LogoNavComponent, FormsModule, ReactiveFormsModule, NgClass, NgIf, HttpClientModule, RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './login-signup-page.component.html',
   styleUrl: './login-signup-page.component.scss',
   animations: [
@@ -53,7 +53,7 @@ export class LoginSignupPageComponent implements OnInit, OnDestroy{
   private modalRef!: NgbModalRef
   private modalContainer!: ElementRef; 
   @ViewChild('content', { static: true }) content!: TemplateRef<any>;
-  openModal(content: TemplateRef<any>) {
+  openModal() {
 		this.modalRef = this.modalService.open(this.content, {centered: true,  container: this.modalContainer.nativeElement});
 	}
 
@@ -134,6 +134,7 @@ export class LoginSignupPageComponent implements OnInit, OnDestroy{
         },
         error: (error) => {
           // Handle login error
+          this.openModal();
           console.error('Login error');
         }
       });
@@ -149,10 +150,20 @@ export class LoginSignupPageComponent implements OnInit, OnDestroy{
         },
         error: (error) => {
           // Handle signup error
+          this.openModal();
           console.error('Signup error');
         }
       });
     }
+  }
+
+  reloadPage() {
+    window.location.reload();
+  }
+
+  closeModalAndReload(){
+    this.modalRef.close('Close click');
+    this.reloadPage();
   }
 
 }

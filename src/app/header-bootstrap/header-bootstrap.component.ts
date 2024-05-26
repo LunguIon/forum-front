@@ -88,7 +88,7 @@ export class HeaderBootstrapComponent implements OnInit, OnDestroy{
       panelClass: 'details-panel', 
       backdropClass: 'details-panel-backdrop', 
       position: 'start',
-      scroll: false,
+      scroll: true,
       container: this.offcanvasContainer.nativeElement
     };
 
