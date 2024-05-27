@@ -98,11 +98,11 @@
                             <div class="username-marquee-container">
                                 <!-- NAME SHOULD HAVE AT LEAST 11 CHARACTERS -->
                                 <!-- User123 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -->
-                                <div class="username">
-                                    User123_123456 &nbsp; 
+                                <div class="username" [innerHTML]="getSanitizedUsername()">
+                                    <!-- User123_123456 &nbsp;  -->
                                 </div>
-                                <div class="username">
-                                    User123_123456 &nbsp;
+                                <div class="username" [innerHTML]="getSanitizedUsername()">
+                                    <!-- User123_123456 &nbsp; -->
                                 </div>
                             </div>
                         </div>
@@ -458,18 +458,18 @@
                        <span class="user-icon p-0 " style="cursor: pointer;" id="drowpdown-user-icon-mobile">
                           <img tabindex="1" class="w80h80 border-round p-1 canvas-link" src="../../assets/solid_white.png" alt="">
                       </span>
-                      <div class="username-wrapper mx-3 py-2 fs-6 fw-bold btn" id="drowpdown-user-name-mobile">
-                          <div class="username-marquee-container-smol">
-                              <!-- NAME SHOULD HAVE AT LEAST 11 CHARACTERS -->
-                              <!-- User123 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -->
-                              <div class="username">
-                                  User123_123456 &nbsp; 
-                              </div>
-                              <div class="username">
-                                  User123_123456 &nbsp;
-                              </div>
-                          </div>
-                      </div>
+                      <div class="username-wrapper mx-2 px-3 py-2 fs-6 fw-bold btn text-uppercase" id="dropdown-user-name-mobile">
+                        <div class="username-marquee-container-smol">
+                            <!-- NAME SHOULD HAVE AT LEAST 11 CHARACTERS -->
+                            <!-- User123 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -->
+                            <div class="username" [innerHTML]="getSanitizedUsername()">
+                                <!-- User123_123456 &nbsp;  -->
+                            </div>
+                            <div class="username" [innerHTML]="getSanitizedUsername()">
+                                <!-- User123_123456 &nbsp; -->
+                            </div>
+                        </div>
+                    </div>
                     </div>
                 </li>
 

@@ -1,11 +1,12 @@
 import { NgClass } from '@angular/common';
-import { Component, inject, TemplateRef, ViewChild, ViewEncapsulation, HostListener, ElementRef, Renderer2, AfterViewInit, OnInit, OnDestroy } from '@angular/core';
+import { Component, inject, TemplateRef, ViewChild, ViewEncapsulation, HostListener, ElementRef, Renderer2, AfterViewInit, OnInit, OnDestroy, Input } from '@angular/core';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { NgbOffcanvas, NgbOffcanvasOptions, NgbOffcanvasRef } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from '../app.component';
 import { ElementRefService } from '../utils/element-ref.service';
 import { Subscription } from 'rxjs';
+import { SafeHtml } from '@angular/platform-browser';
 
 
 @Component({
@@ -18,6 +19,10 @@ import { Subscription } from 'rxjs';
 })
 
 export class HeaderBootstrapComponent implements OnInit, OnDestroy{
+  // Input variables
+  // -------------
+  @Input() username: string ="user 123"
+
   // Constructor, innit and destroy
   // -------------
   private elementRefSubscription!: Subscription;
@@ -36,12 +41,29 @@ export class HeaderBootstrapComponent implements OnInit, OnDestroy{
         this.offcanvasContainer = elementRef;
       }
     );
+
+    const minLenghtOfName = 20;
+    if(this.sanitizedUsername.length < minLenghtOfName){
+      for(let i: number = this.sanitizedUsername.length; i <= minLenghtOfName; i++ ){
+        this.sanitizedUsername = this.sanitizedUsername + " &nbsp;";
+      }  
+    }else{
+      this.sanitizedUsername = this.sanitizedUsername + " &nbsp;";
+    }
   }
 
   ngOnDestroy() {
     if (this.elementRefSubscription) {
       this.elementRefSubscription.unsubscribe();
     }
+  }
+
+  // Username components
+  // -------------
+  private sanitizedUsername = this.username;
+  
+  getSanitizedUsername(): string {
+    return this.sanitizedUsername;
   }
 
 
