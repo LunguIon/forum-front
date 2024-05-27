@@ -3,11 +3,12 @@ import { LogoNavComponent } from '../logo-nav/logo-nav.component';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { initializeConstellations } from '../utils/constelations';
 import { AppComponent } from '../app.component';
+import { FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-welcome-page',
   standalone: true,
-  imports: [LogoNavComponent, RouterOutlet, RouterLink, RouterLinkActive, ],
+  imports: [LogoNavComponent, RouterOutlet, RouterLink, RouterLinkActive, FormsModule],
   templateUrl: './welcome-page.component.html',
   styleUrl: './welcome-page.component.scss'
 })
@@ -26,6 +27,13 @@ export class WelcomePageComponent implements OnInit{
       const canvas: HTMLCanvasElement = this.canvasElement.nativeElement;
       initializeConstellations(canvas, colorPrimary, colorPrimary, colorPrimaryRGBVals);
     }
+  }
+
+  isLightThemeOn: boolean = this.appComponent.isLightThemeOn;
+
+  toggleTheme(){
+    this.appComponent.toggleTheme();
+    this.isLightThemeOn = this.appComponent.isLightThemeOn;
   }
 
 }

@@ -1,43 +1,44 @@
-<nav class="navbar navbar-expand-lg font-julius-sans-one fw-normal" >
+<nav class="navbar navbar-expand-lg font-julius-sans-one fw-bold" style="z-index: 100;">
     <div class="container-fluid">
         
 
         <!-- navbar open offCanvas btn and text ->      Apears bellow lg -->
         <div class="navbar-toggler-hidden-content justify-content-center align-items-center flex-row">
             <span class=" align-items-center justify-content-center p-0">
-                <span class="w40h40 mx-4 btn p-0">
-                    <img 
-                    class="p-1"
+                <span class=" mx-2 btn p-0" id="toggle-dropdown-mobile">
+                    <div 
+                    class="w50h50 icon d-flex align-items-center justify-content-center"
                     tabindex="1"
                     (click)="openCanvas()"
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/9d65130b9b47b6bf3763f24c655eb4d95b69baf52606aec17aac7a1bc5348243?apiKey=b86036a5846045fa8db7cf278357723c&" 
-                    alt=""
                     >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                        <path fill-rule="evenodd" d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75ZM3 12a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
+                    </svg>
+                    </div>
                 </span>
             </span>
-            <a class="logo-text text-decoration-none fs-2 fw-normal" href="#" tabindex="-1">SpeakUp</a>
+            <a class="logo-text text-decoration-none mx-2 fs-2 fw-normal" href="#" tabindex="-1" id="app-logo-mobile">SpeakUp</a>
         </div>
 
         <!-- navbar user-icon smol ->                   Apears bellow lg -->
-        <span class="navbar-toggler-hidden-content align-items-center justify-content-center btn p-2 mx-2 mt-2">
+        <span class="navbar-toggler-hidden-content align-items-center justify-content-center btn p-2 mx-2 mt-2 mb-2" id="user-icon-mobile">
             <img tabindex="1" class="w60h60 border-round" src="../../assets/solid_white.png" alt="">
         </span>
 
 
-
         <!-- navbar logo ->                             Disapears bellow lg -->
         <div class="navbar-toggler-visible-content">
-            <a class="" href="#" tabindex="-1">
-                <img src="../../assets/logo_smol.png" alt="Logo" class="logo" />
+            <a class="" href="#" tabindex="-1" id="app-logo-pc">
+                <img src="../../assets/logo.png" alt="Logo" class="logo w85h85" />
             </a>
         </div>
 
         <!-- navbar `Home`, `Popular`, `All` menu ->    Dissapers bellow lg -->
-        <div class="collapse navbar-collapse" id="collapseBasic">
+        <div class="collapse navbar-collapse" id="navbar-content">
             <div class="navbar-nav mx-auto text-uppercase gap-0 gap-xl-5">
-                <a class="nav-link px-4 mx-4 mx-xl-4 fs-5" tabindex="1" href="#">Home</a>
-                <a class="nav-link px-4 mx-4 mx-xl-4 fs-5" tabindex="1" href="#">Popular</a>
-                <a class="nav-link px-4 mx-4 mx-xl-4 fs-5" tabindex="1" href="#">All</a>    
+                <a class="nav-link px-4 mx-4 mx-xl-4 fs-5" tabindex="1" href="#" id="home-pc">Home</a>
+                <a class="nav-link px-4 mx-4 mx-xl-4 fs-5" tabindex="1" href="#" id="popular-pc">Popular</a>
+                <a class="nav-link px-4 mx-4 mx-xl-4 fs-5" tabindex="1" href="#" id="all-pc">All</a>    
             </div>
         </div>
 
@@ -45,36 +46,55 @@
         <div  class="navbar-toggler-visible-content justify-content-center align-items-center flex-row gap-4 px-4">
             <!-- bell icon -->
             <span tabindex="1" class="span-btn">
-                <img class="btn p-2 nav-link-2" src="https://cdn.builder.io/api/v1/image/assets/TEMP/3e4de699343342127811684602f95332bb718c4d595401543df89e0e14be9753?apiKey=b86036a5846045fa8db7cf278357723c&" alt="">
+                <div class="btn p-2 nav-link-2 icon d-flex justify-content-center align-items-center" id="notifications-btn-pc">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M23.2589 16.2002L20.6589 6.82917C20.1037 4.82459 18.894 3.06331 17.2222 1.82566C15.5504 0.588005 13.5127 -0.0549039 11.4334 -0.000744217C9.35404 0.0534155 7.35257 0.801531 5.7475 2.12454C4.14243 3.44754 3.02601 5.26941 2.57592 7.30017L0.564915 16.3502C0.467608 16.7886 0.469982 17.2433 0.571861 17.6807C0.67374 18.1181 0.872525 18.5271 1.15355 18.8774C1.43457 19.2277 1.79067 19.5105 2.19556 19.7048C2.60045 19.8991 3.04381 20.0001 3.49292 20.0002H7.09992C7.32943 21.1305 7.94265 22.1466 8.83566 22.8766C9.72867 23.6065 10.8466 24.0052 11.9999 24.0052C13.1533 24.0052 14.2712 23.6065 15.1642 22.8766C16.0572 22.1466 16.6704 21.1305 16.8999 20.0002H20.3699C20.832 20 21.2878 19.893 21.7018 19.6876C22.1158 19.4823 22.4767 19.184 22.7564 18.8162C23.0362 18.4484 23.2271 18.0209 23.3145 17.5672C23.4018 17.1134 23.3831 16.6455 23.2599 16.2002H23.2589ZM11.9999 22.0002C11.3817 21.9976 10.7793 21.8041 10.2752 21.4461C9.77115 21.0881 9.39 20.5831 9.18392 20.0002H14.8159C14.6098 20.5831 14.2287 21.0881 13.7246 21.4461C13.2205 21.8041 12.6182 21.9976 11.9999 22.0002ZM21.1649 17.6052C21.0716 17.7289 20.9507 17.829 20.8118 17.8976C20.6729 17.9662 20.5198 18.0013 20.3649 18.0002H3.49292C3.34318 18.0001 3.19536 17.9665 3.06036 17.9017C2.92537 17.8369 2.80665 17.7426 2.71297 17.6258C2.61929 17.509 2.55304 17.3726 2.5191 17.2268C2.48517 17.0809 2.48442 16.9293 2.51692 16.7832L4.52792 7.73317C4.88227 6.13938 5.75922 4.70978 7.01937 3.67162C8.27952 2.63347 9.85054 2.04634 11.4827 2.00359C13.1148 1.96083 14.7144 2.46489 16.0272 3.43564C17.34 4.40639 18.2906 5.78812 18.7279 7.36117L21.3279 16.7322C21.3704 16.8804 21.3777 17.0364 21.3494 17.1879C21.3212 17.3394 21.258 17.4823 21.1649 17.6052Z"/>
+                    </svg>
+                </div>
             </span>
 
             <!-- `+` / `+ Add` icon-->
             <span tabindex="1" class="span-btn">
-                <span class="scale-105 d-flex align-items-center justify-content-center btn p-0 p-xl-1 btn gap-1 nav-link-2">
-                    <img class="img-50 scale-75 p-2 p-xl-0 scale-up-xl" src="https://cdn.builder.io/api/v1/image/assets/TEMP/1852baada6349567e2de126e4bbb8c8261dd9b563226f34d8c05fa0ef165a826?apiKey=b86036a5846045fa8db7cf278357723c&" alt="">
+                <span class="scale-105 d-flex align-items-center justify-content-center btn p-0 p-xl-1 btn gap-1 nav-link-2" id="add-btn-pc">
+                    <div class="w18h18 p-2 p-xl-0 scale-up-xl icon d-flex justify-content-center align-items-center">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_325_102)">
+                            <path d="M24 11H13V0H11V11H0V13H11V24H13V13H24V11Z" />
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_325_102">
+                            <rect width="24" height="24"/>
+                            </clipPath>
+                            </defs>
+                        </svg>
+                    </div>
                     <span class="font-julius-sans-one fw-normal invisible-xl fs-6">Add</span>
                 </span>
             </span>
 
             <!-- user-icon big -->
-            <span class="d-flex align-items-center justify-content-center btn p-0 span-btn">
+            <span class="d-flex align-items-center justify-content-center btn p-0 span-btn" id="user-icon-pc">
                 <img tabindex="1" class="w80h80 border-round p-1 nav-link-2" src="../../assets/solid_white.png" alt="">
             </span>
 
             <!-- toggle user menu icon -->
             <span tabindex="1">
-                <span class="d-flex align-items-center justify-content-center btn p-1 span-btn nav-item dropdown nav-link-2" (click)="toggleDropdown($event)">
-                    <img class="w40h40" src="https://cdn.builder.io/api/v1/image/assets/TEMP/9d65130b9b47b6bf3763f24c655eb4d95b69baf52606aec17aac7a1bc5348243?apiKey=b86036a5846045fa8db7cf278357723c&" alt="">
+                <span class="d-flex align-items-center justify-content-center btn p-1 span-btn nav-item dropdown nav-link-2" id="toggle-dropdown-pc" (click)="toggleDropdown($event)">
+                    <div class="w50h50 icon d-block justify-content-center align-items-center" >
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                            <path fill-rule="evenodd" d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75ZM3 12a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
+                        </svg>                          
+                    </div>
                 </span>
                 <!-- user menu -->
-                <ul class="dropdown-menu custom-dropdown py-3 px-4" [class.show]="dropdownOpen" aria-labelledby="navbarDropdown">
+                <ul class="dropdown-menu custom-dropdown py-3 px-4" [collapse]="!dropdownOpen" [isAnimated]="true">
 
                     <li class="m-1">
                       <div class=" d-flex align-items-center justify-content-start flex-row mb-3">
-                         <span class="user-icon p-0" style="cursor: pointer;">
+                         <span class="user-icon p-0" id="dropdown-user-icon-pc">
                             <img tabindex="1" class="w80h80 border-round p-1 nav-link-2" src="../../assets/solid_white.png" alt="">
                         </span>
-                        <div class="username-wrapper mx-2 px-3 py-2 fs-6 fw-bold btn" >
+                        <div class="username-wrapper mx-2 px-3 py-2 fs-6 fw-bold btn" id="dropdown-user-name-pc">
                             <div class="username-marquee-container">
                                 <!-- NAME SHOULD HAVE AT LEAST 11 CHARACTERS -->
                                 <!-- User123 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -->
@@ -91,8 +111,19 @@
 
                     <li class="m-1">
                         <div class=" d-flex align-items-center justify-content-start flex-row px-1 mx-1" tabindex="1">
-                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-2 popup-link">
-                                <img class="w18h18" src="https://cdn.builder.io/api/v1/image/assets/TEMP/1852baada6349567e2de126e4bbb8c8261dd9b563226f34d8c05fa0ef165a826?apiKey=b86036a5846045fa8db7cf278357723c&" alt="">
+                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-2 popup-link" id="dropdown-create-post-pc">
+                                <div class="w18h18 icon d-flex justify-content-center align-items-center">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_325_102)">
+                                        <path d="M24 11H13V0H11V11H0V13H11V24H13V13H24V11Z" />
+                                        </g>
+                                        <defs>
+                                        <clipPath id="clip0_325_102">
+                                        <rect width="24" height="24"/>
+                                        </clipPath>
+                                        </defs>
+                                    </svg>
+                                </div>
                                 <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">Create Post</span>
                             </span>
                         </div>
@@ -100,8 +131,19 @@
 
                     <li class="m-1">
                         <div class=" d-flex align-items-center justify-content-start flex-row px-1 mx-1" tabindex="1">
-                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-2 popup-link">
-                                <img class="w18h18" src="https://cdn.builder.io/api/v1/image/assets/TEMP/1852baada6349567e2de126e4bbb8c8261dd9b563226f34d8c05fa0ef165a826?apiKey=b86036a5846045fa8db7cf278357723c&" alt="">
+                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-2 popup-link" id="dropdown-create-topic-pc">
+                                <div class="w18h18 icon d-flex justify-content-center align-items-center">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_325_102)">
+                                        <path d="M24 11H13V0H11V11H0V13H11V24H13V13H24V11Z" />
+                                        </g>
+                                        <defs>
+                                        <clipPath id="clip0_325_102">
+                                        <rect width="24" height="24"/>
+                                        </clipPath>
+                                        </defs>
+                                    </svg>
+                                </div>
                                 <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">Create Topic</span>
                             </span>
                         </div>
@@ -109,16 +151,20 @@
 
                     <li class="m-1">
                         <div class=" d-flex align-items-center justify-content-between flex-row px-1 mx-1" tabindex="1">
-                            <label for="light-theme-switch" (click)="toggleLightTheme">
-                                <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-2 popup-link">
-                                <img class="w18h18" src="../../assets/ic_light_mode.svg" alt="">
-                                <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">Light Mode</span>
-                            </span>
+                            <label for="light-theme-switch">
+                                <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-2 popup-link" id="dropdown-light-theme-pc">
+                                    <div class="w18h18 icon d-flex justify-content-center align-items-center">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M23 11H18.92C18.8421 10.449 18.6981 9.90948 18.491 9.393L22.018 7.349C22.1359 7.28557 22.2398 7.19911 22.3237 7.09476C22.4075 6.99041 22.4695 6.87029 22.5061 6.74152C22.5427 6.61275 22.553 6.47794 22.5365 6.34511C22.52 6.21227 22.477 6.08409 22.41 5.96818C22.3431 5.85228 22.2535 5.75099 22.1467 5.67033C22.0398 5.58967 21.9179 5.53129 21.7881 5.49863C21.6583 5.46597 21.5232 5.45971 21.3909 5.48021C21.2587 5.50072 21.1318 5.54757 21.018 5.618L17.488 7.665C17.1505 7.23872 16.765 6.85283 16.339 6.515L18.385 2.984C18.5082 2.75505 18.5374 2.48712 18.4664 2.23701C18.3954 1.9869 18.2298 1.77428 18.0046 1.64422C17.7795 1.51417 17.5126 1.4769 17.2604 1.54033C17.0083 1.60376 16.7908 1.7629 16.654 1.984L14.607 5.509C14.0906 5.30172 13.551 5.15768 13 5.08V1C13 0.734784 12.8946 0.48043 12.7071 0.292893C12.5196 0.105357 12.2652 0 12 0C11.7348 0 11.4804 0.105357 11.2929 0.292893C11.1054 0.48043 11 0.734784 11 1V5.08C10.449 5.15768 9.90941 5.30172 9.393 5.509L7.349 1.982C7.21221 1.7609 6.99469 1.60176 6.74255 1.53833C6.49042 1.4749 6.22349 1.51217 5.99836 1.64222C5.77323 1.77228 5.60761 1.9849 5.5366 2.23501C5.4656 2.48512 5.49479 2.75305 5.618 2.982L7.664 6.515C7.23801 6.85283 6.85246 7.23872 6.515 7.665L2.985 5.618C2.87116 5.54757 2.74435 5.50072 2.61206 5.48021C2.47978 5.45971 2.34473 5.46597 2.21492 5.49863C2.0851 5.53129 1.96316 5.58967 1.85633 5.67033C1.7495 5.75099 1.65995 5.85228 1.59299 5.96818C1.52603 6.08409 1.48302 6.21227 1.46651 6.34511C1.45001 6.47794 1.46034 6.61275 1.4969 6.74152C1.53346 6.87029 1.5955 6.99041 1.67934 7.09476C1.76318 7.19911 1.86712 7.28557 1.985 7.349L5.509 9.393C5.30195 9.90948 5.15791 10.449 5.08 11H1C0.734784 11 0.48043 11.1054 0.292893 11.2929C0.105357 11.4804 0 11.7348 0 12C0 12.2652 0.105357 12.5196 0.292893 12.7071C0.48043 12.8946 0.734784 13 1 13H5.08C5.15791 13.551 5.30195 14.0905 5.509 14.607L1.982 16.651C1.86412 16.7144 1.76018 16.8009 1.67634 16.9052C1.5925 17.0096 1.53046 17.1297 1.4939 17.2585C1.45734 17.3873 1.44701 17.5221 1.46351 17.6549C1.48002 17.7877 1.52303 17.9159 1.58999 18.0318C1.65695 18.1477 1.7465 18.249 1.85333 18.3297C1.96016 18.4103 2.0821 18.4687 2.21192 18.5014C2.34173 18.534 2.47678 18.5403 2.60906 18.5198C2.74135 18.4993 2.86816 18.4524 2.982 18.382L6.512 16.335C6.84946 16.7613 7.23501 17.1472 7.661 17.485L5.618 21.016C5.49479 21.2449 5.4656 21.5129 5.5366 21.763C5.60761 22.0131 5.77323 22.2257 5.99836 22.3558C6.22349 22.4858 6.49042 22.5231 6.74255 22.4597C6.99469 22.3962 7.21221 22.2371 7.349 22.016L9.393 18.489C9.90947 18.6965 10.449 18.8412 11 18.92V23C11 23.2652 11.1054 23.5196 11.2929 23.7071C11.4804 23.8946 11.7348 24 12 24C12.2652 24 12.5196 23.8946 12.7071 23.7071C12.8946 23.5196 13 23.2652 13 23V18.92C13.5509 18.8419 14.0904 18.6978 14.607 18.491L16.651 22.018C16.7878 22.2391 17.0053 22.3982 17.2574 22.4617C17.5096 22.5251 17.7765 22.4878 18.0016 22.3578C18.2268 22.2277 18.3924 22.0151 18.4634 21.765C18.5344 21.5149 18.5052 21.2469 18.382 21.018L16.336 17.487C16.762 17.1492 17.1475 16.7633 17.485 16.337L21.015 18.384C21.1288 18.4544 21.2557 18.5013 21.3879 18.5218C21.5202 18.5423 21.6553 18.536 21.7851 18.5034C21.9149 18.4707 22.0368 18.4123 22.1437 18.3317C22.2505 18.251 22.34 18.1497 22.407 18.0338C22.474 17.9179 22.517 17.7897 22.5335 17.6569C22.55 17.5241 22.5397 17.3893 22.5031 17.2605C22.4665 17.1317 22.4045 17.0116 22.3207 16.9072C22.2368 16.8029 22.1329 16.7164 22.015 16.653L18.488 14.609C18.6962 14.092 18.8413 13.5518 18.92 13H23C23.2652 13 23.5196 12.8946 23.7071 12.7071C23.8946 12.5196 24 12.2652 24 12C24 11.7348 23.8946 11.4804 23.7071 11.2929C23.5196 11.1054 23.2652 11 23 11ZM12 17C5.392 16.79 5.394 7.209 12 7C18.608 7.21 18.606 16.791 12 17Z"/>
+                                        </svg>
+                                    </div>        
+                                    <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">Light Mode</span>
+                                </span>
                             </label>
                             
                             
-                            <label class="switch" (click)="toggleLightTheme">
-                                <input type="checkbox" id="light-theme-switch" [(ngModel)]="isLightTheme">
+                            <label class="switch">
+                                <input type="checkbox" id="light-theme-switch" (click)="toggleTheme()" [(ngModel)]="isLightThemeOn">
                                 <span class="slider round"></span>
                             </label>
                         </div>
@@ -126,8 +172,20 @@
 
                     <li class="m-1">
                         <div class=" d-flex align-items-center justify-content-start flex-row px-1 mx-1" tabindex="1">
-                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-2 popup-link">
-                                <img class="w18h18" src="../../assets/ic_settings.svg" alt="">
+                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-2 popup-link" id="dropdown-settings-pc">
+                                <div class="w18h18 icon d-flex justify-content-center align-items-center">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_1_2911)">
+                                        <path d="M12 8.00049C11.2089 8.00049 10.4355 8.23508 9.77772 8.67461C9.11993 9.11414 8.60723 9.73885 8.30448 10.4698C8.00173 11.2007 7.92252 12.0049 8.07686 12.7808C8.2312 13.5568 8.61216 14.2695 9.17157 14.8289C9.73098 15.3883 10.4437 15.7693 11.2196 15.9236C11.9956 16.078 12.7998 15.9988 13.5307 15.696C14.2616 15.3933 14.8864 14.8806 15.3259 14.2228C15.7654 13.565 16 12.7916 16 12.0005C16 10.9396 15.5786 9.92221 14.8284 9.17206C14.0783 8.42192 13.0609 8.00049 12 8.00049ZM12 14.0005C11.6044 14.0005 11.2178 13.8832 10.8889 13.6634C10.56 13.4437 10.3036 13.1313 10.1522 12.7659C10.0009 12.4004 9.96126 11.9983 10.0384 11.6103C10.1156 11.2223 10.3061 10.866 10.5858 10.5863C10.8655 10.3066 11.2219 10.1161 11.6098 10.0389C11.9978 9.96175 12.3999 10.0014 12.7654 10.1527C13.1308 10.3041 13.4432 10.5604 13.6629 10.8893C13.8827 11.2182 14 11.6049 14 12.0005C14 12.5309 13.7893 13.0396 13.4142 13.4147C13.0391 13.7898 12.5304 14.0005 12 14.0005Z" />
+                                        <path d="M21.2943 13.9L20.8503 13.644C21.0502 12.5564 21.0502 11.4416 20.8503 10.354L21.2943 10.098C21.6357 9.90102 21.935 9.63871 22.1751 9.32606C22.4151 9.01341 22.5913 8.65654 22.6934 8.27582C22.7956 7.8951 22.8217 7.49799 22.7704 7.10716C22.7191 6.71633 22.5913 6.33944 22.3943 5.998C22.1973 5.65656 21.935 5.35727 21.6223 5.1172C21.3097 4.87714 20.9528 4.70101 20.5721 4.59886C20.1914 4.49672 19.7943 4.47056 19.4034 4.52189C19.0126 4.57321 18.6357 4.70102 18.2943 4.898L17.8493 5.155C17.0088 4.43692 16.043 3.88025 15.0003 3.513V3C15.0003 2.20435 14.6842 1.44129 14.1216 0.87868C13.559 0.31607 12.7959 0 12.0003 0C11.2046 0 10.4416 0.31607 9.87897 0.87868C9.31636 1.44129 9.00029 2.20435 9.00029 3V3.513C7.95767 3.88157 6.99214 4.4396 6.15229 5.159L5.70529 4.9C5.01572 4.50218 4.19637 4.39457 3.42747 4.60086C2.65857 4.80715 2.00311 5.31044 1.60529 6C1.20746 6.68956 1.09986 7.50892 1.30615 8.27782C1.51244 9.04672 2.01572 9.70218 2.70529 10.1L3.14929 10.356C2.9494 11.4436 2.9494 12.5584 3.14929 13.646L2.70529 13.902C2.01572 14.2998 1.51244 14.9553 1.30615 15.7242C1.09986 16.4931 1.20746 17.3124 1.60529 18.002C2.00311 18.6916 2.65857 19.1948 3.42747 19.4011C4.19637 19.6074 5.01572 19.4998 5.70529 19.102L6.15029 18.845C6.99105 19.5632 7.95727 20.1199 9.00029 20.487V21C9.00029 21.7956 9.31636 22.5587 9.87897 23.1213C10.4416 23.6839 11.2046 24 12.0003 24C12.7959 24 13.559 23.6839 14.1216 23.1213C14.6842 22.5587 15.0003 21.7956 15.0003 21V20.487C16.0429 20.1184 17.0084 19.5604 17.8483 18.841L18.2953 19.099C18.9849 19.4968 19.8042 19.6044 20.5731 19.3981C21.342 19.1918 21.9975 18.6886 22.3953 17.999C22.7931 17.3094 22.9007 16.4901 22.6944 15.7212C22.4881 14.9523 21.9849 14.2968 21.2953 13.899L21.2943 13.9ZM18.7463 10.124C19.0849 11.3511 19.0849 12.6469 18.7463 13.874C18.6872 14.0876 18.7006 14.3147 18.7846 14.5198C18.8686 14.7249 19.0183 14.8963 19.2103 15.007L20.2943 15.633C20.5241 15.7656 20.6918 15.9841 20.7605 16.2403C20.8293 16.4966 20.7934 16.7697 20.6608 16.9995C20.5282 17.2293 20.3097 17.397 20.0534 17.4658C19.7972 17.5345 19.5241 17.4986 19.2943 17.366L18.2083 16.738C18.0162 16.6267 17.7925 16.5826 17.5725 16.6124C17.3526 16.6423 17.1488 16.7445 16.9933 16.903C16.1032 17.8117 14.9819 18.46 13.7503 18.778C13.5353 18.8333 13.3448 18.9585 13.2089 19.1339C13.0729 19.3094 12.9992 19.525 12.9993 19.747V21C12.9993 21.2652 12.8939 21.5196 12.7064 21.7071C12.5189 21.8946 12.2645 22 11.9993 22C11.7341 22 11.4797 21.8946 11.2922 21.7071C11.1046 21.5196 10.9993 21.2652 10.9993 21V19.748C10.9994 19.526 10.9257 19.3104 10.7897 19.1349C10.6537 18.9595 10.4633 18.8343 10.2483 18.779C9.01663 18.4597 7.89562 17.81 7.00629 16.9C6.85081 16.7415 6.64702 16.6393 6.42704 16.6094C6.20706 16.5796 5.98339 16.6237 5.79129 16.735L4.70729 17.362C4.59352 17.4287 4.46768 17.4722 4.33701 17.4901C4.20635 17.508 4.07344 17.4998 3.94594 17.4661C3.81844 17.4324 3.69887 17.3738 3.59411 17.2937C3.48935 17.2136 3.40146 17.1135 3.33552 16.9993C3.26958 16.8851 3.22688 16.759 3.20988 16.6282C3.19289 16.4974 3.20192 16.3646 3.23648 16.2373C3.27103 16.11 3.33042 15.9909 3.41122 15.8866C3.49202 15.7824 3.59264 15.6952 3.70729 15.63L4.79129 15.004C4.98324 14.8933 5.13296 14.7219 5.21695 14.5168C5.30093 14.3117 5.31442 14.0846 5.25529 13.871C4.91664 12.6439 4.91664 11.3481 5.25529 10.121C5.31335 9.90788 5.29922 9.68153 5.2151 9.47729C5.13098 9.27305 4.9816 9.10241 4.79029 8.992L3.70629 8.366C3.47648 8.23339 3.30876 8.01492 3.24003 7.75865C3.17129 7.50239 3.20718 7.22931 3.33979 6.9995C3.4724 6.76969 3.69086 6.60197 3.94713 6.53324C4.2034 6.46451 4.47648 6.50039 4.70629 6.633L5.79229 7.261C5.98387 7.37251 6.20707 7.41721 6.42681 7.38807C6.64656 7.35893 6.8504 7.25759 7.00629 7.1C7.89637 6.19134 9.01771 5.54302 10.2493 5.225C10.4649 5.16956 10.6559 5.04375 10.7919 4.8675C10.928 4.69125 11.0013 4.47464 11.0003 4.252V3C11.0003 2.73478 11.1056 2.48043 11.2932 2.29289C11.4807 2.10536 11.7351 2 12.0003 2C12.2655 2 12.5199 2.10536 12.7074 2.29289C12.8949 2.48043 13.0003 2.73478 13.0003 3V4.252C13.0002 4.47396 13.0739 4.68964 13.2099 4.86508C13.3458 5.04052 13.5363 5.16573 13.7513 5.221C14.9833 5.54015 16.1047 6.18988 16.9943 7.1C17.1498 7.25847 17.3535 7.36069 17.5735 7.39057C17.7935 7.42044 18.0172 7.37626 18.2093 7.265L19.2933 6.638C19.4071 6.5713 19.5329 6.52777 19.6636 6.5099C19.7942 6.49204 19.9271 6.50019 20.0546 6.5339C20.1821 6.56761 20.3017 6.6262 20.4065 6.70631C20.5112 6.78642 20.5991 6.88646 20.6651 7.00067C20.731 7.11488 20.7737 7.24101 20.7907 7.37179C20.8077 7.50257 20.7987 7.63542 20.7641 7.76269C20.7295 7.88997 20.6702 8.00915 20.5894 8.11337C20.5086 8.2176 20.4079 8.30482 20.2933 8.37L19.2093 8.996C19.0183 9.10671 18.8694 9.27748 18.7856 9.48169C18.7019 9.68591 18.688 9.9121 18.7463 10.125V10.124Z" />
+                                        </g>
+                                        <defs>
+                                        <clipPath id="clip0_1_2911">
+                                        <rect width="24" height="24"/>
+                                        </clipPath>
+                                        </defs>
+                                        </svg>                                        
+                                </div> 
                                 <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">Settings</span>
                             </span>
                         </div>
@@ -139,8 +197,20 @@
 
                     <li class="m-1">
                         <div class=" d-flex align-items-center justify-content-start flex-row px-1 mx-1" tabindex="1">
-                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-2 popup-link">
-                                <img class="w18h18" src="../../assets/ic_logout.svg" alt="">
+                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-2 popup-link" id="dropdown-log-out-pc">
+                                <div class="w18h18 icon d-flex justify-content-center align-items-center">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_1_2910)">
+                                        <path d="M11.476 15C11.2108 15 10.9564 15.1054 10.7689 15.2929C10.5814 15.4804 10.476 15.7348 10.476 16V19C10.476 19.7956 10.1599 20.5587 9.59732 21.1213C9.03471 21.6839 8.27165 22 7.476 22H5C4.20435 22 3.44129 21.6839 2.87868 21.1213C2.31607 20.5587 2 19.7956 2 19V5C2 4.20435 2.31607 3.44129 2.87868 2.87868C3.44129 2.31607 4.20435 2 5 2H7.476C8.27165 2 9.03471 2.31607 9.59732 2.87868C10.1599 3.44129 10.476 4.20435 10.476 5V8C10.476 8.26522 10.5814 8.51957 10.7689 8.70711C10.9564 8.89464 11.2108 9 11.476 9C11.7412 9 11.9956 8.89464 12.1831 8.70711C12.3706 8.51957 12.476 8.26522 12.476 8V5C12.4744 3.67441 11.9471 2.40356 11.0098 1.46622C10.0724 0.528882 8.80159 0.00158786 7.476 0H5C3.67441 0.00158786 2.40356 0.528882 1.46622 1.46622C0.528882 2.40356 0.00158786 3.67441 0 5L0 19C0.00158786 20.3256 0.528882 21.5964 1.46622 22.5338C2.40356 23.4711 3.67441 23.9984 5 24H7.476C8.80159 23.9984 10.0724 23.4711 11.0098 22.5338C11.9471 21.5964 12.4744 20.3256 12.476 19V16C12.476 15.7348 12.3706 15.4804 12.1831 15.2929C11.9956 15.1054 11.7412 15 11.476 15Z"/>
+                                        <path d="M22.867 9.87933L18.281 5.29333C18.1888 5.19782 18.0784 5.12163 17.9564 5.06922C17.8344 5.01681 17.7032 4.98923 17.5704 4.98807C17.4376 4.98692 17.3059 5.01222 17.183 5.0625C17.0602 5.11278 16.9485 5.18704 16.8546 5.28093C16.7607 5.37482 16.6865 5.48647 16.6362 5.60937C16.5859 5.73227 16.5606 5.86395 16.5618 5.99673C16.5629 6.12951 16.5905 6.26073 16.6429 6.38273C16.6953 6.50473 16.7715 6.61508 16.867 6.70733L21.129 10.9703L6 11.0003C5.73478 11.0003 5.48043 11.1057 5.29289 11.2932C5.10536 11.4808 5 11.7351 5 12.0003C5 12.2655 5.10536 12.5199 5.29289 12.7074C5.48043 12.895 5.73478 13.0003 6 13.0003L21.188 12.9693L16.865 17.2933C16.7695 17.3856 16.6933 17.4959 16.6409 17.6179C16.5885 17.7399 16.5609 17.8711 16.5598 18.0039C16.5586 18.1367 16.5839 18.2684 16.6342 18.3913C16.6845 18.5142 16.7587 18.6258 16.8526 18.7197C16.9465 18.8136 17.0582 18.8879 17.181 18.9381C17.3039 18.9884 17.4356 19.0137 17.5684 19.0126C17.7012 19.0114 17.8324 18.9838 17.9544 18.9314C18.0764 18.879 18.1868 18.8028 18.279 18.7073L22.865 14.1213C23.4277 13.559 23.744 12.7962 23.7444 12.0007C23.7447 11.2052 23.4292 10.4422 22.867 9.87933Z" />
+                                        </g>
+                                        <defs>
+                                        <clipPath id="clip0_1_2910">
+                                        <rect width="24" height="24"/>
+                                        </clipPath>
+                                        </defs>
+                                    </svg>
+                                </div>  
                                 <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">Log out</span>
                             </span>
                         </div>
@@ -163,29 +233,42 @@
                     
                     <div class="navbar-toggler-hidden-content justify-content-center align-items-center flex-row">
                         <span class=" align-items-center justify-content-center p-0">
-                            <span class="w40h40 mx-4 btn p-0" tabindex="1">
-                                <img 
-                                class="p-1"
+                            <span class=" mx-2 btn p-0 " id="dropdown-toggle-dropdown-mobile">
+                                <div 
+                                class="w50h50 icon d-flex align-items-center justify-content-center"
                                 tabindex="1"
                                 (click)="closeCanvas()"
-                                src="https://cdn.builder.io/api/v1/image/assets/TEMP/9d65130b9b47b6bf3763f24c655eb4d95b69baf52606aec17aac7a1bc5348243?apiKey=b86036a5846045fa8db7cf278357723c&" 
-                                alt=""
                                 >
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                                    <path fill-rule="evenodd" d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75ZM3 12a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
+                                </svg>
+                                </div>
                             </span>
                         </span>
-                        <a class="logo-text text-decoration-none fs-2 fw-normal" tabindex="-1" href="#">SpeakUp</a>
+                        <a class="logo-text mx-2 text-decoration-none fs-2 fw-normal" tabindex="-1" href="#" id="dropdown-app-logo-mobile">SpeakUp</a>
                     </div>
                 </div>
             </nav>
 
-            <ul class="canvas-element custom-dropdown-canvas px-3 pt-0 show" >
+            <ul class="canvas-element custom-dropdown-canvas px-1 px-sm-3 pt-0 show" >
                     
                 <li class="m-1">
                     <a href="" class="text-decoration-none canvas-link">
-                        <div class=" d-flex align-items-center justify-content-start flex-row px-1 mx-1" tabindex="1">
-                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link">
-                                <img class="w18h18 " src="../../assets/ic_home.svg" alt="">
-                                <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">Home</span>
+                        <div class=" d-flex align-items-center justify-content-start flex-row px-0 mx-0 px-sm-1 mx-sm-1" tabindex="1">
+                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link" id="drowpdown-home-mobile">
+                                <div class="w18h18 icon d-flex justify-content-center align-items-center">    
+                                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" fill="currentColor" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                        viewBox="0 0 20.6 20.6" style="enable-background:new 0 0 20.6 20.6;" xml:space="preserve">
+                                        <g class="st0">
+                                            <path d="M11.4,0.7c-0.3-0.3-0.7-0.4-1.1-0.4S9.4,0.4,9.1,0.7L0,8.9v8.9c0,0.7,0.3,1.4,0.8,1.9c0.5,0.5,1.2,0.8,1.9,0.8h15
+                                           c0.7,0,1.4-0.3,1.9-0.8c0.5-0.5,0.8-1.2,0.8-1.9V8.9L11.4,0.7z M12.8,18.8H7.7v-4.3c0-0.7,0.3-1.3,0.8-1.8
+                                           c0.5-0.5,1.1-0.8,1.8-0.8s1.3,0.3,1.8,0.8c0.5,0.5,0.8,1.1,0.8,1.8V18.8z M18.8,17.8c0,0.3-0.1,0.5-0.3,0.7s-0.5,0.3-0.7,0.3h-3.2
+                                           v-4.3c0-1.1-0.4-2.2-1.3-3c-0.8-0.8-1.9-1.3-3-1.3s-2.2,0.4-3,1.3c-0.8,0.8-1.3,1.9-1.3,3v4.3H2.7c-0.3,0-0.5-0.1-0.7-0.3
+                                           c-0.2-0.2-0.3-0.5-0.3-0.7V9.7L10.3,2l8.5,7.7V17.8z"/>
+                                        </g>
+                                    </svg>
+                                </div>  
+                                <span class="font-julius-sans-one fw-bold fs-6 white-space-nowrap">Home</span>
                             </span>
                         </div>
                     </a>
@@ -193,10 +276,28 @@
 
                 <li class="m-1">
                     <a href="" class="text-decoration-none canvas-link">
-                        <div class=" d-flex align-items-center justify-content-start flex-row px-1 mx-1" tabindex="1">
-                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link">
-                                <img class="w18h18" src="../../assets/ic_popular.svg" alt="">
-                                <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">Popular</span>
+                        <div class=" d-flex align-items-center justify-content-start flex-row px-0 mx-0 px-sm-1 mx-sm-1" tabindex="1">
+                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link" id="drowpdown-popular-mobile">
+                                <div class="w18h18 icon d-flex justify-content-center align-items-center">
+                                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" fill="currentColor" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                    viewBox="0 0 25.9 25.9" style="enable-background:new 0 0 25.9 25.9;" xml:space="preserve">
+                                        <g class="st0">
+                                        <path d="M25.6,9.4c-0.2-0.7-0.7-1.3-1.3-1.7C23.7,7.3,23,7,22.3,7h-4.7l-1.4-4.4c-0.2-0.7-0.7-1.3-1.3-1.7c-0.6-0.4-1.3-0.7-2-0.7
+                                            c-0.7,0-1.4,0.2-2,0.7c-0.6,0.4-1,1-1.3,1.7L8.2,7H3.5C2.7,7,2,7.3,1.4,7.7c-0.6,0.4-1,1-1.3,1.7c-0.2,0.7-0.2,1.4,0,2.1
+                                            s0.7,1.3,1.3,1.7l3.8,2.8l-1.5,4.5c-0.2,0.7-0.2,1.5,0,2.1C4,23.4,4.5,24,5.1,24.5c0.6,0.4,1.3,0.7,2,0.7c0.7,0,1.4-0.2,2-0.7
+                                            l3.7-2.7l3.7,2.7c0.6,0.4,1.3,0.7,2,0.7c0.7,0,1.4-0.2,2-0.7c0.6-0.4,1-1,1.3-1.7c0.2-0.7,0.2-1.4,0-2.1l-1.5-4.5l3.8-2.8
+                                            c0.6-0.4,1-1,1.3-1.7C25.8,10.9,25.8,10.1,25.6,9.4z M23.1,11.6l-4.4,3.2c-0.2,0.1-0.3,0.3-0.4,0.5s-0.1,0.4,0,0.7l1.7,5.2
+                                            c0.1,0.3,0.1,0.6,0,0.8c-0.1,0.3-0.3,0.5-0.5,0.7c-0.2,0.2-0.5,0.2-0.8,0.2c-0.3,0-0.5-0.1-0.8-0.3l-4.4-3.2
+                                            c-0.2-0.1-0.4-0.2-0.6-0.2c-0.2,0-0.5,0.1-0.6,0.2l-4.4,3.2C7.6,22.9,7.4,23,7.1,23c-0.3,0-0.6-0.1-0.8-0.2
+                                            c-0.2-0.2-0.4-0.4-0.5-0.7c-0.1-0.3-0.1-0.6,0-0.8L7.5,16c0.1-0.2,0.1-0.4,0-0.7c-0.1-0.2-0.2-0.4-0.4-0.5l-4.4-3.2
+                                            c-0.2-0.2-0.4-0.4-0.5-0.7c-0.1-0.3-0.1-0.5,0-0.8c0.1-0.3,0.3-0.5,0.5-0.7c0.2-0.2,0.5-0.3,0.8-0.3h5.5c0.2,0,0.4-0.1,0.6-0.2
+                                            C9.8,8.9,9.9,8.7,10,8.4l1.7-5.2c0.1-0.3,0.3-0.5,0.5-0.7c0.2-0.2,0.5-0.3,0.8-0.3c0.3,0,0.6,0.1,0.8,0.3C13.9,2.8,14,3,14.1,3.3
+                                            l1.7,5.2C15.9,8.7,16,8.9,16.2,9c0.2,0.1,0.4,0.2,0.6,0.2h5.5c0.3,0,0.5,0.1,0.8,0.3c0.2,0.2,0.4,0.4,0.5,0.7
+                                            c0.1,0.3,0.1,0.5,0,0.8C23.5,11.2,23.3,11.4,23.1,11.6L23.1,11.6z"/>
+                                        </g>
+                                    </svg>
+                                </div>  
+                                <span class="font-julius-sans-one fw-bold fs-6 white-space-nowrap">Popular</span>
                             </span>
                         </div>
                     </a>
@@ -204,10 +305,52 @@
 
                 <li class="m-1">
                     <a href="" class="text-decoration-none canvas-link">
-                        <div class=" d-flex align-items-center justify-content-start flex-row px-1 mx-1" tabindex="1">
-                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link">
-                                <img class="w18h18" src="../../assets/ic_all.svg" alt="">
-                                <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">All</span>
+                        <div class=" d-flex align-items-center justify-content-start flex-row px-0 mx-0 px-sm-1 mx-sm-1" tabindex="1">
+                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link" id="drowpdown-all-mobile">
+                                <div class="w18h18 icon d-flex justify-content-center align-items-center">  
+                                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" fill="currentColor" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	                                viewBox="0 0 21.3 21.3" style="enable-background:new 0 0 21.3 21.3;" xml:space="preserve">
+                                    <g>
+                                    <defs>
+                                        <rect id="SVGID_1_" width="21.2" height="21.2"/>
+                                    </defs>
+                                    <clipPath id="SVGID_2_">
+                                        <use xlink:href="#SVGID_1_"  style="overflow:hidden;"/>
+                                    </clipPath>
+                                    <g class="st0">
+                                        <path d="M4.4,12.4c0.5,0,0.9-0.4,0.9-0.9c0-0.5-0.4-0.9-0.9-0.9S3.5,11,3.5,11.5C3.5,12,3.9,12.4,4.4,12.4z"/>
+                                        <path d="M0.9,8.8c0.5,0,0.9-0.4,0.9-0.9S1.4,7.1,0.9,7.1C0.4,7.1,0,7.5,0,7.9S0.4,8.8,0.9,8.8z"/>
+                                        <path d="M4.4,5.3c0.5,0,0.9-0.4,0.9-0.9S4.9,3.5,4.4,3.5S3.5,3.9,3.5,4.4S3.9,5.3,4.4,5.3z"/>
+                                        <path d="M0.9,1.8c0.5,0,0.9-0.4,0.9-0.9C1.8,0.4,1.4,0,0.9,0C0.4,0,0,0.4,0,0.9C0,1.4,0.4,1.8,0.9,1.8z"/>
+                                        <path d="M20.3,12.4c0.5,0,0.9-0.4,0.9-0.9c0-0.5-0.4-0.9-0.9-0.9c-0.5,0-0.9,0.4-0.9,0.9C19.4,12,19.8,12.4,20.3,12.4z"/>
+                                        <path d="M16.8,8.8c0.5,0,0.9-0.4,0.9-0.9s-0.4-0.9-0.9-0.9c-0.5,0-0.9,0.4-0.9,0.9S16.3,8.8,16.8,8.8z"/>
+                                        <path d="M20.3,5.3c0.5,0,0.9-0.4,0.9-0.9s-0.4-0.9-0.9-0.9c-0.5,0-0.9,0.4-0.9,0.9S19.8,5.3,20.3,5.3z"/>
+                                        <path d="M16.8,1.8c0.5,0,0.9-0.4,0.9-0.9c0-0.5-0.4-0.9-0.9-0.9c-0.5,0-0.9,0.4-0.9,0.9C15.9,1.4,16.3,1.8,16.8,1.8z"/>
+                                        <path d="M12.4,21.2c0.5,0,0.9-0.4,0.9-0.9c0-0.5-0.4-0.9-0.9-0.9c-0.5,0-0.9,0.4-0.9,0.9C11.5,20.8,11.9,21.2,12.4,21.2z"/>
+                                        <path d="M8.8,17.7c0.5,0,0.9-0.4,0.9-0.9c0-0.5-0.4-0.9-0.9-0.9c-0.5,0-0.9,0.4-0.9,0.9C7.9,17.3,8.3,17.7,8.8,17.7z"/>
+                                        <path d="M12.4,14.1c0.5,0,0.9-0.4,0.9-0.9c0-0.5-0.4-0.9-0.9-0.9c-0.5,0-0.9,0.4-0.9,0.9C11.5,13.7,11.9,14.1,12.4,14.1z"/>
+                                        <path d="M8.8,10.6c0.5,0,0.9-0.4,0.9-0.9c0-0.5-0.4-0.9-0.9-0.9c-0.5,0-0.9,0.4-0.9,0.9C7.9,10.2,8.3,10.6,8.8,10.6z"/>
+                                        <path d="M13.2,2.6c-0.5,0-0.9-0.2-1.2-0.5c-0.3-0.3-0.5-0.8-0.5-1.2c0-0.2-0.1-0.5-0.3-0.6C11.1,0.1,10.8,0,10.6,0
+                                            c-0.2,0-0.5,0.1-0.6,0.3C9.8,0.4,9.7,0.6,9.7,0.9c0,0.5-0.2,0.9-0.5,1.2C8.9,2.5,8.4,2.6,7.9,2.6c-0.2,0-0.5,0.1-0.6,0.3
+                                            C7.2,3.1,7.1,3.3,7.1,3.5c0,0.2,0.1,0.5,0.3,0.6c0.2,0.2,0.4,0.3,0.6,0.3c0.5,0,0.9,0.2,1.2,0.5c0.3,0.3,0.5,0.8,0.5,1.2
+                                            c0,0.2,0.1,0.5,0.3,0.6c0.2,0.2,0.4,0.3,0.6,0.3c0.2,0,0.5-0.1,0.6-0.3c0.2-0.2,0.3-0.4,0.3-0.6c0-0.5,0.2-0.9,0.5-1.2
+                                            c0.3-0.3,0.8-0.5,1.2-0.5c0.2,0,0.5-0.1,0.6-0.3C14,4,14.1,3.8,14.1,3.5c0-0.2-0.1-0.5-0.3-0.6C13.7,2.7,13.5,2.6,13.2,2.6z"/>
+                                        <path d="M6.2,16.8c-0.5,0-0.9-0.2-1.2-0.5c-0.3-0.3-0.5-0.8-0.5-1.2c0-0.2-0.1-0.5-0.3-0.6c-0.2-0.2-0.4-0.3-0.6-0.3
+                                            c-0.2,0-0.5,0.1-0.6,0.3c-0.2,0.2-0.3,0.4-0.3,0.6c0,0.5-0.2,0.9-0.5,1.2c-0.3,0.3-0.8,0.5-1.2,0.5c-0.2,0-0.5,0.1-0.6,0.3
+                                            C0.1,17.2,0,17.4,0,17.7c0,0.2,0.1,0.5,0.3,0.6c0.2,0.2,0.4,0.3,0.6,0.3c0.5,0,0.9,0.2,1.2,0.5c0.3,0.3,0.5,0.8,0.5,1.2
+                                            c0,0.2,0.1,0.5,0.3,0.6c0.2,0.2,0.4,0.3,0.6,0.3c0.2,0,0.5-0.1,0.6-0.3c0.2-0.2,0.3-0.4,0.3-0.6c0-0.5,0.2-0.9,0.5-1.2
+                                            c0.3-0.3,0.8-0.5,1.2-0.5c0.2,0,0.5-0.1,0.6-0.3c0.2-0.2,0.3-0.4,0.3-0.6c0-0.2-0.1-0.5-0.3-0.6C6.6,16.9,6.4,16.8,6.2,16.8z"/>
+                                        <path d="M20.3,16.8c-0.5,0-0.9-0.2-1.2-0.5c-0.3-0.3-0.5-0.8-0.5-1.2c0-0.2-0.1-0.5-0.3-0.6c-0.2-0.2-0.4-0.3-0.6-0.3
+                                            c-0.2,0-0.5,0.1-0.6,0.3c-0.2,0.2-0.3,0.4-0.3,0.6c0,0.5-0.2,0.9-0.5,1.2c-0.3,0.3-0.8,0.5-1.2,0.5c-0.2,0-0.5,0.1-0.6,0.3
+                                            c-0.2,0.2-0.3,0.4-0.3,0.6c0,0.2,0.1,0.5,0.3,0.6c0.2,0.2,0.4,0.3,0.6,0.3c0.5,0,0.9,0.2,1.2,0.5c0.3,0.3,0.5,0.8,0.5,1.2
+                                            c0,0.2,0.1,0.5,0.3,0.6c0.2,0.2,0.4,0.3,0.6,0.3c0.2,0,0.5-0.1,0.6-0.3c0.2-0.2,0.3-0.4,0.3-0.6c0-0.5,0.2-0.9,0.5-1.2
+                                            c0.3-0.3,0.8-0.5,1.2-0.5c0.2,0,0.5-0.1,0.6-0.3c0.2-0.2,0.3-0.4,0.3-0.6c0-0.2-0.1-0.5-0.3-0.6C20.8,16.9,20.5,16.8,20.3,16.8z"
+                                            />
+                                        </g>
+                                        </g>
+                                    </svg>
+                                </div>          
+                                <span class="font-julius-sans-one fw-bold fs-6 white-space-nowrap">All</span>
                             </span>
                         </div>
                     </a>
@@ -218,44 +361,82 @@
                 </li>
 
                 <li class="m-1">
-                    <div class=" d-flex align-items-center justify-content-start flex-row px-1 mx-1" tabindex="1">
-                        <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link">
-                            <img class="w18h18" src="https://cdn.builder.io/api/v1/image/assets/TEMP/1852baada6349567e2de126e4bbb8c8261dd9b563226f34d8c05fa0ef165a826?apiKey=b86036a5846045fa8db7cf278357723c&" alt="">
+                    <div class=" d-flex align-items-center justify-content-start flex-row px-0 mx-0 px-sm-1 mx-sm-1" tabindex="1">
+                        <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link" id="drowpdown-create-post-mobile">
+                            <div class="w18h18 icon d-flex justify-content-center align-items-center">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_325_102)">
+                                    <path d="M24 11H13V0H11V11H0V13H11V24H13V13H24V11Z" />
+                                    </g>
+                                    <defs>
+                                    <clipPath id="clip0_325_102">
+                                    <rect width="24" height="24"/>
+                                    </clipPath>
+                                    </defs>
+                                </svg>
+                            </div>
                             <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">Create Post</span>
                         </span>
                     </div>
                 </li>
 
                 <li class="m-1">
-                    <div class=" d-flex align-items-center justify-content-start flex-row px-1 mx-1" tabindex="1">
-                        <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link">
-                            <img class="w18h18" src="https://cdn.builder.io/api/v1/image/assets/TEMP/1852baada6349567e2de126e4bbb8c8261dd9b563226f34d8c05fa0ef165a826?apiKey=b86036a5846045fa8db7cf278357723c&" alt="">
+                    <div class=" d-flex align-items-center justify-content-start flex-row px-0 mx-0 px-sm-1 mx-sm-1" tabindex="1">
+                        <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link" id="drowpdown-create-topic-mobile">
+                            <div class="w18h18 icon d-flex justify-content-center align-items-center">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_325_102)">
+                                    <path d="M24 11H13V0H11V11H0V13H11V24H13V13H24V11Z" />
+                                    </g>
+                                    <defs>
+                                    <clipPath id="clip0_325_102">
+                                    <rect width="24" height="24"/>
+                                    </clipPath>
+                                    </defs>
+                                </svg>
+                            </div>
                             <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">Create Topic</span>
                         </span>
                     </div>
                 </li>
 
                 <li class="m-1">
-                    <div class=" d-flex align-items-center justify-content-between flex-row px-1 mx-1" tabindex="1">
-                        <label for="light-theme-switch-2" (click)="toggleLightTheme">
-                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link ">
-                                <img class="w18h18" src="../../assets/ic_light_mode.svg" alt="">
+                    <div class=" d-flex align-items-center justify-content-between flex-row px-0 mx-0 px-sm-1 mx-sm-1" tabindex="1">
+                        <label for="light-theme-switch-2" >
+                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link " id="drowpdown-light-theme-mobile">
+                                <div class="w18h18 icon d-flex justify-content-center align-items-center">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M23 11H18.92C18.8421 10.449 18.6981 9.90948 18.491 9.393L22.018 7.349C22.1359 7.28557 22.2398 7.19911 22.3237 7.09476C22.4075 6.99041 22.4695 6.87029 22.5061 6.74152C22.5427 6.61275 22.553 6.47794 22.5365 6.34511C22.52 6.21227 22.477 6.08409 22.41 5.96818C22.3431 5.85228 22.2535 5.75099 22.1467 5.67033C22.0398 5.58967 21.9179 5.53129 21.7881 5.49863C21.6583 5.46597 21.5232 5.45971 21.3909 5.48021C21.2587 5.50072 21.1318 5.54757 21.018 5.618L17.488 7.665C17.1505 7.23872 16.765 6.85283 16.339 6.515L18.385 2.984C18.5082 2.75505 18.5374 2.48712 18.4664 2.23701C18.3954 1.9869 18.2298 1.77428 18.0046 1.64422C17.7795 1.51417 17.5126 1.4769 17.2604 1.54033C17.0083 1.60376 16.7908 1.7629 16.654 1.984L14.607 5.509C14.0906 5.30172 13.551 5.15768 13 5.08V1C13 0.734784 12.8946 0.48043 12.7071 0.292893C12.5196 0.105357 12.2652 0 12 0C11.7348 0 11.4804 0.105357 11.2929 0.292893C11.1054 0.48043 11 0.734784 11 1V5.08C10.449 5.15768 9.90941 5.30172 9.393 5.509L7.349 1.982C7.21221 1.7609 6.99469 1.60176 6.74255 1.53833C6.49042 1.4749 6.22349 1.51217 5.99836 1.64222C5.77323 1.77228 5.60761 1.9849 5.5366 2.23501C5.4656 2.48512 5.49479 2.75305 5.618 2.982L7.664 6.515C7.23801 6.85283 6.85246 7.23872 6.515 7.665L2.985 5.618C2.87116 5.54757 2.74435 5.50072 2.61206 5.48021C2.47978 5.45971 2.34473 5.46597 2.21492 5.49863C2.0851 5.53129 1.96316 5.58967 1.85633 5.67033C1.7495 5.75099 1.65995 5.85228 1.59299 5.96818C1.52603 6.08409 1.48302 6.21227 1.46651 6.34511C1.45001 6.47794 1.46034 6.61275 1.4969 6.74152C1.53346 6.87029 1.5955 6.99041 1.67934 7.09476C1.76318 7.19911 1.86712 7.28557 1.985 7.349L5.509 9.393C5.30195 9.90948 5.15791 10.449 5.08 11H1C0.734784 11 0.48043 11.1054 0.292893 11.2929C0.105357 11.4804 0 11.7348 0 12C0 12.2652 0.105357 12.5196 0.292893 12.7071C0.48043 12.8946 0.734784 13 1 13H5.08C5.15791 13.551 5.30195 14.0905 5.509 14.607L1.982 16.651C1.86412 16.7144 1.76018 16.8009 1.67634 16.9052C1.5925 17.0096 1.53046 17.1297 1.4939 17.2585C1.45734 17.3873 1.44701 17.5221 1.46351 17.6549C1.48002 17.7877 1.52303 17.9159 1.58999 18.0318C1.65695 18.1477 1.7465 18.249 1.85333 18.3297C1.96016 18.4103 2.0821 18.4687 2.21192 18.5014C2.34173 18.534 2.47678 18.5403 2.60906 18.5198C2.74135 18.4993 2.86816 18.4524 2.982 18.382L6.512 16.335C6.84946 16.7613 7.23501 17.1472 7.661 17.485L5.618 21.016C5.49479 21.2449 5.4656 21.5129 5.5366 21.763C5.60761 22.0131 5.77323 22.2257 5.99836 22.3558C6.22349 22.4858 6.49042 22.5231 6.74255 22.4597C6.99469 22.3962 7.21221 22.2371 7.349 22.016L9.393 18.489C9.90947 18.6965 10.449 18.8412 11 18.92V23C11 23.2652 11.1054 23.5196 11.2929 23.7071C11.4804 23.8946 11.7348 24 12 24C12.2652 24 12.5196 23.8946 12.7071 23.7071C12.8946 23.5196 13 23.2652 13 23V18.92C13.5509 18.8419 14.0904 18.6978 14.607 18.491L16.651 22.018C16.7878 22.2391 17.0053 22.3982 17.2574 22.4617C17.5096 22.5251 17.7765 22.4878 18.0016 22.3578C18.2268 22.2277 18.3924 22.0151 18.4634 21.765C18.5344 21.5149 18.5052 21.2469 18.382 21.018L16.336 17.487C16.762 17.1492 17.1475 16.7633 17.485 16.337L21.015 18.384C21.1288 18.4544 21.2557 18.5013 21.3879 18.5218C21.5202 18.5423 21.6553 18.536 21.7851 18.5034C21.9149 18.4707 22.0368 18.4123 22.1437 18.3317C22.2505 18.251 22.34 18.1497 22.407 18.0338C22.474 17.9179 22.517 17.7897 22.5335 17.6569C22.55 17.5241 22.5397 17.3893 22.5031 17.2605C22.4665 17.1317 22.4045 17.0116 22.3207 16.9072C22.2368 16.8029 22.1329 16.7164 22.015 16.653L18.488 14.609C18.6962 14.092 18.8413 13.5518 18.92 13H23C23.2652 13 23.5196 12.8946 23.7071 12.7071C23.8946 12.5196 24 12.2652 24 12C24 11.7348 23.8946 11.4804 23.7071 11.2929C23.5196 11.1054 23.2652 11 23 11ZM12 17C5.392 16.79 5.394 7.209 12 7C18.608 7.21 18.606 16.791 12 17Z"/>
+                                    </svg>
+                                </div>  
                                 <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">Light Mode</span>
                             </span>
                         </label>
                         
                         
-                        <label class="switch" (click)="toggleLightTheme">
-                            <input type="checkbox" id="light-theme-switch-2" [(ngModel)]="isLightTheme">
+                        <label class="switch">
+                            <input type="checkbox" id="light-theme-switch-2" (click)="toggleTheme()" [(ngModel)]="isLightThemeOn">
                             <span class="slider round"></span>
                         </label>
                     </div>
                 </li>
 
                 <li class="m-1">
-                    <div class=" d-flex align-items-center justify-content-start flex-row px-1 mx-1" tabindex="1">
-                        <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link">
-                            <img class="w18h18" src="../../assets/ic_settings.svg" alt="">
+                    <div class=" d-flex align-items-center justify-content-start flex-row px-0 mx-0 px-sm-1 mx-sm-1" tabindex="1">
+                        <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link" id="drowpdown-settings-mobile">
+                            <div class="w18h18 icon d-flex justify-content-center align-items-center">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_1_2911)">
+                                    <path d="M12 8.00049C11.2089 8.00049 10.4355 8.23508 9.77772 8.67461C9.11993 9.11414 8.60723 9.73885 8.30448 10.4698C8.00173 11.2007 7.92252 12.0049 8.07686 12.7808C8.2312 13.5568 8.61216 14.2695 9.17157 14.8289C9.73098 15.3883 10.4437 15.7693 11.2196 15.9236C11.9956 16.078 12.7998 15.9988 13.5307 15.696C14.2616 15.3933 14.8864 14.8806 15.3259 14.2228C15.7654 13.565 16 12.7916 16 12.0005C16 10.9396 15.5786 9.92221 14.8284 9.17206C14.0783 8.42192 13.0609 8.00049 12 8.00049ZM12 14.0005C11.6044 14.0005 11.2178 13.8832 10.8889 13.6634C10.56 13.4437 10.3036 13.1313 10.1522 12.7659C10.0009 12.4004 9.96126 11.9983 10.0384 11.6103C10.1156 11.2223 10.3061 10.866 10.5858 10.5863C10.8655 10.3066 11.2219 10.1161 11.6098 10.0389C11.9978 9.96175 12.3999 10.0014 12.7654 10.1527C13.1308 10.3041 13.4432 10.5604 13.6629 10.8893C13.8827 11.2182 14 11.6049 14 12.0005C14 12.5309 13.7893 13.0396 13.4142 13.4147C13.0391 13.7898 12.5304 14.0005 12 14.0005Z" />
+                                    <path d="M21.2943 13.9L20.8503 13.644C21.0502 12.5564 21.0502 11.4416 20.8503 10.354L21.2943 10.098C21.6357 9.90102 21.935 9.63871 22.1751 9.32606C22.4151 9.01341 22.5913 8.65654 22.6934 8.27582C22.7956 7.8951 22.8217 7.49799 22.7704 7.10716C22.7191 6.71633 22.5913 6.33944 22.3943 5.998C22.1973 5.65656 21.935 5.35727 21.6223 5.1172C21.3097 4.87714 20.9528 4.70101 20.5721 4.59886C20.1914 4.49672 19.7943 4.47056 19.4034 4.52189C19.0126 4.57321 18.6357 4.70102 18.2943 4.898L17.8493 5.155C17.0088 4.43692 16.043 3.88025 15.0003 3.513V3C15.0003 2.20435 14.6842 1.44129 14.1216 0.87868C13.559 0.31607 12.7959 0 12.0003 0C11.2046 0 10.4416 0.31607 9.87897 0.87868C9.31636 1.44129 9.00029 2.20435 9.00029 3V3.513C7.95767 3.88157 6.99214 4.4396 6.15229 5.159L5.70529 4.9C5.01572 4.50218 4.19637 4.39457 3.42747 4.60086C2.65857 4.80715 2.00311 5.31044 1.60529 6C1.20746 6.68956 1.09986 7.50892 1.30615 8.27782C1.51244 9.04672 2.01572 9.70218 2.70529 10.1L3.14929 10.356C2.9494 11.4436 2.9494 12.5584 3.14929 13.646L2.70529 13.902C2.01572 14.2998 1.51244 14.9553 1.30615 15.7242C1.09986 16.4931 1.20746 17.3124 1.60529 18.002C2.00311 18.6916 2.65857 19.1948 3.42747 19.4011C4.19637 19.6074 5.01572 19.4998 5.70529 19.102L6.15029 18.845C6.99105 19.5632 7.95727 20.1199 9.00029 20.487V21C9.00029 21.7956 9.31636 22.5587 9.87897 23.1213C10.4416 23.6839 11.2046 24 12.0003 24C12.7959 24 13.559 23.6839 14.1216 23.1213C14.6842 22.5587 15.0003 21.7956 15.0003 21V20.487C16.0429 20.1184 17.0084 19.5604 17.8483 18.841L18.2953 19.099C18.9849 19.4968 19.8042 19.6044 20.5731 19.3981C21.342 19.1918 21.9975 18.6886 22.3953 17.999C22.7931 17.3094 22.9007 16.4901 22.6944 15.7212C22.4881 14.9523 21.9849 14.2968 21.2953 13.899L21.2943 13.9ZM18.7463 10.124C19.0849 11.3511 19.0849 12.6469 18.7463 13.874C18.6872 14.0876 18.7006 14.3147 18.7846 14.5198C18.8686 14.7249 19.0183 14.8963 19.2103 15.007L20.2943 15.633C20.5241 15.7656 20.6918 15.9841 20.7605 16.2403C20.8293 16.4966 20.7934 16.7697 20.6608 16.9995C20.5282 17.2293 20.3097 17.397 20.0534 17.4658C19.7972 17.5345 19.5241 17.4986 19.2943 17.366L18.2083 16.738C18.0162 16.6267 17.7925 16.5826 17.5725 16.6124C17.3526 16.6423 17.1488 16.7445 16.9933 16.903C16.1032 17.8117 14.9819 18.46 13.7503 18.778C13.5353 18.8333 13.3448 18.9585 13.2089 19.1339C13.0729 19.3094 12.9992 19.525 12.9993 19.747V21C12.9993 21.2652 12.8939 21.5196 12.7064 21.7071C12.5189 21.8946 12.2645 22 11.9993 22C11.7341 22 11.4797 21.8946 11.2922 21.7071C11.1046 21.5196 10.9993 21.2652 10.9993 21V19.748C10.9994 19.526 10.9257 19.3104 10.7897 19.1349C10.6537 18.9595 10.4633 18.8343 10.2483 18.779C9.01663 18.4597 7.89562 17.81 7.00629 16.9C6.85081 16.7415 6.64702 16.6393 6.42704 16.6094C6.20706 16.5796 5.98339 16.6237 5.79129 16.735L4.70729 17.362C4.59352 17.4287 4.46768 17.4722 4.33701 17.4901C4.20635 17.508 4.07344 17.4998 3.94594 17.4661C3.81844 17.4324 3.69887 17.3738 3.59411 17.2937C3.48935 17.2136 3.40146 17.1135 3.33552 16.9993C3.26958 16.8851 3.22688 16.759 3.20988 16.6282C3.19289 16.4974 3.20192 16.3646 3.23648 16.2373C3.27103 16.11 3.33042 15.9909 3.41122 15.8866C3.49202 15.7824 3.59264 15.6952 3.70729 15.63L4.79129 15.004C4.98324 14.8933 5.13296 14.7219 5.21695 14.5168C5.30093 14.3117 5.31442 14.0846 5.25529 13.871C4.91664 12.6439 4.91664 11.3481 5.25529 10.121C5.31335 9.90788 5.29922 9.68153 5.2151 9.47729C5.13098 9.27305 4.9816 9.10241 4.79029 8.992L3.70629 8.366C3.47648 8.23339 3.30876 8.01492 3.24003 7.75865C3.17129 7.50239 3.20718 7.22931 3.33979 6.9995C3.4724 6.76969 3.69086 6.60197 3.94713 6.53324C4.2034 6.46451 4.47648 6.50039 4.70629 6.633L5.79229 7.261C5.98387 7.37251 6.20707 7.41721 6.42681 7.38807C6.64656 7.35893 6.8504 7.25759 7.00629 7.1C7.89637 6.19134 9.01771 5.54302 10.2493 5.225C10.4649 5.16956 10.6559 5.04375 10.7919 4.8675C10.928 4.69125 11.0013 4.47464 11.0003 4.252V3C11.0003 2.73478 11.1056 2.48043 11.2932 2.29289C11.4807 2.10536 11.7351 2 12.0003 2C12.2655 2 12.5199 2.10536 12.7074 2.29289C12.8949 2.48043 13.0003 2.73478 13.0003 3V4.252C13.0002 4.47396 13.0739 4.68964 13.2099 4.86508C13.3458 5.04052 13.5363 5.16573 13.7513 5.221C14.9833 5.54015 16.1047 6.18988 16.9943 7.1C17.1498 7.25847 17.3535 7.36069 17.5735 7.39057C17.7935 7.42044 18.0172 7.37626 18.2093 7.265L19.2933 6.638C19.4071 6.5713 19.5329 6.52777 19.6636 6.5099C19.7942 6.49204 19.9271 6.50019 20.0546 6.5339C20.1821 6.56761 20.3017 6.6262 20.4065 6.70631C20.5112 6.78642 20.5991 6.88646 20.6651 7.00067C20.731 7.11488 20.7737 7.24101 20.7907 7.37179C20.8077 7.50257 20.7987 7.63542 20.7641 7.76269C20.7295 7.88997 20.6702 8.00915 20.5894 8.11337C20.5086 8.2176 20.4079 8.30482 20.2933 8.37L19.2093 8.996C19.0183 9.10671 18.8694 9.27748 18.7856 9.48169C18.7019 9.68591 18.688 9.9121 18.7463 10.125V10.124Z" />
+                                    </g>
+                                    <defs>
+                                    <clipPath id="clip0_1_2911">
+                                    <rect width="24" height="24"/>
+                                    </clipPath>
+                                    </defs>
+                                    </svg>                                        
+                            </div> 
                             <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">Settings</span>
                         </span>
                     </div>
@@ -272,13 +453,13 @@
                 </li>
 
 
-                <li class="m-1 mb-4 py-1">
-                    <div class=" d-flex align-items-center justify-content-start flex-row mb-3">
-                       <span class="user-icon p-0" style="cursor: pointer;">
+                <li class="mx-0 mx-sm-1 mb-3 py-1">
+                    <div class=" d-flex align-items-center justify-content-start flex-row mb-2">
+                       <span class="user-icon p-0 " style="cursor: pointer;" id="drowpdown-user-icon-mobile">
                           <img tabindex="1" class="w80h80 border-round p-1 canvas-link" src="../../assets/solid_white.png" alt="">
                       </span>
-                      <div class="username-wrapper mx-2 px-3 py-2 fs-6 fw-bold btn" >
-                          <div class="username-marquee-container">
+                      <div class="username-wrapper mx-3 py-2 fs-6 fw-bold btn" id="drowpdown-user-name-mobile">
+                          <div class="username-marquee-container-smol">
                               <!-- NAME SHOULD HAVE AT LEAST 11 CHARACTERS -->
                               <!-- User123 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -->
                               <div class="username">
@@ -294,9 +475,21 @@
 
 
                 <li class="m-1" >
-                    <div class=" d-flex align-items-center justify-content-start flex-row px-1 mx-1" tabindex="1">
-                        <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link">
-                            <img class="w18h18" src="../../assets/ic_logout.svg" alt="">
+                    <div class=" d-flex align-items-center justify-content-start flex-row px-0 mx-0 px-sm-1 mx-sm-1" tabindex="1">
+                        <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link" id="drowpdown-log-out-mobile">
+                            <div class="w18h18 icon d-flex justify-content-center align-items-center">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_1_2910)">
+                                    <path d="M11.476 15C11.2108 15 10.9564 15.1054 10.7689 15.2929C10.5814 15.4804 10.476 15.7348 10.476 16V19C10.476 19.7956 10.1599 20.5587 9.59732 21.1213C9.03471 21.6839 8.27165 22 7.476 22H5C4.20435 22 3.44129 21.6839 2.87868 21.1213C2.31607 20.5587 2 19.7956 2 19V5C2 4.20435 2.31607 3.44129 2.87868 2.87868C3.44129 2.31607 4.20435 2 5 2H7.476C8.27165 2 9.03471 2.31607 9.59732 2.87868C10.1599 3.44129 10.476 4.20435 10.476 5V8C10.476 8.26522 10.5814 8.51957 10.7689 8.70711C10.9564 8.89464 11.2108 9 11.476 9C11.7412 9 11.9956 8.89464 12.1831 8.70711C12.3706 8.51957 12.476 8.26522 12.476 8V5C12.4744 3.67441 11.9471 2.40356 11.0098 1.46622C10.0724 0.528882 8.80159 0.00158786 7.476 0H5C3.67441 0.00158786 2.40356 0.528882 1.46622 1.46622C0.528882 2.40356 0.00158786 3.67441 0 5L0 19C0.00158786 20.3256 0.528882 21.5964 1.46622 22.5338C2.40356 23.4711 3.67441 23.9984 5 24H7.476C8.80159 23.9984 10.0724 23.4711 11.0098 22.5338C11.9471 21.5964 12.4744 20.3256 12.476 19V16C12.476 15.7348 12.3706 15.4804 12.1831 15.2929C11.9956 15.1054 11.7412 15 11.476 15Z"/>
+                                    <path d="M22.867 9.87933L18.281 5.29333C18.1888 5.19782 18.0784 5.12163 17.9564 5.06922C17.8344 5.01681 17.7032 4.98923 17.5704 4.98807C17.4376 4.98692 17.3059 5.01222 17.183 5.0625C17.0602 5.11278 16.9485 5.18704 16.8546 5.28093C16.7607 5.37482 16.6865 5.48647 16.6362 5.60937C16.5859 5.73227 16.5606 5.86395 16.5618 5.99673C16.5629 6.12951 16.5905 6.26073 16.6429 6.38273C16.6953 6.50473 16.7715 6.61508 16.867 6.70733L21.129 10.9703L6 11.0003C5.73478 11.0003 5.48043 11.1057 5.29289 11.2932C5.10536 11.4808 5 11.7351 5 12.0003C5 12.2655 5.10536 12.5199 5.29289 12.7074C5.48043 12.895 5.73478 13.0003 6 13.0003L21.188 12.9693L16.865 17.2933C16.7695 17.3856 16.6933 17.4959 16.6409 17.6179C16.5885 17.7399 16.5609 17.8711 16.5598 18.0039C16.5586 18.1367 16.5839 18.2684 16.6342 18.3913C16.6845 18.5142 16.7587 18.6258 16.8526 18.7197C16.9465 18.8136 17.0582 18.8879 17.181 18.9381C17.3039 18.9884 17.4356 19.0137 17.5684 19.0126C17.7012 19.0114 17.8324 18.9838 17.9544 18.9314C18.0764 18.879 18.1868 18.8028 18.279 18.7073L22.865 14.1213C23.4277 13.559 23.744 12.7962 23.7444 12.0007C23.7447 11.2052 23.4292 10.4422 22.867 9.87933Z" />
+                                    </g>
+                                    <defs>
+                                    <clipPath id="clip0_1_2910">
+                                    <rect width="24" height="24"/>
+                                    </clipPath>
+                                    </defs>
+                                </svg>
+                            </div> 
                             <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">Log out</span>
                         </span>
                     </div>

@@ -1,9 +1,11 @@
 import { NgClass } from '@angular/common';
-import { Component, inject, TemplateRef, ViewChild, ViewEncapsulation, HostListener, ElementRef, Renderer2 } from '@angular/core';
+import { Component, inject, TemplateRef, ViewChild, ViewEncapsulation, HostListener, ElementRef, Renderer2, AfterViewInit, OnInit, OnDestroy } from '@angular/core';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { NgbOffcanvas, NgbOffcanvasOptions, NgbOffcanvasRef } from '@ng-bootstrap/ng-bootstrap';
-import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
 import { FormsModule } from '@angular/forms';
+import { AppComponent } from '../app.component';
+import { ElementRefService } from '../utils/element-ref.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -13,28 +15,45 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './header-bootstrap.component.html',
   styleUrl: './header-bootstrap.component.scss',
   encapsulation: ViewEncapsulation.None,
-  providers: [{ provide: BsDropdownConfig, useValue: { isAnimated: true, autoClose: true } }]
 })
 
-export class HeaderBootstrapComponent {
-  // Constructor
+export class HeaderBootstrapComponent implements OnInit, OnDestroy{
+  // Constructor, innit and destroy
   // -------------
-  constructor(private eRef: ElementRef, private renderer: Renderer2) {
+  private elementRefSubscription!: Subscription;
+  constructor(private eRef: ElementRef, private renderer: Renderer2, private elementRefService: ElementRefService, private appComponent: AppComponent) {
     this.renderer.listen('window', 'click', (event: Event) => {
       if (!this.eRef.nativeElement.contains(event.target)) {
         this.dropdownOpen = false;
       }
-    });
+    }); 
   }
-  // constructor(private offcanvasService: NgbOffcanvas) {}
+
+  ngOnInit() {
+    this.offcanvasContainer = this.elementRefService.getElementRef();
+    this.elementRefSubscription = this.elementRefService.elementRefChanged.subscribe(
+      (elementRef) => {
+        this.offcanvasContainer = elementRef;
+      }
+    );
+  }
+
+  ngOnDestroy() {
+    if (this.elementRefSubscription) {
+      this.elementRefSubscription.unsubscribe();
+    }
+  }
+
 
   // Change theme components
   // -------------
-  isLightTheme: boolean = true
+  isLightThemeOn: boolean = this.appComponent.isLightThemeOn;
 
-  toggleLightTheme(){
-    this.isLightTheme = !this.isLightTheme;
+  toggleTheme(){
+    this.appComponent.toggleTheme();
+    this.isLightThemeOn = this.appComponent.isLightThemeOn;
   }
+
 
   // Dropdown-Popup components
   // -------------
@@ -46,11 +65,13 @@ export class HeaderBootstrapComponent {
     this.dropdownOpen = !this.dropdownOpen;
   }
 
+
   // Mobile canvas components
   // -------------
   @ViewChild('content', { static: true }) content!: TemplateRef<any>;
   private offcanvasRef!: NgbOffcanvasRef;
   private offcanvasService = inject(NgbOffcanvas);
+  private offcanvasContainer!: ElementRef;
 
   @HostListener('window:resize', ['$event'])
   onResize(event?: Event) {
@@ -67,7 +88,8 @@ export class HeaderBootstrapComponent {
       panelClass: 'details-panel', 
       backdropClass: 'details-panel-backdrop', 
       position: 'start',
-      scroll: false,
+      scroll: true,
+      container: this.offcanvasContainer.nativeElement
     };
 
     this.offcanvasRef = this.offcanvasService.open(this.content, options);

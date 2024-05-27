@@ -8,6 +8,7 @@
   --clr-dark: #{$clr-dark};
   --clr-primary: #{$clr-primary};
   --clr-dark-primary: #{$clr-dark-primary};
+  --clr-dark-primary-hover: #{$clr-dark-primary};
   --clr-gray: #{$clr-gray};
   --clr-light-gray: #{$clr-light-gray};
   --bg-gradient-primary: #{$bg-gradient-primary};
@@ -34,7 +35,10 @@
 
 
   --btn-border-radius: #{$btn-border-radius};
+  --scrollbar-width: 8px;
+
 }
+
 
 .light-theme{
   --clr-light: #262077;
@@ -42,6 +46,7 @@
   --clr-gray: #c3c2ff;
   --clr-light-gray: #FFFFFF;
   --clr-light-gray-rgb-vals: 255, 255, 255;
+  --clr-dark-primary-hover: #c3c2ff;
 }
 
 .font-julius-sans-one {
@@ -107,6 +112,10 @@
 .clr-dark-body{
   background-color: var(--clr-dark);
   scroll-behavior: smooth;
+}
+
+.clr-dark-primary{
+  background-color: var(--clr-dark-primary);
 }
 
 html, body {
@@ -200,7 +209,7 @@ body{
 }
 
 body::-webkit-scrollbar {
-  width: 8px;
+  width: var(--scrollbar-width);
   background-color: var(--clr-dark-primary);
 }
  
