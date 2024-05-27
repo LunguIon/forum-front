@@ -300,6 +300,10 @@ input:checked+.slider:before {
     cursor: pointer;
 }
 
+.default-link{
+    color: var(--clr-light) !important;
+}
+
 
 @include media-breakpoint-down(xl) {
     .invisible-xl{
@@ -327,13 +331,13 @@ input:checked+.slider:before {
     }
 
     .offcanvas-navbar{
-        height: 101px; 
+        height: 103px; 
         background-color: transparent !important; 
         position: relative;
         width:auto;
         overflow: hidden;
         margin-right: 1px;
-        border: none;
+        border: none !important;
     }
 }
 

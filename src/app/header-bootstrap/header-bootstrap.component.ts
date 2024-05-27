@@ -6,13 +6,13 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from '../app.component';
 import { ElementRefService } from '../utils/element-ref.service';
 import { Subscription } from 'rxjs';
-import { SafeHtml } from '@angular/platform-browser';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 
 @Component({
   selector: 'app-header-bootstrap',
   standalone: true,
-  imports: [NgClass, CollapseModule, FormsModule],
+  imports: [NgClass, CollapseModule, FormsModule, RouterLink, RouterLinkActive, RouterOutlet],
   templateUrl: './header-bootstrap.component.html',
   styleUrl: './header-bootstrap.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -61,7 +61,7 @@ export class HeaderBootstrapComponent implements OnInit, OnDestroy{
   // Username components
   // -------------
   private sanitizedUsername = this.username;
-  
+
   getSanitizedUsername(): string {
     return this.sanitizedUsername;
   }
