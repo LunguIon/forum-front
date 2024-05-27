@@ -22,7 +22,7 @@
                                 </div>
                                 
                                 <div class="mt-4 mt-sm-20 mb-sm-3 px-md-5 d-flex flex-column gap-md-3 gap-1">
-                                    <div class="my-btn-wrapper d-flex flex-column justify-content-center" (click)="toggleSubmitBtnAnimation(loginForm)"  (@bouceOnClick.done)="onSubmitBtnAnimationDone()" [@bouceOnClick]="submitBtnState" >
+                                    <div class="my-btn-wrapper d-flex flex-column justify-content-center" (click)="toggleSubmitBtnAnimation(loginForm)"  (@bouceOnClick.done)="onSubmitBtnAnimationDone()" [@bouceOnClick]="submitBtnState" id="loginBtn">
                                         <input type="submit"  value="Log In" class="font-julius-sans-one my-btn-secondary p-1 fs-4 fw-light">
                                     </div>
                                     <div class="font-julius-sans-one link-light text-decoration-none text-capitalize text-center fs-5 err-message invisible">dummyElement</div>
@@ -30,7 +30,7 @@
                             </form>
 
                             <div class="mt-4 font-julius-sans-one d-flex justify-content-center align-items-center flex-column">
-                                <div class="link-light text-uppercase text-center fs-4" (click)="toggleCardRotate()">Sign up</div>
+                                <div class="link-light text-uppercase text-center fs-4" (click)="toggleCardRotate()" id="signupToggleBtn">Sign up</div>
                             </div>
                         </div>
                     </div>
@@ -50,7 +50,7 @@
                                 </div>
                                 
                                 <div class="mt-4 mt-sm-20 mb-sm-3 px-md-5 d-flex flex-column gap-md-3 gap-1">
-                                    <div class="my-btn-wrapper d-flex flex-column justify-content-center" (click)="toggleSubmitBtnAnimation(signupForm)"  (@bouceOnClick.done)="onSubmitBtnAnimationDone()" [@bouceOnClick]="submitBtnState">
+                                    <div class="my-btn-wrapper d-flex flex-column justify-content-center" (click)="toggleSubmitBtnAnimation(signupForm)"  (@bouceOnClick.done)="onSubmitBtnAnimationDone()" [@bouceOnClick]="submitBtnState" id="signupBtn">
                                         <input type="submit" value="Sign up" class="font-julius-sans-one my-btn-secondary p-1 fs-4 fw-light">
                                     </div>
                                     <div class="font-julius-sans-one link-light text-decoration-none text-capitalize text-center fs-5 err-message invisible">dummyElement</div>
@@ -58,18 +58,67 @@
                             </form>
 
                             <div class="mt-4 font-julius-sans-one d-flex justify-content-center align-items-center flex-column"> 
-                                <div class="link-light text-uppercase text-center fs-4" (click)="toggleCardRotate()">Log In</div>
+                                <div class="link-light text-uppercase text-center fs-4" (click)="toggleCardRotate()" id="loginToggleBtn">Log In</div>
                             </div>
                         </div>
 
                     </div>
                 </div>
             </div>
-            <button (click)="redirectToGoogle()" class="google-btn font-julius-sans-one text-uppercase my-btn p-1 fw-light py-2 d-flex justify-content-center align-items-center">
+            <button (click)="redirectToGoogle()" class="google-btn font-julius-sans-one text-uppercase my-btn p-1 fw-light py-2 d-flex justify-content-center align-items-center" id="redirectToGoogleBtn">
                 <span class="google-icon"></span> Continue with Google Account
             </button>
-                     
         </div>
     </div>
 </div>
+
+<ng-template #content let-modal class="overflow-hidden">
+    <div class="my-modal-body font-julius-sans-one py-3 overflow-hidden">
+
+        <img src="../../assets/crying_cat_img.png" alt=";-; cat" class="corner-img">
+
+        <div class="px-5 py-3 d-flex justify-content-between align-content-center">
+            <div>
+                <div class="display-4">
+                    Oops... 
+                    <br>
+                </div>
+                <div class="fs-1">
+                    Something 
+                    <br>
+                    Went Wrong
+                </div>
+            </div>
+            <div class="d-flex justify-content-end align-content-end">
+                <span class=" align-items-center justify-content-center p-0">
+                    <span class=" btn p-2 " (click)="modal.close('Close click')" id="closeModal">
+                        <div 
+                        class="w20h20 icon d-flex align-items-center justify-content-center" tabindex="1">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M27.6584 0.342073C27.4396 0.123356 27.1429 0.000488281 26.8336 0.000488281C26.5242 0.000488281 26.2275 0.123356 26.0087 0.342073L14.0002 12.3506L1.99174 0.342073C1.77296 0.123356 1.47626 0.000488281 1.16691 0.000488281C0.857548 0.000488281 0.560855 0.123356 0.342073 0.342073C0.123356 0.560855 0.000488281 0.857548 0.000488281 1.16691C0.000488281 1.47626 0.123356 1.77296 0.342073 1.99174L12.3506 14.0002L0.342073 26.0087C0.123356 26.2275 0.000488281 26.5242 0.000488281 26.8336C0.000488281 27.1429 0.123356 27.4396 0.342073 27.6584C0.560855 27.8771 0.857548 28 1.16691 28C1.47626 28 1.77296 27.8771 1.99174 27.6584L14.0002 15.6499L26.0087 27.6584C26.2275 27.8771 26.5242 28 26.8336 28C27.1429 28 27.4396 27.8771 27.6584 27.6584C27.8771 27.4396 28 27.1429 28 26.8336C28 26.5242 27.8771 26.2275 27.6584 26.0087L15.6499 14.0002L27.6584 1.99174C27.8771 1.77296 28 1.47626 28 1.16691C28 0.857548 27.8771 0.560855 27.6584 0.342073Z"/>
+                        </svg>
+                        </div>
+                    </span>
+                </span>
+            </div>
+        </div>
+
+        <div class="px-5 py-5 d-flex justify-content-between fs-6">
+            <div>
+                Invalid login or password, 
+                <br>
+                try again
+            </div>
+        </div>
+
+        <div class="mx-2 mx-sm-5 px-5 py-5 d-flex justify-content-between" (click)="closeModalAndReload()" id="tryAgainBtn">
+            <div class="my-btn p-0 px-md-5">
+                <div class=" px-3 px-sm-5 py-1 fs-3">
+                    Try Again
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
 
