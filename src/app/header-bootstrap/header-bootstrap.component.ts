@@ -4,7 +4,7 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { NgbOffcanvas, NgbOffcanvasOptions, NgbOffcanvasRef } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from '../app.component';
-import { ElementRefService } from '../utils/element-ref.service';
+import { ElementRefService } from '../service/element-ref.service';
 import { Subscription } from 'rxjs';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 

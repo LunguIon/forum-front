@@ -12,25 +12,44 @@
                 <div class="inner w-100 h-100 d-flex justify-content-center align-items-center flex-column" [ngClass]="{'animation-rotation': isSignup}">
                     <div class="card-body px-5 py-5 pt-10 card-front">
                         <div class="position-relative">
-                            <h5 class="login-title pt-3 font-julius-sans-one fs-1">LOG IN</h5>
+                            <h5 class="login-title font-julius-sans-one fs-1">LOG IN</h5>
                             
                             <form #loginForm="ngForm" (ngSubmit)="submitLoginForm(loginForm)" class="font-inter">
-                                <div class="from-feilds mt-4 px-md-5 d-flex flex-column gap-md-3 gap-1">
-                                    <input type="text" class="form-control flex-grow-1 py-1 py-md-2  fs-4" placeholder="Email" name="email" required ngModel>
-                                    <input type="password" class="form-control flex-grow-1 py-1 py-md-2  fs-4" placeholder="Password" name = "password" required ngModel>
-                                    <input type="text" class="form-control flex-grow-1 py-1 py-md-2  fs-4 invisible" placeholder="">
+                                <div class="from-feilds mt-4 px-md-5 d-flex flex-column gap-md-2 gap-1">
+                                    <input type="text" class="form-control flex-grow-1 py-1 py-md-2  fs-5 invisible" placeholder="">
+                                    <input type="email" class="form-control flex-grow-1 py-1 py-md-2  fs-5" placeholder="Email" name="email" required ngModel #loginEmail="ngModel" email>
+                                    <div class="d-flex justify-content-center align-items-center position-relative">
+                                        <input [type]="isLoginPasswordVisible ? 'text' : 'password'" class="form-control flex-grow-1 py-1 py-md-2 fs-5 passwd-input" placeholder="Password" name = "password" required ngModel #loginPassword="ngModel">
+                                        <span class="passwd-btn btn p-1" id="login-show-password-btn" (click)="isLoginPasswordVisible = !isLoginPasswordVisible">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 w25h25" *ngIf="isLoginPasswordVisible">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 w25h25" *ngIf="!isLoginPasswordVisible">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88" />
+                                            </svg>  
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control flex-grow-1 py-1 py-md-2  fs-5 invisible" placeholder="">
                                 </div>
                                 
-                                <div class="mt-4 mt-sm-20 mb-sm-3 px-md-5 d-flex flex-column gap-md-3 gap-1">
+                                <div class="mt-4  mb-md-3 px-md-5 d-flex flex-column gap-md-3 gap-1">
                                     <div class="my-btn-wrapper d-flex flex-column justify-content-center" (click)="toggleSubmitBtnAnimation(loginForm)"  (@bouceOnClick.done)="onSubmitBtnAnimationDone()" [@bouceOnClick]="submitBtnState" id="loginBtn">
                                         <input type="submit"  value="Log In" class="font-julius-sans-one my-btn-secondary p-1 fs-4 fw-light">
                                     </div>
-                                    <div class="font-julius-sans-one link-light text-decoration-none text-capitalize text-center fs-5 err-message invisible">dummyElement</div>
+                                    <div class="font-julius-sans-one link-light text-decoration-none text-capitalize text-center fs-6 err-message" style="max-height: 1.3rem;" *ngIf="(loginEmail.invalid && loginEmail.touched) || (loginPassword.invalid && loginPassword.touched); else loginDummyElement">
+                                        <div *ngIf="loginEmail.errors?.['required']">Email is required.</div>
+                                        <div *ngIf="loginEmail.errors?.['email']">Invalid email format.</div>
+                                        <div *ngIf="loginPassword.errors?.['required']">Password is required.</div>
+                                    </div>
+                                    <ng-template #loginDummyElement>
+                                        <div class="font-julius-sans-one link-light text-decoration-none text-capitalize text-center fs-6 err-message invisible">dummyElement</div>
+                                    </ng-template>
                                 </div> 
                             </form>
 
-                            <div class="mt-4 font-julius-sans-one d-flex justify-content-center align-items-center flex-column">
-                                <div class="link-light text-uppercase text-center fs-4" (click)="toggleCardRotate()" id="signupToggleBtn">Sign up</div>
+                            <div class="mt-2 mt-md-4 font-julius-sans-one d-flex justify-content-center align-items-center flex-column">
+                                <div class="link-light text-uppercase text-center fs-5" (click)="toggleCardRotate()" id="signupToggleBtn">Sign up</div>
                             </div>
                         </div>
                     </div>
@@ -40,25 +59,58 @@
                     <div class="card-body px-5 py-5 pt-10 card-back">
 
                         <div class="position-relative">
-                            <h5 class="login-title pt-3 font-julius-sans-one fs-1">SIGN UP</h5>
+                            <h5 class="login-title font-julius-sans-one fs-1">SIGN UP</h5>
                         
-                            <form #signupForm="ngForm" (ngSubmit)="submitSignupForm(signupForm)" class="font-inter">
-                                <div class="from-feilds mt-4 px-md-5 d-flex flex-column gap-md-3 gap-1">
-                                    <input type="text" class="form-control flex-grow-1 py-1 py-md-2 px-md-3 fs-4" placeholder="Username" name="username" required ngModel>
-                                    <input type="email" class="form-control flex-grow-1 py-1 py-md-2 px-md-3 fs-4" placeholder="Email" name="email" required ngModel>
-                                    <input type="password" class="form-control flex-grow-1 py-1 py-md-2 px-md-3 fs-4" placeholder="Password" name="password"required ngModel>
+                            <form   #signupForm="ngForm" (ngSubmit)="submitSignupForm(signupForm)" class="font-inter">
+                                <div class="from-feilds mt-4 px-md-5 d-flex flex-column gap-md-2 gap-1">
+                                    <input type="text" class="form-control flex-grow-1 py-1 py-md-2 px-md-3 fs-5" placeholder="Username" name="username" required ngModel #signupUsername="ngModel">
+                                    <input type="email" class="form-control flex-grow-1 py-1 py-md-2 px-md-3 fs-5" placeholder="Email" name="email" required ngModel #signupEmail="ngModel" email>
+                                    <div class="d-flex justify-content-center align-items-center position-relative">
+                                        <input [type]="isSignupPasswordVisible ? 'text' : 'password'" class="form-control flex-grow-1 py-1 py-md-2 px-md-3 fs-5 passwd-input" placeholder="Password" name="password" required ngModel #signupPassword="ngModel">
+                                        <span class="passwd-btn btn p-1" id="signup-show-password-btn" (click)="isSignupPasswordVisible = !isSignupPasswordVisible">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 w25h25" *ngIf="isSignupPasswordVisible">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 w25h25" *ngIf="!isSignupPasswordVisible">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88" />
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <div class="d-flex justify-content-center align-items-center position-relative">
+                                        <input [type]="isSignupConfirmPasswordVisible ? 'text' : 'password'" class="form-control flex-grow-1 py-1 py-md-2 px-md-3 fs-5 passwd-input" placeholder="Confirm Password" name="confirm-password" required ngModel #signupConfirmPassword="ngModel">
+                                        <span class="passwd-btn btn p-1" id="signup-show-confirm-password-btn" (click)="isSignupConfirmPasswordVisible = !isSignupConfirmPasswordVisible">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 w25h25" *ngIf="isSignupConfirmPasswordVisible">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 w25h25" *ngIf="!isSignupConfirmPasswordVisible">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88" />
+                                            </svg>  
+                                        </span>
+                                    </div>
                                 </div>
                                 
-                                <div class="mt-4 mt-sm-20 mb-sm-3 px-md-5 d-flex flex-column gap-md-3 gap-1">
+                                <div class="mt-4  mb-md-3 px-md-5 d-flex flex-column gap-md-3 gap-1">
                                     <div class="my-btn-wrapper d-flex flex-column justify-content-center" (click)="toggleSubmitBtnAnimation(signupForm)"  (@bouceOnClick.done)="onSubmitBtnAnimationDone()" [@bouceOnClick]="submitBtnState" id="signupBtn">
                                         <input type="submit" value="Sign up" class="font-julius-sans-one my-btn-secondary p-1 fs-4 fw-light">
                                     </div>
-                                    <div class="font-julius-sans-one link-light text-decoration-none text-capitalize text-center fs-5 err-message invisible">dummyElement</div>
+                                    <div class="font-julius-sans-one link-light text-decoration-none text-capitalize text-center fs-6 err-message" style="max-height: 1.3rem;" *ngIf="(signupEmail.invalid && signupEmail.touched) || (signupUsername.invalid && signupUsername.touched) || (signupPassword.invalid && signupPassword.touched) || (signupConfirmPassword.invalid && signupConfirmPassword.touched) || (signupPassword.value !== signupConfirmPassword.value); else sigupDummyElement">
+                                        <div *ngIf="signupUsername.errors?.['required']">Username is required.</div>
+                                        <div *ngIf="signupEmail.errors?.['required']">Email is required.</div>
+                                        <div *ngIf="signupEmail.errors?.['email']">Invalid email format.</div>
+                                        <div *ngIf="signupPassword.errors?.['required']">Password is required.</div>
+                                        <div *ngIf="signupConfirmPassword.errors?.['required']">Confirm Password is required.</div>
+                                        <div *ngIf="signupPassword.value !== signupConfirmPassword.value">Passwords dont match</div>
+                                    </div>
+                                    <ng-template #sigupDummyElement>
+                                        <div class="font-julius-sans-one link-light text-decoration-none text-capitalize text-center fs-6 err-message invisible">dummyElement</div>
+                                    </ng-template>
                                 </div>
                             </form>
 
-                            <div class="mt-4 font-julius-sans-one d-flex justify-content-center align-items-center flex-column"> 
-                                <div class="link-light text-uppercase text-center fs-4" (click)="toggleCardRotate()" id="loginToggleBtn">Log In</div>
+                            <div class="mt-2 mt-md-4 font-julius-sans-one d-flex justify-content-center align-items-center flex-column"> 
+                                <div class="link-light text-uppercase text-center fs-5" (click)="toggleCardRotate()" id="loginToggleBtn">Log In</div>
                             </div>
                         </div>
 
