@@ -21,7 +21,7 @@
         </div>
 
         <!-- navbar user-icon smol ->                   Apears bellow lg -->
-        <span class="navbar-toggler-hidden-content align-items-center justify-content-center btn p-2 mx-2 mt-2 mb-2" id="user-icon-mobile">
+        <span class="navbar-toggler-hidden-content align-items-center justify-content-center btn p-2 mx-2 my-1" id="user-icon-mobile">
             <img tabindex="1" class="w60h60 border-round" src="../../assets/solid_white.png" alt="">
         </span>
 
@@ -36,9 +36,15 @@
         <!-- navbar `Home`, `Popular`, `All` menu ->    Dissapers bellow lg -->
         <div class="collapse navbar-collapse" id="navbar-content">
             <div class="navbar-nav mx-auto text-uppercase gap-0 gap-xl-5">
-                <a class="nav-link px-4 mx-4 mx-xl-4 fs-5" tabindex="1" href="#" id="home-pc">Home</a>
-                <a class="nav-link px-4 mx-4 mx-xl-4 fs-5" tabindex="1" href="#" id="popular-pc">Popular</a>
-                <a class="nav-link px-4 mx-4 mx-xl-4 fs-5" tabindex="1" href="#" id="all-pc">All</a>    
+                <a class="text-decoration-none" tabindex="1" routerLink="/home" routerLinkActive="active" id="home-pc">
+                    <span class="nav-link px-4 mx-4 mx-xl-4 fs-5 default-link" >Home</span>
+                </a>
+                <a class="text-decoration-none" tabindex="1" routerLink="/" routerLinkActive="active" id="popular-pc">
+                    <span class="nav-link px-4 mx-4 mx-xl-4 fs-5 default-link">Popular</span>
+                </a>
+                <a class="text-decoration-none" tabindex="1" routerLink="/" routerLinkActive="active" id="all-pc">
+                    <span class="nav-link px-4 mx-4 mx-xl-4 fs-5 default-link">All</span>
+                </a>    
             </div>
         </div>
 
@@ -98,11 +104,11 @@
                             <div class="username-marquee-container">
                                 <!-- NAME SHOULD HAVE AT LEAST 11 CHARACTERS -->
                                 <!-- User123 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -->
-                                <div class="username">
-                                    User123_123456 &nbsp; 
+                                <div class="username" [innerHTML]="getSanitizedUsername()">
+                                    <!-- User123_123456 &nbsp;  -->
                                 </div>
-                                <div class="username">
-                                    User123_123456 &nbsp;
+                                <div class="username" [innerHTML]="getSanitizedUsername()">
+                                    <!-- User123_123456 &nbsp; -->
                                 </div>
                             </div>
                         </div>
@@ -111,7 +117,8 @@
 
                     <li class="m-1">
                         <div class=" d-flex align-items-center justify-content-start flex-row px-1 mx-1" tabindex="1">
-                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-2 popup-link" id="dropdown-create-post-pc">
+                            <a routerLink="/createpost" routerLinkActive="active" class="text-decoration-none">
+                                <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-2 popup-link" id="dropdown-create-post-pc">
                                 <div class="w18h18 icon d-flex justify-content-center align-items-center">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <g clip-path="url(#clip0_325_102)">
@@ -126,26 +133,30 @@
                                 </div>
                                 <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">Create Post</span>
                             </span>
+                            </a>
+                            
                         </div>
                     </li>
 
                     <li class="m-1">
                         <div class=" d-flex align-items-center justify-content-start flex-row px-1 mx-1" tabindex="1">
-                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-2 popup-link" id="dropdown-create-topic-pc">
-                                <div class="w18h18 icon d-flex justify-content-center align-items-center">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <g clip-path="url(#clip0_325_102)">
-                                        <path d="M24 11H13V0H11V11H0V13H11V24H13V13H24V11Z" />
-                                        </g>
-                                        <defs>
-                                        <clipPath id="clip0_325_102">
-                                        <rect width="24" height="24"/>
-                                        </clipPath>
-                                        </defs>
-                                    </svg>
-                                </div>
-                                <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">Create Topic</span>
-                            </span>
+                            <a routerLink="/createtopic" routerLinkActive="active" class="text-decoration-none">
+                                <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-2 popup-link" id="dropdown-create-topic-pc">
+                                    <div class="w18h18 icon d-flex justify-content-center align-items-center">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <g clip-path="url(#clip0_325_102)">
+                                            <path d="M24 11H13V0H11V11H0V13H11V24H13V13H24V11Z" />
+                                            </g>
+                                            <defs>
+                                            <clipPath id="clip0_325_102">
+                                            <rect width="24" height="24"/>
+                                            </clipPath>
+                                            </defs>
+                                        </svg>
+                                    </div>
+                                    <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">Create Topic</span>
+                                </span>
+                            </a>
                         </div>
                     </li>
 
@@ -255,21 +266,23 @@
                 <li class="m-1">
                     <a href="" class="text-decoration-none canvas-link">
                         <div class=" d-flex align-items-center justify-content-start flex-row px-0 mx-0 px-sm-1 mx-sm-1" tabindex="1">
-                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link" id="drowpdown-home-mobile">
-                                <div class="w18h18 icon d-flex justify-content-center align-items-center">    
-                                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" fill="currentColor" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                        viewBox="0 0 20.6 20.6" style="enable-background:new 0 0 20.6 20.6;" xml:space="preserve">
-                                        <g class="st0">
-                                            <path d="M11.4,0.7c-0.3-0.3-0.7-0.4-1.1-0.4S9.4,0.4,9.1,0.7L0,8.9v8.9c0,0.7,0.3,1.4,0.8,1.9c0.5,0.5,1.2,0.8,1.9,0.8h15
-                                           c0.7,0,1.4-0.3,1.9-0.8c0.5-0.5,0.8-1.2,0.8-1.9V8.9L11.4,0.7z M12.8,18.8H7.7v-4.3c0-0.7,0.3-1.3,0.8-1.8
-                                           c0.5-0.5,1.1-0.8,1.8-0.8s1.3,0.3,1.8,0.8c0.5,0.5,0.8,1.1,0.8,1.8V18.8z M18.8,17.8c0,0.3-0.1,0.5-0.3,0.7s-0.5,0.3-0.7,0.3h-3.2
-                                           v-4.3c0-1.1-0.4-2.2-1.3-3c-0.8-0.8-1.9-1.3-3-1.3s-2.2,0.4-3,1.3c-0.8,0.8-1.3,1.9-1.3,3v4.3H2.7c-0.3,0-0.5-0.1-0.7-0.3
-                                           c-0.2-0.2-0.3-0.5-0.3-0.7V9.7L10.3,2l8.5,7.7V17.8z"/>
-                                        </g>
-                                    </svg>
-                                </div>  
-                                <span class="font-julius-sans-one fw-bold fs-6 white-space-nowrap">Home</span>
-                            </span>
+                            <a routerLink="/home" routerLink="/home" routerLinkActive="active" class="text-decoration-none default-link">
+                                <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link" id="drowpdown-home-mobile">
+                                    <div class="w18h18 icon d-flex justify-content-center align-items-center">    
+                                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" fill="currentColor" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                            viewBox="0 0 20.6 20.6" style="enable-background:new 0 0 20.6 20.6;" xml:space="preserve">
+                                            <g class="st0">
+                                                <path d="M11.4,0.7c-0.3-0.3-0.7-0.4-1.1-0.4S9.4,0.4,9.1,0.7L0,8.9v8.9c0,0.7,0.3,1.4,0.8,1.9c0.5,0.5,1.2,0.8,1.9,0.8h15
+                                               c0.7,0,1.4-0.3,1.9-0.8c0.5-0.5,0.8-1.2,0.8-1.9V8.9L11.4,0.7z M12.8,18.8H7.7v-4.3c0-0.7,0.3-1.3,0.8-1.8
+                                               c0.5-0.5,1.1-0.8,1.8-0.8s1.3,0.3,1.8,0.8c0.5,0.5,0.8,1.1,0.8,1.8V18.8z M18.8,17.8c0,0.3-0.1,0.5-0.3,0.7s-0.5,0.3-0.7,0.3h-3.2
+                                               v-4.3c0-1.1-0.4-2.2-1.3-3c-0.8-0.8-1.9-1.3-3-1.3s-2.2,0.4-3,1.3c-0.8,0.8-1.3,1.9-1.3,3v4.3H2.7c-0.3,0-0.5-0.1-0.7-0.3
+                                               c-0.2-0.2-0.3-0.5-0.3-0.7V9.7L10.3,2l8.5,7.7V17.8z"/>
+                                            </g>
+                                        </svg>
+                                    </div>  
+                                    <span class="font-julius-sans-one fw-bold fs-6 white-space-nowrap">Home</span>
+                                </span>
+                            </a>
                         </div>
                     </a>
                 </li>
@@ -362,7 +375,8 @@
 
                 <li class="m-1">
                     <div class=" d-flex align-items-center justify-content-start flex-row px-0 mx-0 px-sm-1 mx-sm-1" tabindex="1">
-                        <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link" id="drowpdown-create-post-mobile">
+                        <a routerLink="/createpost" routerLinkActive="active" class="text-decoration-none">
+                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link" id="drowpdown-create-post-mobile">
                             <div class="w18h18 icon d-flex justify-content-center align-items-center">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip0_325_102)">
@@ -377,26 +391,31 @@
                             </div>
                             <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">Create Post</span>
                         </span>
+                        </a>
+                        
                     </div>
                 </li>
 
                 <li class="m-1">
                     <div class=" d-flex align-items-center justify-content-start flex-row px-0 mx-0 px-sm-1 mx-sm-1" tabindex="1">
-                        <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link" id="drowpdown-create-topic-mobile">
-                            <div class="w18h18 icon d-flex justify-content-center align-items-center">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <g clip-path="url(#clip0_325_102)">
-                                    <path d="M24 11H13V0H11V11H0V13H11V24H13V13H24V11Z" />
-                                    </g>
-                                    <defs>
-                                    <clipPath id="clip0_325_102">
-                                    <rect width="24" height="24"/>
-                                    </clipPath>
-                                    </defs>
-                                </svg>
-                            </div>
-                            <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">Create Topic</span>
-                        </span>
+                        <a routerLink="/createtopic" routerLinkActive="active" class="text-decoration-none">
+                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-3 canvas-link" id="drowpdown-create-topic-mobile">
+                                <div class="w18h18 icon d-flex justify-content-center align-items-center">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_325_102)">
+                                        <path d="M24 11H13V0H11V11H0V13H11V24H13V13H24V11Z" />
+                                        </g>
+                                        <defs>
+                                        <clipPath id="clip0_325_102">
+                                        <rect width="24" height="24"/>
+                                        </clipPath>
+                                        </defs>
+                                    </svg>
+                                </div>
+                                <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">Create Topic</span>
+                            </span>
+                        </a>
+                        
                     </div>
                 </li>
 
@@ -458,18 +477,18 @@
                        <span class="user-icon p-0 " style="cursor: pointer;" id="drowpdown-user-icon-mobile">
                           <img tabindex="1" class="w80h80 border-round p-1 canvas-link" src="../../assets/solid_white.png" alt="">
                       </span>
-                      <div class="username-wrapper mx-3 py-2 fs-6 fw-bold btn" id="drowpdown-user-name-mobile">
-                          <div class="username-marquee-container-smol">
-                              <!-- NAME SHOULD HAVE AT LEAST 11 CHARACTERS -->
-                              <!-- User123 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -->
-                              <div class="username">
-                                  User123_123456 &nbsp; 
-                              </div>
-                              <div class="username">
-                                  User123_123456 &nbsp;
-                              </div>
-                          </div>
-                      </div>
+                      <div class="username-wrapper mx-2 px-3 py-2 fs-6 fw-bold btn text-uppercase" id="dropdown-user-name-mobile">
+                        <div class="username-marquee-container-smol">
+                            <!-- NAME SHOULD HAVE AT LEAST 11 CHARACTERS -->
+                            <!-- User123 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -->
+                            <div class="username" [innerHTML]="getSanitizedUsername()">
+                                <!-- User123_123456 &nbsp;  -->
+                            </div>
+                            <div class="username" [innerHTML]="getSanitizedUsername()">
+                                <!-- User123_123456 &nbsp; -->
+                            </div>
+                        </div>
+                    </div>
                     </div>
                 </li>
 

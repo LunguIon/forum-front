@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { CommonModule, NgClass, NgIf } from '@angular/common';
 import { HeaderBootstrapComponent } from './header-bootstrap/header-bootstrap.component';
-import { ElementRefService } from './utils/element-ref.service';
+import { ElementRefService } from './service/element-ref.service';
 
 @Component({
   selector: 'app-root',

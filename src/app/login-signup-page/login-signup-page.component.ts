@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, inject, TemplateRef, ViewEncapsulation, OnDestroy} from '@angular/core';
 import { LogoNavComponent } from '../logo-nav/logo-nav.component';
-import { FormsModule, NgForm, NgModel, ReactiveFormsModule } from '@angular/forms';  
+import { AbstractControl, FormsModule, NgForm, ReactiveFormsModule, ValidationErrors } from '@angular/forms';  
 import { NgClass, NgIf } from '@angular/common';
 import { ActivatedRoute, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { initializeConstellations } from '../utils/constelations';
@@ -10,12 +10,13 @@ import { AuthenticationService } from '../service/authentication.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
-import { ElementRefService } from '../utils/element-ref.service';
+import { ElementRefService } from '../service/element-ref.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login-signup-page',
   standalone: true,
-  imports: [LogoNavComponent, FormsModule, ReactiveFormsModule, NgClass, NgIf, HttpClientModule, RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [LogoNavComponent, FormsModule, ReactiveFormsModule, NgClass, NgIf, HttpClientModule, RouterOutlet, RouterLink, RouterLinkActive, FormsModule],
   templateUrl: './login-signup-page.component.html',
   styleUrl: './login-signup-page.component.scss',
   animations: [
@@ -44,28 +45,17 @@ import { ElementRefService } from '../utils/element-ref.service';
 })
 
 export class LoginSignupPageComponent implements OnInit, OnDestroy{
-  
   // Constructor and innit
   // -------------
   private elementRefSubscription!: Subscription;
 
-  private modalService = inject(NgbModal);
-  private modalRef!: NgbModalRef
-  private modalContainer!: ElementRef; 
-  @ViewChild('content', { static: true }) content!: TemplateRef<any>;
-  openModal() {
-		this.modalRef = this.modalService.open(this.content, {centered: true,  container: this.modalContainer.nativeElement});
-	}
-
-
-  constructor(private route : ActivatedRoute, private appComponenet : AppComponent, private authService : AuthenticationService, private elementRefService: ElementRefService) { 
+  constructor(private route : ActivatedRoute, private appComponenet : AppComponent, private authService : AuthenticationService, private elementRefService: ElementRefService, private fb: FormBuilder) { 
     this.appComponenet.showHeaderAndFooter = false;
   }
   redirectToGoogle(): void{
     window.location.href = 'http://localhost:8080/oauth/google';
   }
 
-  
   @ViewChild('canvasElement', { static: true }) canvasElement: ElementRef | undefined;
   ngOnInit(): void {
     this.modalContainer = this.elementRefService.getElementRef();
@@ -104,7 +94,7 @@ export class LoginSignupPageComponent implements OnInit, OnDestroy{
   }
 
   toggleSubmitBtnAnimation(form: NgForm): void {
-    if(form.invalid)
+    if(!(form.valid && this.checkPasswordsMatch(form)))
       this.isSubmitBtnClicked = !this.isSubmitBtnClicked;
   }
 
@@ -120,51 +110,73 @@ export class LoginSignupPageComponent implements OnInit, OnDestroy{
     this.isSignup = !this.isSignup;
   }
 
-
-
-
-  // Form functionality (you can deletethe comments below)
+  // Password variables
   // -------------
+  isSignupPasswordVisible: boolean = false;
+  isSignupConfirmPasswordVisible: boolean = false;
+  isLoginPasswordVisible: boolean = false; 
+
+  // Login Unsuccsesfull Modal components
+  // -------------
+  private modalService = inject(NgbModal);
+  private modalRef!: NgbModalRef
+  private modalContainer!: ElementRef; 
+  @ViewChild('content', { static: true }) content!: TemplateRef<any>;
+  openModal() {
+		this.modalRef = this.modalService.open(this.content, {centered: true,  container: this.modalContainer.nativeElement});
+	}
+  closeModalAndReload(){
+    this.modalRef.close('Close click');
+    this.reloadPage();
+  }
+  reloadPage() {
+    window.location.reload();
+  }
+
+  // Form functionality
+  // -------------
+  checkPasswordsMatch(from : NgForm): boolean {
+    const password = from.controls['password']?.value;
+    const confirmPassword = from.controls['confirm-password']?.value;
+    console.log("password: " + password + " confirnPsswd: " + confirmPassword)
+    if (confirmPassword != undefined)
+      return password === confirmPassword;
+    else
+      return true;
+  }
+
   submitLoginForm(form: NgForm) {
     if (form.valid) { 
       this.authService.login(form.value).subscribe({
         next: (response) => {
           // Handle successful login
-          console.log('Login successful');
+          // console.log('Login successful');
         },
         error: (error) => {
           // Handle login error
           this.openModal();
-          console.error('Login error');
+          // console.error('Login error');
         }
       });
     }
   }
 
   submitSignupForm(form: NgForm) {
-    if (form.valid) {
+    if (form.valid && this.checkPasswordsMatch(form)) {
       this.authService.signUp(form.value).subscribe({
         next: (response) => {
           // Handle successful signup
-          console.log('Signup successful');
+          // console.log('Signup successful');
         },
         error: (error) => {
           // Handle signup error
           this.openModal();
-          console.error('Signup error');
+          // console.error('Signup error');
         }
       });
     }
   }
 
-  reloadPage() {
-    window.location.reload();
-  }
-
-  closeModalAndReload(){
-    this.modalRef.close('Close click');
-    this.reloadPage();
-  }
 
 }
 

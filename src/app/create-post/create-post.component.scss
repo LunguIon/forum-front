@@ -1,0 +1,90 @@
+@import "../../../node_modules/rfs/scss.scss";
+@import "../../../node_modules/bootstrap/scss/bootstrap-utilities.scss";
+@import "../../stylings/colors.scss";
+
+
+.main-container{
+    overflow: hidden;
+    z-index: -1;
+}
+
+.fill{
+    width: 100%;
+    min-height: calc(100vh - 115px);
+    background-color: var(--clr-dark);
+}
+
+.create-post-container{
+    min-height: 760px;
+    border-radius: 100px;
+    background-color: var(--clr-gray);
+    display: flex;
+    flex-direction: column;
+}
+
+.form-control{
+    border: 2px solid;
+    border-radius: 60px;
+    color: $clr-light;
+    border-color: transparent;
+    border-color: var(--clr-dark-primary);
+    background-color: var(--clr-gray);
+    transition: all 0.3s;
+}
+
+.form-control:hover{
+    border-color: rgba(var(--clr-primary-rgb-vals), 1);
+    background-color: var(--clr-gray);
+}
+
+.form-control:focus{
+    border-color: rgba(var(--clr-primary-rgb-vals), 1);
+    box-shadow: 0 0 10px 3px rgba(var(--clr-primary-rgb-vals), 0.35);
+}
+
+.form-control::placeholder {
+    color: $clr-light;
+    opacity: 0.8; 
+    text-transform: uppercase;
+    font-family: "Julius Sans One", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+textarea{
+    resize: none;
+}
+
+textarea::-webkit-scrollbar {
+    width: 0px; 
+}
+
+.post-text{
+    border-radius: 45px;
+}
+
+.my-btn:hover, .my-btn:focus{
+    box-shadow: 0 0 10px 3px var(--clr-dark-primary);
+}
+
+@include media-breakpoint-down(lg){
+    .create-post-container{
+        min-height: 700px;
+    }
+
+    .create-post-container{
+        border-radius: 50px;
+    }
+}
+
+@include media-breakpoint-down(md){
+    .create-post-container{
+        min-height: 660px;
+    }
+}
+
+@include media-breakpoint-down(sm){
+    .post-text{
+        border-radius: 30px;
+    }
+}
