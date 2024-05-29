@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, inject, TemplateRef, ViewEncapsulation, OnDestroy} from '@angular/core';
 import { LogoNavComponent } from '../logo-nav/logo-nav.component';
-import { AbstractControl, FormsModule, NgForm, ReactiveFormsModule, ValidationErrors } from '@angular/forms';  
+import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';  
 import { NgClass, NgIf } from '@angular/common';
 import { ActivatedRoute, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { initializeConstellations } from '../utils/constelations';
@@ -11,7 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { ElementRefService } from '../service/element-ref.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-login-signup-page',
@@ -137,7 +137,7 @@ export class LoginSignupPageComponent implements OnInit, OnDestroy{
   checkPasswordsMatch(from : NgForm): boolean {
     const password = from.controls['password']?.value;
     const confirmPassword = from.controls['confirm-password']?.value;
-    console.log("password: " + password + " confirnPsswd: " + confirmPassword)
+    
     if (confirmPassword != undefined)
       return password === confirmPassword;
     else
@@ -149,12 +149,10 @@ export class LoginSignupPageComponent implements OnInit, OnDestroy{
       this.authService.login(form.value).subscribe({
         next: (response) => {
           // Handle successful login
-          // console.log('Login successful');
         },
         error: (error) => {
           // Handle login error
           this.openModal();
-          // console.error('Login error');
         }
       });
     }
@@ -165,12 +163,10 @@ export class LoginSignupPageComponent implements OnInit, OnDestroy{
       this.authService.signUp(form.value).subscribe({
         next: (response) => {
           // Handle successful signup
-          // console.log('Signup successful');
         },
         error: (error) => {
           // Handle signup error
           this.openModal();
-          // console.error('Signup error');
         }
       });
     }

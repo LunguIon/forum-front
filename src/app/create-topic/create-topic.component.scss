@@ -67,12 +67,31 @@ textarea::-webkit-scrollbar {
     box-shadow: 0 0 10px 3px var(--clr-dark-primary);
 }
 
+.secondary-container{
+    background-color: var(--clr-gray);
+    border-radius: 100px;
+}
+   
+.err-message{
+    overflow: hidden !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+    cursor: default !important;
+    color: var(--clr-pink) !important;
+}
+
+.submit{
+    background-color: transparent;
+    border: none;
+    color: var(--clr-light);
+}
+
 @include media-breakpoint-down(lg){
     .create-post-container{
         min-height: 700px;
     }
 
-    .create-post-container{
+    .create-post-container, .secondary-container{
         border-radius: 50px;
     }
 }
