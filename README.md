@@ -1,5 +1,5 @@
 ## 🌟**SpeakUp UI** 
-SpeakUp is a dynamic web forum service developed using Angular and jQuery, designed to foster community engagement and open discussions. Users can create, share, and comment on content across various topics, making it a versatile platform for conversations and content sharing.
+SpeakUp is a dynamic web forum service developed using Angular and Bootstrap, designed to foster community engagement and open discussions. Users can create, share, and comment on content across various topics, making it a versatile platform for conversations and content sharing.
 
 ## 📑 Table of Contents
 - [Setup](#setup)
@@ -17,8 +17,9 @@ SpeakUp is a dynamic web forum service developed using Angular and jQuery, desig
 ```
 
 ## 🚀<span id="build">Steps to build the application</span>
-1. Run the build (the build artifacts will be stored in the `dist/` directory.):
+1. Update the packeges and run the build (the build artifacts will be stored in the `dist/` directory.):
 ```bash
+npm install
 ng build
 ```
 
@@ -55,11 +56,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - **Karma 6.4.3**: Automate unit testing for Angular applications, ensuring code quality and reliability.
 
 ## 👨‍💻 <span id="collaborators">Contributors</span>
-1. [Alexandru Borș](https://github.com/Aziyck)
+1. [Babenco Iaroslava](https://github.com/1aroslavik)
+   - Role: Designed UX/UI in Figma and assisted in adapting Figma layout to code.
+   
+2. [Alexandru Borș](https://github.com/Aziyck)
    - Role: Adapted Figma layout to actual code implementation.
-
-2. [Babenco Iaroslava](https://github.com/1aroslavik)
-   - Role: Designed UX/UI in Figma and assisted in adapting Figma layout to code .
 
 3. [Ion Lungu](https://github.com/LunguIon)
    - Role: Manages backend integration with the frontend.
