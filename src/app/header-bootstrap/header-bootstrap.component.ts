@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from '../app.component';
 import { ElementRefService } from '../service/element-ref.service';
 import { Subscription } from 'rxjs';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 
 @Component({
@@ -129,6 +129,13 @@ export class HeaderBootstrapComponent implements OnInit, OnDestroy{
     }
   }
 
+  // Log out btn
+  // -------------
+  private router: Router = inject(Router);
+  logoutClick(){
+    // Delete the session
+    this.router.navigate(['/welcome']);
+  }  
 
 }
 
