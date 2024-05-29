@@ -28,12 +28,13 @@
         </div>
 
         <div class="d-flex justify-content-center align-content-center font-inter px-4 gap-5 flex-column flex-xl-row">
-            <div *ngIf="hasImage" class="overflow-hidden d-flex justify-content-center align-items-center">
-                <img class="rounded-5 post-img" src="../../assets/solid_white.png" alt="">
+            <div *ngIf="imgLink" class="overflow-hidden d-flex justify-content-center align-items-center">
+                <div class="rounded-5 post-img-comtainer d-flex align-items-center justify-content-center">
+                    <img [src]="imgLink" [alt]="'Image Of Post ' + postId" class="min-w-full h-auto">
+                </div>
             </div>
             <div class="post-text fs-5 m-0 d-flex align-content-center flex-column gap-3 flex-1">
                 <p [innerHTML]="getSanitizedContent()"></p>
-
             </div>
         </div>
 

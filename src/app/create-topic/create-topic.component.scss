@@ -83,7 +83,7 @@ textarea::-webkit-scrollbar {
 .submit{
     background-color: transparent;
     border: none;
-    color: var(--clr-light);
+    color: $clr-light !important;
 }
 
 @include media-breakpoint-down(lg){
