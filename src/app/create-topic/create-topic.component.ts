@@ -102,12 +102,13 @@ export class CreateTopicComponent{
   submitForm(form: NgForm){
     if(form.valid){
 
+      // you can delete the console logs
       console.log("_____________________________");
       // this gives text.
       console.log("Title: '" + form.controls['title'].value + "'\n", form.controls['text'].value);
       // this gives text or ''.
       console.log("Text: '" + form.controls['text'].value + "'\n", form.controls['text'].value);
-      // this gives the path of the file as text or ''.
+      // this gives the path of the file as text or ''. - better dont use this, use the one bellow
       console.log("Image: '" + form.controls['image'].value + "'\n", form.controls['image'].value);
       // this gives the actual file or ''.      
       console.log("Image as file: '" + this.getActualImage() + "'\n", this.getActualImage());
