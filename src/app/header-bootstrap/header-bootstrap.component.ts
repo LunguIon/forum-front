@@ -19,9 +19,10 @@ import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/rou
 })
 
 export class HeaderBootstrapComponent implements OnInit, OnDestroy{
-  // Input variables
+  // Input and other variables 
   // -------------
-  @Input() username: string ="user 123"
+  @Input() username: string ="user 123";
+  currentTopic: string = '';
 
   // Constructor, innit and destroy
   // -------------
