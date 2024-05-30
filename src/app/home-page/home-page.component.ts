@@ -106,4 +106,9 @@ export class HomePageComponent implements OnInit{
     console.log("Current filter: " + this.currentFilter);
   }
 
+  // when filters change it runs this function
+  onFilterChange(){
+
+  }
+
 }
