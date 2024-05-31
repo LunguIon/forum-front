@@ -28,7 +28,7 @@
                 </div>
                 <ul ngbDropdownMenu aria-labelledby="filter-dropdown" class="dropdown-menu custom-filter-dropdown p-2" >
                     @for (filter of filters; track filter; let  i = $index) { 
-                        <li ngbDropdownItem class="d-block filter-link btn" id="filter-dropdown-earlier" (click)="currentFilterIndex = i ">
+                        <li ngbDropdownItem class="d-block filter-link btn" [id]="'filter-dropdown-' + i" (click)="currentFilterIndex = i; onFilterChange();">
                             <div class="d-flex px-1" [innerHTML]="filter"></div>
                         </li>
                     }
@@ -48,30 +48,7 @@
                   [imgLink]="post.imgLink">
                 </app-post>
             </div>
-
-            <!-- <app-post
-            [postId]="1"
-            [username]=" 'User 123' "
-            [upvoteds]="300"
-            [nrComments]="50"
-            [voteStatus]="'upvoted'"
-            [content]=" 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a augue facilisis, tempor lectus ullamcorper, bibendum leo. Nullam sollicitudin augue sed felis hendrerit ultrices. Aenean nec rutrum magna. Praesent massa sem, suscipit at interdum non, lobortis eget dolor. Quisque volutpat neque velit, ut luctus purus aliquet eget. Aenean suscipit lorem a nisl consectetur imperdiet. \n\n Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a augue facilisis, tempor lectus ullamcorper, bibendum leo. Nullam sollicitudin augue sed felis hendrerit ultrices. Aenean nec rutrum magna. Praesent massa sem, suscipit at interdum non, lobortis eget dolor. Quisque volutpat neque velit, ut luctus purus aliquet eget. Aenean suscipit lorem a nisl consectetur imperdiet.' "
-            [favorited]="true"
-            [hasImage]="false"
-            ></app-post>
-
-            <app-post
-            [postId]="2"
-            [username]=" 'User 123' "
-            [upvoteds]="300"
-            [nrComments]="50"
-            [voteStatus]="'upvoted'"
-            [content]=" 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a augue facilisis, tempor lectus ullamcorper, bibendum leo. Nullam sollicitudin augue sed felis hendrerit ultrices. Aenean nec rutrum magna. Praesent massa sem, suscipit at interdum non, lobortis eget dolor. Quisque volutpat neque velit, ut luctus purus aliquet eget. Aenean suscipit lorem a nisl consectetur imperdiet. \n\n Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a augue facilisis, tempor lectus ullamcorper, bibendum leo. Nullam sollicitudin augue sed felis hendrerit ultrices. Aenean nec rutrum magna. Praesent massa sem, suscipit at interdum non, lobortis eget dolor. Quisque volutpat neque velit, ut luctus purus aliquet eget. Aenean suscipit lorem a nisl consectetur imperdiet.' "
-            [favorited]="true"
-            [hasImage]="true"
-            ></app-post> -->
-
+            
         </div>
-
     </div>
 </div>

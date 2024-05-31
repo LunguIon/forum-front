@@ -80,6 +80,10 @@ textarea::-webkit-scrollbar {
     color: var(--clr-pink) !important;
 }
 
+.err-message:hover{
+    color: var(--clr-pink) !important;
+}
+
 .submit{
     background-color: transparent;
     border: none;

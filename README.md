@@ -17,7 +17,7 @@ SpeakUp is a dynamic web forum service developed using Angular and Bootstrap, de
 ```
 
 ## 🚀<span id="build">Steps to build the application</span>
-1. Update the packeges and run the build (the build artifacts will be stored in the `dist/` directory.):
+1. Install the dependencies of the application and run the build (the build artifacts will be stored in the `dist/` directory.):
 ```bash
 npm install
 ng build
@@ -69,4 +69,5 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 [https://www.figma.com/file/OzUZPrxvcZHJlf5W0n2zbE/Untitled?type=design&node-id=0-1&mode=design&t=0ov1fCrBJYvVTm7B-0]
      
 ## ⚖️ <span id="license">License</span>
+This project is licensed under the [MIT License]().
 
