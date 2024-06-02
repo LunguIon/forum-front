@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { PostComponent } from '../post/post.component';
 import { NgFor } from '@angular/common';
-
+import { PostService } from '../service/post.service';
 
 interface Post{
   postId: number;
   username: string;
-  upvotes: number;
+  valueOfLikes: number;
   nrComments: number;
   voteStatus: 'upvoted' | 'downvoted' | 'undefined';
   content: string;
@@ -24,11 +24,21 @@ interface Post{
 })
 export class HomePageComponent implements OnInit{
 
+  posts: Post[] = [];
   // OnInnit - you can add the base logic of the http requests here
   // -------------
+  constructor(private postService: PostService) {}
+
   ngOnInit(): void {
-      
+      this.loadPosts();
   }
+
+  loadPosts(): void{
+    this.postService.getAllPosts().subscribe((data: Post[]) => {
+      this.posts = data;
+    })
+  }
+
 
   // Search component
   // searchText is the text from the textfield when the user clicks the search btn
@@ -38,41 +48,6 @@ export class HomePageComponent implements OnInit{
     // you can delete this console log
     console.log("Search: '" + searchText + "'");
   }
-
-  // Posts Array components
-  // -------------
-  posts: Post[] = [
-    {
-      postId: 1,
-      username: 'User 123',
-      upvotes: 300,
-      nrComments: 50,
-      voteStatus: 'upvoted',
-      content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a augue facilisis, tempor lectus ullamcorper, bibendum leo. Nullam sollicitudin augue sed felis hendrerit ultrices. Aenean nec rutrum magna. Praesent massa sem, suscipit at interdum non, lobortis eget dolor. Quisque volutpat neque velit, ut luctus purus aliquet eget. Aenean suscipit lorem a nisl consectetur imperdiet. \n\n Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a augue facilisis, tempor lectus ullamcorper, bibendum leo. Nullam sollicitudin augue sed felis hendrerit ultrices. Aenean nec rutrum magna. Praesent massa sem, suscipit at interdum non, lobortis eget dolor. Quisque volutpat neque velit, ut luctus purus aliquet eget. Aenean suscipit lorem a nisl consectetur imperdiet.`,
-      favorited: true,
-      imgLink: null
-    },
-    {
-      postId: 2,
-      username: 'User 456',
-      upvotes: 150,
-      nrComments: 200,
-      voteStatus: 'downvoted',
-      content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a augue facilisis, tempor lectus ullamcorper, bibendum leo. Nullam sollicitudin augue sed felis hendrerit ultrices. Aenean nec rutrum magna. Praesent massa sem, suscipit at interdum non, lobortis eget dolor. Quisque volutpat neque velit, ut luctus purus aliquet eget. Aenean suscipit lorem a nisl consectetur imperdiet. \n\n Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a augue facilisis, tempor lectus ullamcorper, bibendum leo. Nullam sollicitudin augue sed felis hendrerit ultrices. Aenean nec rutrum magna. Praesent massa sem, suscipit at interdum non, lobortis eget dolor. Quisque volutpat neque velit, ut luctus purus aliquet eget. Aenean suscipit lorem a nisl consectetur imperdiet.`,
-      favorited: true,
-      imgLink: 'https://upload.wikimedia.org/wikipedia/commons/d/d2/Solid_white.png?20060513000852'
-    },
-    {
-      postId: 3,
-      username: 'User 124',
-      upvotes: 10,
-      nrComments: 5,
-      voteStatus: 'undefined',
-      content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a augue facilisis, tempor lectus ullamcorper, bibendum leo. Nullam sollicitudin augue sed felis hendrerit ultrices. Aenean nec rutrum magna. Praesent massa sem, suscipit at interdum non, lobortis eget dolor. Quisque volutpat neque velit, ut luctus purus aliquet eget. Aenean suscipit lorem a nisl consectetur imperdiet. \n\n Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a augue facilisis, tempor lectus ullamcorper, bibendum leo. Nullam sollicitudin augue sed felis hendrerit ultrices. Aenean nec rutrum magna. Praesent massa sem, suscipit at interdum non, lobortis eget dolor. Quisque volutpat neque velit, ut luctus purus aliquet eget. Aenean suscipit lorem a nisl consectetur imperdiet.`,
-      favorited: false,
-      imgLink: null
-    },
-  ];
 
   // Filter components
   // if need more filters or if you need to change the filters just change the 'flters' array
