@@ -1,18 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
-
-interface Post {
-  postId: number;
-  username: string;
-  valueOfLikes: number;
-  nrComments: number;
-  voteStatus: 'upvoted' | 'downvoted' | 'undefined';
-  content: string;
-  favorited: boolean;
-  imgLink: string | null;
-}
+import { Post } from '../models/post.model';
 
 
 @Injectable({

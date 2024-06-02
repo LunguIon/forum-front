@@ -3,15 +3,15 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { PostComponent } from '../post/post.component';
 import { NgFor } from '@angular/common';
 import { PostService } from '../service/post.service';
+import { User } from '../models/user.model';
 
 interface Post{
-  postId: number;
-  username: string;
+  id: number;
+  user: User;
   valueOfLikes: number;
   nrComments: number;
   voteStatus: 'upvoted' | 'downvoted' | 'undefined';
   content: string;
-  favorited: boolean;
   imgLink: string | null;
 }
 
