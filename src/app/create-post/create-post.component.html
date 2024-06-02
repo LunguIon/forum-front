@@ -1,42 +1,109 @@
 <div class="main-container font-julius-sans-one fw-normal container-fluid fill">
     <div class="m-1 m-lg-5">
-        <div class="mx-1 mx-md-5">
-            <div class="mx-1 mx-sm-5 my-5 p-3 p-lg-5 create-post-container">
-                <div class="fs-2 py-2 px-sm-4">Create a Post</div>
-                <div class="py-sm-4 px-sm-3 font-inter d-flex flex-column gap-3 flex-grow-1">
-                    <div class="d-flex justify-content-center align-items-center flex-grow-0">
-                        <input type="text" class="font-inter rounded-5 form-control flex-grow-1 px-4 py-1 py-md-2 fs-4" placeholder="Title" id="title" >
-                    </div>
-                    <div class="d-flex flex-column flex-grow-1">
-                        <textarea class="form-control flex-grow-1 px-4 py-3 fs-5 post-text"  placeholder="text" id="textarea"></textarea>
-                    </div>
-                    <div class="px-1 px-xl-5 py-1 d-flex justify-content-between align-items-center font-julius-sans-one flex-sm-row flex-column">
-                        <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-2 popup-link" id="add-photo">
-                            <div class="w20h20 icon d-flex justify-content-center align-items-center">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <g clip-path="url(#clip0_325_102)">
-                                    <path d="M24 11H13V0H11V11H0V13H11V24H13V13H24V11Z" />
-                                    </g>
-                                    <defs>
-                                    <clipPath id="clip0_325_102">
-                                    <rect width="24" height="24"/>
-                                    </clipPath>
-                                    </defs>
-                                </svg>
-                            </div>
-                            <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">Add photo</span>
-                        </span>
-                        <div class="d-flex justify-content-center align-items-center gap-3 gap-sm-4 gap-lg-4">
-                            <div class="my-btn px-1 px-lg-4 py-1">
-                                <div class="px-3 px-md-4 fs-5" id="save-post">Save</div>
-                            </div>
-                            <div class="my-btn px-1 px-lg-4 py-1">
-                                <div class="px-3 px-md-4 fs-5" id="post-post">Post</div>
-                            </div>
+        <div class="mx-1 mx-md-5 secondary-container">
+            <div class="mx-1 mx-sm-5 my-1 px-3 px-lg-5 pt-3 pt-lg-5 create-post-container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="fs-2 py-2 px-sm-4">Create a Post</div>
+                    <div class="px-3 py-1 py-md-2 fs-4 btn chooser-btn d-flex align-content-center gap-2 chose-topic-pc" id="chose-topic-pc" (click)="openModal()">
+                        <div class="w30h30 pt-2 d-flex align-items-center justify-content-center flex-grow-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </div>
+                        <div class="fs-4 font-inter overflow-hidden topic-container" [innerHTML]="currentTopic">
                         </div>
                     </div>
                 </div>
+                <form #createTopicForm="ngForm" (ngSubmit)="submitForm(createTopicForm)" class="justify-content-around flex-column w-100" style="display: flex; flex-grow: 100;">
+                    <div class="py-sm-4 px-sm-3 font-inter d-flex flex-column gap-2 gap-lg-3 flex-grow-1" style="display: flex;">
+
+                        <div class="px-3 py-1 py-md-2 fs-4 btn chooser-btn d-flex align-content-center gap-2 chose-topic-mobile" id="chose-topic-mobile" (click)="openModal()">
+                            <div class="w30h30 pt-2 d-flex align-items-center justify-content-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                </svg>
+                            </div>
+                            <div class="fs-4 font-inter overflow-hidden topic-container" [innerHTML]="currentTopic">
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-center align-items-center flex-grow-0">
+                            <!--                                                                                                                Name -->
+                            <input type="text" class="font-inter rounded-5 form-control flex-grow-1 px-4 py-1 py-md-2 fs-4" placeholder="Title" name="title" required ngModel #titlePost="ngModel">
+                        </div>
+                        <div style="display: flex; flex-grow: 100;">
+                            <!--                                                                                   Name -->
+                            <textarea class="form-control flex-grow-1 px-4 py-3 fs-5 post-text" placeholder="text" name="text" required ngModel #textPost="ngModel"></textarea>
+                        </div>
+
+                        <div class="font-julius-sans-one link-light text-decoration-none text-capitalize text-center fs-6 err-message" style="max-height: 1.3rem;" *ngIf="(titlePost.invalid && titlePost.touched) || (textPost.invalid && textPost.touched) || ((currentTopic === defaultTopicPlaceHolder) && modalTouched) ; else dummyElement">
+                            <div *ngIf="currentTopic === defaultTopicPlaceHolder">Chose a topic.</div>
+                            <div *ngIf="titlePost.errors?.['required']">Title is required.</div>
+                            <div *ngIf="textPost.errors?.['required']">Post body is required.</div>
+                        </div>
+                        <ng-template #dummyElement>
+                            <!-- <div class="font-julius-sans-one link-light text-decoration-none text-capitalize text-center fs-6 err-message invisible">dummyElement</div> -->
+                        </ng-template>
+
+                        <div class="px-1 px-xl-5 py-3 d-flex justify-content-between align-items-center font-julius-sans-one flex-md-row flex-column gap-2">
+                            <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-2 popup-link" id="add-photo">
+                                <div class="w20h20 icon d-flex justify-content-center align-items-center">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_325_102)">
+                                        <path d="M24 11H13V0H11V11H0V13H11V24H13V13H24V11Z" />
+                                        </g>
+                                        <defs>
+                                        <clipPath id="clip0_325_102">
+                                        <rect width="24" height="24"/>
+                                        </clipPath>
+                                        </defs>
+                                    </svg>
+                                </div>
+                                <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap" (click)="fileInput.click()" *ngIf="!isFileSelected">Add photo</span>
+                                <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap" (click)="fileInput.click()" *ngIf="isFileSelected">Photo added</span>
+                                <!--                                                                                            Name -->
+                                <input type="file" accept="image/*" class="d-none" (change)="onFileSelected($event)" #fileInput name="image" ngModel >
+                            </span>
+                            <div class="d-flex justify-content-center align-items-center gap-3 gap-sm-4 gap-lg-4">
+                                <div class="my-btn px-1 px-lg-4 py-1" id="discard-topic" (click)="discardForm()">
+                                    <div class="px-3 px-md-4 fs-5">Discard</div>
+                                </div>
+                                <div class="my-btn px-1 px-lg-4 py-1" (click)="toggleSubmitBtnAnimation(createTopicForm)" (@bouceOnClick.done)="onSubmitBtnAnimationDone()" [@bouceOnClick]="submitBtnState" id="create-topic">
+                                    <input type="submit" class="px-3 px-md-4 fs-5 border-none submit" value="Create">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+                    
+            <div class="px-3 px-lg-5 pt-1 pb-4 d-flex align-items-center justify-content-center" *ngIf="selectedImage">
+                <img [src]="selectedImage" alt="Selected Image" class="w-auto h-auto rounded-5 mb-4">
             </div>
         </div>
     </div>
 </div>
+
+<ng-template #choseTopicContent let-modal>
+    <div class="modal-content py-4 px-sm-5 px-3">
+        <div class="modal-header d-flex justify-content-center align-items-lg-center">
+            <div class="fs-1 font-julius-sans-one">
+                Chose a Topic
+            </div>
+        </div>
+        <div class="modal-body">
+            <ul class="p-2" >
+                @for (topic of topics; track topic; let  i = $index) { 
+                    <li class="d-block chooser-link btn" (click)="currentTopic = topic">
+                        <div class="d-flex px-1 fs-3 justify-content-center align-items-center" [innerHTML]="topic">
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+        <div class="modal-footer">
+        </div>
+    </div>
+    
+</ng-template>
+
