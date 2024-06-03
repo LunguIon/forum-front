@@ -4,7 +4,6 @@ import { PostComponent } from '../post/post.component';
 import { NgFor } from '@angular/common';
 import { NavigationEnd, Router } from '@angular/router';
 
-
 interface Post{
   postId: number;
   username: string;
@@ -15,18 +14,16 @@ interface Post{
   favorited: boolean;
   imgLink: string | null;
 }
-
 @Component({
-  selector: 'app-home-page',
+  selector: 'app-popular',
   standalone: true,
   imports: [NgbDropdownModule, PostComponent, NgFor],
-  templateUrl: './home-page.component.html',
-  styleUrl: './home-page.component.scss'
+  templateUrl: './popular.component.html',
+  styleUrl: './popular.component.scss'
 })
-export class HomePageComponent implements OnInit{
+export class PopularComponent implements OnInit{
   // OnInnit - you can add the base logic of the http requests here
   // -------------
-  
   router: Router = inject(Router);
   ngOnInit(): void {
     this.router.events.subscribe((event) => {

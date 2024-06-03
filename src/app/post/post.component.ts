@@ -1,18 +1,19 @@
 import { NgClass, NgIf } from '@angular/common';
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, inject, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 type VoteStatus = 'upvoted' | 'downvoted' | 'undefined';
 
 @Component({
   selector: 'app-post',
   standalone: true,
-  imports: [FormsModule, NgClass, NgIf],
+  imports: [FormsModule, NgClass, NgIf, RouterLink, RouterLinkActive, RouterOutlet],
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss'
 })
-export class PostComponent implements OnInit{
+export class PostComponent implements OnInit, OnChanges{
   // Input variables
   // -------------
   @Input() postId: number = 1;
@@ -33,6 +34,19 @@ export class PostComponent implements OnInit{
   actualUpvotes: number = 0;
 
   constructor(){}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['postId'] || changes['username'] || changes['upvotes'] || changes['nrComments'] || changes['voteStatus'] || changes['content'] || changes['imgLink']) {
+      this.postId = changes['postId'].currentValue;
+      this.username = changes['username'].currentValue;
+      this.upvotes = changes['upvotes'].currentValue;
+      this.nrComments = changes['nrComments'].currentValue;
+      this.voteStatus = changes['voteStatus'].currentValue;
+      this.content = changes['content'].currentValue;
+      this.imgLink = changes['imgLink'].currentValue;
+      // console.log('PostComponent inputs have changed', changes);
+    }
+  }
 
   ngOnInit(): void {
       switch(this.voteStatus){
