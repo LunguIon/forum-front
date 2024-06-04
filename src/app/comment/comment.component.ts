@@ -13,7 +13,7 @@ interface PostComments{
   username: string;
   upvotes: number
   nrComments: number;
-  voteStatus: 'upvoted' | 'downvoted' | 'undefined';
+  voteStatus: VoteStatus;
   content: string
 }
 
@@ -59,10 +59,6 @@ export class CommentComponent {
       case "upvoted" : {this.plusChecked = true; this.minusChecked = false;} break;
       case 'downvoted' : {this.plusChecked = false; this.minusChecked = true;} break;
      }
-
-    // get from the database the subcoments of this comment, if it has subcoments, 
-    // could also check exisdsTheMaxLvlOfNesting() and if it's true dont populate the comments array from this controller
-
   }
 
   // Toast Service
@@ -73,17 +69,8 @@ export class CommentComponent {
 		this.toastService.show({ template });
 	}
 
-  // Coment Nesting components
+  // Copy Comment Text
   // -------------
-  private _maxLvlOfNesting: number = 1;
-  get maxLvlOfNesting(): number{
-    return this._maxLvlOfNesting;
-  }
-
-  exisdsTheMaxLvlOfNesting(): boolean{
-    return this.nested < this.maxLvlOfNesting;
-  }
-
   copyCommentText(){
     if (!navigator.clipboard) {
       this.fallbackCopyTextToClipboard();
@@ -122,23 +109,12 @@ export class CommentComponent {
     document.body.removeChild(textArea);
   }
 
-  // Private functions
+  // Comment content functions
   // -------------
   private sanitizer: DomSanitizer = inject(DomSanitizer);
   getSanitizedContent(): SafeHtml {
     const formattedContent = this.content.replace(/&#13;|\n/g, '<br>');
     return this.sanitizer.bypassSecurityTrustHtml(formattedContent);
-  }
-
-  private onRatingClick(thisInputElemnt: HTMLInputElement, otherInputElement: HTMLInputElement){
-    if(thisInputElemnt.checked == true && otherInputElement.checked == true){
-      otherInputElement.checked = false;
-    }
-  }
-
-  private set changeVoteStatus(newVoteStatus: VoteStatus) {
-    this.voteStatus = newVoteStatus;
-    this.voteStatusWasChanged();
   }
 
   // Voting functions
@@ -183,25 +159,32 @@ export class CommentComponent {
     console.log('Comment ' + this.commentId + ': ' + this.voteStatus);
   }
 
+  private set changeVoteStatus(newVoteStatus: VoteStatus) {
+    this.voteStatus = newVoteStatus;
+    this.voteStatusWasChanged();
+  }
+
+  private onRatingClick(thisInputElemnt: HTMLInputElement, otherInputElement: HTMLInputElement){
+    if(thisInputElemnt.checked == true && otherInputElement.checked == true){
+      otherInputElement.checked = false;
+    }
+  }
+
+
+  // Coment Nesting components
+  // -------------
+  private _maxLvlOfNesting: number = 1;
+  get maxLvlOfNesting(): number{
+    return this._maxLvlOfNesting;
+  }
+
+  exisdsTheMaxLvlOfNesting(): boolean{
+    return this.nested < this.maxLvlOfNesting;
+  }
 
   // Nested comments array
   // -------------
   comments: PostComments[] = [
-    {
-    commentId: this.commentId+10,
-    username: 'a',
-    upvotes: 0,
-    nrComments: 0,
-    voteStatus: 'undefined',
-    content: 'Comment contet',
-    },
-    {
-      commentId: this.commentId+20,
-      username: 'a',
-      upvotes: 0,
-      nrComments: 0,
-      voteStatus: 'undefined',
-      content: 'Comment contet',
-    }
+
   ]; 
 }
