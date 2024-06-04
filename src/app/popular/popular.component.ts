@@ -88,30 +88,4 @@ export class PopularComponent implements OnInit{
     'Most Popular',
   ]
 
-  private _currentFilterIndex: number = 0;
-
-  get currentFilterIndex() : number{
-    return this._currentFilterIndex;
-  }
-
-  get currentFilter() : string{
-    return this.filters[this._currentFilterIndex];
-  }
-
-  set currentFilterIndex(index: number){
-    if (index >= 0 && index < this.filters.length) {
-      this._currentFilterIndex = index;
-    } else {
-      throw new Error('Invavil filter index');
-    }
-  
-    // you can delete this console log 
-    console.log("Current filter: " + this.currentFilter);
-  }
-
-  // when filters change it runs this function
-  onFilterChange(){
-
-  }
-
 }
