@@ -22,7 +22,7 @@
         </div>
     </div>
 
-    <div class="px-3 px-sm-5">
+    <div class="px-3 px-sm-5 d-flex justify-content-center gap-2 flex-column">
         @for (comment of comments; track comment; let  i = $index) { 
             <app-comment
             [commentId]="comment.commentId"

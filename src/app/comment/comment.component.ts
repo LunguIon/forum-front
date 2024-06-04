@@ -40,8 +40,6 @@ export class CommentComponent {
   plusChecked: boolean = false;
   minusChecked: boolean = false;
 
-  actualUpvotes: number = 0;
-
   constructor(){}
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -57,9 +55,9 @@ export class CommentComponent {
 
   ngOnInit(): void {
       switch(this.voteStatus){
-      case "undefined" : {this.plusChecked = false; this.minusChecked = false; this.actualUpvotes = this.upvotes} break;
-      case "upvoted" : {this.plusChecked = true; this.minusChecked = false; this.actualUpvotes = this.upvotes;} break;
-      case 'downvoted' : {this.plusChecked = false; this.minusChecked = true; this.actualUpvotes = this.upvotes;} break;
+      case "undefined" : {this.plusChecked = false; this.minusChecked = false;} break;
+      case "upvoted" : {this.plusChecked = true; this.minusChecked = false;} break;
+      case 'downvoted' : {this.plusChecked = false; this.minusChecked = true;} break;
      }
 
     // get from the database the subcoments of this comment, if it has subcoments, 
@@ -77,7 +75,7 @@ export class CommentComponent {
 
   // Coment Nesting components
   // -------------
-  private _maxLvlOfNesting: number = 2;
+  private _maxLvlOfNesting: number = 1;
   get maxLvlOfNesting(): number{
     return this._maxLvlOfNesting;
   }
@@ -138,16 +136,23 @@ export class CommentComponent {
     }
   }
 
+  private set changeVoteStatus(newVoteStatus: VoteStatus) {
+    this.voteStatus = newVoteStatus;
+    this.voteStatusWasChanged();
+  }
+
   // Voting functions
   // -------------
   onPlusClick(plusBtn: HTMLInputElement, minusBtn: HTMLInputElement){
     if (plusBtn.checked) {
-      this.actualUpvotes++;
+      this.upvotes++;
       if (minusBtn.checked) {
-        this.actualUpvotes++;
+        this.upvotes++;
       }
+      this.changeVoteStatus = 'upvoted';
     } else {
-      this.actualUpvotes--;
+      this.upvotes--;
+      this.changeVoteStatus = 'undefined';
     }
 
     this.onRatingClick(plusBtn, minusBtn);
@@ -157,18 +162,27 @@ export class CommentComponent {
 
   onMinusClick(minusBtn: HTMLInputElement, plusBtn: HTMLInputElement){
     if (minusBtn.checked) {
-      this.actualUpvotes--;
+      this.upvotes--;
       if (plusBtn.checked) {
-        this.actualUpvotes--;
+        this.upvotes--;
       }
+      this.changeVoteStatus = 'downvoted';
     } else {
-      this.actualUpvotes++;
+      this.upvotes++;
+      this.changeVoteStatus = 'undefined'
     }
     
     this.onRatingClick(minusBtn, plusBtn);
     this.minusChecked = minusBtn.checked;
     this.plusChecked = plusBtn.checked;
   }
+
+  voteStatusWasChanged(){
+    // this functions triggers whenever the vote status changes
+    // just check the this.voteStatus var.
+    console.log('Comment ' + this.commentId + ': ' + this.voteStatus);
+  }
+
 
   // Nested comments array
   // -------------

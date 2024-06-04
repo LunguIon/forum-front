@@ -50,18 +50,10 @@
 
         <!-- navbar leftmost content ->                 Dissapers bellow lg-->
         <div  class="navbar-toggler-visible-content justify-content-center align-items-center flex-row gap-4 px-4">
-            <!-- bell icon -->
-            <span tabindex="1" class="span-btn">
-                <div class="btn p-2 nav-link-2 icon d-flex justify-content-center align-items-center" id="notifications-btn-pc">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M23.2589 16.2002L20.6589 6.82917C20.1037 4.82459 18.894 3.06331 17.2222 1.82566C15.5504 0.588005 13.5127 -0.0549039 11.4334 -0.000744217C9.35404 0.0534155 7.35257 0.801531 5.7475 2.12454C4.14243 3.44754 3.02601 5.26941 2.57592 7.30017L0.564915 16.3502C0.467608 16.7886 0.469982 17.2433 0.571861 17.6807C0.67374 18.1181 0.872525 18.5271 1.15355 18.8774C1.43457 19.2277 1.79067 19.5105 2.19556 19.7048C2.60045 19.8991 3.04381 20.0001 3.49292 20.0002H7.09992C7.32943 21.1305 7.94265 22.1466 8.83566 22.8766C9.72867 23.6065 10.8466 24.0052 11.9999 24.0052C13.1533 24.0052 14.2712 23.6065 15.1642 22.8766C16.0572 22.1466 16.6704 21.1305 16.8999 20.0002H20.3699C20.832 20 21.2878 19.893 21.7018 19.6876C22.1158 19.4823 22.4767 19.184 22.7564 18.8162C23.0362 18.4484 23.2271 18.0209 23.3145 17.5672C23.4018 17.1134 23.3831 16.6455 23.2599 16.2002H23.2589ZM11.9999 22.0002C11.3817 21.9976 10.7793 21.8041 10.2752 21.4461C9.77115 21.0881 9.39 20.5831 9.18392 20.0002H14.8159C14.6098 20.5831 14.2287 21.0881 13.7246 21.4461C13.2205 21.8041 12.6182 21.9976 11.9999 22.0002ZM21.1649 17.6052C21.0716 17.7289 20.9507 17.829 20.8118 17.8976C20.6729 17.9662 20.5198 18.0013 20.3649 18.0002H3.49292C3.34318 18.0001 3.19536 17.9665 3.06036 17.9017C2.92537 17.8369 2.80665 17.7426 2.71297 17.6258C2.61929 17.509 2.55304 17.3726 2.5191 17.2268C2.48517 17.0809 2.48442 16.9293 2.51692 16.7832L4.52792 7.73317C4.88227 6.13938 5.75922 4.70978 7.01937 3.67162C8.27952 2.63347 9.85054 2.04634 11.4827 2.00359C13.1148 1.96083 14.7144 2.46489 16.0272 3.43564C17.34 4.40639 18.2906 5.78812 18.7279 7.36117L21.3279 16.7322C21.3704 16.8804 21.3777 17.0364 21.3494 17.1879C21.3212 17.3394 21.258 17.4823 21.1649 17.6052Z"/>
-                    </svg>
-                </div>
-            </span>
 
             <!-- `+` / `+ Add` icon-->
-            <span tabindex="1" class="span-btn">
-                <span class="scale-105 d-flex align-items-center justify-content-center btn p-0 p-xl-1 btn gap-1 nav-link-2" id="add-btn-pc">
+            <span tabindex="1" class="span-btn" #addMenu>
+                <span class="scale-105 d-flex align-items-center justify-content-center btn p-0 p-xl-1 btn gap-1 nav-link-2" id="add-btn-pc" (click)="toggleAddDropdown($event)">
                     <div class="w18h18 p-2 p-xl-0 scale-up-xl icon d-flex justify-content-center align-items-center">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_325_102)">
@@ -76,6 +68,55 @@
                     </div>
                     <span class="font-julius-sans-one fw-normal invisible-xl fs-6">Add</span>
                 </span>
+                    <!-- add menu -->
+                    <ul class="dropdown-menu custom-add-dropdown py-2 px-1" [collapse]="!dropdownAddOpen" [isAnimated]="true">
+                        <li class="m-1">
+                            <div class=" d-flex align-items-center justify-content-start flex-row px-1 mx-1" tabindex="1">
+                                <a routerLink="/createpost" [queryParams]="{ topic: currentTopic }" routerLinkActive="active" class="text-decoration-none">
+                                    <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-2 popup-link" id="dropdown-create-post-pc">
+                                    <div class="w18h18 icon d-flex justify-content-center align-items-center">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <g clip-path="url(#clip0_325_102)">
+                                            <path d="M24 11H13V0H11V11H0V13H11V24H13V13H24V11Z" />
+                                            </g>
+                                            <defs>
+                                            <clipPath id="clip0_325_102">
+                                            <rect width="24" height="24"/>
+                                            </clipPath>
+                                            </defs>
+                                        </svg>
+                                    </div>
+                                    <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">Create Post</span>
+                                </span>
+                                </a>
+                                
+                            </div>
+                        </li>
+
+                        <li class="m-1">
+                            <div class=" d-flex align-items-center justify-content-start flex-row px-1 mx-1" tabindex="1">
+                                <a routerLink="/createtopic" routerLinkActive="active" class="text-decoration-none">
+                                    <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-2 popup-link" id="dropdown-create-topic-pc">
+                                        <div class="w18h18 icon d-flex justify-content-center align-items-center">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <g clip-path="url(#clip0_325_102)">
+                                                <path d="M24 11H13V0H11V11H0V13H11V24H13V13H24V11Z" />
+                                                </g>
+                                                <defs>
+                                                <clipPath id="clip0_325_102">
+                                                <rect width="24" height="24"/>
+                                                </clipPath>
+                                                </defs>
+                                            </svg>
+                                        </div>
+                                        <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">Create Topic</span>
+                                    </span>
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
             </span>
 
             <!-- user-icon big -->
@@ -84,7 +125,7 @@
             </span>
 
             <!-- toggle user menu icon -->
-            <span tabindex="1">
+            <span tabindex="1" #userMenu>
                 <span class="d-flex align-items-center justify-content-center btn p-1 span-btn nav-item dropdown nav-link-2" id="toggle-dropdown-pc" (click)="toggleDropdown($event)">
                     <div class="w50h50 icon d-block justify-content-center align-items-center" >
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
@@ -113,51 +154,6 @@
                             </div>
                         </div>
                       </div>
-                    </li>
-
-                    <li class="m-1">
-                        <div class=" d-flex align-items-center justify-content-start flex-row px-1 mx-1" tabindex="1">
-                            <a routerLink="/createpost" [queryParams]="{ topic: currentTopic }" routerLinkActive="active" class="text-decoration-none">
-                                <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-2 popup-link" id="dropdown-create-post-pc">
-                                <div class="w18h18 icon d-flex justify-content-center align-items-center">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <g clip-path="url(#clip0_325_102)">
-                                        <path d="M24 11H13V0H11V11H0V13H11V24H13V13H24V11Z" />
-                                        </g>
-                                        <defs>
-                                        <clipPath id="clip0_325_102">
-                                        <rect width="24" height="24"/>
-                                        </clipPath>
-                                        </defs>
-                                    </svg>
-                                </div>
-                                <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">Create Post</span>
-                            </span>
-                            </a>
-                            
-                        </div>
-                    </li>
-
-                    <li class="m-1">
-                        <div class=" d-flex align-items-center justify-content-start flex-row px-1 mx-1" tabindex="1">
-                            <a routerLink="/createtopic" routerLinkActive="active" class="text-decoration-none">
-                                <span class=" d-flex align-items-center justify-content-center flex-row py-1 px-2 btn gap-2 popup-link" id="dropdown-create-topic-pc">
-                                    <div class="w18h18 icon d-flex justify-content-center align-items-center">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                            <g clip-path="url(#clip0_325_102)">
-                                            <path d="M24 11H13V0H11V11H0V13H11V24H13V13H24V11Z" />
-                                            </g>
-                                            <defs>
-                                            <clipPath id="clip0_325_102">
-                                            <rect width="24" height="24"/>
-                                            </clipPath>
-                                            </defs>
-                                        </svg>
-                                    </div>
-                                    <span class="font-julius-sans-one fw-normal fs-6 white-space-nowrap">Create Topic</span>
-                                </span>
-                            </a>
-                        </div>
                     </li>
 
                     <li class="m-1">

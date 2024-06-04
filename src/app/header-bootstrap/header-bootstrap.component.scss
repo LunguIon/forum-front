@@ -169,6 +169,17 @@
     box-shadow: 10px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
+.custom-add-dropdown{
+    margin-top: 50px;
+    right: 210px;
+    border-radius: 35px;
+    background-color: rgba(var(--clr-light-gray-rgb-vals), 1);
+    color: var(--clr-light);
+    border-color: var(--clr-dark-primary);
+    padding: 0;
+    box-shadow: 10px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
 
 .custom-dropdown-canvas{
     padding: 0;

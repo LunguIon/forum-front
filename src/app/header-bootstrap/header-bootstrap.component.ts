@@ -26,13 +26,21 @@ export class HeaderBootstrapComponent implements OnInit, OnDestroy{
 
   // Constructor, innit and destroy
   // -------------
+
+  @ViewChild('addMenu') addMenu!: ElementRef;
+  @ViewChild('userMenu') userMenu!: ElementRef;
   private elementRefSubscription!: Subscription;
   constructor(private eRef: ElementRef, private renderer: Renderer2, private elementRefService: ElementRefService, private appComponent: AppComponent) {
     this.renderer.listen('window', 'click', (event: Event) => {
-      if (!this.eRef.nativeElement.contains(event.target)) {
+      if (!this.userMenu.nativeElement.contains(event.target)) {
         this.dropdownOpen = false;
       }
-    }); 
+    });
+    this.renderer.listen('window', 'click', (event: Event) => {
+      if (!this.addMenu.nativeElement.contains(event.target)) {
+        this.dropdownAddOpen = false;
+      }
+    });  
   }
 
   ngOnInit() {
@@ -81,11 +89,20 @@ export class HeaderBootstrapComponent implements OnInit, OnDestroy{
   // Dropdown-Popup components
   // -------------
   dropdownOpen: boolean = false;
+  dropdownAddOpen: boolean = false;
 
   toggleDropdown(event: Event) {
     // event.preventDefault();
     // event.stopPropagation(); 
+    this.dropdownAddOpen = false;
     this.dropdownOpen = !this.dropdownOpen;
+  }
+
+  toggleAddDropdown(event: Event) {
+    // event.preventDefault();
+    // event.stopPropagation();
+    this.dropdownOpen = false; 
+    this.dropdownAddOpen = !this.dropdownAddOpen;
   }
 
 
