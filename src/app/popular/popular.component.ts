@@ -7,7 +7,7 @@ import { NavigationEnd, Router } from '@angular/router';
 interface Post{
   postId: number;
   username: string;
-  upvotes: number;
+  valueOfLikes: number;
   nrComments: number;
   voteStatus: 'upvoted' | 'downvoted' | 'undefined';
   content: string;
@@ -48,7 +48,7 @@ export class PopularComponent implements OnInit{
     {
       postId: 1,
       username: 'User 123',
-      upvotes: 300,
+      valueOfLikes: 300,
       nrComments: 50,
       voteStatus: 'upvoted',
       content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a augue facilisis, tempor lectus ullamcorper, bibendum leo. Nullam sollicitudin augue sed felis hendrerit ultrices. Aenean nec rutrum magna. Praesent massa sem, suscipit at interdum non, lobortis eget dolor. Quisque volutpat neque velit, ut luctus purus aliquet eget. Aenean suscipit lorem a nisl consectetur imperdiet. \n\n Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a augue facilisis, tempor lectus ullamcorper, bibendum leo. Nullam sollicitudin augue sed felis hendrerit ultrices. Aenean nec rutrum magna. Praesent massa sem, suscipit at interdum non, lobortis eget dolor. Quisque volutpat neque velit, ut luctus purus aliquet eget. Aenean suscipit lorem a nisl consectetur imperdiet.`,
@@ -58,7 +58,7 @@ export class PopularComponent implements OnInit{
     {
       postId: 2,
       username: 'User 456',
-      upvotes: 150,
+      valueOfLikes: 150,
       nrComments: 200,
       voteStatus: 'downvoted',
       content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a augue facilisis, tempor lectus ullamcorper, bibendum leo. Nullam sollicitudin augue sed felis hendrerit ultrices. Aenean nec rutrum magna. Praesent massa sem, suscipit at interdum non, lobortis eget dolor. Quisque volutpat neque velit, ut luctus purus aliquet eget. Aenean suscipit lorem a nisl consectetur imperdiet. \n\n Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a augue facilisis, tempor lectus ullamcorper, bibendum leo. Nullam sollicitudin augue sed felis hendrerit ultrices. Aenean nec rutrum magna. Praesent massa sem, suscipit at interdum non, lobortis eget dolor. Quisque volutpat neque velit, ut luctus purus aliquet eget. Aenean suscipit lorem a nisl consectetur imperdiet.`,
@@ -68,7 +68,7 @@ export class PopularComponent implements OnInit{
     {
       postId: 3,
       username: 'User 124',
-      upvotes: 10,
+      valueOfLikes: 10,
       nrComments: 5,
       voteStatus: 'undefined',
       content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a augue facilisis, tempor lectus ullamcorper, bibendum leo. Nullam sollicitudin augue sed felis hendrerit ultrices. Aenean nec rutrum magna. Praesent massa sem, suscipit at interdum non, lobortis eget dolor. Quisque volutpat neque velit, ut luctus purus aliquet eget. Aenean suscipit lorem a nisl consectetur imperdiet. \n\n Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a augue facilisis, tempor lectus ullamcorper, bibendum leo. Nullam sollicitudin augue sed felis hendrerit ultrices. Aenean nec rutrum magna. Praesent massa sem, suscipit at interdum non, lobortis eget dolor. Quisque volutpat neque velit, ut luctus purus aliquet eget. Aenean suscipit lorem a nisl consectetur imperdiet.`,
@@ -77,15 +77,5 @@ export class PopularComponent implements OnInit{
     },
   ];
 
-  // Filter components
-  // if need more filters or if you need to change the filters just change the 'flters' array
-  // you can easely get the currentFilterIndex and/or the currentFilter by just calling them as simple variables (index: number = currentFilterIndex;)
-  // if you change the current filter you need only to update the currentFilterIndex (currentFilterIndex = index;)
-  // -------------
-  filters: string[] = [
-    'Earliner',
-    'Later',
-    'Most Popular',
-  ]
 
 }

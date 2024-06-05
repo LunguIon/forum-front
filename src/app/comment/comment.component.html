@@ -62,7 +62,7 @@
 
                     <div class="upvotes fw-black d-flex justify-content-center align-items-center">
                         <div class="d-flex justify-content-center align-items-center">
-                            {{upvotes}} 
+                            {{valueOfLikes}} 
                         </div>
                     </div>
 
@@ -112,7 +112,7 @@
                 <app-comment
                 [commentId]="comment.commentId"
                 [username]="comment.username"
-                [upvotes]="comment.upvotes"
+                [valueOfLikes]="comment.valueOfLikes"
                 [nrComments]="comment.nrComments"
                 [voteStatus]="comment.voteStatus"
                 [content]="comment.content"

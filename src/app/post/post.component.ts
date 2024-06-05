@@ -35,10 +35,10 @@ export class PostComponent implements OnInit, OnChanges{
   constructor(){}
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['postId'] || changes['username'] || changes['upvotes'] || changes['nrComments'] || changes['voteStatus'] || changes['content'] || changes['imgLink']) {
+    if (changes['postId'] || changes['username'] || changes['valueOfLikes'] || changes['nrComments'] || changes['voteStatus'] || changes['content'] || changes['imgLink']) {
       this.postId = changes['postId'].currentValue;
       this.username = changes['username'].currentValue;
-      this.upvotes = changes['upvotes'].currentValue;
+      this.valueOfLikes = changes['valueOfLikes'].currentValue;
       this.nrComments = changes['nrComments'].currentValue;
       this.voteStatus = changes['voteStatus'].currentValue;
       this.content = changes['content'].currentValue;

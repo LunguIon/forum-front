@@ -11,7 +11,7 @@ type VoteStatus = 'upvoted' | 'downvoted' | 'undefined';
 interface PostComments{
   commentId: number;
   username: string;
-  upvotes: number
+  valueOfLikes: number
   nrComments: number;
   voteStatus: VoteStatus;
   content: string
@@ -29,7 +29,7 @@ export class CommentComponent {
   // -------------
   @Input() commentId: number = 1;
   @Input() username: string = ""
-  @Input() upvotes: number = 0;
+  @Input() valueOfLikes: number = 0;
   @Input() nrComments: number = 0;
   @Input() content : string = "";
   @Input() voteStatus: VoteStatus = "undefined";
@@ -43,10 +43,10 @@ export class CommentComponent {
   constructor(){}
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['commentId'] || changes['username'] || changes['upvotes'] || changes['nrComments'] || changes['voteStatus'] || changes['content']) {
+    if (changes['commentId'] || changes['username'] || changes['valueOfLikes'] || changes['nrComments'] || changes['voteStatus'] || changes['content']) {
       this.commentId = changes['commentId'].currentValue;
       this.username = changes['username'].currentValue;
-      this.upvotes = changes['upvotes'].currentValue;
+      this.valueOfLikes = changes['valueOfLikes'].currentValue;
       this.nrComments = changes['nrComments'].currentValue;
       this.voteStatus = changes['voteStatus'].currentValue;
       this.content = changes['content'].currentValue;
@@ -121,13 +121,13 @@ export class CommentComponent {
   // -------------
   onPlusClick(plusBtn: HTMLInputElement, minusBtn: HTMLInputElement){
     if (plusBtn.checked) {
-      this.upvotes++;
+      this.valueOfLikes++;
       if (minusBtn.checked) {
-        this.upvotes++;
+        this.valueOfLikes++;
       }
       this.changeVoteStatus = 'upvoted';
     } else {
-      this.upvotes--;
+      this.valueOfLikes--;
       this.changeVoteStatus = 'undefined';
     }
 
@@ -138,13 +138,13 @@ export class CommentComponent {
 
   onMinusClick(minusBtn: HTMLInputElement, plusBtn: HTMLInputElement){
     if (minusBtn.checked) {
-      this.upvotes--;
+      this.valueOfLikes--;
       if (plusBtn.checked) {
-        this.upvotes--;
+        this.valueOfLikes--;
       }
       this.changeVoteStatus = 'downvoted';
     } else {
-      this.upvotes++;
+      this.valueOfLikes++;
       this.changeVoteStatus = 'undefined'
     }
     

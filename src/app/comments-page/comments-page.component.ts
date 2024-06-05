@@ -10,7 +10,7 @@ import { ToastService } from '../service/toast.service';
 interface Post{
   postId: number;
   username: string;
-  upvotes: number;
+  valueOfLikes: number;
   nrComments: number;
   voteStatus: 'upvoted' | 'downvoted' | 'undefined';
   content: string;
@@ -20,7 +20,7 @@ interface Post{
 interface PostComments{
   commentId: number;
   username: string;
-  upvotes: number
+  valueOfLikes: number
   nrComments: number;
   voteStatus: 'upvoted' | 'downvoted' | 'undefined';
   content: string
@@ -92,7 +92,7 @@ export class CommentsPageComponent implements OnInit {
   post: Post = {
     postId: 0,
     username: '',
-    upvotes: 0,
+    valueOfLikes: 0,
     nrComments: 2,
     voteStatus: 'undefined',
     content: 'contet',
@@ -103,7 +103,7 @@ export class CommentsPageComponent implements OnInit {
     {
     commentId: this.post.postId+1,
     username: 'a',
-    upvotes: 0,
+    valueOfLikes: 0,
     nrComments: 2,
     voteStatus: 'undefined',
     content: 'Comment contet',
@@ -111,7 +111,7 @@ export class CommentsPageComponent implements OnInit {
     {
       commentId: this.post.postId+2,
       username: 'a',
-      upvotes: 0,
+      valueOfLikes: 0,
       nrComments: 2,
       voteStatus: 'undefined',
       content: 'Comment contet',
