@@ -14,6 +14,7 @@ import { ElementRefService } from './service/element-ref.service';
 export class AppComponent implements AfterViewInit, OnInit {
   // Constructor and innit 
   // -------------
+  @ViewChild('headerComponent') headerComponent! : HeaderBootstrapComponent;
   constructor(private elementRefService: ElementRefService){
   }
 

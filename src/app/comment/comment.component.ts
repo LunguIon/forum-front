@@ -5,17 +5,8 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastService } from '../service/toast.service';
-
-type VoteStatus = 'upvoted' | 'downvoted' | 'undefined';
-
-interface PostComments{
-  commentId: number;
-  username: string;
-  valueOfLikes: number
-  nrComments: number;
-  voteStatus: VoteStatus;
-  content: string
-}
+import { VoteStatus } from '../models/voteStatus.type';
+import { Comment } from '../models/comment.model';
 
 @Component({
   selector: 'app-comment',
@@ -27,7 +18,7 @@ interface PostComments{
 export class CommentComponent {  
   // Input variables
   // -------------
-  @Input() commentId: number = 1;
+  @Input() id: number = 1;
   @Input() username: string = ""
   @Input() valueOfLikes: number = 0;
   @Input() nrComments: number = 0;
@@ -43,8 +34,8 @@ export class CommentComponent {
   constructor(){}
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['commentId'] || changes['username'] || changes['valueOfLikes'] || changes['nrComments'] || changes['voteStatus'] || changes['content']) {
-      this.commentId = changes['commentId'].currentValue;
+    if (changes['id'] || changes['username'] || changes['valueOfLikes'] || changes['nrComments'] || changes['voteStatus'] || changes['content']) {
+      this.id = changes['id'].currentValue;
       this.username = changes['username'].currentValue;
       this.valueOfLikes = changes['valueOfLikes'].currentValue;
       this.nrComments = changes['nrComments'].currentValue;
@@ -156,7 +147,7 @@ export class CommentComponent {
   voteStatusWasChanged(){
     // this functions triggers whenever the vote status changes
     // just check the this.voteStatus var.
-    console.log('Comment ' + this.commentId + ': ' + this.voteStatus);
+    console.log('Comment ' + this.id + ': ' + this.voteStatus);
   }
 
   private set changeVoteStatus(newVoteStatus: VoteStatus) {
@@ -184,7 +175,7 @@ export class CommentComponent {
 
   // Nested comments array
   // -------------
-  comments: PostComments[] = [
+  comments: Comment[] = [
 
   ]; 
 }
