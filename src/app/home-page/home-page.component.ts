@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { PostComponent } from '../post/post.component';
 import { NgFor } from '@angular/common';
+import { NavigationEnd, Router } from '@angular/router';
 import { PostService } from '../service/post.service';
 import { User } from '../models/user.model';
 
@@ -27,16 +28,23 @@ export class HomePageComponent implements OnInit{
   posts: Post[] = [];
   // OnInnit - you can add the base logic of the http requests here
   // -------------
+  
+  router: Router = inject(Router);
   constructor(private postService: PostService) {}
 
   ngOnInit(): void {
       this.loadPosts();
+      
+      this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        window.scrollTo(0, 0);
+      }});
   }
 
   loadPosts(): void{
     this.postService.getAllPosts().subscribe((data: Post[]) => {
       this.posts = data;
-    })
+    });
   }
 
 

@@ -1,0 +1,42 @@
+<div class="main-container fill container-fluid font-julius-sans-one">
+    <div class="mb-2">
+        <app-post
+            [postId]="post.postId"
+            [username]="post.username"
+            [upvotes]="post.upvotes"
+            [nrComments]="post.nrComments"
+            [voteStatus]="post.voteStatus"
+            [content]="post.content"
+            [imgLink]="post.imgLink">
+        </app-post>
+    </div>
+
+    <div class="py-4 px-sm-5">
+        <div class="search-bar d-flex justify-content-center align-items-center position-relative">
+            <textarea #commentContent class="font-inter search-field rounded-5 form-control flex-grow-1 px-4 py-1 py-md-2 fs-4" placeholder="Post Comment" name="text" required ngModel #textPost="ngModel"></textarea>
+            <span class="search-btn btn p-1 w40h40 d-flex justify-content-center align-items-center" (click)="postComment(commentContent.value);" id="post-comment-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                    <path d="M3.478 2.404a.75.75 0 0 0-.926.941l2.432 7.905H13.5a.75.75 0 0 1 0 1.5H4.984l-2.432 7.905a.75.75 0 0 0 .926.94 60.519 60.519 0 0 0 18.445-8.986.75.75 0 0 0 0-1.218A60.517 60.517 0 0 0 3.478 2.404Z" />
+                  </svg>
+            </span>
+        </div>
+    </div>
+
+    <div class="px-3 px-sm-5 d-flex justify-content-center gap-2 flex-column">
+        @for (comment of comments; track comment; let  i = $index) { 
+            <app-comment
+            [commentId]="comment.commentId"
+            [username]="comment.username"
+            [upvotes]="comment.upvotes"
+            [nrComments]="comment.nrComments"
+            [content]="comment.content"
+            [voteStatus]="comment.voteStatus">
+            </app-comment>
+        }
+    </div>
+
+</div>
+
+<ng-template #postedCommentToast>Comment Posted </ng-template>
+<app-toasts-container aria-live="polite" aria-atomic="true"></app-toasts-container>
+
