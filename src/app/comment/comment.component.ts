@@ -110,6 +110,12 @@ export class CommentComponent {
 
   // Voting functions
   // -------------
+  voteStatusWasChanged(){
+    // this functions triggers whenever the vote status changes
+    // just check the this.voteStatus var.
+    console.log('Comment ' + this.id + ': ' + this.voteStatus);
+  }
+
   onPlusClick(plusBtn: HTMLInputElement, minusBtn: HTMLInputElement){
     if (plusBtn.checked) {
       this.valueOfLikes++;
@@ -136,18 +142,12 @@ export class CommentComponent {
       this.changeVoteStatus = 'downvoted';
     } else {
       this.valueOfLikes++;
-      this.changeVoteStatus = 'undefined'
+      this.changeVoteStatus = 'undefined';
     }
     
     this.onRatingClick(minusBtn, plusBtn);
     this.minusChecked = minusBtn.checked;
     this.plusChecked = plusBtn.checked;
-  }
-
-  voteStatusWasChanged(){
-    // this functions triggers whenever the vote status changes
-    // just check the this.voteStatus var.
-    console.log('Comment ' + this.id + ': ' + this.voteStatus);
   }
 
   private set changeVoteStatus(newVoteStatus: VoteStatus) {

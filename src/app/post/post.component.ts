@@ -69,14 +69,22 @@ export class PostComponent implements OnInit, OnChanges{
 
   // Voting functions
   // -------------
+  voteStatusWasChanged(){
+    // this functions triggers whenever the vote status changes
+    // just check the this.voteStatus var.
+    console.log('Comment ' + this.id + ': ' + this.voteStatus);
+  }
+
   onPlusClick(plusBtn: HTMLInputElement, minusBtn: HTMLInputElement){
     if (plusBtn.checked) {
       this.valueOfLikes++;
       if (minusBtn.checked) {
         this.valueOfLikes++;
       }
+      this.changeVoteStatus = 'upvoted';
     } else {
       this.valueOfLikes--;
+      this.changeVoteStatus = 'undefined';
     }
 
     this.onRatingClick(plusBtn, minusBtn);
@@ -90,8 +98,10 @@ export class PostComponent implements OnInit, OnChanges{
       if (plusBtn.checked) {
         this.valueOfLikes--;
       }
+      this.changeVoteStatus = 'downvoted';
     } else {
       this.valueOfLikes++;
+      this.changeVoteStatus = 'undefined';
     }
     
     this.onRatingClick(minusBtn, plusBtn);
@@ -99,4 +109,8 @@ export class PostComponent implements OnInit, OnChanges{
     this.plusChecked = plusBtn.checked;
   }
 
+  private set changeVoteStatus(newVoteStatus: VoteStatus) {
+    this.voteStatus = newVoteStatus;
+    this.voteStatusWasChanged();
+  }
 }
