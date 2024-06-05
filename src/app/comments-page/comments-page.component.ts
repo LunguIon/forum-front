@@ -62,12 +62,14 @@ export class CommentsPageComponent implements OnInit {
     this.toastService.show({ template });
 	}
   
+  tempUniqueID: number = 0;
   @ViewChild('postedCommentToast') postedCommentToast!: TemplateRef<any>;
   ShowToastAndPostComment(commentContent: string) {
     this.showToast(this.postedCommentToast);
-    
+    this.tempUniqueID--;
+
     this.comments.unshift({
-      id: -1,
+      id: this.tempUniqueID,
       valueOfLikes: 0,
       nrComments: 0,
       voteStatus: 'undefined',
