@@ -8,7 +8,7 @@ import { Post } from '../models/post.model';
   providedIn: 'root'
 })
 export class PostService {
-  private apiUrl = 'http://localhost:8080/posts';
+  private apiUrl = 'https://speakapi.lol/posts';
   constructor(private http: HttpClient) { }
 
   getAllPosts(): Observable<Post[]>{

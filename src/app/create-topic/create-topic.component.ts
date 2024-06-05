@@ -84,7 +84,7 @@ export class CreateTopicComponent{
       formData.append('image', imageFile, imageFile.name);
 
       // Replace 'your-backend-endpoint' with the actual endpoint
-      this.http.post('your-backend-endpoint', formData).subscribe(
+      this.http.post('topics', formData).subscribe(
         response => {
           console.log('Upload successful', response);
         },
