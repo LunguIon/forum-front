@@ -65,6 +65,8 @@ export class CommentsPageComponent implements OnInit {
       // Here you sent the comment into the database
       
       // if succesful show this
+
+      // DONT RELOAD, JUST ADD THE COMMENT CLIENT SIDED
       this.ShowToastAndReloadPage();
     }
   }
