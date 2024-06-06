@@ -3,17 +3,8 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { PostComponent } from '../post/post.component';
 import { NgFor } from '@angular/common';
 import { NavigationEnd, Router } from '@angular/router';
+import { Post } from '../models/post.model';
 
-interface Post{
-  postId: number;
-  username: string;
-  valueOfLikes: number;
-  nrComments: number;
-  voteStatus: 'upvoted' | 'downvoted' | 'undefined';
-  content: string;
-  favorited: boolean;
-  imgLink: string | null;
-}
 @Component({
   selector: 'app-popular',
   standalone: true,
@@ -46,33 +37,30 @@ export class PopularComponent implements OnInit{
   // -------------
   posts: Post[] = [
     {
-      postId: 1,
-      username: 'User 123',
+      id: 1,
+      user: {id: 1, username: "User 123"},
       valueOfLikes: 300,
       nrComments: 50,
       voteStatus: 'upvoted',
       content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a augue facilisis, tempor lectus ullamcorper, bibendum leo. Nullam sollicitudin augue sed felis hendrerit ultrices. Aenean nec rutrum magna. Praesent massa sem, suscipit at interdum non, lobortis eget dolor. Quisque volutpat neque velit, ut luctus purus aliquet eget. Aenean suscipit lorem a nisl consectetur imperdiet. \n\n Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a augue facilisis, tempor lectus ullamcorper, bibendum leo. Nullam sollicitudin augue sed felis hendrerit ultrices. Aenean nec rutrum magna. Praesent massa sem, suscipit at interdum non, lobortis eget dolor. Quisque volutpat neque velit, ut luctus purus aliquet eget. Aenean suscipit lorem a nisl consectetur imperdiet.`,
-      favorited: true,
       imgLink: null
     },
     {
-      postId: 2,
-      username: 'User 456',
+      id: 2,
+      user: {id: 2, username: "User 456"},
       valueOfLikes: 150,
       nrComments: 200,
       voteStatus: 'downvoted',
       content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a augue facilisis, tempor lectus ullamcorper, bibendum leo. Nullam sollicitudin augue sed felis hendrerit ultrices. Aenean nec rutrum magna. Praesent massa sem, suscipit at interdum non, lobortis eget dolor. Quisque volutpat neque velit, ut luctus purus aliquet eget. Aenean suscipit lorem a nisl consectetur imperdiet. \n\n Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a augue facilisis, tempor lectus ullamcorper, bibendum leo. Nullam sollicitudin augue sed felis hendrerit ultrices. Aenean nec rutrum magna. Praesent massa sem, suscipit at interdum non, lobortis eget dolor. Quisque volutpat neque velit, ut luctus purus aliquet eget. Aenean suscipit lorem a nisl consectetur imperdiet.`,
-      favorited: true,
       imgLink: 'https://upload.wikimedia.org/wikipedia/commons/d/d2/Solid_white.png?20060513000852'
     },
     {
-      postId: 3,
-      username: 'User 124',
+      id: 3,
+      user: {id: 3, username: "User 789"},
       valueOfLikes: 10,
       nrComments: 5,
       voteStatus: 'undefined',
       content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a augue facilisis, tempor lectus ullamcorper, bibendum leo. Nullam sollicitudin augue sed felis hendrerit ultrices. Aenean nec rutrum magna. Praesent massa sem, suscipit at interdum non, lobortis eget dolor. Quisque volutpat neque velit, ut luctus purus aliquet eget. Aenean suscipit lorem a nisl consectetur imperdiet. \n\n Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a augue facilisis, tempor lectus ullamcorper, bibendum leo. Nullam sollicitudin augue sed felis hendrerit ultrices. Aenean nec rutrum magna. Praesent massa sem, suscipit at interdum non, lobortis eget dolor. Quisque volutpat neque velit, ut luctus purus aliquet eget. Aenean suscipit lorem a nisl consectetur imperdiet.`,
-      favorited: false,
       imgLink: null
     },
   ];

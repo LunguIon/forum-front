@@ -7,6 +7,7 @@ import { AppComponent } from '../app.component';
 import { ElementRefService } from '../service/element-ref.service';
 import { Subscription } from 'rxjs';
 import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { User } from '../models/user.model';
 
 
 @Component({
@@ -21,7 +22,7 @@ import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } fro
 export class HeaderBootstrapComponent implements OnInit, OnDestroy{
   // Input and other variables 
   // -------------
-  @Input() username: string ="user 123";
+  @Input() user: User = {id:1, username: "User 123"};
   currentTopic: string = '';
 
   // Constructor, innit and destroy
@@ -76,7 +77,7 @@ export class HeaderBootstrapComponent implements OnInit, OnDestroy{
 
   // Username components
   // -------------
-  private sanitizedUsername = this.username;
+  private sanitizedUsername = this.user.username;
 
   getSanitizedUsername(): string {
     return this.sanitizedUsername;

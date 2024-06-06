@@ -3,8 +3,7 @@ import { Component, inject, Input, OnChanges, OnInit, SimpleChanges } from '@ang
 import { FormsModule } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-
-type VoteStatus = 'upvoted' | 'downvoted' | 'undefined';
+import { VoteStatus } from '../models/voteStatus.type';
 
 @Component({
   selector: 'app-post',
@@ -16,7 +15,7 @@ type VoteStatus = 'upvoted' | 'downvoted' | 'undefined';
 export class PostComponent implements OnInit, OnChanges{
   // Input variables
   // -------------
-  @Input() postId: number = 1;
+  @Input() id: number = 1;
   @Input() username: string = ""
   @Input() valueOfLikes: number = 0;
   @Input() nrComments: number = 0;
@@ -30,13 +29,12 @@ export class PostComponent implements OnInit, OnChanges{
   plusChecked: boolean = false;
   minusChecked: boolean = false;
 
-  actualUpvotes: number = 0;
 
   constructor(){}
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['postId'] || changes['username'] || changes['valueOfLikes'] || changes['nrComments'] || changes['voteStatus'] || changes['content'] || changes['imgLink']) {
-      this.postId = changes['postId'].currentValue;
+    if (changes['id'] || changes['username'] || changes['valueOfLikes'] || changes['nrComments'] || changes['voteStatus'] || changes['content'] || changes['imgLink']) {
+      this.id = changes['id'].currentValue;
       this.username = changes['username'].currentValue;
       this.valueOfLikes = changes['valueOfLikes'].currentValue;
       this.nrComments = changes['nrComments'].currentValue;
@@ -49,9 +47,9 @@ export class PostComponent implements OnInit, OnChanges{
 
   ngOnInit(): void {
       switch(this.voteStatus){
-      case "undefined" : {this.plusChecked = false; this.minusChecked = false; this.actualUpvotes = this.valueOfLikes} break;
-      case "upvoted" : {this.plusChecked = true; this.minusChecked = false; this.actualUpvotes = this.valueOfLikes;} break;
-      case 'downvoted' : {this.plusChecked = false; this.minusChecked = true; this.actualUpvotes = this.valueOfLikes;} break;
+      case "undefined" : {this.plusChecked = false; this.minusChecked = false;} break;
+      case "upvoted" : {this.plusChecked = true; this.minusChecked = false;} break;
+      case 'downvoted' : {this.plusChecked = false; this.minusChecked = true;} break;
      }
   }
 
@@ -71,14 +69,22 @@ export class PostComponent implements OnInit, OnChanges{
 
   // Voting functions
   // -------------
+  voteStatusWasChanged(){
+    // this functions triggers whenever the vote status changes
+    // just check the this.voteStatus var.
+    console.log('Comment ' + this.id + ': ' + this.voteStatus);
+  }
+
   onPlusClick(plusBtn: HTMLInputElement, minusBtn: HTMLInputElement){
     if (plusBtn.checked) {
-      this.actualUpvotes++;
+      this.valueOfLikes++;
       if (minusBtn.checked) {
-        this.actualUpvotes++;
+        this.valueOfLikes++;
       }
+      this.changeVoteStatus = 'upvoted';
     } else {
-      this.actualUpvotes--;
+      this.valueOfLikes--;
+      this.changeVoteStatus = 'undefined';
     }
 
     this.onRatingClick(plusBtn, minusBtn);
@@ -88,12 +94,14 @@ export class PostComponent implements OnInit, OnChanges{
 
   onMinusClick(minusBtn: HTMLInputElement, plusBtn: HTMLInputElement){
     if (minusBtn.checked) {
-      this.actualUpvotes--;
+      this.valueOfLikes--;
       if (plusBtn.checked) {
-        this.actualUpvotes--;
+        this.valueOfLikes--;
       }
+      this.changeVoteStatus = 'downvoted';
     } else {
-      this.actualUpvotes++;
+      this.valueOfLikes++;
+      this.changeVoteStatus = 'undefined';
     }
     
     this.onRatingClick(minusBtn, plusBtn);
@@ -101,4 +109,8 @@ export class PostComponent implements OnInit, OnChanges{
     this.plusChecked = plusBtn.checked;
   }
 
+  private set changeVoteStatus(newVoteStatus: VoteStatus) {
+    this.voteStatus = newVoteStatus;
+    this.voteStatusWasChanged();
+  }
 }

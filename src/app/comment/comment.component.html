@@ -23,16 +23,16 @@
                         </div>  
                     </div>
                     <ul ngbDropdownMenu aria-labelledby="filter-dropdown" class="dropdown-menu custom-filter-dropdown p-1">
-                        <li ngbDropdownItem class="d-block filter-link btn" (click)="copyCommentText(); showToast(copiedToast);"  [id]="'filter-dropdown-copy-comment-' + commentId">
+                        <li ngbDropdownItem class="d-block filter-link btn" (click)="copyCommentText(); showToast(copiedToast);"  [id]="'filter-dropdown-copy-comment-' + id">
                             <div class="d-flex px-1">Copy</div>
                         </li>
                         <div>
-                            <li ngbDropdownItem class="d-block filter-link btn" [id]="'filter-dropdown-edit-comment-' + commentId">
+                            <li ngbDropdownItem class="d-block filter-link btn" [id]="'filter-dropdown-edit-comment-' + id">
                                 <div class="d-flex px-1">Edit</div>
                             </li>
                         </div>
                         <div>
-                            <li ngbDropdownItem class="d-block filter-link btn" [id]="'filter-dropdown-delete-comment-' + commentId">
+                            <li ngbDropdownItem class="d-block filter-link btn" [id]="'filter-dropdown-delete-comment-' + id">
                                 <div class="d-flex px-1">Delete</div>
                             </li>
                         </div>
@@ -51,8 +51,8 @@
             <div class="d-flex justify-content-center align-items-center flex-row gap-1 gap-md-3">
                 <div class="d-flex justify-content-center align-items-center flex-row gap-2 px-1 py-1 rounded-5 rating-bar">
 
-                    <label [for]=" 'comment-plus-' + commentId " class="d-flex justify-content-center align-items-center                   plus-lbl">    
-                        <input #plusBtn type="checkbox" [id]=" 'comment-plus-' + commentId " name="rating" class="d-none" (click)="onPlusClick(plusBtn, minusBtn)" [(ngModel)]="plusChecked">
+                    <label [for]=" 'comment-plus-' + id " class="d-flex justify-content-center align-items-center                   plus-lbl">    
+                        <input #plusBtn type="checkbox" [id]=" 'comment-plus-' + id " name="rating" class="d-none" (click)="onPlusClick(plusBtn, minusBtn)" [(ngModel)]="plusChecked">
                         <div class="btn w25h25 d-flex justify-content-center align-content-center rounded-5     plus-btn ">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -66,8 +66,8 @@
                         </div>
                     </div>
 
-                    <label [for]=" 'comment-minus-' + commentId " class="d-flex justify-content-center align-items-center                  minus-lbl">
-                        <input #minusBtn type="checkbox" [id]=" 'comment-minus-' + commentId " name="rating" class="d-none" (click)="onMinusClick(minusBtn, plusBtn)" [(ngModel)]="minusChecked">
+                    <label [for]=" 'comment-minus-' + id " class="d-flex justify-content-center align-items-center                  minus-lbl">
+                        <input #minusBtn type="checkbox" [id]=" 'comment-minus-' + id " name="rating" class="d-none" (click)="onMinusClick(minusBtn, plusBtn)" [(ngModel)]="minusChecked">
                         <div class="btn w25h25 d-flex justify-content-center align-content-center rounded-5     minus-btn" >
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
@@ -78,7 +78,7 @@
                 </div>
 
                 <div *ngIf="exisdsTheMaxLvlOfNesting()"> 
-                    <div class="d-flex justify-content-center align-items-center gap-1 gap-sm-2 px-2 py-1 rounded-5 btn " [id]="'comment-btn-' + commentId">
+                    <div class="d-flex justify-content-center align-items-center gap-1 gap-sm-2 px-2 py-1 rounded-5 btn " [id]="'comment-comment-btn-' + id">
                         <div class="w25h25 d-flex justify-content-center align-content-center rounded-5">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.076-4.076a1.526 1.526 0 0 1 1.037-.443 48.282 48.282 0 0 0 5.68-.494c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
@@ -110,8 +110,8 @@
         @for (comment of comments; track comment; let  i = $index) { 
             <div class="ms-4 ms-sm-5">
                 <app-comment
-                [commentId]="comment.commentId"
-                [username]="comment.username"
+                [id]="comment.id"
+                [username]="comment.user.username"
                 [valueOfLikes]="comment.valueOfLikes"
                 [nrComments]="comment.nrComments"
                 [voteStatus]="comment.voteStatus"

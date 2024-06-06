@@ -6,25 +6,11 @@ import { CommentComponent } from '../comment/comment.component';
 import { ToastsContainerComponent } from '../toasts-container/toasts-container.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastService } from '../service/toast.service';
-
-interface Post{
-  postId: number;
-  username: string;
-  valueOfLikes: number;
-  nrComments: number;
-  voteStatus: 'upvoted' | 'downvoted' | 'undefined';
-  content: string;
-  imgLink: string | null;
-}
-
-interface PostComments{
-  commentId: number;
-  username: string;
-  valueOfLikes: number
-  nrComments: number;
-  voteStatus: 'upvoted' | 'downvoted' | 'undefined';
-  content: string
-}
+import { Post } from '../models/post.model';
+import { Comment } from '../models/comment.model';
+import { HeaderBootstrapComponent } from '../header-bootstrap/header-bootstrap.component';
+import { AppComponent } from '../app.component';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-comments-page',
@@ -36,17 +22,15 @@ interface PostComments{
 export class CommentsPageComponent implements OnInit {
   // Constrctor and Innit
   // -------------
-  constructor(private route: ActivatedRoute, private router: Router, private changeDetectorRef: ChangeDetectorRef){
+  private user: User = this.appCompoent.headerComponent.user;
+  constructor(private route: ActivatedRoute, private router: Router, private changeDetectorRef: ChangeDetectorRef, private appCompoent: AppComponent){
   }
 
   ngOnInit(): void {
       this.route.queryParams.subscribe(params => {
       const paramValue = params['postid'];
       if(paramValue){
-        this.post.postId = paramValue;
-          // TEMPORARY --------- DELETE THIS, I used it for testing.
-          this.post.username = this.post.postId.toString();
-          // -------------------
+        this.post.id = paramValue;
         this.changeDetectorRef.detectChanges();
       }
     });
@@ -64,8 +48,9 @@ export class CommentsPageComponent implements OnInit {
     if(commentContent){
       // Here you sent the comment into the database
       
+
       // if succesful show this
-      this.ShowToastAndReloadPage();
+      this.ShowToastAndPostComment(commentContent);
     }
   }
 
@@ -73,25 +58,32 @@ export class CommentsPageComponent implements OnInit {
   // Toast Components 
   // -------------
   toastService = inject(ToastService);
-  
   showToast(template: TemplateRef<any>) {
     this.toastService.show({ template });
 	}
   
+  tempUniqueID: number = 0;
   @ViewChild('postedCommentToast') postedCommentToast!: TemplateRef<any>;
-  ShowToastAndReloadPage() {
+  ShowToastAndPostComment(commentContent: string) {
     this.showToast(this.postedCommentToast);
-    setTimeout( () => {
-      window.location.reload();
-    }, 1000);
+    this.tempUniqueID--;
+
+    this.comments.unshift({
+      id: this.tempUniqueID,
+      valueOfLikes: 0,
+      nrComments: 0,
+      voteStatus: 'undefined',
+      content: commentContent,
+      user: this.user,
+    })
   }
 
 
   // Compents' Arrays
   // -------------
   post: Post = {
-    postId: 0,
-    username: '',
+    id: 0,
+    user: {id: 1, username: "User 123"},
     valueOfLikes: 0,
     nrComments: 2,
     voteStatus: 'undefined',
@@ -99,18 +91,18 @@ export class CommentsPageComponent implements OnInit {
     imgLink: null
   }
 
-  comments: PostComments[] = [
+  comments: Comment[] = [
     {
-    commentId: this.post.postId+1,
-    username: 'a',
-    valueOfLikes: 0,
-    nrComments: 2,
-    voteStatus: 'undefined',
-    content: 'Comment contet',
+      id: this.post.id + 1,
+      user: {id: 2, username: "User 1234"},
+      valueOfLikes: 0,
+      nrComments: 2,
+      voteStatus: 'undefined',
+      content: 'Comment contet',
     },
     {
-      commentId: this.post.postId+2,
-      username: 'a',
+      id: this.post.id+2,
+      user: {id: 3, username: "User 12345"},
       valueOfLikes: 0,
       nrComments: 2,
       voteStatus: 'undefined',
