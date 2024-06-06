@@ -32,6 +32,11 @@
   --clr-pink: #{$clr-pink};
   --bg-gradient-secondary: #{$bg-gradient-secondary};
 
+  --cat-colour: #ddad6a;
+  --cat-colour-dark: #c19557;
+  --nose-colour: #dd746a;
+  --stroke-width: 7px;
+  --stroke-colour: #1f1244;
 
 
   --btn-border-radius: #{$btn-border-radius};
@@ -73,6 +78,10 @@
   text-decoration: none;
   color: $clr-light;
   text-align: center;
+}
+
+.my-btn:hover{
+  box-shadow: 0 0 10px 2px var(--clr-dark-primary);
 }
 
 .my-btn-secondary{
