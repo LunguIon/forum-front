@@ -3,6 +3,67 @@
 @import "../../stylings/colors.scss";
 
 
+.cloud, .cloud_two, .cloud_three, .cloud_four, .cloud_five, .cloud_six, .cloud_seven{
+	animation: move 6s ease infinite;
+  @include border-radius(50%);
+  position: absolute;
+  top: 50%; left: 50%;
+  margin-top: 20px;
+  margin-left: -30px;
+  background: #FFFFFF;
+  height: 60px; width: 60px;
+  box-shadow:
+		#FFFFFF 65px -15px 0 -5px, 
+		#FFFFFF 25px -25px, 
+		#FFFFFF 30px 10px, 
+		#FFFFFF 60px 15px 0 -10px, 
+		#FFFFFF 85px 5px 0 -5px;
+}
+
+.cloud_two{
+	top: 12%; left: 11%;
+  animation-duration: 8s;
+}
+
+.cloud{
+	top: 50%; left: 1%;
+  animation-duration: 8s;
+}
+
+.cloud_three{
+	top: 12%; left: 81%;
+  animation-duration: 8s;
+}
+
+.cloud_four{
+	top: 50%; left: 90%;
+  animation-duration: 8s;
+  
+}
+
+.cloud_five{
+  top: 12%; left: 50%;
+  animation-duration: 8s;
+  
+}
+
+.cloud_six{
+  top: 80%; left: 85%;
+  animation-duration: 8s;
+  
+}
+
+.cloud_seven{
+  top: 87%; left: 17%;
+  animation-duration: 8s;
+  
+}
+
+@keyframes move{
+  50% { transform: translateY(-15px); }
+}
+
+
 $colors: (
   $clr-yellow-light,
   $clr-yellow-gray,
@@ -10,6 +71,7 @@ $colors: (
 );
 
 .main-container {
+  background-color: var(--404-back);
   overflow: hidden;
   position: relative;
   height: 100vh; 
@@ -46,7 +108,7 @@ $colors: (
 
 .centered-number,
 .centered-number2 {
-    line-height: 1;
+  line-height: 1;
   position: absolute;
   top: 40%;
   transform: translateY(-50%);
@@ -68,10 +130,25 @@ $colors: (
 }
 
 #button {
-  max-width: 512px;
   margin-bottom: 5%;
   z-index: 3;
   position: relative;
+}
+
+.my-btn-secondary-here{
+    border-radius: var(--btn-border-radius);
+    background: var(--clr-light-gray);
+    cursor: pointer;
+    position: relative;
+    transition: 0.3s;
+    text-decoration: none;
+    text-align: center;
+    border: solid 1.5px !important;
+    border-color: rgba(var(--clr-primary-rgb-vals),0.9)  !important;
+}
+
+.my-btn-secondary-here:hover{
+    box-shadow: 0 0 15px 2px var(--clr-primary);
 }
 
 body {
@@ -270,12 +347,11 @@ body {
 .paw-back {
   left: 215px;
   transform: rotate(-35deg);
-
   animation-name: paw-front;
   animation-duration: .3s;
   animation-iteration-count: infinite;
   animation-direction: alternate;
-  animation-delay: 0.5s;
+  animation-delay: -0.5s;
 }
 
 .paw-back .paw-inner {
