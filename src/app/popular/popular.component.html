@@ -13,29 +13,7 @@
         </div>
 
         <div>
-            <div ngbDropdown #myDrop="ngbDropdown" class="d-flex justify-content-end align-content-center px-3 px-sm-5" style="z-index: 99;">
-                <div class="py-1 px-2 filter-btn btn d-flex justify-content-between align-content-center gap-2" id="filter-dropdown" (click)=" myDrop.open()">
-                    <div class="px-2">
-                        <div #filterName [innerHTML]="currentFilter">
-                        </div>
-                    </div>
-                    <div class="w20h20 mx-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                        </svg>
-                    </div>
-                      
-                </div>
-                <ul ngbDropdownMenu aria-labelledby="filter-dropdown" class="dropdown-menu custom-filter-dropdown p-2" >
-                    @for (filter of filters; track filter; let  i = $index) { 
-                        <li ngbDropdownItem class="d-block filter-link btn" [id]="'filter-dropdown-' + i" (click)="currentFilterIndex = i; onFilterChange();">
-                            <div class="d-flex px-1" [innerHTML]="filter"></div>
-                        </li>
-                    }
-                </ul>
-            </div>
-
-
+           
             <div *ngFor="let post of posts">
                 <app-post
                   [id]="post.id"

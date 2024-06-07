@@ -6,7 +6,8 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from '../app.component';
 import { ElementRefService } from '../service/element-ref.service';
 import { Subscription } from 'rxjs';
-import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { User } from '../models/user.model';
 
 
 @Component({
@@ -21,18 +22,33 @@ import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/rou
 export class HeaderBootstrapComponent implements OnInit, OnDestroy{
   // Input and other variables 
   // -------------
-  @Input() username: string ="user 123";
+  @Input() user: User = {id:1, username: "User 123"};
   currentTopic: string = '';
 
   // Constructor, innit and destroy
   // -------------
+
+  @ViewChild('addMenu') addMenu!: ElementRef;
+  @ViewChild('userMenu') userMenu!: ElementRef;
   private elementRefSubscription!: Subscription;
-  constructor(private eRef: ElementRef, private renderer: Renderer2, private elementRefService: ElementRefService, private appComponent: AppComponent) {
+  constructor(private router: Router, private renderer: Renderer2, private elementRefService: ElementRefService, private appComponent: AppComponent) {
     this.renderer.listen('window', 'click', (event: Event) => {
-      if (!this.eRef.nativeElement.contains(event.target)) {
+      if (!this.userMenu.nativeElement.contains(event.target)) {
         this.dropdownOpen = false;
       }
-    }); 
+    });
+
+    this.renderer.listen('window', 'click', (event: Event) => {
+      if (!this.addMenu.nativeElement.contains(event.target)) {
+        this.dropdownAddOpen = false;
+      }
+    });  
+
+    this.router.events.subscribe((ev) => {
+      if (ev instanceof NavigationEnd) { 
+        this.closeCanvas();
+      }
+    });
   }
 
   ngOnInit() {
@@ -61,7 +77,7 @@ export class HeaderBootstrapComponent implements OnInit, OnDestroy{
 
   // Username components
   // -------------
-  private sanitizedUsername = this.username;
+  private sanitizedUsername = this.user.username;
 
   getSanitizedUsername(): string {
     return this.sanitizedUsername;
@@ -81,11 +97,20 @@ export class HeaderBootstrapComponent implements OnInit, OnDestroy{
   // Dropdown-Popup components
   // -------------
   dropdownOpen: boolean = false;
+  dropdownAddOpen: boolean = false;
 
   toggleDropdown(event: Event) {
     // event.preventDefault();
     // event.stopPropagation(); 
+    this.dropdownAddOpen = false;
     this.dropdownOpen = !this.dropdownOpen;
+  }
+
+  toggleAddDropdown(event: Event) {
+    // event.preventDefault();
+    // event.stopPropagation();
+    this.dropdownOpen = false; 
+    this.dropdownAddOpen = !this.dropdownAddOpen;
   }
 
 
@@ -132,7 +157,6 @@ export class HeaderBootstrapComponent implements OnInit, OnDestroy{
 
   // Log out btn
   // -------------
-  private router: Router = inject(Router);
   logoutClick(){
     // Delete the session
     this.router.navigate(['/welcome']);

@@ -49,8 +49,8 @@ export class LoginSignupPageComponent implements OnInit, OnDestroy{
   // -------------
   private elementRefSubscription!: Subscription;
 
-  constructor(private route : ActivatedRoute, private appComponenet : AppComponent, private authService : AuthenticationService, private elementRefService: ElementRefService, private fb: FormBuilder) { 
-    this.appComponenet.showHeaderAndFooter = false;
+  constructor(private route : ActivatedRoute, private appComponent : AppComponent, private authService : AuthenticationService, private elementRefService: ElementRefService, private fb: FormBuilder) { 
+    this.appComponent.showHeaderAndFooter = false;
   }
   redirectToGoogle(): void{
     window.location.href = 'http://speakapi.lol/oauth/google';
@@ -82,6 +82,8 @@ export class LoginSignupPageComponent implements OnInit, OnDestroy{
     if (this.elementRefSubscription) {
       this.elementRefSubscription.unsubscribe();
     }
+
+    this.appComponent.showHeaderAndFooter = true;
   }
   
   

@@ -17,10 +17,10 @@
                             <form #loginForm="ngForm" (ngSubmit)="submitLoginForm(loginForm)" class="font-inter">
                                 <div class="from-feilds mt-4 px-md-5 d-flex flex-column gap-md-2 gap-1">
                                     <input type="text" class="form-control flex-grow-1 py-1 py-md-2  fs-5 invisible" placeholder="">
-                                    <input type="email" class="form-control flex-grow-1 py-1 py-md-2  fs-5" placeholder="Email" name="email" required ngModel #loginEmail="ngModel" email>
+                                    <input type="email" class="form-control flex-grow-1 py-1 py-md-2  fs-5" placeholder="Email" name="email" required ngModel #loginEmail="ngModel" email id="login-name">
                                     <div class="d-flex justify-content-center align-items-center position-relative">
-                                        <input [type]="isLoginPasswordVisible ? 'text' : 'password'" class="form-control flex-grow-1 py-1 py-md-2 fs-5 passwd-input" placeholder="Password" name = "password" required ngModel #loginPassword="ngModel">
-                                        <span class="passwd-btn btn p-1" id="login-show-password-btn" (click)="isLoginPasswordVisible = !isLoginPasswordVisible">
+                                        <input [type]="isLoginPasswordVisible ? 'text' : 'password'" class="form-control flex-grow-1 py-1 py-md-2 fs-5 passwd-input" placeholder="Password" name = "password" required ngModel #loginPassword="ngModel" id="login-password">
+                                        <span class="passwd-btn btn p-1" (click)="isLoginPasswordVisible = !isLoginPasswordVisible" id="login-show-password-btn">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 w25h25" *ngIf="isLoginPasswordVisible">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
@@ -34,7 +34,7 @@
                                 </div>
                                 
                                 <div class="mt-4  mb-md-3 px-md-5 d-flex flex-column gap-md-3 gap-1">
-                                    <div class="my-btn-wrapper d-flex flex-column justify-content-center" (click)="toggleSubmitBtnAnimation(loginForm)"  (@bouceOnClick.done)="onSubmitBtnAnimationDone()" [@bouceOnClick]="submitBtnState" id="loginBtn">
+                                    <div class="my-btn-wrapper d-flex flex-column justify-content-center" (click)="toggleSubmitBtnAnimation(loginForm)"  (@bouceOnClick.done)="onSubmitBtnAnimationDone()" [@bouceOnClick]="submitBtnState" id="login-btn">
                                         <input type="submit"  value="Log In" class="font-julius-sans-one my-btn-secondary p-1 fs-4 fw-light">
                                     </div>
                                     <div class="font-julius-sans-one link-light text-decoration-none text-capitalize text-center fs-6 err-message" style="max-height: 1.3rem;" *ngIf="(loginEmail.invalid && loginEmail.touched) || (loginPassword.invalid && loginPassword.touched); else loginDummyElement">
@@ -49,7 +49,7 @@
                             </form>
 
                             <div class="mt-2 mt-md-4 font-julius-sans-one d-flex justify-content-center align-items-center flex-column">
-                                <div class="link-light text-uppercase text-center fs-5" (click)="toggleCardRotate()" id="signupToggleBtn">Sign up</div>
+                                <div class="link-light text-uppercase text-center fs-5" (click)="toggleCardRotate()" id="signup-toggle-btn">Sign up</div>
                             </div>
                         </div>
                     </div>
@@ -63,10 +63,10 @@
                         
                             <form   #signupForm="ngForm" (ngSubmit)="submitSignupForm(signupForm)" class="font-inter">
                                 <div class="from-feilds mt-4 px-md-5 d-flex flex-column gap-md-2 gap-1">
-                                    <input type="text" class="form-control flex-grow-1 py-1 py-md-2 px-md-3 fs-5" placeholder="Username" name="username" required ngModel #signupUsername="ngModel">
-                                    <input type="email" class="form-control flex-grow-1 py-1 py-md-2 px-md-3 fs-5" placeholder="Email" name="email" required ngModel #signupEmail="ngModel" email>
+                                    <input type="text" class="form-control flex-grow-1 py-1 py-md-2 px-md-3 fs-5" placeholder="Username" name="username" required ngModel #signupUsername="ngModel" id="signup-name">
+                                    <input type="email" class="form-control flex-grow-1 py-1 py-md-2 px-md-3 fs-5" placeholder="Email" name="email" required ngModel #signupEmail="ngModel" email id="signup-email">
                                     <div class="d-flex justify-content-center align-items-center position-relative">
-                                        <input [type]="isSignupPasswordVisible ? 'text' : 'password'" class="form-control flex-grow-1 py-1 py-md-2 px-md-3 fs-5 passwd-input" placeholder="Password" name="password" required ngModel #signupPassword="ngModel">
+                                        <input [type]="isSignupPasswordVisible ? 'text' : 'password'" class="form-control flex-grow-1 py-1 py-md-2 px-md-3 fs-5 passwd-input" placeholder="Password" name="password" required ngModel #signupPassword="ngModel" id="signup-password">
                                         <span class="passwd-btn btn p-1" id="signup-show-password-btn" (click)="isSignupPasswordVisible = !isSignupPasswordVisible">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 w25h25" *ngIf="isSignupPasswordVisible">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
@@ -78,7 +78,7 @@
                                         </span>
                                     </div>
                                     <div class="d-flex justify-content-center align-items-center position-relative">
-                                        <input [type]="isSignupConfirmPasswordVisible ? 'text' : 'password'" class="form-control flex-grow-1 py-1 py-md-2 px-md-3 fs-5 passwd-input" placeholder="Confirm Password" name="confirm-password" required ngModel #signupConfirmPassword="ngModel">
+                                        <input [type]="isSignupConfirmPasswordVisible ? 'text' : 'password'" class="form-control flex-grow-1 py-1 py-md-2 px-md-3 fs-5 passwd-input" placeholder="Confirm Password" name="confirm-password" required ngModel #signupConfirmPassword="ngModel" id="signup-confirm-password">
                                         <span class="passwd-btn btn p-1" id="signup-show-confirm-password-btn" (click)="isSignupConfirmPasswordVisible = !isSignupConfirmPasswordVisible">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 w25h25" *ngIf="isSignupConfirmPasswordVisible">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
@@ -92,7 +92,7 @@
                                 </div>
                                 
                                 <div class="mt-4  mb-md-3 px-md-5 d-flex flex-column gap-md-3 gap-1">
-                                    <div class="my-btn-wrapper d-flex flex-column justify-content-center" (click)="toggleSubmitBtnAnimation(signupForm)"  (@bouceOnClick.done)="onSubmitBtnAnimationDone()" [@bouceOnClick]="submitBtnState" id="signupBtn">
+                                    <div class="my-btn-wrapper d-flex flex-column justify-content-center" (click)="toggleSubmitBtnAnimation(signupForm)"  (@bouceOnClick.done)="onSubmitBtnAnimationDone()" [@bouceOnClick]="submitBtnState" id="signup-btn">
                                         <input type="submit" value="Sign up" class="font-julius-sans-one my-btn-secondary p-1 fs-4 fw-light">
                                     </div>
                                     <div class="font-julius-sans-one link-light text-decoration-none text-capitalize text-center fs-6 err-message" style="max-height: 1.3rem;" *ngIf="(signupEmail.invalid && signupEmail.touched) || (signupUsername.invalid && signupUsername.touched) || (signupPassword.invalid && signupPassword.touched) || (signupConfirmPassword.invalid && signupConfirmPassword.touched) || (signupPassword.value !== signupConfirmPassword.value); else sigupDummyElement">
@@ -110,7 +110,7 @@
                             </form>
 
                             <div class="mt-2 mt-md-4 font-julius-sans-one d-flex justify-content-center align-items-center flex-column"> 
-                                <div class="link-light text-uppercase text-center fs-5" (click)="toggleCardRotate()" id="loginToggleBtn">Log In</div>
+                                <div class="link-light text-uppercase text-center fs-5" (click)="toggleCardRotate()" id="login-toggle-btn">Log In</div>
                             </div>
                         </div>
 
@@ -143,7 +143,7 @@
             </div>
             <div class="d-flex justify-content-end align-content-end">
                 <span class=" align-items-center justify-content-center p-0">
-                    <span class=" btn p-2 " (click)="modal.close('Close click')" id="closeModal">
+                    <span class=" btn p-2 " (click)="modal.close('Close click')" id="close-modal">
                         <div 
                         class="w20h20 icon d-flex align-items-center justify-content-center" tabindex="1">
                         <svg width="28" height="28" viewBox="0 0 28 28" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -163,7 +163,7 @@
             </div>
         </div>
 
-        <div class="mx-2 mx-sm-5 px-5 py-5 d-flex justify-content-between" (click)="closeModalAndReload()" id="tryAgainBtn">
+        <div class="mx-2 mx-sm-5 px-5 py-5 d-flex justify-content-between" (click)="closeModalAndReload()" id="try-again-btn">
             <div class="my-btn p-0 px-md-5">
                 <div class=" px-3 px-sm-5 py-1 fs-3">
                     Try Again

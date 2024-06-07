@@ -1,19 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { PostComponent } from '../post/post.component';
 import { NgFor } from '@angular/common';
+import { NavigationEnd, Router } from '@angular/router';
 import { PostService } from '../service/post.service';
-import { User } from '../models/user.model';
+import { Post } from '../models/post.model';
 
-interface Post{
-  id: number;
-  user: User;
-  valueOfLikes: number;
-  nrComments: number;
-  voteStatus: 'upvoted' | 'downvoted' | 'undefined';
-  content: string;
-  imgLink: string | null;
-}
 
 @Component({
   selector: 'app-home-page',
@@ -27,16 +19,23 @@ export class HomePageComponent implements OnInit{
   posts: Post[] = [];
   // OnInnit - you can add the base logic of the http requests here
   // -------------
+  
+  router: Router = inject(Router);
   constructor(private postService: PostService) {}
 
   ngOnInit(): void {
       this.loadPosts();
+      
+      this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        window.scrollTo(0, 0);
+      }});
   }
 
   loadPosts(): void{
     this.postService.getAllPosts().subscribe((data: Post[]) => {
       this.posts = data;
-    })
+    });
   }
 
 
@@ -54,6 +53,12 @@ export class HomePageComponent implements OnInit{
   // you can easely get the currentFilterIndex and/or the currentFilter by just calling them as simple variables (index: number = currentFilterIndex;)
   // if you change the current filter you need only to update the currentFilterIndex (currentFilterIndex = index;)
   // -------------
+   
+  // when filters change it runs this function
+   onFilterChange(){
+
+   }
+
   filters: string[] = [
     'Earliner',
     'Later',
@@ -79,11 +84,6 @@ export class HomePageComponent implements OnInit{
   
     // you can delete this console log 
     console.log("Current filter: " + this.currentFilter);
-  }
-
-  // when filters change it runs this function
-  onFilterChange(){
-
   }
 
 }

@@ -1,5 +1,5 @@
 <div class="main-container"> 
-    <div class="post-container px-3 px-sm-5 py-4 m-sm-3 mt-3 d-flex justify-content-between align-content-center flex-column gap-4">
+    <div class="post-container px-3 px-sm-5 py-4 m-sm-2 mt-1 d-flex justify-content-between align-content-center flex-column gap-4" [ngClass]="{'highlight': !exisdsTheMaxLvlOfNesting()} ">
         <div class="d-flex justify-content-between align-content-center">
             <div class=" d-flex align-items-center justify-content-start flex-row">
                 <span class="user-icon p-0" style="cursor: pointer;">
@@ -9,25 +9,50 @@
                     <div class="post-username">{{username}}</div>
                 </div>
             </div>
+            <div class="d-flex justify-content-center align-content-center flex-column px-3 ">
+                <div ngbDropdown #myDrop="ngbDropdown" class="d-flex justify-content-end align-content-center px-3 px-sm-5" style="z-index: 99;">
+                    <div class="py-1 px-2 d-flex justify-content-between align-content-center gap-2" id="filter-dropdown" (click)=" myDrop.open()">
+                        <div class="px-2">
+                            <div class="p-1 rounded-5 btn post-elment-hover">
+                                <div class="w30h30" >
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>  
+                    </div>
+                    <ul ngbDropdownMenu aria-labelledby="filter-dropdown" class="dropdown-menu custom-filter-dropdown p-1">
+                        <li ngbDropdownItem class="d-block filter-link btn" (click)="copyCommentText(); showToast(copiedToast);"  [id]="'filter-dropdown-copy-comment-' + id">
+                            <div class="d-flex px-1">Copy</div>
+                        </li>
+                        <div>
+                            <li ngbDropdownItem class="d-block filter-link btn" [id]="'filter-dropdown-edit-comment-' + id">
+                                <div class="d-flex px-1">Edit</div>
+                            </li>
+                        </div>
+                        <div>
+                            <li ngbDropdownItem class="d-block filter-link btn" [id]="'filter-dropdown-delete-comment-' + id">
+                                <div class="d-flex px-1">Delete</div>
+                            </li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
         </div>
 
         <div class="d-flex justify-content-center align-content-center font-inter px-3 gap-5 flex-column flex-xl-row">
-            <div *ngIf="imgLink" class="overflow-hidden d-flex justify-content-center align-items-center">
-                <div class="rounded-5 post-img-comtainer d-flex align-items-center justify-content-center">
-                    <img [src]="imgLink" [alt]="'Image Of Post ' + id" class="min-w-full h-auto">
-                </div>
-            </div>
-            <div class="post-text fs-5 m-0 d-flex align-content-center flex-column gap-3 flex-1">
+            <div class="post-text fs-6 m-0 d-flex align-content-center flex-column gap-3 flex-1">
                 <p [innerHTML]="getSanitizedContent()"></p>
             </div>
         </div>
 
-        <div class="d-flex justify-content-between align-items-center px-4 py-2">
+        <div class="d-flex justify-content-between align-items-center px-4 py-2" style="z-index: 98; pointer-events: none;">
             <div class="d-flex justify-content-center align-items-center flex-row gap-1 gap-md-3">
                 <div class="d-flex justify-content-center align-items-center flex-row gap-2 px-1 py-1 rounded-5 rating-bar">
 
-                    <label [for]=" 'plus-' + id " class="d-flex justify-content-center align-items-center                   plus-lbl">    
-                        <input #plusBtn type="checkbox" [id]=" 'plus-' + id " name="rating" class="d-none" (click)="onPlusClick(plusBtn, minusBtn)" [(ngModel)]="plusChecked">
+                    <label [for]=" 'comment-plus-' + id " class="d-flex justify-content-center align-items-center                   plus-lbl">    
+                        <input #plusBtn type="checkbox" [id]=" 'comment-plus-' + id " name="rating" class="d-none" (click)="onPlusClick(plusBtn, minusBtn)" [(ngModel)]="plusChecked">
                         <div class="btn w25h25 d-flex justify-content-center align-content-center rounded-5     plus-btn ">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -37,13 +62,12 @@
 
                     <div class="upvotes fw-black d-flex justify-content-center align-items-center">
                         <div class="d-flex justify-content-center align-items-center">
-                            <!-- {{upvoteds}}  -->
-                            {{valueOfLikes}}
+                            {{valueOfLikes}} 
                         </div>
                     </div>
 
-                    <label [for]=" 'minus-' + id " class="d-flex justify-content-center align-items-center                  minus-lbl">
-                        <input #minusBtn type="checkbox" [id]=" 'minus-' + id " name="rating" class="d-none" (click)="onMinusClick(minusBtn, plusBtn)" [(ngModel)]="minusChecked">
+                    <label [for]=" 'comment-minus-' + id " class="d-flex justify-content-center align-items-center                  minus-lbl">
+                        <input #minusBtn type="checkbox" [id]=" 'comment-minus-' + id " name="rating" class="d-none" (click)="onMinusClick(minusBtn, plusBtn)" [(ngModel)]="minusChecked">
                         <div class="btn w25h25 d-flex justify-content-center align-content-center rounded-5     minus-btn" >
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
@@ -53,8 +77,8 @@
 
                 </div>
 
-                <a routerLink="/comments" [queryParams]="{ postid: id }" routerLinkActive="active" class="text-decoration-none">
-                    <div class="d-flex justify-content-center align-items-center gap-1 gap-sm-2 px-2 py-1 rounded-5 btn post-elment-hover" [id]="'comment-btn-' + id">
+                <div *ngIf="exisdsTheMaxLvlOfNesting()"> 
+                    <div class="d-flex justify-content-center align-items-center gap-1 gap-sm-2 px-2 py-1 rounded-5 btn " [id]="'comment-comment-btn-' + id">
                         <div class="w25h25 d-flex justify-content-center align-content-center rounded-5">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.076-4.076a1.526 1.526 0 0 1 1.037-.443 48.282 48.282 0 0 0 5.68-.494c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
@@ -64,7 +88,8 @@
                             {{nrComments}} 
                         </div>
                     </div>
-                </a>
+                </div>
+                
                 
 
             </div>
@@ -79,4 +104,26 @@
             
         </div>
     </div> 
+
+    <div *ngIf="exisdsTheMaxLvlOfNesting();">
+
+        @for (comment of comments; track comment; let  i = $index) { 
+            <div class="ms-4 ms-sm-5">
+                <app-comment
+                [id]="comment.id"
+                [username]="comment.user.username"
+                [valueOfLikes]="comment.valueOfLikes"
+                [nrComments]="comment.nrComments"
+                [voteStatus]="comment.voteStatus"
+                [content]="comment.content"
+                [nested]="this.nested + 1">
+                </app-comment>
+            </div>
+        }
+    </div>
+
+</div>
+
+<ng-template #copiedToast>Copied </ng-template>
+
 
