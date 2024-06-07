@@ -32,7 +32,13 @@
   --clr-pink: #{$clr-pink};
   --bg-gradient-secondary: #{$bg-gradient-secondary};
 
+  --cat-colour: #ddad6a;
+  --cat-colour-dark: #c19557;
+  --nose-colour: #dd746a;
+  --stroke-width: 7px;
+  --stroke-colour: #1f1244;
 
+  --404-back: #{$clr-dark};
 
   --btn-border-radius: #{$btn-border-radius};
   --scrollbar-width: 8px;
@@ -47,6 +53,7 @@
   --clr-light-gray: #FFFFFF;
   --clr-light-gray-rgb-vals: 255, 255, 255;
   --clr-dark-primary-hover: #c3c2ff;
+  --404-back:#48a5e2;
 }
 
 .font-julius-sans-one {
@@ -73,6 +80,10 @@
   text-decoration: none;
   color: $clr-light;
   text-align: center;
+}
+
+.my-btn:hover{
+  box-shadow: 0 0 10px 2px var(--clr-dark-primary);
 }
 
 .my-btn-secondary{

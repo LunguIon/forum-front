@@ -7,6 +7,7 @@ import { CreateTopicComponent } from './create-topic/create-topic.component';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { CommentsPageComponent } from './comments-page/comments-page.component';
 import { PopularComponent } from './popular/popular.component';
+import { ExeptionPageComponent } from './exeption-page/exeption-page.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'welcome', pathMatch: 'full'},
@@ -20,7 +21,8 @@ export const routes: Routes = [
   {path: 'comments', component: CommentsPageComponent},
   
   // keep this at the bottom, if you try to access 
-  // smt that isn't stated above it redirects you to the welcome page 
+  // smt that isn't stated above it redirects you to the welcome page
+  {path: '404', component: ExeptionPageComponent}, 
   {path: '**', redirectTo: 'welcome'},
 ];
 

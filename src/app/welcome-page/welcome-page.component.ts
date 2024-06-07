@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef} from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy} from '@angular/core';
 import { LogoNavComponent } from '../logo-nav/logo-nav.component';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { initializeConstellations } from '../utils/constelations';
@@ -12,7 +12,7 @@ import { FormsModule} from '@angular/forms';
   templateUrl: './welcome-page.component.html',
   styleUrl: './welcome-page.component.scss'
 })
-export class WelcomePageComponent implements OnInit{
+export class WelcomePageComponent implements OnInit, OnDestroy{
   // Constructor and innit
   // -------------
   constructor(private appComponent : AppComponent) { 
@@ -27,6 +27,10 @@ export class WelcomePageComponent implements OnInit{
       const canvas: HTMLCanvasElement = this.canvasElement.nativeElement;
       initializeConstellations(canvas, colorPrimary, colorPrimary, colorPrimaryRGBVals);
     }
+  }
+
+  ngOnDestroy(): void {
+    this.appComponent.showHeaderAndFooter = true;
   }
 
   isLightThemeOn: boolean = this.appComponent.isLightThemeOn;
