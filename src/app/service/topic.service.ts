@@ -15,9 +15,7 @@ export class TopicService {
     constructor(private http: HttpClient){}
 
     createTopic(topic: SimplifiedTopicDTO): Observable<any> {
-        const token = localStorage.getItem('jwt');
-        const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-        return this.http.post<any>(this.apiUrl, topic, { headers });
+        return this.http.post<any>(this.apiUrl, topic);
       }
     getAllTopics(): Observable<TopicDTO[]> {
         return this.http.get<TopicDTO[]>(`${this.apiUrl}/all`);

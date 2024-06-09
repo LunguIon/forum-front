@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, inject, TemplateRef, ViewEnca
 import { LogoNavComponent } from '../logo-nav/logo-nav.component';
 import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';  
 import { NgClass, NgIf } from '@angular/common';
-import { ActivatedRoute, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Route, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { initializeConstellations } from '../utils/constelations';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 import { AppComponent } from '../app.component';
@@ -49,7 +49,7 @@ export class LoginSignupPageComponent implements OnInit, OnDestroy{
   // -------------
   private elementRefSubscription!: Subscription;
 
-  constructor(private route : ActivatedRoute, private appComponenet : AppComponent, private authService : AuthenticationService, private elementRefService: ElementRefService, private fb: FormBuilder) { 
+  constructor(private route : ActivatedRoute, private appComponenet : AppComponent, private authService : AuthenticationService, private elementRefService: ElementRefService, private fb: FormBuilder, private router: Router) { 
     this.appComponenet.showHeaderAndFooter = false;
   }
   redirectToGoogle(): void{
@@ -150,6 +150,8 @@ export class LoginSignupPageComponent implements OnInit, OnDestroy{
       this.authService.login(form.value).subscribe({
         next: (response) => {
           localStorage.setItem('jwt', response.token);
+          localStorage.setItem('email', form.value.email);
+          this.router.navigate(['/home']);
         },
         error: (error) => {
           this.openModal();

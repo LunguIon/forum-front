@@ -52,6 +52,7 @@ export class CreateTopicComponent{
     this.isSubmitBtnClicked = false;
   }
   
+  constructor(private topicService: TopicService){}
 
   // Input iamge components
   // -------------
@@ -102,14 +103,28 @@ export class CreateTopicComponent{
   // -------------
   submitForm(form: NgForm){
     if(form.valid){
+      const email = localStorage.getItem('email');
+      if(email){
         const topic: SimplifiedTopicDTO = {
-          email: '', 
+          email: email, 
           title: form.controls['title'].value,
           content: form.controls['text'].value,
           imageURL: '' 
-        }      
+        };
+        this.topicService.createTopic(topic).subscribe({
+        next: (response) => {
+          console.log('Topic created successfully:', response);
+        },
+        error: (error) => {
+          console.error('Error creating topic:', error);
+        }
+      });
+      } else {
+      console.error('User email not found in local storage.');
+    }
     }
   }
+
 
   discardForm(){
     window.location.reload();
