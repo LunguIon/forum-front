@@ -5,6 +5,7 @@ import { NgFor } from '@angular/common';
 import { NavigationEnd, Router } from '@angular/router';
 import { PostService } from '../service/post.service';
 import { Post } from '../models/post.model';
+import { postDto } from '../models/postDto.model';
 
 
 @Component({
@@ -16,7 +17,7 @@ import { Post } from '../models/post.model';
 })
 export class HomePageComponent implements OnInit{
 
-  posts: Post[] = [];
+  posts: postDto[] = [];
   // OnInnit - you can add the base logic of the http requests here
   // -------------
   
@@ -33,7 +34,7 @@ export class HomePageComponent implements OnInit{
   }
 
   loadPosts(): void{
-    this.postService.getAllPosts().subscribe((data: Post[]) => {
+    this.postService.getAllPosts().subscribe((data: postDto[]) => {
       this.posts = data;
     });
   }

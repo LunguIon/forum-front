@@ -4,7 +4,7 @@ import { Component, ElementRef, Inject, inject, Input, OnDestroy, OnInit, Templa
 import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ElementRefService } from '../service/element-ref.service';
-import { Subscription } from 'rxjs';
+import { Subscription, generate } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { TopicService } from '../service/topic.service';
 import { Post } from '../models/post.model';
