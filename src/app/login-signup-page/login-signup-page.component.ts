@@ -149,10 +149,9 @@ export class LoginSignupPageComponent implements OnInit, OnDestroy{
     if (form.valid) { 
       this.authService.login(form.value).subscribe({
         next: (response) => {
-          // Handle successful login
+          localStorage.setItem('jwt', response.token);
         },
         error: (error) => {
-          // Handle login error
           this.openModal();
         }
       });
@@ -163,10 +162,9 @@ export class LoginSignupPageComponent implements OnInit, OnDestroy{
     if (form.valid && this.checkPasswordsMatch(form)) {
       this.authService.signUp(form.value).subscribe({
         next: (response) => {
-          // Handle successful signup
+          
         },
         error: (error) => {
-          // Handle signup error
           this.openModal();
         }
       });
