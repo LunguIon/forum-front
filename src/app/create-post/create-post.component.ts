@@ -6,6 +6,8 @@ import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstr
 import { ElementRefService } from '../service/element-ref.service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { TopicDTO } from '../models/topicdto.model';
+import { TopicService } from '../service/topic.service';
 
 @Component({
   selector: 'app-create-post',
@@ -40,8 +42,9 @@ import { ActivatedRoute } from '@angular/router';
 export class CreatePostComponent implements OnInit, OnDestroy{
   // Constrctor, Innit and Destroy
   // -------------
+  topics: string[] = [];
   private elementRefSubscription!: Subscription;
-  constructor(private elementRefService: ElementRefService, private route: ActivatedRoute){
+  constructor(private elementRefService: ElementRefService, private route: ActivatedRoute, private topicService: TopicService){
   }
 
   ngOnInit(): void {
@@ -60,6 +63,14 @@ export class CreatePostComponent implements OnInit, OnDestroy{
         this.currentTopic = this.defaultTopicPlaceHolder;
       }
     });
+    this.topicService.getAllTopics().subscribe({
+      next: (topics) => {
+        this.topics = topics.map(topic => topic.title);
+      },
+      error: (error) => {
+        console.log('Error fetching topics: ', error);
+      }
+    });
   }
 
   ngOnDestroy(): void {
@@ -68,30 +79,7 @@ export class CreatePostComponent implements OnInit, OnDestroy{
     }
   }
 
-  // Chose Topic compoenets
-  // -------------
-  topics: string[] = [
-    '1st Topic',
-    '2nd Topic',
-    '3rd Topic',
-    '4th Topic',
-    '5th Topic',
-    '6th Topic',
-    '7th Topic',
-    '8th Topic',
-    '9th Topic',
-    '10th Topic',
-    '11st Topic',
-    '12nd Topic',
-    '13rd Topic',
-    '14th Topic',
-    '15th Topic',
-    '16th Topic',
-    '17th Topic',
-    '18th Topic',
-    '19th Topic',
-    '20th Topic',
-  ];
+ 
 
   defaultTopicPlaceHolder: string = '[Choose a Topic]';
   private _currentTopic: string = this.defaultTopicPlaceHolder;
