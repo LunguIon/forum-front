@@ -30,7 +30,7 @@ export class CommentsPageComponent implements OnInit {
       this.route.queryParams.subscribe(params => {
       const paramValue = params['postid'];
       if(paramValue){
-        this.post.id = paramValue;
+        //this.post.id = paramValue;
         this.changeDetectorRef.detectChanges();
       }
     });
@@ -68,47 +68,18 @@ export class CommentsPageComponent implements OnInit {
     this.showToast(this.postedCommentToast);
     this.tempUniqueID--;
 
-    this.comments.unshift({
-      id: this.tempUniqueID,
-      valueOfLikes: 0,
-      nrComments: 0,
-      voteStatus: 'undefined',
-      content: commentContent,
-      user: this.user,
-    })
+    // this.comments.unshift({
+    //   id: this.tempUniqueID,
+    //   valueOfLikes: 0,
+    //   nrComments: 0,
+    //   voteStatus: 'undefined',
+    //   content: commentContent,
+    //   user: this.user,
+    // })
   }
 
 
-  // Compents' Arrays
-  // -------------
-  post: Post = {
-    id: 0,
-    user: {id: 1, username: "User 123"},
-    valueOfLikes: 0,
-    nrComments: 2,
-    voteStatus: 'undefined',
-    content: 'contet',
-    imgLink: null
-  }
 
-  comments: Comment[] = [
-    {
-      id: this.post.id + 1,
-      user: {id: 2, username: "User 1234"},
-      valueOfLikes: 0,
-      nrComments: 2,
-      voteStatus: 'undefined',
-      content: 'Comment contet',
-    },
-    {
-      id: this.post.id+2,
-      user: {id: 3, username: "User 12345"},
-      valueOfLikes: 0,
-      nrComments: 2,
-      voteStatus: 'undefined',
-      content: 'Comment contet',
-    }
-  ]; 
   
 
 }

@@ -14,9 +14,7 @@ export class PostService {
   getAllPosts(): Observable<Post[]>{
     return this.http.get<Post[]>(this.apiUrl);
   }
-  createPost(post: Post): Observable<Post> {
-    const token = localStorage.getItem('jwt');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.post<Post>(this.apiUrl, post, { headers });
+  createPost(post: Post): Observable<any> {
+    return this.http.post<any>(this.apiUrl, post);
   }
 }

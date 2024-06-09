@@ -6,8 +6,9 @@ import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstr
 import { ElementRefService } from '../service/element-ref.service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { TopicDTO } from '../models/topicdto.model';
 import { TopicService } from '../service/topic.service';
+import { Post } from '../models/post.model';
+import { PostService } from '../service/post.service';
 
 @Component({
   selector: 'app-create-post',
@@ -44,7 +45,7 @@ export class CreatePostComponent implements OnInit, OnDestroy{
   // -------------
   topics: string[] = [];
   private elementRefSubscription!: Subscription;
-  constructor(private elementRefService: ElementRefService, private route: ActivatedRoute, private topicService: TopicService){
+  constructor(private elementRefService: ElementRefService, private route: ActivatedRoute, private topicService: TopicService, private postService: PostService){
   }
 
   ngOnInit(): void {
@@ -174,20 +175,27 @@ export class CreatePostComponent implements OnInit, OnDestroy{
   // -------------
   submitForm(form: NgForm){
     if(form.valid && this.isTopicChosed()){
+        const email = localStorage.getItem('email');
+        if(email){
+        const post: Post = {
+          email: email,
+          title: form.controls['title'].value,
+          content: form.controls['text'].value,
+          topicTitle: this.currentTopic
+        };
+        this.postService.createPost(post).subscribe({
+          next: (response) => {
+              console.log('Post created succesfully', response);
+          },
+          error: (error) => {
+            console.log('Error creating topic:', error);
+          }
+        });
+      }else {
+        console.error('User email not found in local storage.');
+      }
 
-      // you can delete the console logs
-      console.log("_____________________________");
-      // this gives text.
-      // in the backend you shouldcheck if the topic exists and if not give an error
-      console.log("Topic: '" + this.currentTopic +"'\n");
-      // this gives text.
-      console.log("Title: '" + form.controls['title'].value + "'\n", form.controls['text'].value);
-      // this gives text or ''.
-      console.log("Text: '" + form.controls['text'].value + "'\n", form.controls['text'].value);
-      // this gives the path of the file as text or ''. - better dont use this, use the one bellow
-      console.log("Image: '" + form.controls['image'].value + "'\n", form.controls['image'].value);
-      // this gives the actual file or ''.      
-      console.log("Image as file: '" + this.getActualImage() + "'\n", this.getActualImage());
+      
 
     } else{
       this.modalTouched = true;
