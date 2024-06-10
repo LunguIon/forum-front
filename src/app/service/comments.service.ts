@@ -16,7 +16,10 @@ export class CommentService {
     getAllComments(): Observable<GetCommentDTO[]>{
         return this.http.get<GetCommentDTO[]>(this.apiUrl);
       }
-    createPost(comment: SimplifiedCommentDTO): Observable<any> {
+    createComment(comment: SimplifiedCommentDTO): Observable<any> {
         return this.http.post<any>(this.apiUrl, comment);
+      }
+      getCommentsByPostId(postId: string): Observable<GetCommentDTO[]> {
+        return this.http.get<GetCommentDTO[]>(`${this.apiUrl}/comments/post/${postId}`);
       }
 }

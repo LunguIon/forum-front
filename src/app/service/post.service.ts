@@ -3,13 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Post } from '../models/post.model';
 import { postDto } from '../models/postDto.model';
-
+import { environment } from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
-  private apiUrl = 'http://localhost:8080/posts';
+  private apiUrl = `${environment.apiUrl}/posts`;
   constructor(private http: HttpClient) { }
 
   getAllPosts(): Observable<postDto[]>{

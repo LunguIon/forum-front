@@ -37,12 +37,9 @@
 
 
             <div *ngFor="let post of posts">
-                <app-post>
-                  <!-- [id]="post.postId" -->
+                <app-post
+                  [id]="post.postId"
                   [username]="post.user.username"
-                  <!-- [valueOfLikes]=""
-                  [nrComments]=""
-                  [voteStatus]="" -->
                   [content]="post.content"
                   [imgLink]="post.imageURL">
                 </app-post>

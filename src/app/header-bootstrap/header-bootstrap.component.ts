@@ -8,6 +8,8 @@ import { ElementRefService } from '../service/element-ref.service';
 import { Subscription } from 'rxjs';
 import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { User } from '../models/user.model';
+import { UserService } from '../service/user.service';
+import { UserDTO } from '../models/UserDTO.model';
 
 
 @Component({
@@ -22,7 +24,10 @@ import { User } from '../models/user.model';
 export class HeaderBootstrapComponent implements OnInit, OnDestroy{
   // Input and other variables 
   // -------------
-  @Input() user: User = {id:1, username: "User 123"};
+  @Input() user: UserDTO;
+  sanitizedUsername: string;
+
+
   currentTopic: string = '';
 
   // Constructor, innit and destroy
@@ -31,13 +36,14 @@ export class HeaderBootstrapComponent implements OnInit, OnDestroy{
   @ViewChild('addMenu') addMenu!: ElementRef;
   @ViewChild('userMenu') userMenu!: ElementRef;
   private elementRefSubscription!: Subscription;
-  constructor(private router: Router, private renderer: Renderer2, private elementRefService: ElementRefService, private appComponent: AppComponent) {
+  constructor(private router: Router, private renderer: Renderer2, private elementRefService: ElementRefService, private appComponent: AppComponent, private userService: UserService) {
     this.renderer.listen('window', 'click', (event: Event) => {
       if (!this.userMenu.nativeElement.contains(event.target)) {
         this.dropdownOpen = false;
       }
     });
-
+    this.user = { username: '', email: '', imageUrl: ''};
+    this.sanitizedUsername = '';
     this.renderer.listen('window', 'click', (event: Event) => {
       if (!this.addMenu.nativeElement.contains(event.target)) {
         this.dropdownAddOpen = false;
@@ -49,6 +55,7 @@ export class HeaderBootstrapComponent implements OnInit, OnDestroy{
         this.closeCanvas();
       }
     });
+    
   }
 
   ngOnInit() {
@@ -67,7 +74,22 @@ export class HeaderBootstrapComponent implements OnInit, OnDestroy{
     }else{
       this.sanitizedUsername = this.sanitizedUsername + " &nbsp;";
     }
+    const email = localStorage.getItem('email');
+    if (email) {
+      this.userService.getUserByEmail(email).subscribe(
+        (user: UserDTO) => {
+          this.user = user;
+          this.sanitizedUsername = this.user.username || '';
+        },
+        (error) => {
+          console.error('Error fetching user:', error);
+        }
+      );
+    }
+  
+
   }
+  
 
   ngOnDestroy() {
     if (this.elementRefSubscription) {
@@ -77,7 +99,6 @@ export class HeaderBootstrapComponent implements OnInit, OnDestroy{
 
   // Username components
   // -------------
-  private sanitizedUsername = this.user.username;
 
   getSanitizedUsername(): string {
     return this.sanitizedUsername;

@@ -11,6 +11,10 @@ import { Comment } from '../models/comment.model';
 import { HeaderBootstrapComponent } from '../header-bootstrap/header-bootstrap.component';
 import { AppComponent } from '../app.component';
 import { User } from '../models/user.model';
+import { CommentService } from '../service/comments.service';
+import { SimplifiedCommentDTO } from '../models/SimplifiedCommentDTO.model';
+import { GetCommentDTO } from '../models/GetCommentDTO.model';
+import { UserDTO } from '../models/UserDTO.model';
 
 @Component({
   selector: 'app-comments-page',
@@ -22,15 +26,17 @@ import { User } from '../models/user.model';
 export class CommentsPageComponent implements OnInit {
   // Constrctor and Innit
   // -------------
-  private user: User = this.appCompoent.headerComponent.user;
-  constructor(private route: ActivatedRoute, private router: Router, private changeDetectorRef: ChangeDetectorRef, private appCompoent: AppComponent){
+  private user: UserDTO = this.appCompoent.headerComponent.user;
+  postId!: string;
+  constructor(private route: ActivatedRoute, private router: Router, private changeDetectorRef: ChangeDetectorRef, private appCompoent: AppComponent, private commentService: CommentService){
   }
 
+  comments: GetCommentDTO[] = [];
   ngOnInit(): void {
       this.route.queryParams.subscribe(params => {
       const paramValue = params['postid'];
       if(paramValue){
-        //this.post.id = paramValue;
+        this.postId = paramValue;
         this.changeDetectorRef.detectChanges();
       }
     });
@@ -41,18 +47,47 @@ export class CommentsPageComponent implements OnInit {
       }
     });
 
+    
+
     // Take here the post and the comments of the post from the database
+
   }
 
-  postComment(commentContent: string){
-    if(commentContent){
-      // Here you sent the comment into the database
-      
+  postComment(commentContent: string): void {
+    if (commentContent) {
+      const email = localStorage.getItem('email');
+      if (email) {
+        const comment: SimplifiedCommentDTO = {
+          email: email,
+          postId: this.postId,  // Assign the postId
+          content: commentContent
+        };
 
-      // if succesful show this
-      this.ShowToastAndPostComment(commentContent);
+        this.commentService.createComment(comment).subscribe({
+          next: (response) => {
+            console.log('Comment created successfully', response);
+            this.ShowToastAndPostComment(commentContent);
+          },
+          error: (error) => {
+            console.log('Error creating comment:', error);
+          }
+        });
+      } else {
+        console.error('User email not found in local storage.');
+      }
     }
   }
+  getCommentsByPostId(postId: string): void {
+    this.commentService.getCommentsByPostId(postId).subscribe({
+        next: (comments) => {
+            this.comments = comments;
+        },
+        error: (error) => {
+            console.log('Error fetching comments:', error);
+        }
+    });
+}
+
 
 
   // Toast Components 
@@ -68,14 +103,17 @@ export class CommentsPageComponent implements OnInit {
     this.showToast(this.postedCommentToast);
     this.tempUniqueID--;
 
-    // this.comments.unshift({
-    //   id: this.tempUniqueID,
-    //   valueOfLikes: 0,
-    //   nrComments: 0,
-    //   voteStatus: 'undefined',
-    //   content: commentContent,
-    //   user: this.user,
-    // })
+    this.comments.unshift({
+      commentId: this.tempUniqueID.toString(),
+      valueOfLikes: 0,
+      //nrComments: 0,
+      //voteStatus: 'undefined',
+      content: commentContent,
+      user: this.user,
+      postId: this.postId,
+      creationDate: '',
+      updateDate: ''
+    })
   }
 
 
