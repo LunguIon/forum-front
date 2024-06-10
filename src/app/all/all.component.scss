@@ -1,0 +1,115 @@
+@import "../../../node_modules/rfs/scss.scss";
+@import "../../../node_modules/bootstrap/scss/bootstrap-utilities.scss";
+@import "../../stylings/colors.scss";
+
+.main-container{
+    overflow: hidden;
+    z-index: -1;
+}
+
+.fill{
+    width: 100%;
+    min-height: 95vh;
+    background-color: var(--clr-dark);
+}
+
+.search-bar{
+    width: 60%;
+    margin: auto;
+}
+
+.form-control{
+    border: 2px solid;
+    border-radius: 60px;
+    color: $clr-light;
+    border-color: transparent;
+    border-color: var(--clr-dark-primary);
+    background-color: var(--clr-gray);
+    transition: all 0.3s;
+}
+
+.form-control:hover{
+    border-color: rgba(var(--clr-primary-rgb-vals), 1);
+    background-color: var(--clr-gray);
+}
+
+.form-control:focus{
+    border-color: rgba(var(--clr-primary-rgb-vals), 1);
+    box-shadow: 0 0 10px 3px rgba(var(--clr-primary-rgb-vals), 0.35);
+}
+
+.form-control::placeholder {
+    color: $clr-light;
+    opacity: 0.8; 
+    text-transform: uppercase;
+    font-family: "Julius Sans One", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.search-btn{
+    right: 20px;
+    position: absolute;
+    cursor: pointer;
+    background-color: var(--clr-gray);
+}
+
+.btn{
+    padding: 0;
+    margin: 0;
+    color: var(--clr-light);
+}
+
+.btn:hover, .btn:focus{
+    color: var(--clr-light);
+}
+
+.search-field{
+    padding-right: 55px !important;
+}
+
+.custom-filter-dropdown{
+    margin-top: 33px;
+    border-radius: 20px;
+    background-color: var(--clr-gray);  
+    color: var(--clr-light);
+    border-color: var(--clr-dark-primary);
+    padding: 0;
+    z-index: 1000;
+}
+
+.filter-link{
+    border-radius: 5px !important;
+}
+
+.filter-link:hover, .filter-link:focus{
+    color: var(--clr-light);
+    background: var(--clr-dark-primary-hover) !important;
+}
+
+.filter-btn{
+    background-color: var(--clr-gray);
+    border-radius: 100px !important;
+    border-color: var(--clr-dark-primary);
+}
+
+.filter-btn:hover, .filter-btn:focus{
+    background-color: var(--clr-gray);
+}
+
+.filter-btn, .custom-filter-dropdown{
+    min-width: 190px;
+}
+
+@include media-breakpoint-down(md){
+    .search-bar{
+        width: 80%;
+    }
+}
+
+
+@include media-breakpoint-down(sm){
+    .search-bar{
+        width: 95%;
+    }
+}
