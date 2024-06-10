@@ -4,6 +4,10 @@ import { PostComponent } from '../post/post.component';
 import { NgFor } from '@angular/common';
 import { NavigationEnd, Router } from '@angular/router';
 import { Post } from '../models/post.model';
+import { postDto } from '../models/postDto.model';
+import { PostService } from '../service/post.service';
+import { CommentService } from '../service/comments.service';
+import { forkJoin, map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-popular',
@@ -15,8 +19,13 @@ import { Post } from '../models/post.model';
 export class PopularComponent implements OnInit{
   // OnInnit - you can add the base logic of the http requests here
   // -------------
+  constructor(private postService: PostService, private commentService: CommentService){}
   router: Router = inject(Router);
+  commentCounts: { [postId: string]: number } = {};
+  posts: postDto[] = [];
+
   ngOnInit(): void {
+    this.loadPosts();
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         window.scrollTo(0, 0);
@@ -35,35 +44,26 @@ export class PopularComponent implements OnInit{
 
   // Posts Array components
   // -------------
-  posts: Post[] = [
-    {
-      id: 1,
-      user: {id: 1, username: "User 123"},
-      valueOfLikes: 300,
-      nrComments: 50,
-      voteStatus: 'upvoted',
-      content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a augue facilisis, tempor lectus ullamcorper, bibendum leo. Nullam sollicitudin augue sed felis hendrerit ultrices. Aenean nec rutrum magna. Praesent massa sem, suscipit at interdum non, lobortis eget dolor. Quisque volutpat neque velit, ut luctus purus aliquet eget. Aenean suscipit lorem a nisl consectetur imperdiet. \n\n Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a augue facilisis, tempor lectus ullamcorper, bibendum leo. Nullam sollicitudin augue sed felis hendrerit ultrices. Aenean nec rutrum magna. Praesent massa sem, suscipit at interdum non, lobortis eget dolor. Quisque volutpat neque velit, ut luctus purus aliquet eget. Aenean suscipit lorem a nisl consectetur imperdiet.`,
-      imgLink: null
-    },
-    {
-      id: 2,
-      user: {id: 2, username: "User 456"},
-      valueOfLikes: 150,
-      nrComments: 200,
-      voteStatus: 'downvoted',
-      content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a augue facilisis, tempor lectus ullamcorper, bibendum leo. Nullam sollicitudin augue sed felis hendrerit ultrices. Aenean nec rutrum magna. Praesent massa sem, suscipit at interdum non, lobortis eget dolor. Quisque volutpat neque velit, ut luctus purus aliquet eget. Aenean suscipit lorem a nisl consectetur imperdiet. \n\n Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a augue facilisis, tempor lectus ullamcorper, bibendum leo. Nullam sollicitudin augue sed felis hendrerit ultrices. Aenean nec rutrum magna. Praesent massa sem, suscipit at interdum non, lobortis eget dolor. Quisque volutpat neque velit, ut luctus purus aliquet eget. Aenean suscipit lorem a nisl consectetur imperdiet.`,
-      imgLink: 'https://upload.wikimedia.org/wikipedia/commons/d/d2/Solid_white.png?20060513000852'
-    },
-    {
-      id: 3,
-      user: {id: 3, username: "User 789"},
-      valueOfLikes: 10,
-      nrComments: 5,
-      voteStatus: 'undefined',
-      content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a augue facilisis, tempor lectus ullamcorper, bibendum leo. Nullam sollicitudin augue sed felis hendrerit ultrices. Aenean nec rutrum magna. Praesent massa sem, suscipit at interdum non, lobortis eget dolor. Quisque volutpat neque velit, ut luctus purus aliquet eget. Aenean suscipit lorem a nisl consectetur imperdiet. \n\n Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a augue facilisis, tempor lectus ullamcorper, bibendum leo. Nullam sollicitudin augue sed felis hendrerit ultrices. Aenean nec rutrum magna. Praesent massa sem, suscipit at interdum non, lobortis eget dolor. Quisque volutpat neque velit, ut luctus purus aliquet eget. Aenean suscipit lorem a nisl consectetur imperdiet.`,
-      imgLink: null
-    },
-  ];
+  nrComments: number = 0;
+  loadPosts(): void{
+    this.postService.getAllPosts().subscribe((data: postDto[]) => {
+      this.posts = data;
+      this.loadCommentCounts();
+    });
+  }
+  loadCommentCounts(): void {
+    const commentCountObservables: Observable<any>[] = this.posts.map(post => 
+      this.commentService.getCountCommentByPostId(post.postId).pipe(
+        map(count => ({ postId: post.postId, count }))
+      )
+    );
+    forkJoin(commentCountObservables).subscribe(results => {
+      results.forEach(result => {
+        this.commentCounts[result.postId] = result.count;
+      });
+    });
+  }
+
 
 
 }

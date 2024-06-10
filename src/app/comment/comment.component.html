@@ -110,11 +110,9 @@
         @for (comment of comments; track comment; let  i = $index) { 
             <div class="ms-4 ms-sm-5">
                 <app-comment
-                [id]="comment.id"
+                [id]="comment.commentId"
                 [username]="comment.user.username"
                 [valueOfLikes]="comment.valueOfLikes"
-                [nrComments]="comment.nrComments"
-                [voteStatus]="comment.voteStatus"
                 [content]="comment.content"
                 [nested]="this.nested + 1">
                 </app-comment>

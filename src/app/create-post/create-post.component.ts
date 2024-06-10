@@ -4,8 +4,11 @@ import { Component, ElementRef, Inject, inject, Input, OnDestroy, OnInit, Templa
 import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ElementRefService } from '../service/element-ref.service';
-import { Subscription } from 'rxjs';
+import { Subscription, generate } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { TopicService } from '../service/topic.service';
+import { Post } from '../models/post.model';
+import { PostService } from '../service/post.service';
 
 @Component({
   selector: 'app-create-post',
@@ -40,8 +43,9 @@ import { ActivatedRoute } from '@angular/router';
 export class CreatePostComponent implements OnInit, OnDestroy{
   // Constrctor, Innit and Destroy
   // -------------
+  topics: string[] = [];
   private elementRefSubscription!: Subscription;
-  constructor(private elementRefService: ElementRefService, private route: ActivatedRoute){
+  constructor(private elementRefService: ElementRefService, private route: ActivatedRoute, private topicService: TopicService, private postService: PostService){
   }
 
   ngOnInit(): void {
@@ -60,6 +64,14 @@ export class CreatePostComponent implements OnInit, OnDestroy{
         this.currentTopic = this.defaultTopicPlaceHolder;
       }
     });
+    this.topicService.getAllTopics().subscribe({
+      next: (topics) => {
+        this.topics = topics.map(topic => topic.title);
+      },
+      error: (error) => {
+        console.log('Error fetching topics: ', error);
+      }
+    });
   }
 
   ngOnDestroy(): void {
@@ -68,30 +80,7 @@ export class CreatePostComponent implements OnInit, OnDestroy{
     }
   }
 
-  // Chose Topic compoenets
-  // -------------
-  topics: string[] = [
-    '1st Topic',
-    '2nd Topic',
-    '3rd Topic',
-    '4th Topic',
-    '5th Topic',
-    '6th Topic',
-    '7th Topic',
-    '8th Topic',
-    '9th Topic',
-    '10th Topic',
-    '11st Topic',
-    '12nd Topic',
-    '13rd Topic',
-    '14th Topic',
-    '15th Topic',
-    '16th Topic',
-    '17th Topic',
-    '18th Topic',
-    '19th Topic',
-    '20th Topic',
-  ];
+ 
 
   defaultTopicPlaceHolder: string = '[Choose a Topic]';
   private _currentTopic: string = this.defaultTopicPlaceHolder;
@@ -186,20 +175,27 @@ export class CreatePostComponent implements OnInit, OnDestroy{
   // -------------
   submitForm(form: NgForm){
     if(form.valid && this.isTopicChosed()){
+        const email = localStorage.getItem('email');
+        if(email){
+        const post: Post = {
+          email: email,
+          title: form.controls['title'].value,
+          content: form.controls['text'].value,
+          topicTitle: this.currentTopic
+        };
+        this.postService.createPost(post).subscribe({
+          next: (response) => {
+              console.log('Post created succesfully', response);
+          },
+          error: (error) => {
+            console.log('Error creating topic:', error);
+          }
+        });
+      }else {
+        console.error('User email not found in local storage.');
+      }
 
-      // you can delete the console logs
-      console.log("_____________________________");
-      // this gives text.
-      // in the backend you shouldcheck if the topic exists and if not give an error
-      console.log("Topic: '" + this.currentTopic +"'\n");
-      // this gives text.
-      console.log("Title: '" + form.controls['title'].value + "'\n", form.controls['text'].value);
-      // this gives text or ''.
-      console.log("Text: '" + form.controls['text'].value + "'\n", form.controls['text'].value);
-      // this gives the path of the file as text or ''. - better dont use this, use the one bellow
-      console.log("Image: '" + form.controls['image'].value + "'\n", form.controls['image'].value);
-      // this gives the actual file or ''.      
-      console.log("Image as file: '" + this.getActualImage() + "'\n", this.getActualImage());
+      
 
     } else{
       this.modalTouched = true;

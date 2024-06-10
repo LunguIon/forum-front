@@ -3,7 +3,8 @@ import { NgIf } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
-
+import { TopicService } from '../service/topic.service';
+import { SimplifiedTopicDTO } from '../models/topic.model';
 @Component({
   selector: 'app-create-topic',
   standalone: true,
@@ -51,6 +52,7 @@ export class CreateTopicComponent{
     this.isSubmitBtnClicked = false;
   }
   
+  constructor(private topicService: TopicService){}
 
   // Input iamge components
   // -------------
@@ -101,21 +103,28 @@ export class CreateTopicComponent{
   // -------------
   submitForm(form: NgForm){
     if(form.valid){
-
-      // you can delete the console logs
-      console.log("_____________________________");
-      // this gives text.
-      console.log("Title: '" + form.controls['title'].value + "'\n", form.controls['text'].value);
-      // this gives text or ''.
-      console.log("Text: '" + form.controls['text'].value + "'\n", form.controls['text'].value);
-      // this gives the path of the file as text or ''. - better dont use this, use the one bellow
-      console.log("Image: '" + form.controls['image'].value + "'\n", form.controls['image'].value);
-      // this gives the actual file or ''.      
-      console.log("Image as file: '" + this.getActualImage() + "'\n", this.getActualImage());
-
-
+      const email = localStorage.getItem('email');
+      if(email){
+        const topic: SimplifiedTopicDTO = {
+          email: email, 
+          title: form.controls['title'].value,
+          content: form.controls['text'].value,
+          imageURL: '' 
+        };
+        this.topicService.createTopic(topic).subscribe({
+        next: (response) => {
+          console.log('Topic created successfully:', response);
+        },
+        error: (error) => {
+          console.error('Error creating topic:', error);
+        }
+      });
+      } else {
+      console.error('User email not found in local storage.');
+    }
     }
   }
+
 
   discardForm(){
     window.location.reload();
