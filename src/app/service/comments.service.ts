@@ -22,4 +22,7 @@ export class CommentService {
       getCommentsByPostId(postId: string): Observable<GetCommentDTO[]> {
         return this.http.get<GetCommentDTO[]>(`${this.apiUrl}/post/${postId}`);
       }
+      getCountCommentByPostId(postId: string): Observable<number> {
+        return this.http.get<number>(`${this.apiUrl}/count/postId/${postId}`);
+      }
 }

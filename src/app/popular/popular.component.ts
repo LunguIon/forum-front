@@ -6,6 +6,8 @@ import { NavigationEnd, Router } from '@angular/router';
 import { Post } from '../models/post.model';
 import { postDto } from '../models/postDto.model';
 import { PostService } from '../service/post.service';
+import { CommentService } from '../service/comments.service';
+import { forkJoin, map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-popular',
@@ -17,8 +19,11 @@ import { PostService } from '../service/post.service';
 export class PopularComponent implements OnInit{
   // OnInnit - you can add the base logic of the http requests here
   // -------------
-  constructor(private postService: PostService){}
+  constructor(private postService: PostService, private commentService: CommentService){}
   router: Router = inject(Router);
+  commentCounts: { [postId: string]: number } = {};
+  posts: postDto[] = [];
+
   ngOnInit(): void {
     this.loadPosts();
     this.router.events.subscribe((event) => {
@@ -39,12 +44,26 @@ export class PopularComponent implements OnInit{
 
   // Posts Array components
   // -------------
-  posts: postDto[] = [];
+  nrComments: number = 0;
   loadPosts(): void{
     this.postService.getAllPosts().subscribe((data: postDto[]) => {
       this.posts = data;
+      this.loadCommentCounts();
     });
   }
+  loadCommentCounts(): void {
+    const commentCountObservables: Observable<any>[] = this.posts.map(post => 
+      this.commentService.getCountCommentByPostId(post.postId).pipe(
+        map(count => ({ postId: post.postId, count }))
+      )
+    );
+    forkJoin(commentCountObservables).subscribe(results => {
+      results.forEach(result => {
+        this.commentCounts[result.postId] = result.count;
+      });
+    });
+  }
+
 
 
 }

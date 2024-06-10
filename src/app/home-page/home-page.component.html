@@ -40,6 +40,9 @@
                 <app-post
                   [id]="post.postId"
                   [username]="post.user.username"
+                  [valueOfLikes]="0"
+                  [nrComments]="commentCounts[post.postId] || 0"
+                  [voteStatus]="'upvoted'"
                   [content]="post.content"
                   [imgLink]="post.imageURL">
                 </app-post>

@@ -17,6 +17,7 @@ import { GetCommentDTO } from '../models/GetCommentDTO.model';
 import { UserDTO } from '../models/UserDTO.model';
 import { PostService } from '../service/post.service';
 import { postDto } from '../models/postDto.model';
+import { forkJoin, map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-comments-page',
@@ -30,6 +31,7 @@ export class CommentsPageComponent implements OnInit {
   // -------------
   private user: UserDTO = this.appCompoent.headerComponent.user;
   postId!: string;
+  commentCounts: { [postId: string]: number } = {};
 
   posts: postDto[] = [];
   constructor(private route: ActivatedRoute, private router: Router, private changeDetectorRef: ChangeDetectorRef, private appCompoent: AppComponent, private commentService: CommentService, private postService: PostService){
@@ -43,6 +45,7 @@ export class CommentsPageComponent implements OnInit {
         this.postId = paramValue;
         this.getPostByPostId(this.postId);
         this.getCommentsByPostId(this.postId);
+        this.loadCommentCounts();
         this.changeDetectorRef.detectChanges();
       }
     });
@@ -104,6 +107,19 @@ export class CommentsPageComponent implements OnInit {
       }
     });
   }
+  loadCommentCounts(): void {
+    const commentCountObservables: Observable<any>[] = this.posts.map(post => 
+      this.commentService.getCountCommentByPostId(post.postId).pipe(
+        map(count => ({ postId: post.postId, count }))
+      )
+    );
+    forkJoin(commentCountObservables).subscribe(results => {
+      results.forEach(result => {
+        this.commentCounts[result.postId] = result.count;
+      });
+    });
+  }
+
 
 
 
@@ -121,7 +137,7 @@ export class CommentsPageComponent implements OnInit {
     this.tempUniqueID--;
 
     this.comments.unshift({
-      commentId: this.tempUniqueID.toString(),
+      commentId: this.tempUniqueID.toString(), //Id of the last comment
       valueOfLikes: 0,
       //nrComments: 0,
       //voteStatus: 'undefined',
