@@ -1,10 +1,10 @@
 import { animate, keyframes, state, style, transition, trigger } from '@angular/animations';
 import { NgIf } from '@angular/common';
-import { Component, ElementRef, Inject, inject, Input, OnDestroy, OnInit, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, inject, OnDestroy, OnInit, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ElementRefService } from '../service/element-ref.service';
-import { Subscription, generate } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { TopicService } from '../service/topic.service';
 import { Post } from '../models/post.model';

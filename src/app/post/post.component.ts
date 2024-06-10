@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { VoteStatus } from '../models/voteStatus.type';
+import { CommentService } from '../service/comments.service';
 
 @Component({
   selector: 'app-post',
@@ -30,17 +31,31 @@ export class PostComponent implements OnInit, OnChanges{
   minusChecked: boolean = false;
 
 
-  constructor(){}
+  constructor(private commentService: CommentService){}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['id'] || changes['username'] || changes['valueOfLikes'] || changes['nrComments'] || changes['voteStatus'] || changes['content'] || changes['imgLink']) {
-      this.id = changes['id'].currentValue;
-      this.username = changes['username'].currentValue;
-      this.valueOfLikes = changes['valueOfLikes'].currentValue;
-      this.nrComments = changes['nrComments'].currentValue;
-      this.voteStatus = changes['voteStatus'].currentValue;
-      this.content = changes['content'].currentValue;
-      this.imgLink = changes['imgLink'].currentValue;
+      
+      if(changes['id'])
+        this.id = changes['id'].currentValue;
+
+      if(changes['username'])
+        this.username = changes['username'].currentValue;
+
+      if(changes['valueOfLikes'])
+        this.valueOfLikes = changes['valueOfLikes'].currentValue;
+      
+      if(changes['nrComments'])
+        this.nrComments = changes['nrComments'].currentValue;
+
+      if(changes['voteStatus'])
+        this.voteStatus = changes['voteStatus'].currentValue;
+      
+      if(changes['content'])
+        this.content = changes['content'].currentValue;
+
+      if(changes['imgLink'])
+        this.imgLink = changes['imgLink'].currentValue;
       // console.log('PostComponent inputs have changed', changes);
     }
   }
@@ -51,7 +66,9 @@ export class PostComponent implements OnInit, OnChanges{
       case "upvoted" : {this.plusChecked = true; this.minusChecked = false;} break;
       case 'downvoted' : {this.plusChecked = false; this.minusChecked = true;} break;
      }
+     this.commentService.getCommentsByPostId(this.id);
   }
+
 
   // Private functions
   // -------------

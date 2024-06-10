@@ -4,7 +4,7 @@
             [id]="post.postId"
             [username]="post.user.username"
             [valueOfLikes]="0"
-            [nrComments]="commentCounts[post.postId] || 0"
+            [nrComments]="nrComments || 0"
             [content]="post.content"
             [imgLink]="post.imageURL">
         </app-post>
@@ -34,6 +34,6 @@
 
 </div>
 
-<ng-template #postedCommentToast>Comment Posted </ng-template>
+<ng-template #postedCommentToast>Comment Posted!</ng-template>
 <app-toasts-container aria-live="polite" aria-atomic="true"></app-toasts-container>
 

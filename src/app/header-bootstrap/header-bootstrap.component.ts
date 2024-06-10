@@ -1,13 +1,12 @@
 import { NgClass } from '@angular/common';
-import { Component, inject, TemplateRef, ViewChild, ViewEncapsulation, HostListener, ElementRef, Renderer2, AfterViewInit, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, inject, TemplateRef, ViewChild, ViewEncapsulation, HostListener, ElementRef, Renderer2, OnInit, OnDestroy, Input } from '@angular/core';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { NgbOffcanvas, NgbOffcanvasOptions, NgbOffcanvasRef } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from '../app.component';
 import { ElementRefService } from '../service/element-ref.service';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { User } from '../models/user.model';
 import { UserService } from '../service/user.service';
 import { UserDTO } from '../models/UserDTO.model';
 
@@ -24,7 +23,9 @@ import { UserDTO } from '../models/UserDTO.model';
 export class HeaderBootstrapComponent implements OnInit, OnDestroy{
   // Input and other variables 
   // -------------
-  @Input() user: UserDTO;
+  user: UserDTO;
+  private userSubject = new BehaviorSubject<UserDTO>({email: '', username:'', imageUrl:''});
+  user$ = this.userSubject.asObservable();
   sanitizedUsername: string;
 
 
@@ -66,25 +67,30 @@ export class HeaderBootstrapComponent implements OnInit, OnDestroy{
       }
     );
 
-    const minLenghtOfName = 20;
-    if(this.sanitizedUsername.length < minLenghtOfName){
-      for(let i: number = this.sanitizedUsername.length; i <= minLenghtOfName; i++ ){
-        this.sanitizedUsername = this.sanitizedUsername + " &nbsp;";
-      }  
-    }else{
-      this.sanitizedUsername = this.sanitizedUsername + " &nbsp;";
-    }
     const email = localStorage.getItem('email');
     if (email) {
       this.userService.getUserByEmail(email).subscribe(
         (user: UserDTO) => {
           this.user = user;
+          this.userSubject.next(user);
           this.sanitizedUsername = this.user.username || '';
+
+          const minLenghtOfName = 20;
+          if(this.sanitizedUsername.length < minLenghtOfName){
+            for(let i: number = this.sanitizedUsername.length; i <= minLenghtOfName; i++ ){
+              this.sanitizedUsername = this.sanitizedUsername + " &nbsp;";
+            }  
+          }else{
+            this.sanitizedUsername = this.sanitizedUsername + " &nbsp;";
+          }
+    
         },
         (error) => {
           console.error('Error fetching user:', error);
         }
       );
+
+    
     }
   
 

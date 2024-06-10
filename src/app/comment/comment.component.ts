@@ -6,7 +6,6 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastService } from '../service/toast.service';
 import { VoteStatus } from '../models/voteStatus.type';
-import { Comment } from '../models/comment.model';
 import { GetCommentDTO } from '../models/GetCommentDTO.model';
 
 @Component({
@@ -36,12 +35,23 @@ export class CommentComponent {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['id'] || changes['username'] || changes['valueOfLikes'] || changes['nrComments'] || changes['voteStatus'] || changes['content']) {
-      this.id = changes['id'].currentValue;
-      this.username = changes['username'].currentValue;
-      this.valueOfLikes = changes['valueOfLikes'].currentValue;
-      this.nrComments = changes['nrComments'].currentValue;
-      this.voteStatus = changes['voteStatus'].currentValue;
-      this.content = changes['content'].currentValue;
+      if(changes['id'])
+        this.id = changes['id'].currentValue;
+
+      if(changes['username'])
+        this.username = changes['username'].currentValue;
+
+      if(changes['valueOfLikes'])
+        this.valueOfLikes = changes['valueOfLikes'].currentValue;
+
+      if(changes['nrComments'])
+        this.nrComments = changes['nrComments'].currentValue;
+
+      if(changes['voteStatus'])
+        this.voteStatus = changes['voteStatus'].currentValue;
+      
+      if(changes['content'])
+        this.content = changes['content'].currentValue;
     }
   }
 

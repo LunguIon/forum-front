@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, inject, TemplateRef, ViewEnca
 import { LogoNavComponent } from '../logo-nav/logo-nav.component';
 import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';  
 import { NgClass, NgIf } from '@angular/common';
-import { ActivatedRoute, Route, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { initializeConstellations } from '../utils/constelations';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 import { AppComponent } from '../app.component';
