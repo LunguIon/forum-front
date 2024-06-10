@@ -7,6 +7,7 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastService } from '../service/toast.service';
 import { VoteStatus } from '../models/voteStatus.type';
 import { Comment } from '../models/comment.model';
+import { GetCommentDTO } from '../models/GetCommentDTO.model';
 
 @Component({
   selector: 'app-comment',
@@ -18,7 +19,7 @@ import { Comment } from '../models/comment.model';
 export class CommentComponent {  
   // Input variables
   // -------------
-  @Input() id: number = 1;
+  @Input() id: string = "";
   @Input() username: string = ""
   @Input() valueOfLikes: number = 0;
   @Input() nrComments: number = 0;
@@ -175,7 +176,7 @@ export class CommentComponent {
 
   // Nested comments array
   // -------------
-  comments: Comment[] = [
+  comments: GetCommentDTO[] = [
 
   ]; 
 }

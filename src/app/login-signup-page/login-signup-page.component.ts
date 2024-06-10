@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, inject, TemplateRef, ViewEnca
 import { LogoNavComponent } from '../logo-nav/logo-nav.component';
 import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';  
 import { NgClass, NgIf } from '@angular/common';
-import { ActivatedRoute, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Route, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { initializeConstellations } from '../utils/constelations';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 import { AppComponent } from '../app.component';
@@ -49,8 +49,8 @@ export class LoginSignupPageComponent implements OnInit, OnDestroy{
   // -------------
   private elementRefSubscription!: Subscription;
 
-  constructor(private route : ActivatedRoute, private appComponent : AppComponent, private authService : AuthenticationService, private elementRefService: ElementRefService, private fb: FormBuilder) { 
-    this.appComponent.showHeaderAndFooter = false;
+  constructor(private route : ActivatedRoute, private appComponenet : AppComponent, private authService : AuthenticationService, private elementRefService: ElementRefService, private fb: FormBuilder, private router: Router) { 
+    this.appComponenet.showHeaderAndFooter = false;
   }
   redirectToGoogle(): void{
     window.location.href = 'http://speakapi.lol/oauth/google';
@@ -83,7 +83,7 @@ export class LoginSignupPageComponent implements OnInit, OnDestroy{
       this.elementRefSubscription.unsubscribe();
     }
 
-    this.appComponent.showHeaderAndFooter = true;
+    this.appComponenet.showHeaderAndFooter = true;
   }
   
   
@@ -151,10 +151,11 @@ export class LoginSignupPageComponent implements OnInit, OnDestroy{
     if (form.valid) { 
       this.authService.login(form.value).subscribe({
         next: (response) => {
-          // Handle successful login
+          localStorage.setItem('jwt', response.token);
+          localStorage.setItem('email', form.value.email);
+          this.router.navigate(['/home']);
         },
         error: (error) => {
-          // Handle login error
           this.openModal();
         }
       });
@@ -165,10 +166,9 @@ export class LoginSignupPageComponent implements OnInit, OnDestroy{
     if (form.valid && this.checkPasswordsMatch(form)) {
       this.authService.signUp(form.value).subscribe({
         next: (response) => {
-          // Handle successful signup
+          
         },
         error: (error) => {
-          // Handle signup error
           this.openModal();
         }
       });

@@ -15,8 +15,8 @@ import { VoteStatus } from '../models/voteStatus.type';
 export class PostComponent implements OnInit, OnChanges{
   // Input variables
   // -------------
-  @Input() id: number = 1;
-  @Input() username: string = ""
+  @Input() id: string = "";
+  @Input() username: string = "";
   @Input() valueOfLikes: number = 0;
   @Input() nrComments: number = 0;
   @Input() content : string = "";

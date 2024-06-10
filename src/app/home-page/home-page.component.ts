@@ -5,6 +5,9 @@ import { NgFor } from '@angular/common';
 import { NavigationEnd, Router } from '@angular/router';
 import { PostService } from '../service/post.service';
 import { Post } from '../models/post.model';
+import { postDto } from '../models/postDto.model';
+import { forkJoin, map, Observable } from 'rxjs';
+import { CommentService } from '../service/comments.service';
 
 
 @Component({
@@ -16,12 +19,13 @@ import { Post } from '../models/post.model';
 })
 export class HomePageComponent implements OnInit{
 
-  posts: Post[] = [];
+  posts: postDto[] = [];
+  commentCounts: { [postId: string]: number } = {};
   // OnInnit - you can add the base logic of the http requests here
   // -------------
   
   router: Router = inject(Router);
-  constructor(private postService: PostService) {}
+  constructor(private postService: PostService, private commentService: CommentService) {}
 
   ngOnInit(): void {
       this.loadPosts();
@@ -33,8 +37,22 @@ export class HomePageComponent implements OnInit{
   }
 
   loadPosts(): void{
-    this.postService.getAllPosts().subscribe((data: Post[]) => {
+    this.postService.getAllPosts().subscribe((data: postDto[]) => {
       this.posts = data;
+      this.loadCommentCounts();
+    });
+  }
+
+  loadCommentCounts(): void {
+    const commentCountObservables: Observable<any>[] = this.posts.map(post => 
+      this.commentService.getCountCommentByPostId(post.postId).pipe(
+        map(count => ({ postId: post.postId, count }))
+      )
+    );
+    forkJoin(commentCountObservables).subscribe(results => {
+      results.forEach(result => {
+        this.commentCounts[result.postId] = result.count;
+      });
     });
   }
 

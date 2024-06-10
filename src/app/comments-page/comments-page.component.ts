@@ -11,6 +11,13 @@ import { Comment } from '../models/comment.model';
 import { HeaderBootstrapComponent } from '../header-bootstrap/header-bootstrap.component';
 import { AppComponent } from '../app.component';
 import { User } from '../models/user.model';
+import { CommentService } from '../service/comments.service';
+import { SimplifiedCommentDTO } from '../models/SimplifiedCommentDTO.model';
+import { GetCommentDTO } from '../models/GetCommentDTO.model';
+import { UserDTO } from '../models/UserDTO.model';
+import { PostService } from '../service/post.service';
+import { postDto } from '../models/postDto.model';
+import { forkJoin, map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-comments-page',
@@ -22,15 +29,23 @@ import { User } from '../models/user.model';
 export class CommentsPageComponent implements OnInit {
   // Constrctor and Innit
   // -------------
-  private user: User = this.appCompoent.headerComponent.user;
-  constructor(private route: ActivatedRoute, private router: Router, private changeDetectorRef: ChangeDetectorRef, private appCompoent: AppComponent){
+  private user: UserDTO = this.appCompoent.headerComponent.user;
+  postId!: string;
+  commentCounts: { [postId: string]: number } = {};
+
+  posts: postDto[] = [];
+  constructor(private route: ActivatedRoute, private router: Router, private changeDetectorRef: ChangeDetectorRef, private appCompoent: AppComponent, private commentService: CommentService, private postService: PostService){
   }
 
+  comments: GetCommentDTO[] = [];
   ngOnInit(): void {
       this.route.queryParams.subscribe(params => {
       const paramValue = params['postid'];
       if(paramValue){
-        this.post.id = paramValue;
+        this.postId = paramValue;
+        this.getPostByPostId(this.postId);
+        this.getCommentsByPostId(this.postId);
+        this.loadCommentCounts();
         this.changeDetectorRef.detectChanges();
       }
     });
@@ -41,18 +56,71 @@ export class CommentsPageComponent implements OnInit {
       }
     });
 
+    
+
     // Take here the post and the comments of the post from the database
+
   }
 
-  postComment(commentContent: string){
-    if(commentContent){
-      // Here you sent the comment into the database
-      
+  postComment(commentContent: string): void {
+    if (commentContent) {
+      const email = localStorage.getItem('email');
+      if (email) {
+        const comment: SimplifiedCommentDTO = {
+          email: email,
+          postId: this.postId,  // Assign the postId
+          content: commentContent
+        };
 
-      // if succesful show this
-      this.ShowToastAndPostComment(commentContent);
+        this.commentService.createComment(comment).subscribe({
+          next: (response) => {
+            console.log('Comment created successfully', response);
+            this.ShowToastAndPostComment(commentContent);
+          },
+          error: (error) => {
+            console.log('Error creating comment:', error);
+          }
+        });
+      } else {
+        console.error('User email not found in local storage.');
+      }
     }
   }
+  getCommentsByPostId(postId: string): void {
+    this.commentService.getCommentsByPostId(postId).subscribe({
+        next: (comments) => {
+            this.comments = comments;
+        },
+        error: (error) => {
+            console.log('Error fetching comments:', error);
+        }
+    });
+}
+
+  getPostByPostId(postId: string): void {
+    this.postService.getPostByPostId(postId).subscribe({
+      next: (post: postDto) => {
+        this.posts.push(post);
+      },
+      error: (err) => {
+        console.error('Error fetching post:', err);
+      }
+    });
+  }
+  loadCommentCounts(): void {
+    const commentCountObservables: Observable<any>[] = this.posts.map(post => 
+      this.commentService.getCountCommentByPostId(post.postId).pipe(
+        map(count => ({ postId: post.postId, count }))
+      )
+    );
+    forkJoin(commentCountObservables).subscribe(results => {
+      results.forEach(result => {
+        this.commentCounts[result.postId] = result.count;
+      });
+    });
+  }
+
+
 
 
   // Toast Components 
@@ -69,46 +137,20 @@ export class CommentsPageComponent implements OnInit {
     this.tempUniqueID--;
 
     this.comments.unshift({
-      id: this.tempUniqueID,
+      commentId: this.tempUniqueID.toString(), //Id of the last comment
       valueOfLikes: 0,
-      nrComments: 0,
-      voteStatus: 'undefined',
+      //nrComments: 0,
+      //voteStatus: 'undefined',
       content: commentContent,
       user: this.user,
+      postId: this.postId,
+      creationDate: '',
+      updateDate: ''
     })
   }
 
 
-  // Compents' Arrays
-  // -------------
-  post: Post = {
-    id: 0,
-    user: {id: 1, username: "User 123"},
-    valueOfLikes: 0,
-    nrComments: 2,
-    voteStatus: 'undefined',
-    content: 'contet',
-    imgLink: null
-  }
 
-  comments: Comment[] = [
-    {
-      id: this.post.id + 1,
-      user: {id: 2, username: "User 1234"},
-      valueOfLikes: 0,
-      nrComments: 2,
-      voteStatus: 'undefined',
-      content: 'Comment contet',
-    },
-    {
-      id: this.post.id+2,
-      user: {id: 3, username: "User 12345"},
-      valueOfLikes: 0,
-      nrComments: 2,
-      voteStatus: 'undefined',
-      content: 'Comment contet',
-    }
-  ]; 
   
 
 }

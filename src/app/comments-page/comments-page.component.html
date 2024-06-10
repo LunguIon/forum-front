@@ -1,13 +1,12 @@
 <div class="main-container fill container-fluid font-julius-sans-one">
-    <div class="mb-2">
+    <div class="mb-2" *ngFor="let post of posts">
         <app-post
-            [id]="post.id"
+            [id]="post.postId"
             [username]="post.user.username"
-            [valueOfLikes]="post.valueOfLikes"
-            [nrComments]="post.nrComments"
-            [voteStatus]="post.voteStatus"
+            [valueOfLikes]="0"
+            [nrComments]="commentCounts[post.postId] || 0"
             [content]="post.content"
-            [imgLink]="post.imgLink">
+            [imgLink]="post.imageURL">
         </app-post>
     </div>
 
@@ -25,12 +24,10 @@
     <div class="px-3 px-sm-5 d-flex justify-content-center gap-2 flex-column">
         @for (comment of comments; track comment; let  i = $index) { 
             <app-comment
-            [id]="comment.id"
+            [id]="comment.commentId"
             [username]="comment.user.username"
             [valueOfLikes]="comment.valueOfLikes"
-            [nrComments]="comment.nrComments"
-            [content]="comment.content"
-            [voteStatus]="comment.voteStatus">
+            [content]="comment.content">
             </app-comment>
         }
     </div>
