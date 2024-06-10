@@ -2,11 +2,12 @@
     <div class="mb-2" *ngFor="let post of posts">
         <app-post
             [id]="post.postId"
-            [username]="post.user.username"
+            [user]="post.user"
             [valueOfLikes]="0"
             [nrComments]="nrComments || 0"
             [content]="post.content"
-            [imgLink]="post.imageURL">
+            [imgLink]="post.imageURL"
+            [topic] = "'temp-topic-title'">
         </app-post>
     </div>
 
@@ -25,7 +26,7 @@
         @for (comment of comments; track comment; let  i = $index) { 
             <app-comment
             [id]="comment.commentId"
-            [username]="comment.user.username"
+            [user]="comment.user"
             [valueOfLikes]="comment.valueOfLikes"
             [content]="comment.content">
             </app-comment>

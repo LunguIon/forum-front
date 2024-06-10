@@ -7,6 +7,7 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastService } from '../service/toast.service';
 import { VoteStatus } from '../models/voteStatus.type';
 import { GetCommentDTO } from '../models/GetCommentDTO.model';
+import { UserDTO } from '../models/UserDTO.model';
 
 @Component({
   selector: 'app-comment',
@@ -19,7 +20,7 @@ export class CommentComponent {
   // Input variables
   // -------------
   @Input() id: string = "";
-  @Input() username: string = ""
+  @Input() user: UserDTO = {username:'', email:'', imageUrl:''}
   @Input() valueOfLikes: number = 0;
   @Input() nrComments: number = 0;
   @Input() content : string = "";
@@ -34,12 +35,12 @@ export class CommentComponent {
   constructor(){}
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['id'] || changes['username'] || changes['valueOfLikes'] || changes['nrComments'] || changes['voteStatus'] || changes['content']) {
+    if (changes['id'] || changes['user'] || changes['valueOfLikes'] || changes['nrComments'] || changes['voteStatus'] || changes['content']) {
       if(changes['id'])
         this.id = changes['id'].currentValue;
 
-      if(changes['username'])
-        this.username = changes['username'].currentValue;
+      if(changes['user'])
+        this.user = changes['user'].currentValue;
 
       if(changes['valueOfLikes'])
         this.valueOfLikes = changes['valueOfLikes'].currentValue;
