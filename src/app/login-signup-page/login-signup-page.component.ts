@@ -83,7 +83,7 @@ export class LoginSignupPageComponent implements OnInit, OnDestroy{
       this.elementRefSubscription.unsubscribe();
     }
 
-    this.appComponent.showHeaderAndFooter = true;
+    this.appComponenet.showHeaderAndFooter = true;
   }
   
   
