@@ -5,6 +5,7 @@ import { NgFor } from '@angular/common';
 import { NavigationEnd, Router } from '@angular/router';
 import { Post } from '../models/post.model';
 import { postDto } from '../models/postDto.model';
+import { PostService } from '../service/post.service';
 
 @Component({
   selector: 'app-popular',
@@ -16,8 +17,10 @@ import { postDto } from '../models/postDto.model';
 export class PopularComponent implements OnInit{
   // OnInnit - you can add the base logic of the http requests here
   // -------------
+  constructor(private postService: PostService){}
   router: Router = inject(Router);
   ngOnInit(): void {
+    this.loadPosts();
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         window.scrollTo(0, 0);
@@ -37,6 +40,11 @@ export class PopularComponent implements OnInit{
   // Posts Array components
   // -------------
   posts: postDto[] = [];
+  loadPosts(): void{
+    this.postService.getAllPosts().subscribe((data: postDto[]) => {
+      this.posts = data;
+    });
+  }
 
 
 }

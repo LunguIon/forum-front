@@ -20,6 +20,6 @@ export class CommentService {
         return this.http.post<any>(this.apiUrl, comment);
       }
       getCommentsByPostId(postId: string): Observable<GetCommentDTO[]> {
-        return this.http.get<GetCommentDTO[]>(`${this.apiUrl}/comments/post/${postId}`);
+        return this.http.get<GetCommentDTO[]>(`${this.apiUrl}/post/${postId}`);
       }
 }

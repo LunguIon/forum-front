@@ -15,6 +15,8 @@ import { CommentService } from '../service/comments.service';
 import { SimplifiedCommentDTO } from '../models/SimplifiedCommentDTO.model';
 import { GetCommentDTO } from '../models/GetCommentDTO.model';
 import { UserDTO } from '../models/UserDTO.model';
+import { PostService } from '../service/post.service';
+import { postDto } from '../models/postDto.model';
 
 @Component({
   selector: 'app-comments-page',
@@ -28,7 +30,9 @@ export class CommentsPageComponent implements OnInit {
   // -------------
   private user: UserDTO = this.appCompoent.headerComponent.user;
   postId!: string;
-  constructor(private route: ActivatedRoute, private router: Router, private changeDetectorRef: ChangeDetectorRef, private appCompoent: AppComponent, private commentService: CommentService){
+
+  posts: postDto[] = [];
+  constructor(private route: ActivatedRoute, private router: Router, private changeDetectorRef: ChangeDetectorRef, private appCompoent: AppComponent, private commentService: CommentService, private postService: PostService){
   }
 
   comments: GetCommentDTO[] = [];
@@ -37,6 +41,8 @@ export class CommentsPageComponent implements OnInit {
       const paramValue = params['postid'];
       if(paramValue){
         this.postId = paramValue;
+        this.getPostByPostId(this.postId);
+        this.getCommentsByPostId(this.postId);
         this.changeDetectorRef.detectChanges();
       }
     });
@@ -87,6 +93,17 @@ export class CommentsPageComponent implements OnInit {
         }
     });
 }
+
+  getPostByPostId(postId: string): void {
+    this.postService.getPostByPostId(postId).subscribe({
+      next: (post: postDto) => {
+        this.posts.push(post);
+      },
+      error: (err) => {
+        console.error('Error fetching post:', err);
+      }
+    });
+  }
 
 
 

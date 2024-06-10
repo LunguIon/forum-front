@@ -15,14 +15,14 @@
         <div>
            
             <div *ngFor="let post of posts">
-                <app-post>
-                  <!-- [id]="post.postId" -->
+                <app-post
+                  [id]="post.postId"
                   [username]="post.user.username"
-                  <!-- [valueOfLikes]="post.valueOfLikes"
-                  [nrComments]="post.nrComments"
-                  [voteStatus]="post.voteStatus" -->
+                  [valueOfLikes]="0"
+                  [nrComments]="0"
+                  [voteStatus]="'upvoted'"
                   [content]="post.content"
-                  [imgLink]="post.imgLink">
+                  [imgLink]="post.imageURL">
                 </app-post>
             </div>
             
