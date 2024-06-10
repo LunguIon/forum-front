@@ -66,7 +66,6 @@ export class PostComponent implements OnInit, OnChanges{
       case "upvoted" : {this.plusChecked = true; this.minusChecked = false;} break;
       case 'downvoted' : {this.plusChecked = false; this.minusChecked = true;} break;
      }
-     this.commentService.getCommentsByPostId(this.id);
   }
 
 

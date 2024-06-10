@@ -12,11 +12,13 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { ElementRefService } from '../service/element-ref.service';
 import { FormBuilder } from '@angular/forms';
+import { ToastsContainerComponent } from '../toasts-container/toasts-container.component';
+import { ToastService } from '../service/toast.service';
 
 @Component({
   selector: 'app-login-signup-page',
   standalone: true,
-  imports: [LogoNavComponent, FormsModule, ReactiveFormsModule, NgClass, NgIf, HttpClientModule, RouterOutlet, RouterLink, RouterLinkActive, FormsModule],
+  imports: [LogoNavComponent, FormsModule, ReactiveFormsModule, NgClass, NgIf, HttpClientModule, RouterOutlet, RouterLink, RouterLinkActive, FormsModule, ToastsContainerComponent],
   templateUrl: './login-signup-page.component.html',
   styleUrl: './login-signup-page.component.scss',
   animations: [
@@ -147,6 +149,8 @@ export class LoginSignupPageComponent implements OnInit, OnDestroy{
       return true;
   }
 
+  @ViewChild('loginSuccesfull') loginSuccesfull!: TemplateRef<any>;
+  @ViewChild('loginFailed') loginFailed!: TemplateRef<any>;
   submitLoginForm(form: NgForm) {
     if (form.valid) { 
       this.authService.login(form.value).subscribe({
@@ -154,27 +158,54 @@ export class LoginSignupPageComponent implements OnInit, OnDestroy{
           localStorage.setItem('jwt', response.token);
           localStorage.setItem('email', form.value.email);
           this.router.navigate(['/home']);
+          this.showToast(this.loginSuccesfull);
+          this.resetForm(form);
         },
         error: (error) => {
+          this.showToast(this.loginFailed);
           this.openModal();
         }
       });
     }
   }
 
+  @ViewChild('signupSuccesfull') signupSuccesfull!: TemplateRef<any>;
+  @ViewChild('signupFailed') signupFailed!: TemplateRef<any>;
   submitSignupForm(form: NgForm) {
     if (form.valid && this.checkPasswordsMatch(form)) {
       this.authService.signUp(form.value).subscribe({
         next: (response) => {
-          
+          this.showToast(this.signupSuccesfull);
+          this.resetForm(form);
         },
         error: (error) => {
+          this.showToast(this.signupFailed);
           this.openModal();
         }
       });
     }
   }
 
+  // Toast Components 
+  // -------------
+  toastService = inject(ToastService);
+  showToast(template: TemplateRef<any>) {
+    this.toastService.show({ template });
+	}
+
+  resetForm(form: NgForm){
+    if(form.controls['email'])
+      form.controls['email'].reset();
+
+    if(form.controls['password'])
+      form.controls['password'].reset();
+
+    if(form.controls['username'])
+      form.controls['username'].reset();
+
+    if(form.controls['confirm-password'])
+      form.controls['confirm-password'].reset();
+  }
 
 }
 

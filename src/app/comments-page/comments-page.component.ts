@@ -78,6 +78,8 @@ export class CommentsPageComponent implements OnInit {
   }
 
 
+  @ViewChild('postedCommentToast') postedCommentToast!: TemplateRef<any>;
+  @ViewChild('smtWrongToast') smtWrongToast!: TemplateRef<any>;
   postComment(commentContent: string): void {
     if (commentContent) {
       const email = localStorage.getItem('email');
@@ -90,15 +92,17 @@ export class CommentsPageComponent implements OnInit {
 
         this.commentService.createComment(comment).subscribe({
           next: (response) => {
-            console.log('Comment created successfully', response);
             this.ShowToastAndPostComment(commentContent);
+            // console.log('Comment created successfully', response);
           },
           error: (error) => {
-            console.log('Error creating comment:', error);
+            this.showToast(this.smtWrongToast);
+            // console.log('Error creating comment:', error);
           }
         });
       } else {
-        console.error('User email not found in local storage.');
+        this.showToast(this.smtWrongToast);
+        // console.error('User email not found in local storage.');
       }
     }
   }
@@ -133,7 +137,6 @@ export class CommentsPageComponent implements OnInit {
 	}
   
   tempUniqueID: number = 0;
-  @ViewChild('postedCommentToast') postedCommentToast!: TemplateRef<any>;
   ShowToastAndPostComment(commentContent: string) {
     this.nrComments++;
     this.showToast(this.postedCommentToast);
