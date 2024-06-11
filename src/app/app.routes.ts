@@ -25,7 +25,7 @@ export const routes: Routes = [
   // keep this at the bottom, if you try to access 
   // smt that isn't stated above it redirects you to the welcome page
   {path: '404', component: ExeptionPageComponent}, 
-  {path: '**', redirectTo: 'welcome'},
+  {path: '**', component: ExeptionPageComponent},
 ];
 
 @NgModule({
