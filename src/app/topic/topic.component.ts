@@ -30,7 +30,7 @@ export class TopicComponent implements OnInit, OnChanges{
   constructor(){}
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['id'] || changes['user'] || changes['content'] || changes['imgLink'] || changes['title']) {
+    if (changes['id'] || changes['user'] || changes['content'] || changes['title'] || changes['imgLink']) {
       
       if(changes['id'])
         this.id = changes['id'].currentValue;
@@ -38,21 +38,22 @@ export class TopicComponent implements OnInit, OnChanges{
       if(changes['user'])
         this.user = changes['user'].currentValue;
       
+      if(changes['imgLink']){
+        this.imgLink = changes['imgLink'].currentValue;}
+        
       if(changes['content'])
         this.content = changes['content'].currentValue;
       
       if(changes['title']){
         this.imgLink = changes['title'].currentValue;}
 
-      if(changes['imgLink'])
-        this.imgLink = changes['imgLink'].currentValue;
 
       // console.log('PostComponent inputs have changed', changes);
     }
   }
 
   ngOnInit(): void {
-      
+    this.imgLink = null;
   }
 
 
