@@ -3,7 +3,6 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { PostComponent } from '../post/post.component';
 import { NgFor } from '@angular/common';
 import { NavigationEnd, Router } from '@angular/router';
-import { Post } from '../models/post.model';
 import { postDto } from '../models/postDto.model';
 import { PostService } from '../service/post.service';
 import { CommentService } from '../service/comments.service';

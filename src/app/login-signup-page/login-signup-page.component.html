@@ -3,7 +3,7 @@
     </app-logo-nav>
     <canvas class="back" #canvasElement></canvas> 
 
-    <div class="container d-flex justify-content-center align-items-center flex-column vh-100">
+    <div class="container d-flex justify-content-center align-items-center flex-column vh-100" style="z-index: 100;">
         
         <div class="w-auto d-flex justify-content-center align-items-center flex-column h-100 gap-3">
 
@@ -172,5 +172,11 @@
         </div>
     </div>
 </ng-template>
+
+<ng-template #loginSuccesfull>Login Succesful!</ng-template>
+<ng-template #loginFailed>Login Failed!</ng-template>
+<ng-template #signupSuccesfull>Signup Succesful!</ng-template>
+<ng-template #signupFailed>Signup Failed!</ng-template>
+<app-toasts-container aria-live="polite" aria-atomic="true"></app-toasts-container>
 
 

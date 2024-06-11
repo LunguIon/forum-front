@@ -3,19 +3,10 @@
         <div class="d-flex justify-content-start align-content-center flex-column">
             <div class="d-flex justify-content-between align-content-center">
                 <div class=" d-flex align-items-center justify-content-start flex-row">
-                    <span class="user-icon p-0" style="cursor: pointer;">
-                        <img tabindex="1" class="w70h70 border-round p-1 nav-link-2" src="../../assets/solid_white.png" alt="">
-                    </span>
-                    <div class="username-wrapper mx-2 px-2 py-2 fs-6 fw-bold btn" >
-                        <div class="post-username">{{user.username}}</div>
+                    <div class="username-wrapper mx-2 px-2  fs-6 fw-bold btn" >
+                        <div class="post-username px-1 fs-3">{{title}}</div>
                     </div>
                 </div>
-            </div>
-
-            <div class="d-flex justify-content-start align-content-center px-3 mt-0">
-                <a routerLink="/comments" [queryParams]="{ postid: id }" routerLinkActive="active" class="text-decoration-none">
-                    <span class="fs-sm">{{topic}}</span>
-                </a>
             </div>
         </div>
 
@@ -32,52 +23,7 @@
             </div>
         </div>
 
-        <div class="d-flex justify-content-between align-items-center px-4 py-2">
-            <div class="d-flex justify-content-center align-items-center flex-row gap-1 gap-md-3">
-                <div class="d-flex justify-content-center align-items-center flex-row gap-2 px-1 py-1 rounded-5 rating-bar">
-
-                    <label [for]=" 'plus-' + id " class="d-flex justify-content-center align-items-center                   plus-lbl">    
-                        <input #plusBtn type="checkbox" [id]=" 'plus-' + id " name="rating" class="d-none" (click)="onPlusClick(plusBtn, minusBtn)" [(ngModel)]="plusChecked">
-                        <div class="btn w25h25 d-flex justify-content-center align-content-center rounded-5     plus-btn ">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                            </svg>
-                        </div>
-                    </label>
-
-                    <div class="upvotes fw-black d-flex justify-content-center align-items-center">
-                        <div class="d-flex justify-content-center align-items-center">
-                            <!-- {{upvoteds}}  -->
-                            {{valueOfLikes}}
-                        </div>
-                    </div>
-
-                    <label [for]=" 'minus-' + id " class="d-flex justify-content-center align-items-center                  minus-lbl">
-                        <input #minusBtn type="checkbox" [id]=" 'minus-' + id " name="rating" class="d-none" (click)="onMinusClick(minusBtn, plusBtn)" [(ngModel)]="minusChecked">
-                        <div class="btn w25h25 d-flex justify-content-center align-content-center rounded-5     minus-btn" >
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
-                            </svg>  
-                        </div>
-                    </label>
-
-                </div>
-
-                <a routerLink="/comments" [queryParams]="{ postid: id }" routerLinkActive="active" class="text-decoration-none">
-                    <div class="d-flex justify-content-center align-items-center gap-1 gap-sm-2 px-2 py-1 rounded-5 btn post-elment-hover" [id]="'comment-btn-' + id">
-                        <div class="w25h25 d-flex justify-content-center align-content-center rounded-5">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.076-4.076a1.526 1.526 0 0 1 1.037-.443 48.282 48.282 0 0 0 5.68-.494c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
-                            </svg>  
-                        </div>
-                        <div class=" fw-black d-flex align-items-center">
-                            {{nrComments}} 
-                        </div>
-                    </div>
-                </a>
-                
-
-            </div>
+        <div class="d-flex justify-content-end align-items-center px-4 py-2">
 
             <div class="d-flex justify-content-center align-items-center p-2 rounded-4 btn post-elment-hover">
                 <div class="w25h25 d-flex justify-content-center align-content-center rounded-5">
@@ -86,7 +32,8 @@
                     </svg>                    
                 </div>
             </div>
-            
         </div>
-    </div> 
+            
+    </div>
+</div> 
 

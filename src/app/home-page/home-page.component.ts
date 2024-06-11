@@ -4,7 +4,6 @@ import { PostComponent } from '../post/post.component';
 import { NgFor } from '@angular/common';
 import { NavigationEnd, Router } from '@angular/router';
 import { PostService } from '../service/post.service';
-import { Post } from '../models/post.model';
 import { postDto } from '../models/postDto.model';
 import { forkJoin, map, Observable } from 'rxjs';
 import { CommentService } from '../service/comments.service';

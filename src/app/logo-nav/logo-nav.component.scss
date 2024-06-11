@@ -8,6 +8,7 @@
 .nav{
     position: fixed;
     top: 0;
+    pointer-events: none;
 }
 
 a {
@@ -34,6 +35,7 @@ a:focus {
 .responsive-size{
     width: rfs-fluid-value(120px);
     height: rfs-fluid-value(120px);
+    pointer-events: all;
 }
 
 .nav, .container-fluid{

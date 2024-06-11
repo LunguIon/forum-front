@@ -8,6 +8,7 @@ import { CreatePostComponent } from './create-post/create-post.component';
 import { CommentsPageComponent } from './comments-page/comments-page.component';
 import { PopularComponent } from './popular/popular.component';
 import { ExeptionPageComponent } from './exeption-page/exeption-page.component';
+import { AllComponent } from './all/all.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'welcome', pathMatch: 'full'},
@@ -16,6 +17,7 @@ export const routes: Routes = [
   {path: 'signup', component: LoginSignupPageComponent,  data: {isSignup: true}},
   {path: 'home', component: HomePageComponent},
   {path: 'popular', component: PopularComponent},
+  {path: 'all', component: AllComponent},
   {path: 'createtopic', component: CreateTopicComponent},
   {path: 'createpost', component: CreatePostComponent},
   {path: 'comments', component: CommentsPageComponent},

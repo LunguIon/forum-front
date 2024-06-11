@@ -1,19 +1,21 @@
 import { animate, keyframes, state, style, transition, trigger } from '@angular/animations';
 import { NgIf } from '@angular/common';
-import { Component, ElementRef, Inject, inject, Input, OnDestroy, OnInit, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
-import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
+import { Component, ElementRef, inject, OnDestroy, OnInit, TemplateRef, viewChild, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Form, FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ElementRefService } from '../service/element-ref.service';
-import { Subscription, generate } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { TopicService } from '../service/topic.service';
 import { Post } from '../models/post.model';
 import { PostService } from '../service/post.service';
+import { ToastsContainerComponent } from '../toasts-container/toasts-container.component';
+import { ToastService } from '../service/toast.service';
 
 @Component({
   selector: 'app-create-post',
   standalone: true,
-  imports: [NgIf ,FormsModule, ReactiveFormsModule],
+  imports: [ToastsContainerComponent, NgIf ,FormsModule, ReactiveFormsModule],
   templateUrl: './create-post.component.html',
   styleUrl: './create-post.component.scss',
   animations: [
@@ -173,6 +175,8 @@ export class CreatePostComponent implements OnInit, OnDestroy{
   
   // Form functionality
   // -------------
+  @ViewChild('postCreatedToast') postCreatedToast!: TemplateRef<any>;
+  @ViewChild('smtWrongToast') smtWrongToast!: TemplateRef<any>;
   submitForm(form: NgForm){
     if(form.valid && this.isTopicChosed()){
         const email = localStorage.getItem('email');
@@ -185,18 +189,19 @@ export class CreatePostComponent implements OnInit, OnDestroy{
         };
         this.postService.createPost(post).subscribe({
           next: (response) => {
-              console.log('Post created succesfully', response);
+            this.showToast(this.postCreatedToast);
+            this.resetForm(form);
+            // console.log('Post created succesfully', response);
           },
           error: (error) => {
-            console.log('Error creating topic:', error);
+            this.showToast(this.smtWrongToast);
+            // console.log('Error creating topic:', error);
           }
         });
       }else {
-        console.error('User email not found in local storage.');
+        this.showToast(this.smtWrongToast);
+        // console.error('User email not found in local storage.');
       }
-
-      
-
     } else{
       this.modalTouched = true;
     }
@@ -213,4 +218,18 @@ export class CreatePostComponent implements OnInit, OnDestroy{
         return '';
       }
   }
+
+  resetForm(form: NgForm){
+    form.controls['title'].reset();
+    form.controls['text'].reset();
+    form.controls['image'].reset();
+    this.currentTopic = this.defaultTopicPlaceHolder;
+  }
+
+  // Toast Components 
+  // -------------
+  toastService = inject(ToastService);
+  showToast(template: TemplateRef<any>) {
+    this.toastService.show({ template });
+	}
 }
