@@ -17,7 +17,7 @@ import { FormsModule } from '@angular/forms';
 export class TopicComponent implements OnInit, OnChanges{
    // Input variables
   // -------------
-  @Input() id: string = "";
+  @Input() id: number = 0;
   @Input() user: UserDTO = {username: '', email: '', imageUrl:''};
   @Input() title : string = "";
   @Input() content : string = "";

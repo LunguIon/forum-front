@@ -16,12 +16,10 @@
            
             <div *ngFor="let topic of topics">
                 <app-topic
-                  [id]="topic.postId"
+                  [id]="topic.id"
                   [user]="topic.user"
-                  [title]="'title'"
+                  [title]="topic.title"
                   [content]="topic.content"
-                  [imgLink]="topic.imageURL"
-                  
                   >
                 </app-topic>
             </div>

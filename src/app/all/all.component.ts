@@ -7,6 +7,8 @@ import { CommentService } from '../service/comments.service';
 import { NgFor } from '@angular/common';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { TopicComponent } from '../topic/topic.component';
+import { TopicDTO } from '../models/topicdto.model';
+import { TopicService } from '../service/topic.service';
 
 @Component({
   selector: 'app-all',
@@ -16,14 +18,14 @@ import { TopicComponent } from '../topic/topic.component';
   styleUrl: './all.component.scss'
 })
 export class AllComponent implements OnInit{
-  constructor(private postService: PostService, private commentService: CommentService){}
+  constructor(private commentService: CommentService, private topicService: TopicService){}
   router: Router = inject(Router);
   
   // Change topics from postDto to TopicDto
-  topics: postDto[] = [];
+  topics: TopicDTO[] = [];
 
   ngOnInit(): void {
-    this.loadPosts();
+    this.loadTopics();
 
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -43,8 +45,8 @@ export class AllComponent implements OnInit{
 
   // Topic Array components
   // -------------
-  loadPosts(): void{
-    this.postService.getAllPosts().subscribe((data: postDto[]) => {
+  loadTopics(): void{
+    this.topicService.getAllTopics().subscribe((data: TopicDTO[]) => {
       this.topics = data;
     });
   }
