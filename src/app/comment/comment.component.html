@@ -6,7 +6,7 @@
                     <img tabindex="1" class="w70h70 border-round p-1 nav-link-2" src="../../assets/solid_white.png" alt="">
                 </span>
                 <div class="username-wrapper mx-2 px-2 py-2 fs-6 fw-bold btn" >
-                    <div class="post-username">{{username}}</div>
+                    <div class="post-username">{{user.username}}</div>
                 </div>
             </div>
             <div class="d-flex justify-content-center align-content-center flex-column px-3 ">
@@ -111,7 +111,7 @@
             <div class="ms-4 ms-sm-5">
                 <app-comment
                 [id]="comment.commentId"
-                [username]="comment.user.username"
+                [user]="comment.user"
                 [valueOfLikes]="comment.valueOfLikes"
                 [content]="comment.content"
                 [nested]="this.nested + 1">
@@ -122,6 +122,6 @@
 
 </div>
 
-<ng-template #copiedToast>Copied </ng-template>
+<ng-template #copiedToast>Content Copied!</ng-template>
 
 

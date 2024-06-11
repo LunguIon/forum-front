@@ -1,8 +1,8 @@
 @for (toast of toastService.toasts; track toast) {
     <ngb-toast
-        [class]="toast.classname"
+        [class]="toast.classname + ' fs-6 font-julius-sans-one'"
         [autohide]="true"
-        [delay]="toast.delay || 1500"
+        [delay]="toast.delay || 2000"
         (hidden)="toastService.remove(toast)">
 
         <ng-template [ngTemplateOutlet]="toast.template"></ng-template>

@@ -39,12 +39,14 @@
             <div *ngFor="let post of posts">
                 <app-post
                   [id]="post.postId"
-                  [username]="post.user.username"
+                  [user]="post.user"
                   [valueOfLikes]="0"
                   [nrComments]="commentCounts[post.postId] || 0"
-                  [voteStatus]="'upvoted'"
+                  [voteStatus]="'undefined'"
                   [content]="post.content"
-                  [imgLink]="post.imageURL">
+                  [imgLink]="post.imageURL" 
+                  [topic] = "'temp-topic-title'"
+                  >
                 </app-post>
             </div>
             

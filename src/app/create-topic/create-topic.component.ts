@@ -1,14 +1,16 @@
 import { animate, keyframes, state, style, transition, trigger } from '@angular/animations';
 import { NgIf } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Component, inject } from '@angular/core';
+import { Component, inject, TemplateRef, ViewChild } from '@angular/core';
 import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { TopicService } from '../service/topic.service';
 import { SimplifiedTopicDTO } from '../models/topic.model';
+import { ToastService } from '../service/toast.service';
+import { ToastsContainerComponent } from '../toasts-container/toasts-container.component';
 @Component({
   selector: 'app-create-topic',
   standalone: true,
-  imports: [NgIf, HttpClientModule, FormsModule, ReactiveFormsModule, FormsModule],
+  imports: [NgIf, HttpClientModule, FormsModule, ReactiveFormsModule, FormsModule, ToastsContainerComponent],
   templateUrl: './create-topic.component.html',
   styleUrl: './create-topic.component.scss',
   animations: [
@@ -101,6 +103,8 @@ export class CreateTopicComponent{
 
   // Form functionality
   // -------------
+  @ViewChild('topicCreatedToast') topicCreatedToast!: TemplateRef<any>;
+  @ViewChild('smtWrongToast') smtWrongToast!: TemplateRef<any>;
   submitForm(form: NgForm){
     if(form.valid){
       const email = localStorage.getItem('email');
@@ -113,18 +117,21 @@ export class CreateTopicComponent{
         };
         this.topicService.createTopic(topic).subscribe({
         next: (response) => {
-          console.log('Topic created successfully:', response);
+          this.showToast(this.topicCreatedToast);
+          this.resetForm(form);
+          // console.log('Topic created successfully:', response);
         },
         error: (error) => {
-          console.error('Error creating topic:', error);
+          this.showToast(this.smtWrongToast);
+          // console.error('Error creating topic:', error);
         }
       });
       } else {
-      console.error('User email not found in local storage.');
+        this.showToast(this.smtWrongToast);
+        // console.error('User email not found in local storage.');
     }
     }
   }
-
 
   discardForm(){
     window.location.reload();
@@ -137,5 +144,18 @@ export class CreateTopicComponent{
         return '';
       }
   }
+
+  resetForm(form: NgForm){
+    form.controls['title'].reset();
+    form.controls['text'].reset();
+    form.controls['image'].reset();
+  }
+
+  // Toast Components 
+  // -------------
+  toastService = inject(ToastService);
+  showToast(template: TemplateRef<any>) {
+    this.toastService.show({ template });
+	}
 
 }
