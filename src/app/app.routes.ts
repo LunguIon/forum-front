@@ -9,6 +9,7 @@ import { CommentsPageComponent } from './comments-page/comments-page.component';
 import { PopularComponent } from './popular/popular.component';
 import { ExeptionPageComponent } from './exeption-page/exeption-page.component';
 import { AllComponent } from './all/all.component';
+import { SettingsPageComponent } from './settings-page/settings-page.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'welcome', pathMatch: 'full'},
@@ -21,6 +22,7 @@ export const routes: Routes = [
   {path: 'createtopic', component: CreateTopicComponent},
   {path: 'createpost', component: CreatePostComponent},
   {path: 'comments', component: CommentsPageComponent},
+  {path: 'settings', component: SettingsPageComponent},
   
   // keep this at the bottom, if you try to access 
   // smt that isn't stated above it redirects you to the welcome page
