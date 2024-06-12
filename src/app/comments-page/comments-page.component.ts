@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, inject, OnChanges, OnInit, SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, inject, OnChanges, OnInit, SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { PostComponent } from '../post/post.component';
 import { NgClass, NgFor } from '@angular/common';
@@ -22,17 +22,17 @@ import { forkJoin, map, Observable } from 'rxjs';
   templateUrl: './comments-page.component.html',
   styleUrl: './comments-page.component.scss'
 })
-export class CommentsPageComponent implements OnInit {
+export class CommentsPageComponent implements OnInit, AfterViewInit {
   // Constrctor and Innit
   // -------------
-  private user: UserDTO = this.appCompoent.headerComponent.user;
+  private user: UserDTO = this.appComponent.headerComponent.user;
 
   postId!: string;
   commentCounts: { [postId: string]: number } = {};
   nrComments: number = 0;
 
   posts: postDto[] = [];
-  constructor(private route: ActivatedRoute, private router: Router, private changeDetectorRef: ChangeDetectorRef, private appCompoent: AppComponent, private commentService: CommentService, private postService: PostService){
+  constructor(private route: ActivatedRoute, private router: Router, private changeDetectorRef: ChangeDetectorRef, private appComponent: AppComponent, private commentService: CommentService, private postService: PostService){
   }
 
   comments: GetCommentDTO[] = [];
@@ -44,13 +44,13 @@ export class CommentsPageComponent implements OnInit {
         this.getPostByPostId(this.postId);
         this.getCommentsByPostId(this.postId);
         this.commentService.getCountCommentByPostId(this.postId).subscribe( nr => {
-          this.nrComments = nr;
-        });
+        this.nrComments = nr;
+      });
 
-        this.changeDetectorRef.detectChanges();
+      this.changeDetectorRef.detectChanges();
       }
 
-      this.appCompoent.headerComponent.user$.subscribe(user => {
+      this.appComponent.headerComponent.user$.subscribe(user => {
         this.user = user;
       });
       
@@ -63,6 +63,10 @@ export class CommentsPageComponent implements OnInit {
     });
 
   };
+
+  ngAfterViewInit(): void {
+      
+  }
   
   loadCommentCounts(): void {
     const commentCountObservables: Observable<any>[] = this.posts.map(post => 
@@ -106,10 +110,32 @@ export class CommentsPageComponent implements OnInit {
       }
     }
   }
+
   getCommentsByPostId(postId: string): void {
     this.commentService.getCommentsByPostId(postId).subscribe({
         next: (comments) => {
             this.comments = comments;
+
+            setTimeout(() => {
+              this.route.queryParams.subscribe(params => {
+                const commentIdParamValue = params['commentid'];
+                if(commentIdParamValue){
+                  const comment = document.getElementById("comment-" + commentIdParamValue);
+                  if(comment){
+                    const headerHeight = 105;
+                    const commentPosition = comment.getBoundingClientRect().top + window.scrollY;
+                    const offestPosition = commentPosition - headerHeight;
+                    window.scrollTo(
+                      {
+                        top: offestPosition,
+                        behavior: 'smooth'
+                      }
+                    )
+                  }
+                }
+              });
+            }, 100);
+
         },
         error: (error) => {
             console.log('Error fetching comments:', error);
@@ -123,6 +149,7 @@ export class CommentsPageComponent implements OnInit {
         this.posts.push(post);
       },
       error: (err) => {
+        this.router.navigate(['/404']);
         console.error('Error fetching post:', err);
       }
     });
@@ -142,7 +169,7 @@ export class CommentsPageComponent implements OnInit {
     this.showToast(this.postedCommentToast);
     this.tempUniqueID--;
 
-    console.log("User: ", this.appCompoent.headerComponent.user);
+    console.log("User: ", this.appComponent.headerComponent.user);
     this.comments.unshift({
       commentId: this.tempUniqueID.toString(), //Id of the last comment
       valueOfLikes: 0,

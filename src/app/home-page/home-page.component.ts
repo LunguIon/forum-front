@@ -7,12 +7,13 @@ import { PostService } from '../service/post.service';
 import { postDto } from '../models/postDto.model';
 import { forkJoin, map, Observable } from 'rxjs';
 import { CommentService } from '../service/comments.service';
+import { ToastsContainerComponent } from '../toasts-container/toasts-container.component';
 
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [NgbDropdownModule, PostComponent, NgFor],
+  imports: [NgbDropdownModule, PostComponent, NgFor, ToastsContainerComponent],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'
 })

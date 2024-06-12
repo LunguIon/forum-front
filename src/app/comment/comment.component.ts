@@ -1,8 +1,8 @@
 import { NgClass, NgIf } from '@angular/common';
-import { Component, inject, Input, OnChanges, OnInit, SimpleChanges, TemplateRef } from '@angular/core';
+import { Component, inject, Input, OnChanges, OnInit, SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastService } from '../service/toast.service';
 import { VoteStatus } from '../models/voteStatus.type';
@@ -32,7 +32,7 @@ export class CommentComponent {
   plusChecked: boolean = false;
   minusChecked: boolean = false;
 
-  constructor(){}
+  constructor(private router: Router, private route: ActivatedRoute){}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['id'] || changes['user'] || changes['valueOfLikes'] || changes['nrComments'] || changes['voteStatus'] || changes['content']) {
@@ -74,11 +74,11 @@ export class CommentComponent {
 
   // Copy Comment Text
   // -------------
-  copyCommentText(){
+  copyText(commentText: string){
     if (!navigator.clipboard) {
-      this.fallbackCopyTextToClipboard();
+      this.fallbackCopyTextToClipboard(commentText);
     } else {
-      navigator.clipboard.writeText(this.content).then(() => {
+      navigator.clipboard.writeText(commentText).then(() => {
         // console.log('Text copied to clipboard');
       }).catch(err => {
         // console.error('Could not copy text: ', err);
@@ -86,9 +86,9 @@ export class CommentComponent {
     }
   }
 
-  fallbackCopyTextToClipboard() {
+  fallbackCopyTextToClipboard(commentText: string) {
     const textArea = document.createElement('textarea');
-    textArea.value = this.content;
+    textArea.value = commentText;
     // Avoid scrolling to bottom
     textArea.style.position = 'fixed';
     textArea.style.top = '0';
@@ -118,6 +118,24 @@ export class CommentComponent {
   getSanitizedContent(): SafeHtml {
     const formattedContent = this.content.replace(/&#13;|\n/g, '<br>');
     return this.sanitizer.bypassSecurityTrustHtml(formattedContent);
+  }
+
+  // Share comment functions
+  // -------------
+  @ViewChild('shareToast') shareToast!: TemplateRef<any>;
+  shareComment(){
+    const queryParams = { ...this.route.snapshot.queryParams };
+    queryParams['commentid'] = this.id;
+
+    const currentUrl = this.router.createUrlTree([], {
+      relativeTo: this.route,
+      queryParams: queryParams,
+    })
+
+    const fullUrl = `${window.location.origin}${this.router.serializeUrl(currentUrl)}`;
+
+    this.copyText(fullUrl);
+    this.showToast(this.shareToast);
   }
 
   // Voting functions
