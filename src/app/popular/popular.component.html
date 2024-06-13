@@ -20,7 +20,7 @@
                   [user]="post.user"
                   [valueOfLikes]="0"
                   [nrComments]="commentCounts[post.postId] || 0"
-                  [voteStatus]="'upvoted'"
+                  [voteStatus]="'undefined'"
                   [content]="post.content"
                   [imgLink]="post.imageURL"
                   [topic]="post.title"
@@ -31,3 +31,5 @@
         </div>
     </div>
 </div>
+
+<app-toasts-container aria-live="polite" aria-atomic="true"></app-toasts-container>

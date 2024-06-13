@@ -9,11 +9,12 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { TopicComponent } from '../topic/topic.component';
 import { TopicDTO } from '../models/topicdto.model';
 import { TopicService } from '../service/topic.service';
+import { ToastsContainerComponent } from '../toasts-container/toasts-container.component';
 
 @Component({
   selector: 'app-all',
   standalone: true,
-  imports: [NgbDropdownModule, TopicComponent, NgFor],
+  imports: [NgbDropdownModule, TopicComponent, NgFor, ToastsContainerComponent],
   templateUrl: './all.component.html',
   styleUrl: './all.component.scss'
 })
