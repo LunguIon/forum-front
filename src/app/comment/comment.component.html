@@ -60,11 +60,11 @@
                         </div>
                     </label>
 
-                    <div class="upvotes fw-black d-flex justify-content-center align-items-center">
+                    <!-- <div class="upvotes fw-black d-flex justify-content-center align-items-center">
                         <div class="d-flex justify-content-center align-items-center">
                             {{valueOfLikes}} 
                         </div>
-                    </div>
+                    </div> -->
 
                     <label [for]=" 'comment-minus-' + id " class="d-flex justify-content-center align-items-center                  minus-lbl">
                         <input #minusBtn type="checkbox" [id]=" 'comment-minus-' + id " name="rating" class="d-none" (click)="onMinusClick(minusBtn, plusBtn)" [(ngModel)]="minusChecked">
