@@ -30,4 +30,7 @@ export class UserService {
             params: { password }
         });
     }
+    deleteUser(email: string): Observable<void> {
+        return this.http.delete<void>(`${this.apiUrl}/${email}`);
+    }
 }
