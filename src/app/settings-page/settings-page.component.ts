@@ -10,6 +10,7 @@ import { UserDTO } from '../models/UserDTO.model';
 import { AppComponent } from '../app.component';
 import { ToastsContainerComponent } from '../toasts-container/toasts-container.component';
 import { ToastService } from '../service/toast.service';
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-settings-page',
@@ -45,7 +46,7 @@ export class SettingsPageComponent implements OnInit, OnDestroy{
   user: UserDTO = {username:'', email:'', imageUrl:''}
 
   private elementRefSubscription!: Subscription;
-  constructor(private elementRefService: ElementRefService, private router: Router, private appComponent: AppComponent){}
+  constructor(private elementRefService: ElementRefService, private router: Router, private appComponent: AppComponent, private userService: UserService){}
 
   ngOnInit(): void {
     this.modalContainer = this.elementRefService.getElementRef();
@@ -193,37 +194,75 @@ export class SettingsPageComponent implements OnInit, OnDestroy{
 
   @ViewChild('usernameChangedToast') usernameChangedToast!: TemplateRef<any>;
   changeUsername(form: NgForm){
-    if(form.valid){
-
-      // this is the new username
+    if (form.valid) {
       const newUsername: string = form.controls['new-username'].value;
+      const email: string = localStorage.getItem('email')!; 
+
+      this.userService.updateUserUsername(email, newUsername).subscribe({
+        next: (response) => {
+          if (response) {
+            this.showToast(this.usernameChangedToast);
+          } else {
+            console.log('Username update failed');
+          }
+        },
+        error: (error) => {
+          console.log('Error updating username:', error);
+        }
+      });
     }
   }
 
   @ViewChild('emailChangedToast') emailChangedToast!: TemplateRef<any>;
   changeEmail(form: NgForm){
-    if(form.valid){
-
-      // this is the new eamil
+    if (form.valid) {
       const newEmail: string = form.controls['new-email'].value;
+      const email: string = localStorage.getItem('email')!; 
+
+      const user: UserDTO = { email: newEmail, username: this.user.username, imageUrl: ''};
+      this.userService.updateUser(email, user).subscribe({
+        next: (response) => {
+          this.showToast(this.emailChangedToast);
+        },
+        error: (error) => {
+          console.log('Error updating email:', error);
+        }
+      });
     }
   }
 
   @ViewChild('passwordChangedToast') passwordChangedToast!: TemplateRef<any>;
   changePassword(form: NgForm){
     if (form.valid && this.checkPasswordsMatch(form)) {
+      const oldPassword: string = form.controls['old-password'].value;
+      const newPassword: string = form.controls['password'].value;
+      const email: string = localStorage.getItem('email')!; 
 
-      // this is the old password that needs to be checked
-      const oldPassword: string =  form.controls['old-password'].value;
-      // this is the new password
-      const newPassword: string =  form.controls['password'].value;
+      this.userService.updateUserPassword(email, newPassword).subscribe({
+        next: (response) => {
+          this.showToast(this.passwordChangedToast);
+        },
+        error: (error) => {
+          console.log('Error updating password:', error);
+        }
+      });
     }
   }
 
   @ViewChild('accountDeletedToast') accountDeletedToast!: TemplateRef<any>;
   deleteAccout(){
-    // Delete the current account here and if succesful run the next functions
-    this.closeDeleteModal();
-    this.router.navigate(['/welcome']);
+    const email: string = localStorage.getItem('email')!; 
+
+    this.userService.deleteUser(email).subscribe({
+      next: () => {
+        localStorage.removeItem('email');
+        this.showToast(this.accountDeletedToast);
+        this.closeDeleteModal();
+        this.router.navigate(['/welcome']);
+      },
+      error: (error) => {
+        console.log('Error deleting account:', error);
+      }
+    });
   }
 }
