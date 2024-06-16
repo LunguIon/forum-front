@@ -254,8 +254,19 @@ export class SettingsPageComponent implements OnInit, OnDestroy{
 
   @ViewChild('accountDeletedToast') accountDeletedToast!: TemplateRef<any>;
   deleteAccout(){
-    // Delete the current account here and if succesful run the next functions
-    this.closeDeleteModal();
-    this.router.navigate(['/welcome']);
+    const email: string = localStorage.getItem('email')!; 
+
+    this.userService.deleteUser(email).subscribe({
+      next: () => {
+        console.log('Account deleted successfully');
+        localStorage.removeItem('email');
+        this.showToast(this.accountDeletedToast);
+        this.closeDeleteModal();
+        this.router.navigate(['/welcome']);
+      },
+      error: (error) => {
+        console.log('Error deleting account:', error);
+      }
+    });
   }
 }
