@@ -202,12 +202,16 @@ export class SettingsPageComponent implements OnInit, OnDestroy{
         next: (response) => {
           if (response) {
             this.showToast(this.usernameChangedToast);
+            this.user.username = newUsername;
+            this.appComponent.headerComponent.updateUser(this.user);
           } else {
-            console.log('Username update failed');
+            this.showToast(this.smtWrongToast);
+            // console.log('Username update failed');
           }
         },
         error: (error) => {
-          console.log('Error updating username:', error);
+          this.showToast(this.smtWrongToast);
+          // console.log('Error updating username:', error);
         }
       });
     }
@@ -222,10 +226,12 @@ export class SettingsPageComponent implements OnInit, OnDestroy{
       const user: UserDTO = { email: newEmail, username: this.user.username, imageUrl: ''};
       this.userService.updateUser(email, user).subscribe({
         next: (response) => {
+          user.email = newEmail;
           this.showToast(this.emailChangedToast);
         },
         error: (error) => {
-          console.log('Error updating email:', error);
+          this.showToast(this.smtWrongToast);
+          // console.log('Error updating email:', error);
         }
       });
     }
@@ -243,7 +249,8 @@ export class SettingsPageComponent implements OnInit, OnDestroy{
           this.showToast(this.passwordChangedToast);
         },
         error: (error) => {
-          console.log('Error updating password:', error);
+          this.showToast(this.smtWrongToast);
+          // console.log('Error updating password:', error);
         }
       });
     }
@@ -261,7 +268,8 @@ export class SettingsPageComponent implements OnInit, OnDestroy{
         this.router.navigate(['/welcome']);
       },
       error: (error) => {
-        console.log('Error deleting account:', error);
+        this.showToast(this.smtWrongToast);
+        // console.log('Error deleting account:', error);
       }
     });
   }

@@ -28,6 +28,9 @@ export class HeaderBootstrapComponent implements OnInit, OnDestroy{
   user$ = this.userSubject.asObservable();
   sanitizedUsername: string;
 
+  updateUser(newUser: UserDTO) {
+    this.userSubject.next(newUser);
+  }
 
   currentTopic: string = '';
 
