@@ -201,7 +201,6 @@ export class SettingsPageComponent implements OnInit, OnDestroy{
       this.userService.updateUserUsername(email, newUsername).subscribe({
         next: (response) => {
           if (response) {
-            console.log('Username updated successfully');
             this.showToast(this.usernameChangedToast);
           } else {
             console.log('Username update failed');
@@ -223,7 +222,6 @@ export class SettingsPageComponent implements OnInit, OnDestroy{
       const user: UserDTO = { email: newEmail, username: this.user.username, imageUrl: ''};
       this.userService.updateUser(email, user).subscribe({
         next: (response) => {
-          console.log('Email updated successfully');
           this.showToast(this.emailChangedToast);
         },
         error: (error) => {
@@ -242,7 +240,6 @@ export class SettingsPageComponent implements OnInit, OnDestroy{
 
       this.userService.updateUserPassword(email, newPassword).subscribe({
         next: (response) => {
-          console.log('Password updated successfully');
           this.showToast(this.passwordChangedToast);
         },
         error: (error) => {
@@ -258,7 +255,6 @@ export class SettingsPageComponent implements OnInit, OnDestroy{
 
     this.userService.deleteUser(email).subscribe({
       next: () => {
-        console.log('Account deleted successfully');
         localStorage.removeItem('email');
         this.showToast(this.accountDeletedToast);
         this.closeDeleteModal();
