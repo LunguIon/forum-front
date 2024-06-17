@@ -43,6 +43,8 @@
   --btn-border-radius: #{$btn-border-radius};
   --scrollbar-width: 8px;
 
+  --clr-light-rgb-vals-settings: #{$clr-light-rgb-vals};
+
 }
 
 
@@ -54,6 +56,8 @@
   --clr-light-gray-rgb-vals: 255, 255, 255;
   --clr-dark-primary-hover: #c3c2ff;
   --404-back:#48a5e2;
+  --clr-light-rgb-vals-settings: #{$clr-dark-primary-rgb-vals};
+
 }
 
 .font-julius-sans-one {

@@ -1,0 +1,118 @@
+@import "../../../node_modules/rfs/scss.scss";
+@import "../../../node_modules/bootstrap/scss/bootstrap-utilities.scss";
+@import "../../stylings/colors.scss";
+
+.main-container{
+    overflow: hidden;
+    z-index: -1;
+}
+
+.fill{
+    width: 100%;
+    min-height: calc(100vh - 115px);
+    background-color: var(--clr-dark);
+}
+
+.divider{
+    border-color: var(--clr-light) ;
+    border-width: 2px !important;
+    border-radius: 100px ;
+    opacity: 1;
+}
+
+.w150h150{
+    width: 150px;
+    height: 150px;
+}
+
+.property{
+    color: rgba(var(--clr-light-rgb-vals-settings), 0.5);
+}
+
+.form-control{
+    border: 2px solid;
+    border-radius: 60px;
+    color: $clr-light !important;
+    border-color: transparent;
+    border-color: var(--clr-dark-primary);
+    background-color: var(--clr-gray);
+    transition: all 0.3s;
+}
+
+.form-control:hover{
+    border-color: rgba(var(--clr-primary-rgb-vals), 1);
+    background-color: var(--clr-gray) !important;
+}
+
+.form-control:focus{
+    border-color: rgba(var(--clr-primary-rgb-vals), 1);
+    box-shadow: 0 0 10px 3px rgba(var(--clr-primary-rgb-vals), 0.35);
+    background-color: var(--clr-gray) !important;
+}
+
+.form-control::placeholder {
+    color: $clr-light;
+    opacity: 0.8; 
+    text-transform: uppercase;
+    font-family: "Julius Sans One", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.modal-content{
+    background-color:var(--clr-gray) !important;
+    color: var(--clr-light);
+    border-radius: 100px;
+    border-color: transparent;
+    overflow: hidden;
+}
+
+.modal{
+    --bs-modal-width: 700px;
+}
+
+.modal-header, .modal-footer, .modal-body{
+    border: none !important;
+    overflow: hidden !important;
+}
+
+.my-modal-body{
+    position: relative;
+}
+
+.passwd-btn{
+    right: 5px;
+    position: absolute;
+    cursor: pointer;
+    background-color: var(--clr-gray);
+    border-radius: 100px;
+}
+
+.passwd-input{
+    padding-right: 40px !important;
+}
+
+.w25h25{
+    width: 25px;
+    height: 25px;
+}
+
+.err-message{
+    overflow: hidden !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+    cursor: default !important;
+    color: var(--clr-pink) !important;
+}
+
+.err-message:hover{
+    color: var(--clr-pink) !important;
+}
+
+
+.submit{
+    border: none !important;
+    background-color: transparent;
+    padding: 0;
+
+}

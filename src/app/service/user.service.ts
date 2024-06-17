@@ -16,4 +16,21 @@ export class UserService {
     getUserByEmail(email: string): Observable<UserDTO>{
         return this.http.get<UserDTO>(`${this.apiUrl}/${email}`);
     }
+    updateUserUsername(email: string, newUsername: string): Observable<boolean> {
+        return this.http.put<boolean>(`${this.apiUrl}/${email}/username`, null, {
+            params: { newUsername }
+        });
+    }
+    updateUser(email: string, user: UserDTO): Observable<UserDTO> {
+        return this.http.put<UserDTO>(`${this.apiUrl}/${email}`, user);
+    }
+
+    updateUserPassword(email: string, password: string): Observable<UserDTO> {
+        return this.http.put<UserDTO>(`${this.apiUrl}/${email}/password`, null, {
+            params: { password }
+        });
+    }
+    deleteUser(email: string): Observable<void> {
+        return this.http.delete<void>(`${this.apiUrl}/${email}`);
+    }
 }

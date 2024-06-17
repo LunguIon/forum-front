@@ -185,7 +185,7 @@ export class HeaderBootstrapComponent implements OnInit, OnDestroy{
   // Log out btn
   // -------------
   logoutClick(){
-    // Delete the session
+    localStorage.removeItem('email');
     this.router.navigate(['/welcome']);
   }  
 

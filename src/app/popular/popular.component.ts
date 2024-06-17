@@ -7,11 +7,12 @@ import { postDto } from '../models/postDto.model';
 import { PostService } from '../service/post.service';
 import { CommentService } from '../service/comments.service';
 import { forkJoin, map, Observable } from 'rxjs';
+import { ToastsContainerComponent } from '../toasts-container/toasts-container.component';
 
 @Component({
   selector: 'app-popular',
   standalone: true,
-  imports: [NgbDropdownModule, PostComponent, NgFor],
+  imports: [NgbDropdownModule, PostComponent, NgFor, ToastsContainerComponent],
   templateUrl: './popular.component.html',
   styleUrl: './popular.component.scss'
 })
