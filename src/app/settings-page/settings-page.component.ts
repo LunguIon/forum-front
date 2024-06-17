@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, OnDestroy, OnInit, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, inject, OnDestroy, OnInit, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ElementRefService } from '../service/element-ref.service';
@@ -204,6 +204,7 @@ export class SettingsPageComponent implements OnInit, OnDestroy{
             this.showToast(this.usernameChangedToast);
             this.user.username = newUsername;
             this.appComponent.headerComponent.updateUser(this.user);
+            this.closeUsernameModal();
           } else {
             this.showToast(this.smtWrongToast);
             // console.log('Username update failed');
@@ -227,7 +228,10 @@ export class SettingsPageComponent implements OnInit, OnDestroy{
       this.userService.updateUser(email, user).subscribe({
         next: (response) => {
           user.email = newEmail;
+          this.user.email = newEmail;
+          // localStorage.setItem('email', newEmail);
           this.showToast(this.emailChangedToast);
+          this.closeEmailModal();
         },
         error: (error) => {
           this.showToast(this.smtWrongToast);
@@ -247,6 +251,7 @@ export class SettingsPageComponent implements OnInit, OnDestroy{
       this.userService.updateUserPassword(email, newPassword).subscribe({
         next: (response) => {
           this.showToast(this.passwordChangedToast);
+          this.closePasswordModal();
         },
         error: (error) => {
           this.showToast(this.smtWrongToast);
