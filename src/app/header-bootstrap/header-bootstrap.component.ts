@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, inject, TemplateRef, ViewChild, ViewEncapsulation, HostListener, ElementRef, Renderer2, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, inject, TemplateRef, ViewChild, ViewEncapsulation, HostListener, ElementRef, Renderer2, OnInit, OnDestroy} from '@angular/core';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { NgbOffcanvas, NgbOffcanvasOptions, NgbOffcanvasRef } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
@@ -28,6 +28,20 @@ export class HeaderBootstrapComponent implements OnInit, OnDestroy{
   user$ = this.userSubject.asObservable();
   sanitizedUsername: string;
 
+  updateUser(newUser: UserDTO) {
+    this.userSubject.next(newUser);
+    this.user = newUser;
+
+    this.sanitizedUsername = this.user.username || '';
+    const minLenghtOfName = 20;
+    if(this.sanitizedUsername.length < minLenghtOfName){
+      for(let i: number = this.sanitizedUsername.length; i <= minLenghtOfName; i++ ){
+        this.sanitizedUsername = this.sanitizedUsername + " &nbsp;";
+      }  
+    }else{
+      this.sanitizedUsername = this.sanitizedUsername + " &nbsp;";
+    }
+  }
 
   currentTopic: string = '';
 
@@ -89,11 +103,7 @@ export class HeaderBootstrapComponent implements OnInit, OnDestroy{
           console.error('Error fetching user:', error);
         }
       );
-
-    
     }
-  
-
   }
   
 
@@ -102,6 +112,7 @@ export class HeaderBootstrapComponent implements OnInit, OnDestroy{
       this.elementRefSubscription.unsubscribe();
     }
   }
+
 
   // Username components
   // -------------

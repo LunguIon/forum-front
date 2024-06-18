@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, OnDestroy, OnInit, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, inject, OnDestroy, OnInit, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ElementRefService } from '../service/element-ref.service';
@@ -202,12 +202,17 @@ export class SettingsPageComponent implements OnInit, OnDestroy{
         next: (response) => {
           if (response) {
             this.showToast(this.usernameChangedToast);
+            this.user.username = newUsername;
+            this.appComponent.headerComponent.updateUser(this.user);
+            this.closeUsernameModal();
           } else {
-            console.log('Username update failed');
+            this.showToast(this.smtWrongToast);
+            // console.log('Username update failed');
           }
         },
         error: (error) => {
-          console.log('Error updating username:', error);
+          this.showToast(this.smtWrongToast);
+          // console.log('Error updating username:', error);
         }
       });
     }
@@ -222,10 +227,15 @@ export class SettingsPageComponent implements OnInit, OnDestroy{
       const user: UserDTO = { email: newEmail, username: this.user.username, imageUrl: ''};
       this.userService.updateUser(email, user).subscribe({
         next: (response) => {
+          user.email = newEmail;
+          this.user.email = newEmail;
+          // localStorage.setItem('email', newEmail);
           this.showToast(this.emailChangedToast);
+          this.closeEmailModal();
         },
         error: (error) => {
-          console.log('Error updating email:', error);
+          this.showToast(this.smtWrongToast);
+          // console.log('Error updating email:', error);
         }
       });
     }
@@ -241,9 +251,11 @@ export class SettingsPageComponent implements OnInit, OnDestroy{
       this.userService.updateUserPassword(email, newPassword).subscribe({
         next: (response) => {
           this.showToast(this.passwordChangedToast);
+          this.closePasswordModal();
         },
         error: (error) => {
-          console.log('Error updating password:', error);
+          this.showToast(this.smtWrongToast);
+          // console.log('Error updating password:', error);
         }
       });
     }
@@ -261,7 +273,8 @@ export class SettingsPageComponent implements OnInit, OnDestroy{
         this.router.navigate(['/welcome']);
       },
       error: (error) => {
-        console.log('Error deleting account:', error);
+        this.showToast(this.smtWrongToast);
+        // console.log('Error deleting account:', error);
       }
     });
   }
